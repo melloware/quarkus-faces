@@ -5,19 +5,23 @@ Quarkus Faces
 
 [![Quarkus Faces Logo](https://github.com/melloware/quarkus-faces/blob/main/src/site/QuarkusFaces.svg)](https://github.com/melloware/quarkus-faces)
 
-### Overview
-
-The goal was to take an out of the box JSF application (PrimeFaces Showcase) and run it in both a Java EE Server and in [Quarkus](https://quarkus.io/).
-In the process of doing this I also added various optimization tricks I have learned over the years for optimizing a JSF application.
-This was designed to see if Quarkus is a viable option for JSF and migrating to Docker containers.
+### Goals
+***
+The main goal was to take an out of the box JSF application ([PrimeFaces Showcase](https://github.com/primefaces/primefaces-showcase)) 
+and run it in both a Java EE Server and in [Quarkus](https://quarkus.io/). 
+Some addition goals:
+- See how much we can improve performance by incorporating various optimization tricks for JSF applications
+- See if Quarkus is a viable option for JSF and migrating to Docker containers
 
 ### Environment
+***
 - OpenJDK 11.0.10
 - JBoss Wildfly 18.0.1
 - Quarkus 1.11.3
 - JSF Production Mode
 
 ### Optimizations
+***
 - Apache MyFaces instead of Jakarta Mojarra
 - PrimeFaces [MOVE_SCRIPTS_TO_BOTTOM](https://primefaces.github.io/primefaces/10_0_0/#/gettingstarted/configuration?id=configuration)
 - OmniFaces [GzipResponseFilter](https://showcase.omnifaces.org/filters/GzipResponseFilter)
@@ -27,7 +31,7 @@ This was designed to see if Quarkus is a viable option for JSF and migrating to 
 - jQuery [Hide Page Until Complete](https://stackoverflow.com/questions/9550760/hide-page-until-everything-is-loaded-advanced/28129691#28129691)
 
 ### Metrics
-
+***
 The following client and server metrics were captured while hitting the exact same page [/datatable.basic.xhtml](https://www.primefaces.org/showcase/ui/data/datatable/basic.xhtml)
 Using `Incognito Mode` and pressing CTRL+F5 so it forced the browser to load all resources from the server with nothing cached.
 
@@ -54,7 +58,7 @@ To run the example in Dev mode:
 
 ```
 git clone https://github.com/melloware/quarkus-faces
-cd quarkus-faces-showcase
+cd quarkus-faces
 mvn clean compile quarkus:dev
 ```
 
@@ -67,15 +71,16 @@ To run the example in HotSpot Production mode (GraalVM native-image not supporte
 
 ```
 git clone https://github.com/melloware/quarkus-faces
-cd quarkus-faces-showcase
+cd quarkus-faces
 mvn clean package
-java -jar target/showcase-10.0.0-runner.jar
+java -jar target/quarkus-faces-10.0.0-runner.jar
 ```
 
 Then open your web browser to http://localhost:8080/
 
 ### Docker
 
+***
 ```
 mvn clean package 
 docker build -f docker/Dockerfile -t melloware/quarkus-faces . 
