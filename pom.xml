@@ -300,7 +300,7 @@
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-ssh</artifactId>
-                <version>2.12</version>
+                <version>3.4.2</version>
             </extension>
         </extensions>
     </build>
