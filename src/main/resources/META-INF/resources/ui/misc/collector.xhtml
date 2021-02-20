@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">
+        Collector
+    </ui:define>
+
+    <ui:define name="description">
+        Collector is an utility to manage collections easily.
+    </ui:define>
+
+    <ui:param name="documentationLink" value="/components/collector"/>
+
+    <ui:define name="implementation">
+        <div class="card">
+            <h:form id="form">
+                <p:growl id="msgs"/>
+
+                <p:panel header="Create a new book" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel value="Title : *" for="txt_title"></h:outputLabel>
+                        <p:inputText id="txt_title" value="#{collectorView.book.title}" required="true"/>
+
+                        <h:outputLabel value="Author : *" for="txt_author"></h:outputLabel>
+                        <p:inputText id="txt_author" value="#{collectorView.book.author}" required="true"/>
+
+                        <p:commandButton id="btn_reset" value="Reset" type="reset"/>
+                        <p:commandButton id="btn_add" value="Add" update="books msgs @parent"
+                                         action="#{collectorView.reinit}">
+                            <p:collector value="#{collectorView.book}" addTo="#{collectorView.books}" unique="true"/>
+                        </p:commandButton>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:outputPanel id="books">
+                    <p:dataTable value="#{collectorView.books}" var="book" id="booksTable">
+
+                        <p:column headerText="Title">
+                            <h:outputText value="#{book.title}"/>
+                        </p:column>
+
+                        <p:column headerText="Author">
+                            <f:facet name="header">
+                                <h:outputText value="Author"/>
+                            </f:facet>
+                            <h:outputText value="#{book.author}"/>
+                        </p:column>
+
+                        <p:column headerText="Action">
+                            <p:commandLink value="Remove" update=":form:books" process=":form:books">
+                                <p:collector value="#{book}" removeFrom="#{collectorView.books}" unique="true"/>
+                            </p:commandLink>
+                        </p:column>
+
+                    </p:dataTable>
+                </p:outputPanel>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

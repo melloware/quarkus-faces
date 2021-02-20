@@ -1,0 +1,97 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">
+        InputGroup
+    </ui:define>
+
+    <ui:define name="description">
+        Text, icon, buttons and other content can be grouped next to an input by wrapping the addons and input inside .ui-inputgroup element. Multiple addons can be used within the same group as well.
+    </ui:define>
+
+    <ui:param name="documentationLink" value="/components/inputgroup"/>
+
+    <ui:define name="implementation">
+        <h:form>
+            <div class="card">
+                <h5 style="margin-top:0">Addons</h5>
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                            <p:inputText placeholder="Username"/>
+                        </div>
+                    </div>
+            
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon">$</span>
+                            <p:inputText placeholder="Price"/>
+                            <span class="ui-inputgroup-addon">.00</span>
+                        </div>
+                    </div>
+            
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon">www</span>
+                            <p:inputText placeholder="Website"/>
+                        </div>
+                    </div>
+                </div>
+            
+                <h5>Multiple Addons</h5>
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-shopping-cart"></i></span>
+                            <span class="ui-inputgroup-addon"><i class="pi pi-money-bill"></i></span>
+                            <p:inputText placeholder="Price"/>
+                            <span class="ui-inputgroup-addon">$</span>
+                            <span class="ui-inputgroup-addon">.00</span>
+                        </div>
+                    </div>
+                </div>
+            
+                <h5>Button Addons</h5>
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <p:commandButton value="Search"/>
+                            <p:inputText placeholder="Keyword"/>
+                        </div>
+                    </div>
+            
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <p:inputText placeholder="Keyboard"/>
+                            <p:commandButton icon="pi pi-search" styleClass="ui-button-warning"/>
+                        </div>
+                    </div>
+            
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <p:commandButton icon="pi pi-check" styleClass="ui-button-success"/>
+                            <p:inputText placeholder="Vote"/>
+                            <p:commandButton icon="pi pi-times" styleClass="ui-button-danger"/>
+                        </div>
+                    </div>
+                </div>
+            
+                <h5>Checkbox</h5>
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon-checkbox"><p:selectBooleanCheckbox/></span>
+                            <p:inputText placeholder="Username"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

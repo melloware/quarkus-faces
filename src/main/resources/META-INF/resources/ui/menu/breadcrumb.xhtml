@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">
+        Breadcrumb
+    </ui:define>
+
+    <ui:define name="description">
+        Breadcrumb provides contextual information about the page hierarchy.
+    </ui:define>
+
+    <ui:param name="documentationLink" value="/components/breadcrumb"/>
+
+    <ui:define name="implementation">
+        <div class="card">
+            <p:breadCrumb>
+                <p:menuitem value="Electronics" url="#"/>
+                <p:menuitem value="Computer" url="#"/>
+                <p:menuitem value="Notebook" url="#"/>
+                <p:menuitem value="Accessories" url="#"/>
+                <p:menuitem value="Item" url="#"/>
+            </p:breadCrumb>
+        </div>
+    </ui:define>
+
+</ui:composition>

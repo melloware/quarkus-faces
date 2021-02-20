@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+    
+    <ui:define name="head">
+        <style type="text/css">
+            .content-source {
+                display: none
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="title">
+        Error <span class="subitem">View Expired</span>
+    </ui:define>
+
+    <ui:define name="description">
+        Message: #{pfExceptionHandler.message}
+    </ui:define>
+
+    <ui:define name="implementation">
+        <h:outputText value="#{pfExceptionHandler.formattedStackTrace}" escape="false" />
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">
+        Dock
+    </ui:define>
+
+    <ui:define name="description">
+        Dock is a navigation component consisting of menuitems.
+    </ui:define>
+
+    <ui:param name="documentationLink" value="/components/dock"/>
+    <ui:param name="widgetLink" value="dock"/>
+
+    <ui:define name="implementation">
+        <p:dock position="bottom">
+            <p:menuitem value="Home" icon="/resources/demo/images/dock/home.png" url="#"/>
+            <p:menuitem value="Music" icon="/resources/demo/images/dock/music.png" url="#"/>
+            <p:menuitem value="Video" icon="/resources/demo/images/dock/video.png" url="#"/>
+            <p:menuitem value="Email" icon="/resources/demo/images/dock/email.png" url="#"/>
+            <p:menuitem value="Portfolio" icon="/resources/demo/images/dock/portfolio.png" url="#"/>
+            <p:menuitem value="Link" icon="/resources/demo/images/dock/link.png" url="#"/>
+            <p:menuitem value="RSS" icon="/resources/demo/images/dock/rss.png" url="#"/>
+            <p:menuitem value="History" icon="/resources/demo/images/dock/history.png" url="#"/>
+        </p:dock>
+    </ui:define>
+
+</ui:composition>

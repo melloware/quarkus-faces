@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">
+        Menubar
+    </ui:define>
+
+    <ui:define name="description">
+        Menubar displays root items horizontally and nested items as tiered.
+    </ui:define>
+
+    <ui:param name="documentationLink" value="/components/menubar"/>
+    <ui:param name="widgetLink" value="menubar"/>
+
+    <ui:define name="implementation">
+        <div class="card">
+            <h:form>
+                <p:growl id="messages"/>
+
+                <p:menubar>
+                    <p:submenu label="File" icon="pi pi-file">
+                        <p:submenu label="New" icon="pi pi-briefcase">
+                            <p:menuitem value="Project" url="#"/>
+                            <p:menuitem value="Other" url="#"/>
+                        </p:submenu>
+                        <p:menuitem value="Open" url="#"/>
+                        <p:divider />
+                        <p:menuitem value="Quit" url="#"/>
+                    </p:submenu>
+
+                    <p:submenu label="Edit" icon="pi pi-pencil">
+                        <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left"/>
+                        <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right"/>
+                    </p:submenu>
+
+                    <p:submenu label="Help" icon="pi pi-question">
+                        <p:menuitem value="Contents" url="#"/>
+                        <p:submenu label="Search" icon="pi pi-search">
+                            <p:submenu label="Text">
+                                <p:menuitem value="Workspace" url="#"/>
+                            </p:submenu>
+                            <p:menuitem value="File" url="#"/>
+                        </p:submenu>
+                    </p:submenu>
+
+                    <p:submenu label="Actions" icon="pi pi-cog">
+                        <p:submenu label="Ajax" icon="pi pi-refresh">
+                            <p:menuitem value="Save" action="#{menuView.save}" icon="pi pi-save" update="messages"/>
+                            <p:menuitem value="Update" action="#{menuView.update}" icon="pi pi-refresh"
+                                        update="messages"/>
+                        </p:submenu>
+                        <p:submenu label="Non-Ajax" icon="pi pi-clone">
+                            <p:menuitem value="Delete" action="#{menuView.delete}" icon="pi pi-times" update="messages"
+                                        ajax="false"/>
+                        </p:submenu>
+                    </p:submenu>
+
+                    <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times"/>
+
+                    <f:facet name="options">
+                        <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
+                        <p:commandButton type="button" value="Logout" icon="pi pi-home"/>
+                    </f:facet>
+                </p:menubar>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

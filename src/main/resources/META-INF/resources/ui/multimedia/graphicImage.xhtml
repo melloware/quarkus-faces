@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">
+        GraphicImage
+    </ui:define>
+
+    <ui:define name="description">
+        GraphicImage is capable of presenting images that are created programatically at runtime or images stored in a database.
+    </ui:define>
+
+    <ui:param name="documentationLink" value="/components/graphicimage"/>
+
+    <ui:define name="implementation">
+
+        <div class="card">
+            <h5>Static Image</h5>
+            <p:graphicImage name="images/nature/nature4.jpg" library="demo"/>
+        </div>
+       
+        <div class="card">
+            <h5>JFreeChart</h5>
+            <p:graphicImage value="#{graphicImageView.chart}"/>
+        </div>
+
+        <div class="card">
+            <h5>JFreeChart rendered as DataURI / ViewScoped support</h5>
+            <p:graphicImage value="#{graphicImageView.chart}" stream="false"/>
+        </div>
+
+        <div class="card">
+            <h5>GraphicText</h5>
+            <p:graphicImage value="#{graphicImageView.graphicText}"/>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

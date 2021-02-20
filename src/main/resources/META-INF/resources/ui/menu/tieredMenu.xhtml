@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">
+        TieredMenu
+    </ui:define>
+
+    <ui:define name="description">
+        TieredMenu displays submenus in nested overlays.
+    </ui:define>
+
+    <ui:param name="documentationLink" value="/components/tieredmenu"/>
+    <ui:param name="widgetLink" value="tieredmenu-1"/>
+
+    <ui:define name="implementation">
+        <div class="card">
+            <h:form>
+                <p:growl id="messages" showDetail="true"/>
+
+                <h5 class="p-mt-0">Inline</h5>
+                <p:tieredMenu style="width:200px">
+                    <p:submenu label="Ajax Menuitems" icon="pi pi-refresh">
+                        <p:menuitem value="Save" action="#{menuView.save}" update="messages" icon="pi pi-save"/>
+                        <p:menuitem value="Update" action="#{menuView.update}" update="messages" icon="pi pi-refresh"/>
+                    </p:submenu>
+                    <p:submenu label="Non-Ajax Menuitem" icon="pi pi-clone">
+                        <p:menuitem value="Delete" action="#{menuView.delete}" update="messages" ajax="false"
+                                    icon="pi pi-times"/>
+                    </p:submenu>
+                    <p:divider />
+                    <p:submenu label="Navigations" icon="pi pi-home">
+                        <p:submenu label="Prime Links">
+                            <p:menuitem value="Prime" url="http://www.prime.com.tr" title="xxx"/>
+                            <p:menuitem value="PrimeFaces" url="http://www.primefaces.org"/>
+                        </p:submenu>
+                        <p:menuitem value="Mobile"/>
+                    </p:submenu>
+                </p:tieredMenu>
+
+                <h5>Overlay</h5>
+                <p:commandButton id="dynaButton" value="Show" type="button" icon="pi pi-external-link"/>
+                <p:tieredMenu overlay="true" trigger="dynaButton" my="left top" at="left bottom" style="width:200px">
+                    <p:submenu label="Ajax Menuitems">
+                        <p:menuitem value="Save" action="#{menuView.save}" update="messages" icon="pi pi-save"/>
+                        <p:menuitem value="Update" action="#{menuView.update}" update="messages" icon="pi pi-refresh"/>
+                    </p:submenu>
+                    <p:submenu label="Non-Ajax Menuitem">
+                        <p:menuitem value="Delete" action="#{menuView.delete}" update="messages" ajax="false"
+                                    icon="pi pi-times"/>
+                    </p:submenu>
+                    <p:submenu label="Navigations" icon="pi pi-home">
+                        <p:submenu label="Prime Links">
+                            <p:menuitem value="Prime" url="http://www.prime.com.tr"/>
+                            <p:menuitem value="PrimeFaces" url="http://www.primefaces.org"/>
+                        </p:submenu>
+                        <p:menuitem value="Mobile"/>
+                    </p:submenu>
+                </p:tieredMenu>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>
