@@ -1,6 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Quarkus Faces Comparison
+Quarkus Faces
 ==========================
 
 [![Quarkus Faces Logo](https://github.com/melloware/quarkus-faces/blob/main/src/site/QuarkusFaces.svg)](https://github.com/melloware/quarkus-faces)
@@ -9,6 +9,7 @@ Quarkus Faces Comparison
 
 The goal was to take an out of the box JSF application (PrimeFaces Showcase) and run it in both a Java EE Server and in [Quarkus](https://quarkus.io/).
 In the process of doing this I also added various optimization tricks I have learned over the years for optimizing a JSF application.
+This was designed to see if Quarkus is a viable option for JSF and migrating to Docker containers.
 
 ### Environment
 - OpenJDK 11.0.10
@@ -72,3 +73,16 @@ java -jar target/showcase-10.0.0-runner.jar
 ```
 
 Then open your web browser to http://localhost:8080/
+
+### Docker
+
+```
+mvn clean package 
+docker build -f docker/Dockerfile -t melloware/quarkus-faces . 
+docker run -i --rm -p 8080:8080 melloware/quarkus-faces
+```
+
+OR run already pushed image:
+```
+docker run -i --rm -p 8080:8080 melloware/quarkus-faces
+```
