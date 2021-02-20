@@ -3,7 +3,7 @@
 Quarkus Faces Comparison
 ==========================
 
-[![Quarkus Faces Logo](https://github.com/melloware/quarkus-faces/src/site/QuarkusFaces.svg)](https://github.com/melloware/quarkus-faces)
+[![Quarkus Faces Logo](https://github.com/melloware/quarkus-faces/blob/main/src/site/QuarkusFaces.svg)](https://github.com/melloware/quarkus-faces)
 
 ### Overview
 
@@ -27,7 +27,7 @@ In the process of doing this I also added various optimization tricks I have lea
 
 ### Metrics
 
-The following client and server metrics were captured while hitting the exact same page _/datatable.basic.xhtml_
+The following client and server metrics were captured while hitting the exact same page [/datatable.basic.xhtml](https://www.primefaces.org/showcase/ui/data/datatable/basic.xhtml)
 Using `Incognito Mode` and pressing CTRL+F5 so it forced the browser to load all resources from the server with nothing cached.
 
 Metric                | JBoss WildFly EE | Quarkus       | Improvement    |
@@ -51,7 +51,7 @@ Total Blocking Time   | 20 ms            | 10 ms         | 50.0%          |
 To run the example in Dev mode:
 
 ```
-git clone https://github.com/primefaces-extensions/quarkus-faces-showcase
+git clone https://github.com/melloware/quarkus-faces
 cd quarkus-faces-showcase
 mvn clean compile quarkus:dev
 ```
@@ -64,7 +64,7 @@ Then open your web browser to http://localhost:8080/
 To run the example in HotSpot Production mode (GraalVM native-image not supported):
 
 ```
-git clone https://github.com/primefaces-extensions/quarkus-faces-showcase
+git clone https://github.com/melloware/quarkus-faces
 cd quarkus-faces-showcase
 mvn clean package
 java -jar target/showcase-10.0.0-runner.jar
