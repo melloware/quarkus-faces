@@ -13,7 +13,7 @@ In the process of doing this I also added various optimization tricks I have lea
 ### Environment
 - OpenJDK 11.0.10
 - JBoss Wildfly 18.0.1
-- Quarkus 1.11.2
+- Quarkus 1.11.3
 - JSF Production Mode
 
 ### Optimizations
@@ -32,7 +32,8 @@ Using `Incognito Mode` and pressing CTRL+F5 so it forced the browser to load all
 
 Metric                | JBoss WildFly EE | Quarkus       | Improvement    |
 ----------------------| ---------------  | ------------- |----------------|
-Cold Startup          | 13.7 s           | 1.67 s        | 87.7%          |
+Package Size          | 48.5 MB          | 7.9 MB        | 83.7%          |
+Cold Startup          | 13.8 s           | 1.67 s        | 87.9%          |
 Memory Used           | 140 MB           | 31 MB         | 77.8%          |
 HTTP Requests         | 97               | 82            | 15.4%          |
 Resource Size         | 5.4 MB           | 5.4 MB        | -----          |

@@ -22,7 +22,7 @@
         <primefaces-extensions.version>10.0.0-SNAPSHOT</primefaces-extensions.version>
         <primefaces.optimizer.version>2.3.5</primefaces.optimizer.version>
         <primefaces.version>10.0.0-SNAPSHOT</primefaces.version>
-        <quarkus.version>1.12.0.Final</quarkus.version>
+        <quarkus.version>1.11.3.Final</quarkus.version>
     </properties>
 
     <dependencies>
@@ -222,7 +222,7 @@
             <plugin>
                 <groupId>nl.geodienstencentrum.maven</groupId>
                 <artifactId>sass-maven-plugin</artifactId>
-                <version>3.5.4</version>
+                <version>3.7.2</version>
                 <executions>
                     <execution>
                         <phase>generate-resources</phase>
@@ -239,6 +239,13 @@
                         <sourcemap>:none</sourcemap>
                     </sassOptions>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jruby</groupId>
+                        <artifactId>jruby-complete</artifactId>
+                        <version>9.2.14.0</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
