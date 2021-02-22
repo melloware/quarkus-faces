@@ -22,7 +22,7 @@
         <primefaces-extensions.version>10.0.0-SNAPSHOT</primefaces-extensions.version>
         <primefaces.optimizer.version>2.3.5</primefaces.optimizer.version>
         <primefaces.version>10.0.0-SNAPSHOT</primefaces.version>
-        <quarkus.version>1.11.3.Final</quarkus.version>
+        <quarkus.version>1.12.0.Final</quarkus.version>
     </properties>
 
     <dependencies>
