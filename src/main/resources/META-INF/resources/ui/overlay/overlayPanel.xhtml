@@ -23,7 +23,7 @@
             <h:form id="form">
                 <h5>Basic</h5>
                 <p:commandButton id="basic" value="Show" type="button"/>
-                <p:overlayPanel for="basic" showEffect="fade" hideEffect="fade" style="width:350px">
+                <p:overlayPanel for="basic"  style="width:350px">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
@@ -32,7 +32,7 @@
 
                 <h5>Images</h5>
                 <p:commandButton id="images" type="button" icon="pi pi-image" />
-                <p:overlayPanel for="images" showEffect="fade" hideEffect="fade" dismissable="false" showCloseIcon="true">
+                <p:overlayPanel for="images"  dismissable="false" showCloseIcon="true">
                     <p:imageSwitch effect="fade">
                         <ui:repeat value="#{imageSwitchView.images}" var="image">
                             <p:graphicImage name="/demo/images/nature/#{image}"/>
@@ -91,7 +91,7 @@
                     </p:column>
                 </p:dataTable>
 
-                <p:overlayPanel widgetVar="productOP" showEffect="fade" hideEffect="fade" dismissable="false"
+                <p:overlayPanel widgetVar="productOP"  dismissable="false"
                                 showCloseIcon="true" dynamic="true">
                     <p:outputPanel id="productDetail" style="text-align:center;">
                         <p:column rendered="#{not empty dtSelectionView.selectedProduct}">

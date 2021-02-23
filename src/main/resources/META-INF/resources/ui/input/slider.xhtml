@@ -23,14 +23,26 @@
 
                 <h5 class="p-mt-0">Basic</h5>
                 <h:panelGrid columns="1" style="margin-bottom: 10px">
-                    <p:inputText id="txt1" value="#{sliderView.number1}"/>
-                    <p:slider for="txt1"/>
+                    <p:inputText id="txt" value="#{sliderView.number1}"/>
+                    <p:slider for="txt" range="false"/>
+                </h:panelGrid>
+
+                <h5 class="p-mt-0">Basic Min Range</h5>
+                <h:panelGrid columns="1" style="margin-bottom: 10px">
+                    <p:inputText id="sliderTxtMin" value="#{sliderView.number1}"/>
+                    <p:slider for="sliderTxtMin"/>
+                </h:panelGrid>
+
+                <h5 class="p-mt-0">Basic Max Range</h5>
+                <h:panelGrid columns="1" style="margin-bottom: 10px">
+                    <p:inputText id="sliderTxtMax" value="#{sliderView.number1}"/>
+                    <p:slider for="sliderTxtMax" range="max"/>
                 </h:panelGrid>
 
                 <h5>InputText Slider with Decimal Value </h5>
                 <h:panelGrid columns="1" style="margin-bottom: 10px">
                     <p:inputText id="decimal" value="#{sliderView.number2}"/>
-                    <p:slider for="decimal" minValue="0.2" maxValue="7.1" step="0.1"/>
+                    <p:slider for="decimal" minValue="0.2" maxValue="7.1" step="0.1" range="max"/>
                 </h:panelGrid>
 
                 <h5>InputNumber Slider</h5>

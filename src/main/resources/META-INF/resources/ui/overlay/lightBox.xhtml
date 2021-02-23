@@ -30,23 +30,23 @@
             <h5 style="margin-top: 0">Images</h5>
             <p:lightBox styleClass="imagebox" id="lighbox1">
                 <h:outputLink value="../../resources/demo/images/nature/nature1.jpg" title="Nature 1">
-                    <h:graphicImage name="/demo/images/nature/nature1.jpg" id="nature1" styleClass="p-shadow-4"
-                                    style="height: 77px; width: 100px"/>
+                    <p:graphicImage name="/demo/images/nature/nature1.jpg" id="nature1" styleClass="p-shadow-4"
+                                    style="height: 12.5rem; width: 20rem"/>
                 </h:outputLink>
 
                 <h:outputLink value="../../resources/demo/images/nature/nature2.jpg" title="Nature 2">
-                    <h:graphicImage name="/demo/images/nature/nature2.jpg" id="nature2" styleClass="p-shadow-4"
-                                    style="height: 77px; width: 100px"/>
+                    <p:graphicImage name="/demo/images/nature/nature2.jpg" id="nature2" styleClass="p-shadow-4"
+                                    style="height: 12.5rem; width: 20rem"/>
                 </h:outputLink>
 
                 <h:outputLink value="../../resources/demo/images/nature/nature3.jpg" title="Nature 3">
-                    <h:graphicImage name="/demo/images/nature/nature3.jpg" id="nature3" styleClass="p-shadow-4"
-                                    style="height: 77px; width: 100px"/>
+                    <p:graphicImage name="/demo/images/nature/nature3.jpg" id="nature3" styleClass="p-shadow-4"
+                                    style="height: 12.5rem; width: 20rem"/>
                 </h:outputLink>
 
                 <h:outputLink value="../../resources/demo/images/nature/nature4.jpg" title="Nature 4">
-                    <h:graphicImage name="/demo/images/nature/nature4.jpg" id="nature4" styleClass="p-shadow-4"
-                                    style="height: 77px; width: 100px"/>
+                    <p:graphicImage name="/demo/images/nature/nature4.jpg" id="nature4" styleClass="p-shadow-4"
+                                    style="height: 12.5rem; width: 20rem"/>
                 </h:outputLink>
             </p:lightBox>
         </div>
@@ -54,13 +54,17 @@
         <div class="card">
             <h5>Inline</h5>
             <p:lightBox id="lighbox2">
-                <h:outputLink value="#">
-                    <h:outputText value="Video Content"/>
-                </h:outputLink>
+                <p:link value="Video Content"/>
 
                 <f:facet name="inline">
-                    <p:media value="http://vimeo.com/moogaloop.swf?clip_id=87780794" width="400" height="225"
-                             player="flash"/>
+                    <p:video value="https://www.w3schools.com/html/mov_bbb.mp4"
+                             player="mp4"
+                             controls="true"
+                             width="420"
+                             height="250">
+                        Your browser does not support the video element.
+                        See: <h:outputLink value="https://www.w3schools.com/html/html5_video.asp">HTML5 Video</h:outputLink>
+                    </p:video>
                 </f:facet>
             </p:lightBox>
         </div>
@@ -68,9 +72,7 @@
         <div class="card">
             <h5>IFrame</h5>
             <p:lightBox iframe="true" id="lighbox3">
-                <h:outputLink value="http://www.primefaces.org" title="PrimeFaces HomePage">
-                    <h:outputText value="PrimeFaces HomePage"/>
-                </h:outputLink>
+                <p:link value="PrimeFaces HomePage" target="http://www.primefaces.org" title="PrimeFaces HomePage"/>
             </p:lightBox>
         </div>
 

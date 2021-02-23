@@ -105,20 +105,31 @@
                 padding: 3px 5px;
             }
 
-            .ui-autocomplete-item.ui-autocomplete-row > td {
-                border: 1px solid transparent;
-                padding: 0;
+            .ui-autocomplete-item.ui-autocomplete-row {
+                > td {
+                    border: 1px solid transparent;
+                    padding: 0;
 
-                a {
-                    display: flex;
-                    align-items: center;
-                    padding: 0.5rem 1rem;
-                    color: var(--text-color);
+                    a {
+                        display: flex;
+                        align-items: center;
+                        padding: 0.5rem 1rem;
+                        color: var(--text-color);
 
-                    .ui-tag {
-                        padding-top:.125rem;
-                        padding-bottom: .125rem;
-                        margin-left: .5rem;
+                        .ui-tag {
+                            padding-top:.125rem;
+                            padding-bottom: .125rem;
+                            margin-left: .5rem;
+                        }
+                    }
+                }
+
+                &.ui-state-highlight {
+                    > td {
+                        a {
+                            background: var(--primary-color);
+                            color: var(--primary-color-text);
+                        }
                     }
                 }
             }

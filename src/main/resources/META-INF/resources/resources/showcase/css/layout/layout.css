@@ -368,6 +368,9 @@ input[type="number"] {
         padding-top: .125rem;
         padding-bottom: .125rem;
         margin-left: .5rem; }
+  .layout-sidebar-filter-panel.ui-autocomplete-panel .ui-autocomplete-table .ui-autocomplete-item.ui-autocomplete-row.ui-state-highlight > td a {
+    background: var(--primary-color);
+    color: var(--primary-color-text); }
 
 .layout-content {
   margin-left: 250px;
