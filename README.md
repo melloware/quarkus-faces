@@ -22,7 +22,7 @@ Some addition goals:
 
 ### Optimizations
 ***
-- Apache MyFaces instead of Jakarta Mojarra
+- Apache MyFaces (Quarkus) instead of Jakarta Mojarra (Wildfly)
 - PrimeFaces [MOVE_SCRIPTS_TO_BOTTOM](https://primefaces.github.io/primefaces/10_0_0/#/gettingstarted/configuration?id=configuration)
 - OmniFaces [GzipResponseFilter](https://showcase.omnifaces.org/filters/GzipResponseFilter)
 - OmniFaces [CombinedResourceHandler](https://showcase.omnifaces.org/resourcehandlers/CombinedResourceHandler)
@@ -38,18 +38,18 @@ Using `Incognito Mode` and pressing CTRL+F5 so it forced the browser to load all
 Metric                | JBoss WildFly EE | Quarkus       | Improvement    |
 ----------------------| ---------------  | ------------- |----------------|
 Package Size          | 48.5 MB          | 7.9 MB        | 83.7%          |
-Cold Startup          | 13.8 s           | 1.67 s        | 87.9%          |
-Memory Used           | 140 MB           | 31 MB         | 77.8%          |
-HTTP Requests         | 97               | 82            | 15.4%          |
-Resource Size         | 5.4 MB           | 5.4 MB        | -----          |
-Transferred Size      | 5.4 MB           | 3.0 MB        | 44.4%          |
-DOM Loaded            | 1650 ms          | 599 ms        | 63.7%          |
-Lighthouse Score      | 38/100           | 94/100        | 59.5%          |
-First Paint           | 4.0 s            | 0.6 s         | 85.0%          |
-Largest Paint         | 5.1 s            | 1.5 s         | 70.5%          |
-Speed Index           | 4.0 s            | 0.9 s         | 77.5%          |
-Time To Interactive   | 6.0 s            | 1.5 s         | 75.0%          |
-Total Blocking Time   | 20 ms            | 10 ms         | 50.0%          |
+Cold Startup          | 10.3 s           | 3.62 s        | 64.9%          |
+Memory Used           | 140 MB           | 39 MB         | 77.8%          |
+HTTP Requests         | 114              | 89            | 21.93%         |
+Resource Size         | 4.4 MB           | 4.4 MB        | -----          |
+Transferred Size      | 4.4 MB           | 2.9 MB        | 34.09%         |
+DOM Loaded            | 1150 ms          | 743 ms        | 35.39%         |
+Lighthouse Score      | 59/100           | 96/100        | 62.71%         |
+First Paint           | 2.4 s            | 0.6 s         | 75.00%         |
+Largest Paint         | 2.7 s            | 1.4 s         | 48.15%         |
+Speed Index           | 2.4 s            | 1.0 s         | 58.33%         |
+Time To Interactive   | 3.9 s            | 1.4 s         | 64.10%         |
+
 
 ### Development
 
@@ -73,7 +73,7 @@ To run the example in HotSpot Production mode (GraalVM native-image not supporte
 git clone https://github.com/melloware/quarkus-faces
 cd quarkus-faces
 mvn clean package
-java -jar target/quarkus-faces-10.0.0-runner.jar
+java -jar target/quarkus-faces-runner.jar
 ```
 
 Then open your web browser to http://localhost:8080/
