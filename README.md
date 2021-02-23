@@ -19,6 +19,7 @@ Some addition goals:
 - JBoss Wildfly 18.0.1
 - Quarkus 1.11.3
 - JSF Production Mode
+- Intel(R) Core(TM) i7-8750H CPU @2.21 GHz 16GB RAM
 
 ### Optimizations
 ***
@@ -32,7 +33,7 @@ Some addition goals:
 
 ### Metrics
 ***
-The following client and server metrics were captured while hitting the exact same page [/datatable.basic.xhtml](https://www.primefaces.org/showcase/ui/data/datatable/basic.xhtml)
+The following client and server metrics were captured while hitting the exact same page [/datatable/crud.xhtml](https://www.primefaces.org/showcase/ui/data/datatable/crud.xhtml)
 Using `Incognito Mode` and pressing CTRL+F5 so it forced the browser to load all resources from the server with nothing cached.
 
 Metric                | JBoss WildFly EE | Quarkus       | Improvement    |
