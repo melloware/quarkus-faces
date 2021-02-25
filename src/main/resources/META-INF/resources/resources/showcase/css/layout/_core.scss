@@ -1,5 +1,7 @@
 $linkColor: #2196f3;
 $focusBorderColor:#BBDEFB;
+$actionColor: #FEAB4D;
+
 
 html {
     font-size: 14px;
@@ -97,7 +99,7 @@ input[type="number"] {
     font-weight: bold;
     text-align: center;
     color: #2b3034 !important;
-    background-color: #feab4d;
+    background-color: $actionColor;
     padding: 10px 24px 9px 24px;
     border-radius: 3px;
     transition: background-color .2s;

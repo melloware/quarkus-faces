@@ -70,7 +70,7 @@ input[type="number"] {
   font-weight: bold;
   text-align: center;
   color: #2b3034 !important;
-  background-color: #feab4d;
+  background-color: #FEAB4D;
   padding: 10px 24px 9px 24px;
   border-radius: 3px;
   transition: background-color .2s; }
@@ -823,7 +823,7 @@ pre[class*="language-"].line-numbers > code {
       width: 52px;
       height: 52px;
       line-height: 52px;
-      background-color: var(--primary-color);
+      background-color: #FEAB4D;
       text-align: center;
       color: var(--primary-color-text);
       top: 270px;
