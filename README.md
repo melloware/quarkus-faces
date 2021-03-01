@@ -37,20 +37,20 @@ Some addition goals:
 The following client and server metrics were captured while hitting the exact same page [/datatable/crud.xhtml](https://www.primefaces.org/showcase/ui/data/datatable/crud.xhtml)
 Using `Incognito Mode` and pressing CTRL+F5 so it forced the browser to load all resources from the server with nothing cached.
 
-Metric                |  WildFly EE | Quarkus       | Improvement    |
-----------------------| ----------  | ------------- |----------------|
-Package Size          | 48.5 MB WAR | 7.9 MB JAR    | 83.70%         |
-Cold Startup          | 10.3 s      | 3.62 s        | 64.90%         |
-Memory Used           | 140 MB      | 39 MB         | 72.14%         |
-HTTP Requests         | 114         | 89            | 21.93%         |
-Resource Size         | 4.4 MB      | 4.4 MB        | -----          |
-Transferred Size      | 4.4 MB      | 2.9 MB        | 34.09%         |
-DOM Loaded            | 1150 ms     | 743 ms        | 35.39%         |
-Lighthouse Score      | 59/100      | 96/100        | 62.71%         |
-First Paint           | 2.4 s       | 0.6 s         | 75.00%         |
-Largest Paint         | 2.7 s       | 1.4 s         | 48.15%         |
-Speed Index           | 2.4 s       | 1.0 s         | 58.33%         |
-Time To Interactive   | 3.9 s       | 1.4 s         | 64.10%         |
+Metric                |  WildFly EE | Quarkus (unoptimized) | Quarkus (optimized) | Improvement |
+----------------------| ----------  | ----------------------| --------------------|-------------|
+Package Size          | 48.5 MB WAR | 7.9 MB JAR            | 7.9 MB JAR          | 83.70%      |
+Cold Startup          | 10.3 s      | 3.04 s                | 3.01 s              | 70.78%      |
+Memory Used           | 140 MB      | 39 MB                 | 39 MB               | 72.14%      |
+HTTP Requests         | 114         | 114                   | 89                  | 21.93%      |
+Resource Size         | 4.4 MB      | 4.4 MB                | 4.4 MB              | -----       |
+Transferred Size      | 4.4 MB      | 4.4 MB                | 2.9 MB              | 34.09%      |
+DOM Loaded            | 1150 ms     | 745 ms                | 668 ms              | 41.91%      |
+Lighthouse Score      | 59/100      | 61/100                | 96/100              | 62.71%      |
+First Paint           | 2.4 s       | 1.0 s                 | 0.6 s               | 75.00%      |
+Largest Paint         | 2.7 s       | 5.2 s                 | 1.3 s               | 51.85%      |
+Speed Index           | 2.4 s       | 1.8 s                 | 0.9 s               | 62.50%      |
+Time To Interactive   | 3.9 s       | 5.2 s                 | 1.3 s               | 66.67%      |
 
 
 ### Development
