@@ -244,7 +244,7 @@
                     <dependency>
                         <groupId>org.jruby</groupId>
                         <artifactId>jruby-complete</artifactId>
-                        <version>9.2.15.0</version>
+                        <version>9.2.16.0</version>
                     </dependency>
                 </dependencies>
             </plugin>
