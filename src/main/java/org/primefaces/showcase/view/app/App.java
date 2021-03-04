@@ -18,6 +18,7 @@ package org.primefaces.showcase.view.app;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import org.primefaces.showcase.util.VirtualMachine;
 import org.primefaces.showcase.domain.Country;
 
 import java.io.Serializable;
@@ -72,6 +73,7 @@ public class App implements Serializable {
     public void changeTheme(String theme, boolean darkMode) {
         this.theme = theme;
         this.darkMode = darkMode;
+		VirtualMachine.getMemoryStatisticsAsString();
     }
 
     public String getThemeImage() {
