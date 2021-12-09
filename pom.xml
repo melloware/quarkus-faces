@@ -19,7 +19,7 @@
         <omnifaces-quarkus.version>1.4.0</omnifaces-quarkus.version>
         <omnifaces.version>3.12</omnifaces.version>
         <poi.version>5.1.0</poi.version>
-        <primefaces.version>10.0.0</primefaces.version>
+        <primefaces.version>11.0.0</primefaces.version>
         <primefaces-extensions.version>10.0.7</primefaces-extensions.version>
         <primefaces.optimizer.version>2.3.5</primefaces.optimizer.version>
         <quarkus.version>2.5.1.Final</quarkus.version>
