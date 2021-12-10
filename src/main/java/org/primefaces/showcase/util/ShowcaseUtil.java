@@ -23,6 +23,8 @@
  */
 package org.primefaces.showcase.util;
 
+import java.beans.IntrospectionException;
+import java.beans.PropertyDescriptor;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,6 +60,11 @@ public class ShowcaseUtil {
             }
         }
         return files;
+    }
+	
+    public static final Object getPropertyValueViaReflection(Object o, String field)
+                throws ReflectiveOperationException, IllegalArgumentException, IntrospectionException {
+        return new PropertyDescriptor(field, o.getClass()).getReadMethod().invoke(o);
     }
 
     // EXCLUDE-SOURCE-START
