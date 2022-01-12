@@ -120,6 +120,10 @@
         <param-name>org.apache.myfaces.COMPONENT_UNIQUE_IDS_CACHE_SIZE</param-name>
         <param-value>500</param-value>
     </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.USE_LAMBDA_METAFACTORY</param-name>
+        <param-value>false</param-value>
+    </context-param>
 
     <!-- Context parameters - OmniFaces -->
     <context-param>
