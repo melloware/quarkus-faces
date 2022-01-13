@@ -42,7 +42,7 @@ public class ScrollableView implements Serializable {
     private TreeNode<Document> root3;
 
     @Inject
-    private DocumentService service;
+    DocumentService service;
 
     @PostConstruct
     public void init() {

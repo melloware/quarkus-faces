@@ -45,7 +45,7 @@ public class LazyView implements Serializable {
     private Customer selectedCustomer;
 
     @Inject
-    private CustomerService service;
+    CustomerService service;
 
     @PostConstruct
     public void init() {

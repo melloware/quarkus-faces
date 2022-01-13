@@ -40,7 +40,7 @@ import java.util.List;
 public class DNDProductsView implements Serializable {
 
     @Inject
-    private ProductService service;
+    ProductService service;
 
     private List<Product> products;
 
