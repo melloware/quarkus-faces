@@ -18,7 +18,7 @@ Some addition goals:
 ***
 - OpenJDK 11.0.10
 - JBoss Wildfly 18.0.1
-- Quarkus 1.11.3
+- Quarkus 2.6.2.Final
 - JSF Production Mode
 - Intel(R) Core(TM) i7-8750H CPU @2.21 GHz 16GB RAM
 
