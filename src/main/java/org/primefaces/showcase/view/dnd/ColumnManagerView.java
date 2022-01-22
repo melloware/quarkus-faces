@@ -53,7 +53,7 @@ public class ColumnManagerView implements Serializable {
     private TreeNode<Product> availableColumns;
 
     @Inject
-    private ProductService service;
+    ProductService service;
 
     @PostConstruct
     public void init() {
