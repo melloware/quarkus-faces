@@ -74,7 +74,7 @@ To run the example in HotSpot Production mode (GraalVM native-image not supporte
 git clone https://github.com/melloware/quarkus-faces
 cd quarkus-faces
 mvn clean package
-java -jar target/quarkus-faces-runner.jar
+java -jar target/quarkus-app/quarkus-run.jar
 ```
 
 Then open your web browser to http://localhost:8080/

@@ -5,7 +5,7 @@
 
     <groupId>com.melloware</groupId>
     <artifactId>quarkus-faces</artifactId>
-    <version>10.0.0-SNAPSHOT</version>
+    <version>11.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>quarkus-faces</name>
     <description>Quarkus version of the PrimeFaces Showcase with many optimizations</description>
@@ -87,6 +87,16 @@
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
             <version>2.3.5</version>
+        </dependency>
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.12.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.guicedee.services</groupId>
+            <artifactId>xalan</artifactId>
+            <version>1.2.0.3-jre17-rc1</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
