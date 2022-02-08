@@ -20,7 +20,7 @@
         <omnifaces.version>3.13</omnifaces.version>
         <poi.version>5.2.0</poi.version>
         <primefaces.version>11.0.0</primefaces.version>
-        <primefaces-extensions.version>11.0.0</primefaces-extensions.version>
+        <primefaces-extensions.version>11.0.1</primefaces-extensions.version>
         <quarkus.version>2.7.0.Final</quarkus.version>
     </properties>
 
