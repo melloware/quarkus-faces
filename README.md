@@ -92,3 +92,8 @@ OR run already pushed image:
 ```
 docker run -i --rm -p 8080:8080 melloware/quarkus-faces
 ```
+
+### Known Issues
+
+We have a WIKI page where we are keeping track of [known issues](https://github.com/melloware/quarkus-faces/wiki/Quarkus-JSF-Known-Issues) while developing with Quarkus/MyFaces/PrimeFaces. Please feel free to contribute to that page if you find anything you think others should know!
+
