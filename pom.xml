@@ -261,8 +261,8 @@
                             <goal>compile-sass</goal>
                         </goals>
                         <configuration>
-                            <inputFolder>${basedir}/src/main/webapp/resources/showcase/css/</inputFolder>
-                            <outputFolder>${basedir}/src/main/webapp/resources/showcase/css/</outputFolder>
+                            <inputFolder>${basedir}/src/main/resources/META-INF/resources/resources/showcase/css</inputFolder>
+                            <outputFolder>${basedir}/src/main/resources/META-INF/resources/resources/showcase/css</outputFolder>
                             <update>true</update>
                             <noSourceMap>true</noSourceMap>
                             <style>COMPRESSED</style>
