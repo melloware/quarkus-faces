@@ -21,7 +21,7 @@
         <poi.version>5.2.2</poi.version>
         <primefaces.version>11.0.0</primefaces.version>
         <primefaces-extensions.version>11.0.5</primefaces-extensions.version>
-        <quarkus.version>2.10.2.Final</quarkus.version>
+        <quarkus.version>2.10.3.Final</quarkus.version>
     </properties>
 
     <dependencyManagement>
