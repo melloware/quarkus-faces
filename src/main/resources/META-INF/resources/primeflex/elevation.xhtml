@@ -30,9 +30,9 @@
         </div>
 
         <div class="content-section implementation">
-            <div class="p-grid">
+            <div class="grid">
                 <ui:repeat var="level" value="#{elevationView.levels}" varStatus="iterator">
-                    <div class="p-col">
+                    <div class="col">
                         <div class="box p-shadow-#{iterator.index + 1}">
                             p-shadow-#{iterator.index + 1}
                         </div>
@@ -48,7 +48,7 @@
                     <p>Elevation is added to an element using the <i>.p-shadow-{level}</i> class.</p>
 
 <pre class="language-xml"><code>
-&lt;div class="p-shadow-1"&gt;&lt;/div&gt;
+&lt;div class="shadow-1"&gt;&lt;/div&gt;
 
 </code></pre>
     
@@ -56,8 +56,8 @@
                     <p>There are 24 depths available varying from 1 to 24.</p>
 
 <pre class="language-xml"><code>
-&lt;div class="p-shadow-1"&gt;&lt;/div&gt;
-&lt;div class="p-shadow-24"&gt;&lt;/div&gt;
+&lt;div class="shadow-1"&gt;&lt;/div&gt;
+&lt;div class="shadow-14"&gt;&lt;/div&gt;
 
 </code></pre>
 
@@ -66,9 +66,9 @@
                 </p:tab>
                 <p:tab title="Source">
 <pre class="language-xml"><code>
-&lt;div class="p-grid"&gt;
+&lt;div class="grid"&gt;
     &lt;ui:repeat var="level" value="#{elevationView.levels}" varStatus="iterator"&gt;
-        &lt;div class="p-col"&gt;
+        &lt;div class="col"&gt;
             &lt;div class="box p-shadow-#{iterator.index + 1}"&gt;
                 p-shadow-\#{iterator.index + 1}
             &lt;/div&gt;

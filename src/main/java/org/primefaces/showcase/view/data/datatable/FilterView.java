@@ -64,8 +64,11 @@ public class FilterView implements Serializable {
 
     private List<FilterMeta> filterBy;
 
+    private boolean globalFilterOnly;
+
     @PostConstruct
     public void init() {
+        globalFilterOnly = false;
         customers1 = service.getCustomers(10);
         customers2 = service.getCustomers(50);
         customers3 = service.getCustomers(10);
@@ -80,15 +83,15 @@ public class FilterView implements Serializable {
 
         filterBy.add(FilterMeta.builder()
                 .field("date")
-                .filterValue(Arrays.asList(LocalDate.now().minusDays(28), LocalDate.now().plusDays(28)))
-                .matchMode(MatchMode.RANGE)
+                .filterValue(new ArrayList<>(Arrays.asList(LocalDate.now().minusDays(28), LocalDate.now().plusDays(28))))
+                .matchMode(MatchMode.BETWEEN)
                 .build());
 
     }
-    
+
     public boolean globalFilterFunction(Object value, Object filter, Locale locale) {
         String filterText = (filter == null) ? null : filter.toString().trim().toLowerCase();
-        if (LangUtils.isValueBlank(filterText)) {
+        if (LangUtils.isBlank(filterText)) {
             return true;
         }
         int filterInt = getInteger(filterText);
@@ -101,7 +104,11 @@ public class FilterView implements Serializable {
                 || customer.getStatus().name().toLowerCase().contains(filterText)
                 || customer.getActivity() < filterInt;
     }
-    
+
+    public void toggleGlobalFilter() {
+        setGlobalFilterOnly(!isGlobalFilterOnly());
+    }
+
     private int getInteger(String string) {
         try {
             return Integer.parseInt(string);
@@ -161,5 +168,13 @@ public class FilterView implements Serializable {
 
     public List<FilterMeta> getFilterBy() {
         return filterBy;
+    }
+
+    public boolean isGlobalFilterOnly() {
+        return globalFilterOnly;
+    }
+
+    public void setGlobalFilterOnly(boolean globalFilterOnly) {
+        this.globalFilterOnly = globalFilterOnly;
     }
 }

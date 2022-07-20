@@ -19,8 +19,8 @@
         <omnifaces-quarkus.version>1.4.0</omnifaces-quarkus.version>
         <omnifaces.version>3.13.3</omnifaces.version>
         <poi.version>5.2.2</poi.version>
-        <primefaces.version>11.0.0</primefaces.version>
-        <primefaces-extensions.version>11.0.6</primefaces-extensions.version>
+        <primefaces.version>12.0.0-RC2</primefaces.version>
+        <primefaces-extensions.version>12.0.0-RC2</primefaces-extensions.version>
         <quarkus.version>2.11.0.Final</quarkus.version>
     </properties>
 

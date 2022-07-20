@@ -16,25 +16,25 @@
         <div class="content-section implementation">
             <div class="card">
                 <h5>Alignment</h5>
-                <div class="p-mb-3 p-text-left">Left</div>
-                <div class="p-mb-3 p-text-center">Center</div>
-                <div class="p-text-right">Right</div>
+                <div class="mb-3 p-text-left">Left</div>
+                <div class="mb-3 text-center">Center</div>
+                <div class="text-right">Right</div>
 
                 <h5>Wrap</h5>
-                <div class="p-mb-3 demo-container" style="width: 10rem">Long text wraps and does not overlow.</div>
-                <div class="p-mb-3 demo-container p-text-nowrap" style="width: 10rem">Long text does not wrap and overflows the parent.</div>
-                <div class="p-mb-3 demo-container p-text-nowrap p-text-truncate" style="width: 10rem">Long text does not wrap and overflows the parent.</div>
+                <div class="mb-3 demo-container" style="width: 10rem">Long text wraps and does not overlow.</div>
+                <div class="mb-3 demo-container white-space-nowrap" style="width: 10rem">Long text does not wrap and overflows the parent.</div>
+                <div class="mb-3 demo-container white-space-nowrap overflow-hidden white-space-nowrap text-overflow-ellipsis" style="width: 10rem">Long text does not wrap and overflows the parent.</div>
 
                 <h5>Transform</h5>
-                <div class="p-mb-3 p-text-lowercase">LOWERCASE</div>
-                <div class="p-mb-3 p-text-uppercase">uppercase</div>
-                <div class="p-text-capitalize">capitalize</div>
+                <div class="mb-3 lowercase">LOWERCASE</div>
+                <div class="mb-3 uppercase">uppercase</div>
+                <div class="capitalize">capitalize</div>
 
                 <h5>Style</h5>
-                <div class="p-mb-3 p-text-bold">Bold</div>
-                <div class="p-mb-3 p-text-normal">Normal</div>
-                <div class="p-mb-3 p-text-light">Light</div>
-                <div class="p-mb-3 p-text-italic">Italic</div>
+                <div class="mb-3 font-bold">Bold</div>
+                <div class="mb-3 font-normal">Normal</div>
+                <div class="mb-3 font-light">Light</div>
+                <div class="mb-3 font-italic">Italic</div>
             </div>
         </div>
 
@@ -55,9 +55,9 @@
 
 <pre class="language-xml"><code>
 &lt;div class="p-text-left"&gt;Left&lt;/div&gt;
-&lt;div class="p-text-center"&gt;Center&lt;/div&gt;
-&lt;div class="p-text-right"&gt;Right&lt;/div&gt;
-&lt;div class="p-text-justify"&gt;Justify&lt;/div&gt;
+&lt;div class="text-center"&gt;Center&lt;/div&gt;
+&lt;div class="text-right"&gt;Right&lt;/div&gt;
+&lt;div class="text-justify"&gt;Justify&lt;/div&gt;
 
 </code></pre>
 
@@ -71,8 +71,8 @@
 
 <pre class="language-xml"><code>
 &lt;div style="width: 10rem"&gt;Long text wraps and does not overlow.&lt;/div&gt;
-&lt;div class="p-text-nowrap" style="width: 10rem"&gt;Long text does not wrap and overflows the parent.&lt;/div&gt;
-&lt;div class="p-text-nowrap p-text-truncate" style="width: 10rem"&gt;Long text does not wrap and overflows the parent.&lt;/div&gt;
+&lt;div class="white-space-nowrap" style="width: 10rem"&gt;Long text does not wrap and overflows the parent.&lt;/div&gt;
+&lt;div class="white-space-nowrap overflow-hidden white-space-nowrap text-overflow-ellipsis" style="width: 10rem"&gt;Long text does not wrap and overflows the parent.&lt;/div&gt;
 
 </code></pre>
 
@@ -85,9 +85,9 @@
                     </ul>
 
 <pre class="language-xml"><code>
-&lt;div class="p-text-lowercase"&gt;LOWERCASE&lt;/div&gt;
-&lt;div class="p-text-uppercase"&gt;uppercase&lt;/div&gt;
-&lt;div class="p-text-capitalize"&gt;capitalize&lt;/div&gt;
+&lt;div class="lowercase"&gt;LOWERCASE&lt;/div&gt;
+&lt;div class="uppercase"&gt;uppercase&lt;/div&gt;
+&lt;div class="capitalize"&gt;capitalize&lt;/div&gt;
 
 </code></pre>
 
@@ -101,10 +101,10 @@
                     </ul>
 
 <pre class="language-xml"><code>
-&lt;div class="p-text-bold"&gt;Bold&lt;/div&gt;
-&lt;div class="p-text-normal"&gt;Normal&lt;/div&gt;
-&lt;div class="p-text-light"&gt;Light&lt;/div&gt;
-&lt;div class="p-text-italic"&gt;Italic&lt;/div&gt;
+&lt;div class="font-bold"&gt;Bold&lt;/div&gt;
+&lt;div class="font-normal"&gt;Normal&lt;/div&gt;
+&lt;div class="font-light"&gt;Light&lt;/div&gt;
+&lt;div class="font-italic"&gt;Italic&lt;/div&gt;
 
 </code></pre>
                 </p:tab>
@@ -112,25 +112,25 @@
                 <p:tab title="Source">
 <pre class="language-xml"><code>
 &lt;h5&gt;Alignment&lt;/h5&gt;
-&lt;div class="p-mb-3 p-text-left"&gt;Left&lt;/div&gt;
-&lt;div class="p-mb-3 p-text-center"&gt;Center&lt;/div&gt;
-&lt;div class="p-text-right"&gt;Right&lt;/div&gt;
+&lt;div class="mb-3 p-text-left"&gt;Left&lt;/div&gt;
+&lt;div class="mb-3 text-center"&gt;Center&lt;/div&gt;
+&lt;div class="text-right"&gt;Right&lt;/div&gt;
 
 &lt;h5&gt;Wrap&lt;/h5&gt;
-&lt;div class="p-mb-3 demo-container" style="width: 10rem"&gt;Long text wraps and does not overlow.&lt;/div&gt;
-&lt;div class="p-mb-3 demo-container p-text-nowrap" style="width: 10rem"&gt;Long text does not wrap and overflows the parent.&lt;/div&gt;
-&lt;div class="p-mb-3 demo-container p-text-nowrap p-text-truncate" style="width: 10rem"&gt;Long text does not wrap and overflows the parent.&lt;/div&gt;
+&lt;div class="mb-3 demo-container" style="width: 10rem"&gt;Long text wraps and does not overlow.&lt;/div&gt;
+&lt;div class="mb-3 demo-container white-space-nowrap" style="width: 10rem"&gt;Long text does not wrap and overflows the parent.&lt;/div&gt;
+&lt;div class="mb-3 demo-container white-space-nowrap overflow-hidden white-space-nowrap text-overflow-ellipsis" style="width: 10rem"&gt;Long text does not wrap and overflows the parent.&lt;/div&gt;
 
 &lt;h5&gt;Transform&lt;/h5&gt;
-&lt;div class="p-mb-3 p-text-lowercase"&gt;LOWERCASE&lt;/div&gt;
-&lt;div class="p-mb-3 p-text-uppercase"&gt;uppercase&lt;/div&gt;
-&lt;div class="p-text-capitalize"&gt;capitalize&lt;/div&gt;
+&lt;div class="mb-3 lowercase"&gt;LOWERCASE&lt;/div&gt;
+&lt;div class="mb-3 uppercase"&gt;uppercase&lt;/div&gt;
+&lt;div class="capitalize"&gt;capitalize&lt;/div&gt;
 
 &lt;h5&gt;Style&lt;/h5&gt;
-&lt;div class="p-mb-3 p-text-bold"&gt;Bold&lt;/div&gt;
-&lt;div class="p-mb-3 p-text-normal"&gt;Normal&lt;/div&gt;
-&lt;div class="p-mb-3 p-text-light"&gt;Light&lt;/div&gt;
-&lt;div class="p-mb-3 p-text-italic"&gt;Italic&lt;/div&gt;
+&lt;div class="mb-3 font-bold"&gt;Bold&lt;/div&gt;
+&lt;div class="mb-3 font-normal"&gt;Normal&lt;/div&gt;
+&lt;div class="mb-3 font-light"&gt;Light&lt;/div&gt;
+&lt;div class="mb-3 font-italic"&gt;Italic&lt;/div&gt;
 
 </code></pre>                  
                 </p:tab>

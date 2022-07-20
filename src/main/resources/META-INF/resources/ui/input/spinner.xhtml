@@ -19,33 +19,33 @@
     <ui:define name="implementation">
         <div class="card">
             <h:form>
-                <div class="ui-fluid p-formgrid p-grid">
-                    <div class="p-field p-col-12 p-md-4">
+                <div class="ui-fluid formgrid grid">
+                    <div class="field col-12 md:col-4">
                         <p:outputLabel for="@next" value="Basic Spinner"/>
                         <p:spinner id="basic" value="#{spinnerView.number1}"/>
                     </div>
 
-                    <div class="p-field p-col-12 p-md-4">
+                    <div class="field col-12 md:col-4">
                         <p:outputLabel for="@next" value="Step Factor"/>
                         <p:spinner id="step" value="#{spinnerView.number2}" stepFactor="0.25"/>
                     </div>
 
-                    <div class="p-field p-col-12 p-md-4">
+                    <div class="field col-12 md:col-4">
                         <p:outputLabel for="@next" value="Min/Max"/>
                         <p:spinner id="minMax" value="#{spinnerView.number3}" min="0" max="100"/>
                     </div>
 
-                    <div class="p-field p-col-12 p-md-4">
+                    <div class="field col-12 md:col-4">
                         <p:outputLabel for="@next" value="Rotate"/>
                         <p:spinner id="rotate" value="#{spinnerView.number6}" min="0" max="10" rotate="true"/>
                     </div>
 
-                    <div class="p-field p-col-12 p-md-4">
+                    <div class="field col-12 md:col-4">
                         <p:outputLabel for="@next" value="Rounded"/>
                         <p:spinner id="rounded" value="#{spinnerView.number7}" min="0" max="55" stepFactor="5" round="true"/>
                     </div>
 
-                    <div class="p-field p-col-12 p-md-4">
+                    <div class="field col-12 md:col-4">
                         <p:outputLabel for="@next" value="Prefix"/>
                         <p:spinner id="prefix" value="#{spinnerView.number4}" prefix="$" min="0"/>
                     </div>

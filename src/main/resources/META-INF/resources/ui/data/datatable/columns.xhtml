@@ -21,8 +21,8 @@
             Available columns are <b>code</b>, <b>name</b>, <b>category</b> and <b>quantity</b>.
 
             <h:form id="form">
-                <div class="p-mt-3 p-mb-5">
-                    <p:inputText id="template" value="#{dtColumnsView.columnTemplate}" size="50" styleClass="p-mr-2"/>
+                <div class="mt-3 mb-5">
+                    <p:inputText id="template" value="#{dtColumnsView.columnTemplate}" size="50" styleClass="mr-2"/>
                     <p:commandButton update="products" action="#{dtColumnsView.updateColumns}" value="Update"
                                      process="@parent" icon="pi pi-refresh"
                                      oncomplete="PF('productsTable').clearFilters()"/>
