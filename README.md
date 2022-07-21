@@ -79,17 +79,23 @@ java -jar target/quarkus-app/quarkus-run.jar
 
 Then open your web browser to http://localhost:8080/
 
-### Docker
+### Docker JVM
 
 ***
+Builds a Docker image running as a standard JVM application.
 ```
 mvn clean package 
-docker build -f docker/Dockerfile -t melloware/quarkus-faces . 
+docker build -f src/main/docker/Dockerfile.jvm -t melloware/quarkus-faces . 
 docker run -i --rm -p 8080:8080 melloware/quarkus-faces
 ```
 
-OR run already pushed image:
+### Docker Native
+
+***
+Builds a native Docker image running as a GraalVM (Mandrel) application. NOTE: not currently working because of limitations with some classloading.
 ```
+mvn clean package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-mandrel:22.1.0.0-Final-java11
+docker build -f src/main/docker/Dockerfile.native -t melloware/quarkus-faces .
 docker run -i --rm -p 8080:8080 melloware/quarkus-faces
 ```
 
