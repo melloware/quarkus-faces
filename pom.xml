@@ -222,6 +222,11 @@
 
         <!-- Classloading for Quarkus Native -->
         <dependency>
+           <groupId>org.apache.xmlgraphics</groupId>
+           <artifactId>fop</artifactId>
+           <version>2.7</version>
+        </dependency>
+        <dependency>
             <groupId>org.javamoney</groupId>
             <artifactId>moneta</artifactId>
             <version>1.1</version>
