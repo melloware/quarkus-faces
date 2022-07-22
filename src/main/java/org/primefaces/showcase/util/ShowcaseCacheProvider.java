@@ -39,9 +39,9 @@ public class ShowcaseCacheProvider {
 
     @PostConstruct
     public void init() {
-        cacheProvider = new org.primefaces.cache.DefaultCacheProvider();
+        cacheProvider = new CaffeineCacheProvider();
     }
-    
+
     public CacheProvider getCacheProvider() {
         return cacheProvider;
     }

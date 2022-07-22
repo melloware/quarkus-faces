@@ -185,7 +185,7 @@
         <dependency>
             <groupId>jfree</groupId>
             <artifactId>jfreechart</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.13</version>
         </dependency>
 
         <!-- Barcode -->
@@ -202,9 +202,9 @@
 
         <!-- Cache -->
         <dependency>
-            <groupId>org.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>3.10.0</version>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>3.1.1</version>
         </dependency>
 
         <!-- HTML sanitizer for the textEditor -->
@@ -222,9 +222,9 @@
 
         <!-- Classloading for Quarkus Native -->
         <dependency>
-           <groupId>org.apache.xmlgraphics</groupId>
-           <artifactId>fop</artifactId>
-           <version>2.7</version>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>fop</artifactId>
+            <version>2.7</version>
         </dependency>
         <dependency>
             <groupId>org.javamoney</groupId>
@@ -367,7 +367,9 @@
             <properties>
                 <skipITs>false</skipITs>
                 <quarkus.package.type>native</quarkus.package.type>
-                <quarkus.native.additional-build-args>--initialize-at-run-time=org.omnifaces.config.WebXmlSingleton\,org.apache.poi.util.RandomSingleton\,org.apache.myfaces.cdi.view.ViewScopeBeanHolder</quarkus.native.additional-build-args>
+                <quarkus.native.additional-build-args>
+                    --initialize-at-run-time=org.omnifaces.config.WebXmlSingleton\,org.apache.poi.util.RandomSingleton\,org.apache.myfaces.cdi.view.ViewScopeBeanHolder
+                </quarkus.native.additional-build-args>
             </properties>
         </profile>
     </profiles>

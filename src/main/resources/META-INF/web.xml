@@ -74,7 +74,7 @@
     </context-param>
     <context-param>
         <param-name>primefaces.CACHE_PROVIDER</param-name>
-        <param-value>org.primefaces.showcase.util.EHCache3Provider</param-value>
+        <param-value>org.primefaces.showcase.util.CaffeineCacheProvider</param-value>
     </context-param>
     <context-param>
         <param-name>primefaces.MULTI_VIEW_STATE_STORE</param-name>

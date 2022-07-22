@@ -14,7 +14,7 @@
 
     <tag>
         <tag-name>tabscode</tag-name>
-        <source>tags/tabscode.xhtml</source>
+        <source>resources/tags/tabscode.xhtml</source>
     </tag>
 
     <tag>

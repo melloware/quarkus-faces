@@ -23,64 +23,49 @@
  */
 package org.primefaces.showcase.util;
 
-import org.ehcache.Cache;
-import org.ehcache.CacheManager;
-import org.ehcache.config.builders.CacheManagerBuilder;
-import org.ehcache.xml.XmlConfiguration;
 import org.primefaces.cache.CacheProvider;
 
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
+
 /**
- * Same class as org.primefaces.cache.EHCache3Provider
- * we need to copy it, to support 6.2.x elite
+ * Caffeine Cache Provider
  */
-public class EHCache3Provider implements CacheProvider {
+public class CaffeineCacheProvider implements CacheProvider {
 
-    private CacheManager cacheManager;
+    private Cache<String, Object> cache;
 
-    public EHCache3Provider() {
-        XmlConfiguration xmlConfig = new XmlConfiguration(this.getClass().getResource("/ehcache.xml"));
-        cacheManager = CacheManagerBuilder.newCacheManager(xmlConfig);
-        cacheManager.init();
+    public CaffeineCacheProvider() {
+        this.cache = Caffeine.newBuilder()
+                    .maximumSize(200)
+                    .build();
     }
 
     @Override
     public Object get(String region, String key) {
-        Cache cacheRegion = getRegion(region);
-        Object val = cacheRegion.get(key);
-
-        return val;
+        return cache.getIfPresent(region + key);
     }
 
     @Override
     public void put(String region, String key, Object object) {
-        Cache cacheRegion = getRegion(region);
-
-        cacheRegion.put(key, object);
+        cache.put(region + key, object);
     }
 
     @Override
     public void remove(String region, String key) {
-        Cache cacheRegion = getRegion(region);
-
-        cacheRegion.remove(key);
+        cache.invalidate(region + key);
     }
 
     @Override
     public void clear() {
-
+        cache.invalidateAll();
     }
 
-    protected Cache getRegion(String regionName) {
-        Cache region = getCacheManager().getCache(regionName, String.class, Object.class);
-
-        return region;
+    public Cache<String, Object> getCache() {
+        return cache;
     }
 
-    public CacheManager getCacheManager() {
-        return cacheManager;
-    }
-
-    public void setCacheManager(CacheManager cacheManager) {
-        this.cacheManager = cacheManager;
+    public void setCache(Cache<String, Object> cache) {
+        this.cache = cache;
     }
 }
