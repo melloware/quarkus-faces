@@ -38,7 +38,7 @@ Using `Incognito Mode` and pressing CTRL+F5 so it forced the browser to load all
 
 Metric                |  WildFly EE | Quarkus (unoptimized) | Quarkus (optimized) | Improvement |
 ----------------------| ----------  | ----------------------| --------------------|-------------|
-Package Size          | 48.5 MB WAR | 7.9 MB JAR            | 7.9 MB JAR          | 83.71%      |
+Package Size          | 48.5 MB WAR | 98 MB                 | 98 MB               | ------      |
 Cold Startup          | 10.3 s      | 3.04 s                | 3.01 s              | 70.78%      |
 Memory Used           | 140 MB      | 39 MB                 | 39 MB               | 72.14%      |
 HTTP Requests         | 114         | 114                   | 89                  | 21.93%      |
