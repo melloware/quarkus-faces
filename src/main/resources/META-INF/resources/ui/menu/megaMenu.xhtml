@@ -14,241 +14,231 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/megamenu"/>
-    <ui:param name="widgetLink" value="megamenu"/>
+    <ui:param name="widgetLink" value="MegaMenu"/>
 
     <ui:define name="implementation">
         <div class="card">
-            <h5>Horizontal</h5>
-            <p:megaMenu orientation="horizontal" autoDisplay="false">
-                <p:submenu label="TV" icon="pi pi-check">
-                    <p:column>
-                        <p:submenu label="TV.1">
-                            <p:menuitem value="TV.1.1" url="#"/>
-                            <p:menuitem value="TV.1.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="TV.2">
-                            <p:menuitem value="TV.2.1" url="#"/>
-                            <p:menuitem value="TV.2.2" url="#"/>
-                            <p:menuitem value="TV.2.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
+            <h:form>
+                <h5>Horizontal</h5>
+                <p:megaMenu orientation="horizontal" autoDisplay="false">
+                    <p:submenu label="Videos" icon="pi pi-fw pi-video">
+                        <p:column>
+                            <p:submenu label="Video 1">
+                                <p:menuitem value="Video 1.1"/>
+                                <p:menuitem value="Video 1.2"/>
+                            </p:submenu>
+                            <p:submenu label="Video 2">
+                                <p:menuitem value="Video 2.1"/>
+                                <p:menuitem value="Video 2.2"/>
+                            </p:submenu>
+                        </p:column>
 
-                    <p:column>
-                        <p:submenu label="TV.4">
-                            <p:menuitem value="TV.4.1" url="#"/>
-                            <p:menuitem value="TV.4.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="TV.5">
-                            <p:menuitem value="TV.5.1" url="#"/>
-                            <p:menuitem value="TV.5.2" url="#"/>
-                            <p:menuitem value="TV.5.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
+                        <p:column>
+                            <p:submenu label="Video 3">
+                                <p:menuitem value="Video 3.1"/>
+                                <p:menuitem value="Video 3.2"/>
+                            </p:submenu>
+                            <p:submenu label="Video 4">
+                                <p:menuitem value="Video 4.1"/>
+                                <p:menuitem value="Video 4.2"/>
+                            </p:submenu>
+                        </p:column>
+                    </p:submenu>
 
-                    <p:column>
-                        <strong>Image</strong>
-                        <p:graphicImage name="/demo/images/nature/nature1.jpg" width="200"/>
-                    </p:column>
-                </p:submenu>
+                    <p:submenu label="Users" icon="pi pi-fw pi-users">
 
-                <p:submenu label="Sports" icon="pi pi-file">
+                        <p:column>
+                            <p:submenu label="User 1">
+                                <p:menuitem value="User 1.1"/>
+                                <p:menuitem value="User 1.2"/>
+                            </p:submenu>
+                            <p:submenu label="User 2">
+                                <p:menuitem value="User 2.1"/>
+                                <p:menuitem value="User 2.2"/>
+                            </p:submenu>
+                        </p:column>
 
-                    <p:column>
-                        <p:submenu label="Sports.1">
-                            <p:menuitem value="Sports.1.1" url="#"/>
-                            <p:menuitem value="Sports.1.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Sports.2">
-                            <p:menuitem value="Sports.2.1" url="#"/>
-                            <p:menuitem value="Sports.2.2" url="#"/>
-                            <p:menuitem value="Sports.2.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
+                        <p:column>
+                            <p:submenu label="User 3">
+                                <p:menuitem value="User 3.1"/>
+                                <p:menuitem value="User 3.2"/>
+                            </p:submenu>
+                            <p:submenu label="User 4">
+                                <p:menuitem value="User 4.1"/>
+                                <p:menuitem value="User 4.2"/>
+                            </p:submenu>
+                        </p:column>
+                        <p:column>
+                            <p:submenu label="User 5">
+                                <p:menuitem value="User 5.1"/>
+                                <p:menuitem value="User 5.2"/>
+                            </p:submenu>
+                            <p:submenu label="User 6">
+                                <p:menuitem value="User 6.1"/>
+                                <p:menuitem value="User 6.2"/>
+                            </p:submenu>
+                        </p:column>
+                    </p:submenu>
 
-                    <p:column>
-                        <p:submenu label="Sports.4">
-                            <p:menuitem value="Sports.4.1" url="#"/>
-                            <p:menuitem value="Sports.4.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Sports.5">
-                            <p:menuitem value="Sports.5.1" url="#"/>
-                            <p:menuitem value="Sports.5.2" url="#"/>
-                            <p:menuitem value="Sports.5.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
-                    <p:column>
-                        <p:submenu label="Sports.7">
-                            <p:menuitem value="Sports.7.1" url="#"/>
-                            <p:menuitem value="Sports.7.2" url="#"/>
-                        </p:submenu>
-                    </p:column>
-                </p:submenu>
+                    <p:submenu label="Events" icon="pi pi-fw pi-calendar">
+                        <p:column>
+                            <p:submenu label="Event 1">
+                                <p:menuitem value="Event 1.1"/>
+                                <p:menuitem value="Event 1.2"/>
+                            </p:submenu>
+                            <p:submenu label="Event 2">
+                                <p:menuitem value="Event 2.1"/>
+                                <p:menuitem value="Event 2.2"/>
+                            </p:submenu>
+                        </p:column>
 
-                <p:submenu label="Entertainment" icon="pi pi-pencil">
-                    <p:column>
-                        <p:submenu label="Entertainment.1">
-                            <p:menuitem value="Entertainment.1.1" url="#"/>
-                            <p:menuitem value="Entertainment.1.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Entertainment.2">
-                            <p:menuitem value="Entertainment.2.1" url="#"/>
-                            <p:menuitem value="Entertainment.2.2" url="#"/>
-                            <p:menuitem value="Entertainment.2.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
+                        <p:column>
+                            <p:submenu label="Event 3">
+                                <p:menuitem value="Event 3.1"/>
+                                <p:menuitem value="Event 3.2"/>
+                            </p:submenu>
+                            <p:submenu label="Event 4">
+                                <p:menuitem value="Event 4.1"/>
+                                <p:menuitem value="Event 4.2"/>
+                            </p:submenu>
+                        </p:column>
+                    </p:submenu>
 
-                    <p:column>
-                        <p:submenu label="Entertainment.4">
-                            <p:menuitem value="Entertainment.4.1" url="#"/>
-                            <p:menuitem value="Entertainment.4.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Entertainment.5">
-                            <p:menuitem value="Entertainment.5.1" url="#"/>
-                            <p:menuitem value="Entertainment.5.2" url="#"/>
-                            <p:menuitem value="Entertainment.5.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
-                </p:submenu>
+                    <p:submenu label="Settings" icon="pi pi-fw pi-cog">
+                        <p:column>
+                            <p:submenu label="Setting 1">
+                                <p:menuitem value="Setting 1.1"/>
+                                <p:menuitem value="Setting 1.2"/>
+                            </p:submenu>
+                            <p:submenu label="Setting 2">
+                                <p:menuitem value="Setting 2.1"/>
+                                <p:menuitem value="Setting 2.2"/>
+                            </p:submenu>
+                            <p:submenu label="Setting 3">
+                                <p:menuitem value="Setting 3.1"/>
+                                <p:menuitem value="Setting 3.2"/>
+                            </p:submenu>
+                        </p:column>
 
-                <p:submenu label="Tech" icon="pi pi-briefcase">
-                    <p:column>
-                        <p:submenu label="Tech.1">
-                            <p:menuitem value="Tech.1.1" url="#"/>
-                            <p:menuitem value="Tech.1.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Tech.2">
-                            <p:menuitem value="Tech.2.1" url="#"/>
-                            <p:menuitem value="Tech.2.2" url="#"/>
-                            <p:menuitem value="Tech.2.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
+                        <p:column>
+                            <p:submenu label="Setting 4">
+                                <p:menuitem value="Setting 4.1"/>
+                                <p:menuitem value="Setting 4.2"/>
+                            </p:submenu>
+                        </p:column>
+                    </p:submenu>
+                </p:megaMenu>
 
-                    <p:column>
-                        <p:submenu label="Tech.4">
-                            <p:menuitem value="Tech.4.1" url="#"/>
-                            <p:menuitem value="Tech.4.2" url="#"/>
-                        </p:submenu>
-                    </p:column>
-                </p:submenu>
+                <h5>Vertical</h5>
+                <p:megaMenu orientation="vertical" autoDisplay="false">
+                    <p:submenu label="Videos" icon="pi pi-fw pi-video">
+                        <p:column>
+                            <p:submenu label="Video 1">
+                                <p:menuitem value="Video 1.1"/>
+                                <p:menuitem value="Video 1.2"/>
+                            </p:submenu>
+                            <p:submenu label="Video 2">
+                                <p:menuitem value="Video 2.1"/>
+                                <p:menuitem value="Video 2.2"/>
+                            </p:submenu>
+                        </p:column>
 
-                <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times"/>
-            </p:megaMenu>
+                        <p:column>
+                            <p:submenu label="Video 3">
+                                <p:menuitem value="Video 3.1"/>
+                                <p:menuitem value="Video 3.2"/>
+                            </p:submenu>
+                            <p:submenu label="Video 4">
+                                <p:menuitem value="Video 4.1"/>
+                                <p:menuitem value="Video 4.2"/>
+                            </p:submenu>
+                        </p:column>
+                    </p:submenu>
 
-            <h5>Vertical</h5>
-            <p:megaMenu orientation="vertical" autoDisplay="false">
-                <p:submenu label="TV" icon="pi pi-check">
-                    <p:column>
-                        <p:submenu label="TV.1">
-                            <p:menuitem value="TV.1.1" url="#"/>
-                            <p:menuitem value="TV.1.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="TV.2">
-                            <p:menuitem value="TV.2.1" url="#"/>
-                            <p:menuitem value="TV.2.2" url="#"/>
-                            <p:menuitem value="TV.2.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
+                    <p:submenu label="Users" icon="pi pi-fw pi-users">
 
-                    <p:column>
-                        <p:submenu label="TV.4">
-                            <p:menuitem value="TV.4.1" url="#"/>
-                            <p:menuitem value="TV.4.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="TV.5">
-                            <p:menuitem value="TV.5.1" url="#"/>
-                            <p:menuitem value="TV.5.2" url="#"/>
-                            <p:menuitem value="TV.5.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
+                        <p:column>
+                            <p:submenu label="User 1">
+                                <p:menuitem value="User 1.1"/>
+                                <p:menuitem value="User 1.2" url="#"/>
+                            </p:submenu>
+                            <p:submenu label="User 2">
+                                <p:menuitem value="User 2.1" url="#"/>
+                                <p:menuitem value="User 2.2" url="#"/>
+                            </p:submenu>
+                        </p:column>
 
-                    <p:column>
-                        <strong>Image</strong>
-                        <p:graphicImage name="/demo/images/nature/nature1.jpg" width="200"/>
-                    </p:column>
-                </p:submenu>
+                        <p:column>
+                            <p:submenu label="User 3">
+                                <p:menuitem value="User 3.1" url="#"/>
+                                <p:menuitem value="User 3.2" url="#"/>
+                            </p:submenu>
+                            <p:submenu label="User 4">
+                                <p:menuitem value="User 4.1" url="#"/>
+                                <p:menuitem value="User 4.2" url="#"/>
+                            </p:submenu>
+                        </p:column>
+                        <p:column>
+                            <p:submenu label="User 5">
+                                <p:menuitem value="User 5.1" url="#"/>
+                                <p:menuitem value="User 5.2" url="#"/>
+                            </p:submenu>
+                            <p:submenu label="User 6">
+                                <p:menuitem value="User 6.1" url="#"/>
+                                <p:menuitem value="User 6.2" url="#"/>
+                            </p:submenu>
+                        </p:column>
+                    </p:submenu>
 
-                <p:submenu label="Sports" icon="pi pi-file">
+                    <p:submenu label="Events" icon="pi pi-fw pi-calendar">
+                        <p:column>
+                            <p:submenu label="Event 1">
+                                <p:menuitem value="Event 1.1" url="#"/>
+                                <p:menuitem value="Event 1.2" url="#"/>
+                            </p:submenu>
+                            <p:submenu label="Event 2">
+                                <p:menuitem value="Event 2.1" url="#"/>
+                                <p:menuitem value="Event 2.2" url="#"/>
+                            </p:submenu>
+                        </p:column>
 
-                    <p:column>
-                        <p:submenu label="Sports.1">
-                            <p:menuitem value="Sports.1.1" url="#"/>
-                            <p:menuitem value="Sports.1.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Sports.2">
-                            <p:menuitem value="Sports.2.1" url="#"/>
-                            <p:menuitem value="Sports.2.2" url="#"/>
-                            <p:menuitem value="Sports.2.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
+                        <p:column>
+                            <p:submenu label="Event 3">
+                                <p:menuitem value="Event 3.1" url="#"/>
+                                <p:menuitem value="Event 3.2" url="#"/>
+                            </p:submenu>
+                            <p:submenu label="Event 4">
+                                <p:menuitem value="Event 4.1" url="#"/>
+                                <p:menuitem value="Event 4.2" url="#"/>
+                            </p:submenu>
+                        </p:column>
+                    </p:submenu>
 
-                    <p:column>
-                        <p:submenu label="Sports.4">
-                            <p:menuitem value="Sports.4.1" url="#"/>
-                            <p:menuitem value="Sports.4.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Sports.5">
-                            <p:menuitem value="Sports.5.1" url="#"/>
-                            <p:menuitem value="Sports.5.2" url="#"/>
-                            <p:menuitem value="Sports.5.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
-                    <p:column>
-                        <p:submenu label="Sports.7">
-                            <p:menuitem value="Sports.7.1" url="#"/>
-                            <p:menuitem value="Sports.7.2" url="#"/>
-                        </p:submenu>
-                    </p:column>
-                </p:submenu>
+                    <p:submenu label="Settings" icon="pi pi-fw pi-cog">
+                        <p:column>
+                            <p:submenu label="Setting 1">
+                                <p:menuitem value="Setting 1.1" url="#"/>
+                                <p:menuitem value="Setting 1.2" url="#"/>
+                            </p:submenu>
+                            <p:submenu label="Setting 2">
+                                <p:menuitem value="Setting 2.1" url="#"/>
+                                <p:menuitem value="Setting 2.2" url="#"/>
+                            </p:submenu>
+                            <p:submenu label="Setting 3">
+                                <p:menuitem value="Setting 3.1" url="#"/>
+                                <p:menuitem value="Setting 3.2" url="#"/>
+                            </p:submenu>
+                        </p:column>
 
-                <p:submenu label="Entertainment" icon="pi pi-pencil">
-                    <p:column>
-                        <p:submenu label="Entertainment.1">
-                            <p:menuitem value="Entertainment.1.1" url="#"/>
-                            <p:menuitem value="Entertainment.1.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Entertainment.2">
-                            <p:menuitem value="Entertainment.2.1" url="#"/>
-                            <p:menuitem value="Entertainment.2.2" url="#"/>
-                            <p:menuitem value="Entertainment.2.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
-
-                    <p:column>
-                        <p:submenu label="Entertainment.4">
-                            <p:menuitem value="Entertainment.4.1" url="#"/>
-                            <p:menuitem value="Entertainment.4.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Entertainment.5">
-                            <p:menuitem value="Entertainment.5.1" url="#"/>
-                            <p:menuitem value="Entertainment.5.2" url="#"/>
-                            <p:menuitem value="Entertainment.5.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
-                </p:submenu>
-
-                <p:submenu label="Tech" icon="pi pi-briefcase">
-                    <p:column>
-                        <p:submenu label="Tech.1">
-                            <p:menuitem value="Tech.1.1" url="#"/>
-                            <p:menuitem value="Tech.1.2" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Tech.2">
-                            <p:menuitem value="Tech.2.1" url="#"/>
-                            <p:menuitem value="Tech.2.2" url="#"/>
-                            <p:menuitem value="Tech.2.3" url="#"/>
-                        </p:submenu>
-                    </p:column>
-
-                    <p:column>
-                        <p:submenu label="Tech.4">
-                            <p:menuitem value="Tech.4.1" url="#"/>
-                            <p:menuitem value="Tech.4.2" url="#"/>
-                        </p:submenu>
-                    </p:column>
-                </p:submenu>
-
-                <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times"/>
-            </p:megaMenu>
+                        <p:column>
+                            <p:submenu label="Setting 4">
+                                <p:menuitem value="Setting 4.1" url="#"/>
+                                <p:menuitem value="Setting 4.2" url="#"/>
+                            </p:submenu>
+                        </p:column>
+                    </p:submenu>
+                </p:megaMenu>
+            </h:form>
         </div>
     </ui:define>
 
