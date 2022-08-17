@@ -159,7 +159,7 @@
         <dependency>
             <groupId>org.overviewproject</groupId>
             <artifactId>mime-types</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </dependency>
 
         <!-- Twitter API -->
