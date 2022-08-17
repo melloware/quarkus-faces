@@ -94,7 +94,7 @@ docker run -i --rm -p 8080:8080 melloware/quarkus-faces
 ***
 Builds a native Docker image running as a GraalVM (Mandrel) application. NOTE: not currently working because of limitations with some classloading.
 ```
-mvn clean package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-mandrel:22.1.0.0-Final-java11
+mvn clean package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-mandrel:22.2.0.0-Final-java11
 docker build -f src/main/docker/Dockerfile.native -t melloware/quarkus-faces .
 docker run -i --rm -p 8080:8080 melloware/quarkus-faces
 ```
