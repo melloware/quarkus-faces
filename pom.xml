@@ -221,24 +221,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
-
-
-        <!-- Classloading for Quarkus Native -->
-        <dependency>
-            <groupId>org.apache.xmlgraphics</groupId>
-            <artifactId>fop</artifactId>
-            <version>2.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.javamoney</groupId>
-            <artifactId>moneta</artifactId>
-            <version>1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.11.0</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -361,15 +343,43 @@
     </build>
     <profiles>
         <profile>
-            <id>native</id>
+            <id>native-libs</id>
+            <activation>
+                <property>
+                    <name>native</name>
+                </property>
+            </activation>
+            <dependencies>
+                <!-- Classloading for Quarkus Native -->
+                <dependency>
+                    <groupId>org.apache.xmlgraphics</groupId>
+                    <artifactId>fop</artifactId>
+                    <version>2.7</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.javamoney</groupId>
+                    <artifactId>moneta</artifactId>
+                    <version>1.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>joda-time</groupId>
+                    <artifactId>joda-time</artifactId>
+                    <version>2.11.0</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>native-build</id>
             <activation>
                 <property>
                     <name>native</name>
                 </property>
             </activation>
             <properties>
-                <skipITs>false</skipITs>
+                <skipITs>true</skipITs>
                 <quarkus.package.type>native</quarkus.package.type>
+                <quarkus.native.container-build>true</quarkus.native.container-build>
+                <quarkus.native.builder-image>mandrel</quarkus.native.builder-image>
                 <quarkus.native.additional-build-args>
                     --initialize-at-run-time=org.omnifaces.config.WebXmlSingleton\,org.apache.poi.util.RandomSingleton\,org.apache.myfaces.cdi.view.ViewScopeBeanHolder
                 </quarkus.native.additional-build-args>
