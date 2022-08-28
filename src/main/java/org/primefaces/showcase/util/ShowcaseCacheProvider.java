@@ -24,6 +24,7 @@
 package org.primefaces.showcase.util;
 
 import javax.annotation.PostConstruct;
+import org.omnifaces.cdi.Startup;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
@@ -32,7 +33,7 @@ import org.primefaces.cache.CacheProvider;
 /**
  * Skip the usage via PrimeApplicationContext, it's not available in 6.2.x
  */
-@ApplicationScoped
+@Startup
 @Named
 public class ShowcaseCacheProvider {
     private CacheProvider cacheProvider;
@@ -40,6 +41,7 @@ public class ShowcaseCacheProvider {
     @PostConstruct
     public void init() {
         cacheProvider = new CaffeineCacheProvider();
+		System.out.println("Initialized ShowcaseCacheProvider with Caffeine");
     }
 
     public CacheProvider getCacheProvider() {

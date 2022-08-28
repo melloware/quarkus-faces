@@ -16,7 +16,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
         <myfaces.version>2.3-next-M7</myfaces.version>
-        <omnifaces-quarkus.version>1.4.0</omnifaces-quarkus.version>
+        <omnifaces-quarkus.version>3.0.0</omnifaces-quarkus.version>
         <omnifaces.version>3.13.4</omnifaces.version>
         <poi.version>5.2.2</poi.version>
         <primefaces.version>12.0.0-RC3</primefaces.version>
@@ -70,7 +70,7 @@
             <artifactId>quarkus-smallrye-health</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.adminfaces</groupId>
+            <groupId>io.quarkiverse.omnifaces</groupId>
             <artifactId>quarkus-omnifaces</artifactId>
             <version>${omnifaces-quarkus.version}</version>
         </dependency>
@@ -380,9 +380,6 @@
                 <quarkus.package.type>native</quarkus.package.type>
                 <quarkus.native.container-build>true</quarkus.native.container-build>
                 <quarkus.native.builder-image>mandrel</quarkus.native.builder-image>
-                <quarkus.native.additional-build-args>
-                    --initialize-at-run-time=org.omnifaces.config.WebXmlSingleton\,org.apache.poi.util.RandomSingleton\,org.apache.myfaces.cdi.view.ViewScopeBeanHolder
-                </quarkus.native.additional-build-args>
             </properties>
         </profile>
     </profiles>
