@@ -36,6 +36,7 @@
         </dependencies>
     </dependencyManagement>
 
+
     <dependencies>
         <!-- Faces -->
         <dependency>
@@ -223,6 +224,7 @@
         </dependency>
     </dependencies>
 
+
     <build>
         <finalName>${project.name}</finalName>
         <resources>
@@ -240,6 +242,39 @@
             </resource>
         </resources>
 
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>0.40.2</version>
+                    <executions>
+                        <execution>
+                            <id>docker</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <images>
+                            <image>
+                                <name>melloware/quarkus-faces</name>
+                                <build>
+                                    <contextDir>${project.basedir}</contextDir>
+                                </build>
+                                <run>
+                                    <ports>
+                                        <port>8080:8080</port>
+                                    </ports>
+                                </run>
+                            </image>
+                        </images>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -343,6 +378,31 @@
     </build>
     <profiles>
         <profile>
+            <id>docker</id>
+            <activation>
+                <property>
+                    <name>docker</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <build>
+                                        <dockerFile>${project.basedir}/src/main/docker/Dockerfile.jvm</dockerFile>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>native-libs</id>
             <activation>
                 <property>
@@ -384,6 +444,23 @@
                     --initialize-at-run-time=org.apache.poi.util.RandomSingleton
                 </quarkus.native.additional-build-args>
             </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <build>
+                                        <dockerFile>${project.basedir}/src/main/docker/Dockerfile.native</dockerFile>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>

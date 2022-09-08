@@ -84,8 +84,7 @@ Then open your web browser to http://localhost:8080/
 ***
 Builds a Docker image running as a standard JVM application.
 ```
-mvn clean package 
-docker build -f src/main/docker/Dockerfile.jvm -t melloware/quarkus-faces . 
+mvn clean package -Ddocker
 docker run -i --rm -p 8080:8080 melloware/quarkus-faces
 ```
 
