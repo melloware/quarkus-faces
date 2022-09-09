@@ -245,32 +245,20 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>io.fabric8</groupId>
-                    <artifactId>docker-maven-plugin</artifactId>
-                    <version>0.40.2</version>
-                    <executions>
-                        <execution>
-                            <id>docker</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>build</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>3.1.0</version>
                     <configuration>
-                        <images>
-                            <image>
-                                <name>melloware/quarkus-faces</name>
-                                <build>
-                                    <contextDir>${project.basedir}</contextDir>
-                                </build>
-                                <run>
-                                    <ports>
-                                        <port>8080:8080</port>
-                                    </ports>
-                                </run>
-                            </image>
-                        </images>
+                        <executable>docker</executable>
+                        <workingDirectory>${project.basedir}</workingDirectory>
+                        <arguments>
+                            <argument>build</argument>
+                            <argument>-f</argument>
+                            <argument>src/main/docker/Dockerfile.jvm</argument>
+                            <argument>-t</argument>
+                            <argument>melloware/${project.artifactId}:latest</argument>
+                            <argument>.</argument>
+                        </arguments>
                     </configuration>
                 </plugin>
             </plugins>
@@ -378,6 +366,7 @@
     </build>
     <profiles>
         <profile>
+            <!-- Optionally activate this profile to compile the demo into JVM docker image! -->
             <id>docker</id>
             <activation>
                 <property>
@@ -387,17 +376,28 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>io.fabric8</groupId>
-                        <artifactId>docker-maven-plugin</artifactId>
-                        <configuration>
-                            <images>
-                                <image>
-                                    <build>
-                                        <dockerFile>${project.basedir}/src/main/docker/Dockerfile.jvm</dockerFile>
-                                    </build>
-                                </image>
-                            </images>
-                        </configuration>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+                            <!-- $ docker build -f src/main/docker/Dockerfile.jvm -t melloware/quarkus-faces:latest . -->
+                            <execution>
+                                <id>docker-build</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>
+                                        <argument>build</argument>
+                                        <argument>-f</argument>
+                                        <argument>src/main/docker/Dockerfile.jvm</argument>
+                                        <argument>-t</argument>
+                                        <argument>melloware/${project.artifactId}:latest</argument>
+                                        <argument>.</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -447,17 +447,28 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>io.fabric8</groupId>
-                        <artifactId>docker-maven-plugin</artifactId>
-                        <configuration>
-                            <images>
-                                <image>
-                                    <build>
-                                        <dockerFile>${project.basedir}/src/main/docker/Dockerfile.native</dockerFile>
-                                    </build>
-                                </image>
-                            </images>
-                        </configuration>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+                            <!-- $ docker build -f src/main/docker/Dockerfile.native -t melloware/quarkus-faces:version . -->
+                            <execution>
+                                <id>docker-build</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>
+                                        <argument>build</argument>
+                                        <argument>-f</argument>
+                                        <argument>src/main/docker/Dockerfile.native</argument>
+                                        <argument>-t</argument>
+                                        <argument>melloware/${project.artifactId}:${project.version}</argument>
+                                        <argument>.</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
