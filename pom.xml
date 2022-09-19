@@ -18,7 +18,7 @@
         <myfaces.version>2.3-next-M7</myfaces.version>
         <omnifaces-quarkus.version>3.0.1</omnifaces-quarkus.version>
         <omnifaces.version>3.13.4</omnifaces.version>
-        <poi.version>5.2.2</poi.version>
+        <poi.version>5.2.3</poi.version>
         <primefaces.version>12.0.0-RC3</primefaces.version>
         <primefaces-extensions.version>12.0.0-RC2</primefaces-extensions.version>
         <quarkus.version>2.12.2.Final</quarkus.version>
