@@ -8,11 +8,11 @@ Quarkus Faces
 
 ### Goals
 ***
-The main goal was to take an out of the box JSF application ([PrimeFaces Showcase](https://github.com/primefaces/primefaces-showcase)) 
+The main goal was to take an out of the box Faces (formerly JSF) application ([PrimeFaces Showcase](https://github.com/primefaces/primefaces-showcase)) 
 and run it in both a Java EE Server and in [Quarkus](https://quarkus.io/). 
 Some addition goals:
 - See how much we can improve performance by incorporating various optimization tricks for JSF applications
-- See if Quarkus is a viable option for JSF and migrating to Docker containers
+- See if Quarkus is a viable option for Faces and migrating to Docker containers
 
 ### Environment
 ***
