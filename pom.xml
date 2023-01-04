@@ -16,7 +16,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
         <myfaces.version>2.3-next-M7</myfaces.version>
-        <omnifaces-quarkus.version>3.0.2</omnifaces-quarkus.version>
+        <omnifaces-quarkus.version>3.0.3</omnifaces-quarkus.version>
         <omnifaces.version>3.14.1</omnifaces.version>
         <poi.version>5.2.3</poi.version>
         <primefaces.version>12.0.0</primefaces.version>
