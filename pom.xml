@@ -366,6 +366,12 @@
     </build>
     <profiles>
         <profile>
+            <id>qdev</id>
+            <build>
+                 <defaultGoal>compile quarkus:dev</defaultGoal>
+            </build>
+        </profile>
+        <profile>
             <!-- Optionally activate this profile to compile the demo into JVM docker image! -->
             <id>docker</id>
             <activation>
