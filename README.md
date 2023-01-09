@@ -60,7 +60,7 @@ To run the example in Dev mode:
 ```
 git clone https://github.com/melloware/quarkus-faces
 cd quarkus-faces
-mvn clean compile quarkus:dev
+mvn -Pqdev
 ```
 
 Then open your web browser to http://localhost:8080/
