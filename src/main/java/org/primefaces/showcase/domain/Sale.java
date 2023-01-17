@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2023 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,20 +26,15 @@ package org.primefaces.showcase.domain;
 import java.io.Serializable;
 
 public class Sale implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
 
     private String manufacturer;
-
     private int lastYearSale;
-
     private int thisYearSale;
-
     private int lastYearProfit;
-
     private int thisYearProfit;
 
-    public Sale() {}
+    public Sale() {
+    }
 
     public Sale(String manufacturer, int lastYearSale, int thisYearSale, int lastYearProfit, int thisYearProfit) {
         this.manufacturer = manufacturer;
