@@ -14,7 +14,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
-        <myfaces.version>2.3-next-M7</myfaces.version>
+        <myfaces.version>4.0.0-RC4</myfaces.version>
         <omnifaces-quarkus.version>3.0.3</omnifaces-quarkus.version>
         <omnifaces.version>3.14.1</omnifaces.version>
         <poi.version>5.2.3</poi.version>
