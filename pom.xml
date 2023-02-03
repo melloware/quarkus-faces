@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.melloware</groupId>
     <artifactId>quarkus-faces</artifactId>
     <version>12.0.0</version>
@@ -10,7 +8,6 @@
     <name>quarkus-faces</name>
     <description>Quarkus version of the PrimeFaces Showcase with many optimizations</description>
     <url>https://github.com/melloware/quarkus-faces</url>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
@@ -21,8 +18,8 @@
         <primefaces.version>12.0.0</primefaces.version>
         <primefaces-extensions.version>12.0.3</primefaces-extensions.version>
         <quarkus.version>2.16.1.Final</quarkus.version>
+        <fop.version>2.8</fop.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -34,8 +31,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-
     <dependencies>
         <!-- Faces -->
         <dependency>
@@ -55,7 +50,6 @@
             <version>${omnifaces.version}</version>
             <scope>compile</scope>
         </dependency>
-
         <!-- Quarkus -->
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -78,13 +72,26 @@
             <groupId>org.apache.myfaces.core.extensions.quarkus</groupId>
             <artifactId>myfaces-quarkus</artifactId>
             <version>${myfaces.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.github.librepdf</groupId>
+                    <artifactId>openpdf</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.poi</groupId>
+                    <artifactId>poi-ooxml</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.poi</groupId>
+                    <artifactId>poi</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.myfaces.core.extensions.quarkus</groupId>
             <artifactId>myfaces-quarkus-deployment</artifactId>
             <version>${myfaces.version}</version>
         </dependency>
-
         <!-- XML -->
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
@@ -106,7 +113,6 @@
             <artifactId>json</artifactId>
             <version>20220924</version>
         </dependency>
-
         <!-- Data Exporter -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -142,42 +148,50 @@
                     <groupId>org.bouncycastle</groupId>
                     <artifactId>bcprov-jdk15on</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.apache.poi</groupId>
+                    <artifactId>poi-ooxml-schemas</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.poi</groupId>
+                    <artifactId>poi-ooxml-lite</artifactId>
+                </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-full</artifactId>
+            <version>${poi.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.librepdf</groupId>
             <artifactId>openpdf</artifactId>
             <version>1.3.30</version>
         </dependency>
-
         <!-- FeedReader -->
         <dependency>
             <groupId>com.rometools</groupId>
             <artifactId>rome</artifactId>
             <version>1.18.0</version>
         </dependency>
-
         <!-- File Upload -->
         <dependency>
             <groupId>org.overviewproject</groupId>
             <artifactId>mime-types</artifactId>
             <version>1.0.4</version>
         </dependency>
-
         <!-- Twitter API -->
         <dependency>
             <groupId>org.twitter4j</groupId>
             <artifactId>twitter4j-core</artifactId>
             <version>4.1.2</version>
         </dependency>
-
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.6</version>
         </dependency>
-
         <!-- GraphicImage -->
         <dependency>
             <groupId>net.sourceforge.barbecue</groupId>
@@ -189,7 +203,6 @@
             <artifactId>jfreechart</artifactId>
             <version>1.0.13</version>
         </dependency>
-
         <!-- Barcode -->
         <dependency>
             <groupId>io.nayuki</groupId>
@@ -201,29 +214,24 @@
             <artifactId>barcode4j-light</artifactId>
             <version>2.0</version>
         </dependency>
-
         <!-- Cache -->
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
             <version>3.1.2</version>
         </dependency>
-
         <!-- HTML sanitizer for the textEditor -->
         <dependency>
             <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
             <artifactId>owasp-java-html-sanitizer</artifactId>
             <version>20220608.1</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
     </dependencies>
-
-
     <build>
         <finalName>${project.name}</finalName>
         <resources>
@@ -240,7 +248,6 @@
                 </includes>
             </resource>
         </resources>
-
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -354,7 +361,6 @@
                 </executions>
             </plugin>
         </plugins>
-
         <extensions>
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
@@ -367,7 +373,7 @@
         <profile>
             <id>qdev</id>
             <build>
-                 <defaultGoal>compile quarkus:dev</defaultGoal>
+                <defaultGoal>compile quarkus:dev</defaultGoal>
             </build>
         </profile>
         <profile>
@@ -417,11 +423,6 @@
             <dependencies>
                 <!-- Classloading for Quarkus Native -->
                 <dependency>
-                    <groupId>org.apache.xmlgraphics</groupId>
-                    <artifactId>fop</artifactId>
-                    <version>2.8</version>
-                </dependency>
-                <dependency>
                     <groupId>org.javamoney</groupId>
                     <artifactId>moneta</artifactId>
                     <version>1.1</version>
@@ -430,6 +431,53 @@
                     <groupId>joda-time</groupId>
                     <artifactId>joda-time</artifactId>
                     <version>2.12.2</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.xmlgraphics</groupId>
+                    <artifactId>fop</artifactId>
+                    <version>${fop.version}</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.apache.xmlgraphics</groupId>
+                            <artifactId>fop-util</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>org.apache.xmlgraphics</groupId>
+                            <artifactId>fop-events</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>org.apache.xmlgraphics</groupId>
+                            <artifactId>fop-core</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+                <dependency>
+                    <groupId>org.commonmark</groupId>
+                    <artifactId>commonmark</artifactId>
+                    <version>0.21.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.xmlgraphics</groupId>
+                    <artifactId>fop-core</artifactId>
+                    <version>${fop.version}</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.apache.xmlgraphics</groupId>
+                            <artifactId>batik-anim</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>org.apache.xmlgraphics</groupId>
+                            <artifactId>batik-bridge</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>org.apache.xmlgraphics</groupId>
+                            <artifactId>batik-extension</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>org.apache.xmlgraphics</groupId>
+                            <artifactId>batik-transcoder</artifactId>
+                        </exclusion>
+                    </exclusions>
                 </dependency>
             </dependencies>
         </profile>
