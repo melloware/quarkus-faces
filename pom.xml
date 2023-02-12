@@ -448,9 +448,6 @@
                 <quarkus.package.type>native</quarkus.package.type>
                 <quarkus.native.container-build>true</quarkus.native.container-build>
                 <quarkus.native.builder-image>mandrel</quarkus.native.builder-image>
-                <quarkus.native.additional-build-args>
-                    --initialize-at-run-time=org.apache.poi.util.RandomSingleton
-                </quarkus.native.additional-build-args>
             </properties>
             <build>
                 <plugins>
