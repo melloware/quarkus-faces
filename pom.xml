@@ -96,6 +96,12 @@
             <artifactId>myfaces-quarkus-deployment</artifactId>
             <version>${myfaces.version}</version>
         </dependency>
+        <!-- Data Exporter -->
+        <dependency>
+            <groupId>io.quarkiverse.poi</groupId>
+            <artifactId>quarkus-poi</artifactId>
+            <version>1.0.2</version>
+        </dependency>
         <!-- XML -->
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
@@ -118,55 +124,6 @@
             <version>20220924</version>
         </dependency>
         <!-- Data Exporter -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>${poi.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>${poi.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.xmlgraphics</groupId>
-                    <artifactId>batik-all</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>de.rototor.pdfbox</groupId>
-                    <artifactId>graphics2d</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.santuario</groupId>
-                    <artifactId>xmlsec</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bouncycastle</groupId>
-                    <artifactId>bcpkix-jdk15on</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.github.virtuald</groupId>
-                    <artifactId>curvesapi</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bouncycastle</groupId>
-                    <artifactId>bcprov-jdk15on</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.poi</groupId>
-                    <artifactId>poi-ooxml-schemas</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.poi</groupId>
-                    <artifactId>poi-ooxml-lite</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml-full</artifactId>
-            <version>${poi.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.github.librepdf</groupId>
             <artifactId>openpdf</artifactId>
