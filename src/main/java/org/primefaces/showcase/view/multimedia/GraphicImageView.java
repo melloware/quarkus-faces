@@ -35,11 +35,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Named;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartUtilities;
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -72,22 +67,6 @@ public class GraphicImageView {
                         })
                         .build();
 
-            chart = DefaultStreamedContent.builder()
-                        .contentType("image/png")
-                        .stream(() -> {
-                            try {
-                                JFreeChart jfreechart = ChartFactory.createPieChart("Cities", createDataset(), true,
-                                            true, false);
-                                File chartFile = new File("dynamichart");
-                                ChartUtilities.saveChartAsPNG(chartFile, jfreechart, 375, 300);
-                                return Files.newInputStream(chartFile.toPath());
-                            }
-                            catch (Exception e) {
-                                e.printStackTrace();
-                                return null;
-                            }
-                        })
-                        .build();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -100,15 +79,5 @@ public class GraphicImageView {
 
     public StreamedContent getChart() {
         return chart;
-    }
-
-    private PieDataset createDataset() {
-        DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue("New York", Double.valueOf(45.0));
-        dataset.setValue("London", Double.valueOf(15.0));
-        dataset.setValue("Paris", Double.valueOf(25.2));
-        dataset.setValue("Berlin", Double.valueOf(14.8));
-
-        return dataset;
     }
 }
