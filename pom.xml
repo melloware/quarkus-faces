@@ -373,6 +373,10 @@
             <dependencies>
                 <!-- Classloading for Quarkus Native -->
                 <dependency>
+                    <groupId>io.quarkus</groupId>
+                    <artifactId>quarkus-awt</artifactId>
+                </dependency>
+                <dependency>
                     <groupId>org.javamoney</groupId>
                     <artifactId>moneta</artifactId>
                     <version>1.1</version>
@@ -381,6 +385,16 @@
                     <groupId>joda-time</groupId>
                     <artifactId>joda-time</artifactId>
                     <version>2.12.2</version>
+                </dependency>
+                <dependency>
+                    <groupId>jakarta.activation</groupId>
+                    <artifactId>jakarta.activation-api</artifactId>
+                    <version>2.1.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.commonmark</groupId>
+                    <artifactId>commonmark</artifactId>
+                    <version>0.21.0</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.xmlgraphics</groupId>
@@ -400,11 +414,6 @@
                             <artifactId>fop-core</artifactId>
                         </exclusion>
                     </exclusions>
-                </dependency>
-                <dependency>
-                    <groupId>org.commonmark</groupId>
-                    <artifactId>commonmark</artifactId>
-                    <version>0.21.0</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.xmlgraphics</groupId>
