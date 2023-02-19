@@ -39,6 +39,9 @@ import javax.faces.context.FacesContext;
 import org.primefaces.cache.CacheProvider;
 import org.primefaces.component.tabview.Tab;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class ShowcaseUtil {
 
     public static final List<FileContent> getFilesContent(String fullPath, Boolean readBeans) {

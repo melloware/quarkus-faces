@@ -47,8 +47,11 @@ import org.primefaces.model.CroppedImage;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @Named
 @SessionScoped
+@RegisterForReflection
 public class DynamicCropper implements Serializable {
     
     private final int width = 500;

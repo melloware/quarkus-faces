@@ -38,8 +38,11 @@ import javax.inject.Named;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @Named
 @RequestScoped
+@RegisterForReflection
 public class GraphicImageView {
 
     private StreamedContent graphicText;

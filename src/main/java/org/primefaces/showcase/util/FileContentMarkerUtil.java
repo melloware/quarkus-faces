@@ -38,6 +38,8 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.util.LangUtils;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 /**
  * FileContentMarkerUtil
  *
@@ -45,6 +47,7 @@ import org.primefaces.util.LangUtils;
  * @version $Revision$
  * @since 6.3
  */
+@RegisterForReflection
 public class FileContentMarkerUtil {
 
     private static final FileContentSettings javaFileSettings = new FileContentSettings()
