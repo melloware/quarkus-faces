@@ -26,6 +26,9 @@ package org.primefaces.showcase.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Product implements Serializable {
 
     private int id;

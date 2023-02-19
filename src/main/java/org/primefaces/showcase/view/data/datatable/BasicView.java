@@ -33,6 +33,9 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 @Named("dtBasicView")
 @ViewScoped
 public class BasicView implements Serializable {
