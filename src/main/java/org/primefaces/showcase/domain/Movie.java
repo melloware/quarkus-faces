@@ -23,6 +23,9 @@
  */
 package org.primefaces.showcase.domain;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Movie {
 
     private String movie;

@@ -28,9 +28,12 @@ import org.primefaces.cache.CacheProvider;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 /**
  * Caffeine Cache Provider
  */
+@RegisterForReflection
 public class CaffeineCacheProvider implements CacheProvider {
 
     private Cache<String, Object> cache;

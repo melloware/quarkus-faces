@@ -23,13 +23,17 @@
  */
 package org.primefaces.showcase.domain;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Theme {
 
-    private int id;    
-    private String displayName; 
+    private int id;
+    private String displayName;
     private String name;
-    
-    public Theme() {}
+
+    public Theme() {
+    }
 
     public Theme(int id, String displayName, String name) {
         this.id = id;
@@ -60,7 +64,7 @@ public class Theme {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     @Override
     public String toString() {
         return name;

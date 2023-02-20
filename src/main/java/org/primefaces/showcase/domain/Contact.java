@@ -25,9 +25,12 @@ package org.primefaces.showcase.domain;
 
 import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Contact implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 1L;
 
     private String firstname;
     private String surname;
@@ -84,11 +87,11 @@ public class Contact implements Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    
+
     public String getAddress() {
         return address;
     }
-    
+
     public void setAddress(String address) {
         this.address = address;
     }

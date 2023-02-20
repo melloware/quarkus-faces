@@ -25,17 +25,21 @@ package org.primefaces.showcase.domain;
 
 import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Stats implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-    
+
+    private static final long serialVersionUID = 1L;
+
     private String season;
-    
+
     private int win;
-    
+
     private int loss;
 
-    public Stats() {}
+    public Stats() {
+    }
 
     public Stats(String season, int win, int loss) {
         this.season = season;

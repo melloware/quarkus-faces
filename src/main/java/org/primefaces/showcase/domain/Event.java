@@ -26,6 +26,9 @@ package org.primefaces.showcase.domain;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Event implements Serializable {
 
     private String name;
@@ -61,6 +64,11 @@ public class Event implements Serializable {
     }
 
     @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -77,10 +85,5 @@ public class Event implements Serializable {
         }
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
     }
 }

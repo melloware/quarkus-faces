@@ -26,6 +26,9 @@ package org.primefaces.showcase.domain;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Player {
 
     private String name;

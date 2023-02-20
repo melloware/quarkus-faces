@@ -25,64 +25,71 @@ package org.primefaces.showcase.domain;
 
 import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Book implements Serializable {
-    
-	private static final long serialVersionUID = 1L;
-	
-	private String title;
-	private String author;
-	private String publisher;
-	private Integer pages;
 
-	public String getTitle() {
-		return title;
-	}
+    private static final long serialVersionUID = 1L;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    private String title;
+    private String author;
+    private String publisher;
+    private Integer pages;
 
-	public String getAuthor() {
-		return author;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setAuthor(String author) {
-		this.author = author;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getPublisher() {
-		return publisher;
-	}
+    public String getAuthor() {
+        return author;
+    }
 
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
-	public Integer getPages() {
-		return pages;
-	}
+    public String getPublisher() {
+        return publisher;
+    }
 
-	public void setPages(Integer pages) {
-		this.pages = pages;
-	}
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
 
-	public boolean equals(Object obj) {
-		if(!(obj instanceof Book))
-			return false;
-		
-		Book book = (Book) obj;
-		
-		return (book.getTitle() != null && book.getTitle().equals(title)) && (book.getAuthor() != null && book.getAuthor().equals(author));
-	}
+    public Integer getPages() {
+        return pages;
+    }
 
-	public int hashCode() {
-		int hash = 1;
-		if(title != null)
+    public void setPages(Integer pages) {
+        this.pages = pages;
+    }
+
+    public int hashCode() {
+        int hash = 1;
+		if (title != null) {
 			hash = hash * 31 + title.hashCode();
-		
-		if(author != null)
-			hash = hash * 29 + author.hashCode();
+		}
 
-		return hash;
-	}
+		if (author != null) {
+			hash = hash * 29 + author.hashCode();
+		}
+
+        return hash;
+    }
+
+    public boolean equals(Object obj) {
+		if (!(obj instanceof Book)) {
+			return false;
+		}
+
+        Book book = (Book) obj;
+
+        return (book.getTitle() != null && book.getTitle().equals(title)) &&
+                    (book.getAuthor() != null && book.getAuthor().equals(author));
+    }
 }

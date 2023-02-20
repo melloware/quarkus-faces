@@ -25,6 +25,9 @@ package org.primefaces.showcase.domain;
 
 import java.util.Objects;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Place {
 
     private String name;
@@ -62,6 +65,11 @@ public class Place {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(name, code, status);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -71,13 +79,8 @@ public class Place {
         }
         Place place = (Place) o;
         return Objects.equals(name, place.name)
-                && Objects.equals(code, place.code)
-                && Objects.equals(status, place.status);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, code, status);
+                    && Objects.equals(code, place.code)
+                    && Objects.equals(status, place.status);
     }
 
     @Override

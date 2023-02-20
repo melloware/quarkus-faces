@@ -23,6 +23,8 @@
  */
 package org.primefaces.showcase.util;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 /**
  * FileContentSettings
  *
@@ -30,6 +32,7 @@ package org.primefaces.showcase.util;
  * @version $Revision$
  * @since 6.3
  */
+@RegisterForReflection
 public class FileContentSettings {
 
     private Marker[] startMarkers = null;

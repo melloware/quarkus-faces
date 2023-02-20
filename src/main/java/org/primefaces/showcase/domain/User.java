@@ -25,6 +25,9 @@ package org.primefaces.showcase.domain;
 
 import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class User implements Serializable {
 
     private String firstname;

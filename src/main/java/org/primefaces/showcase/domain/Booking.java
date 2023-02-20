@@ -25,6 +25,9 @@ package org.primefaces.showcase.domain;
 
 import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Booking implements Serializable {
 
     private Integer roomNumber;
@@ -75,6 +78,11 @@ public class Booking implements Serializable {
     }
 
     @Override
+    public int hashCode() {
+        return roomNumber != null ? roomNumber.hashCode() : 0;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -91,10 +99,5 @@ public class Booking implements Serializable {
         }
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return roomNumber != null ? roomNumber.hashCode() : 0;
     }
 }

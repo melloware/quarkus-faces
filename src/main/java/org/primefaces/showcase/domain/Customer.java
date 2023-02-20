@@ -27,9 +27,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Customer implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 1L;
 
     public int id;
     public String name;
@@ -43,7 +46,8 @@ public class Customer implements Serializable {
     public Customer() {
     }
 
-    public Customer(int id, String name, String company, Country country, LocalDate date, CustomerStatus status, int activity, Representative representative) {
+    public Customer(int id, String name, String company, Country country, LocalDate date, CustomerStatus status,
+                int activity, Representative representative) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -119,22 +123,26 @@ public class Customer implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
-        return id == customer.id &&
-                activity == customer.activity &&
-                Objects.equals(name, customer.name) &&
-                Objects.equals(company, customer.company) &&
-                Objects.equals(country, customer.country) &&
-                Objects.equals(date, customer.date) &&
-                status == customer.status &&
-                Objects.equals(representative, customer.representative);
+    public int hashCode() {
+        return Objects.hash(id, name, company, country, date, status, activity, representative);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id, name, company, country, date, status, activity, representative);
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Customer customer = (Customer) o;
+        return id == customer.id &&
+                    activity == customer.activity &&
+                    Objects.equals(name, customer.name) &&
+                    Objects.equals(company, customer.company) &&
+                    Objects.equals(country, customer.country) &&
+                    Objects.equals(date, customer.date) &&
+                    status == customer.status &&
+                    Objects.equals(representative, customer.representative);
     }
 }

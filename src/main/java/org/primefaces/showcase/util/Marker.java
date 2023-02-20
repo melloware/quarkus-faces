@@ -25,6 +25,9 @@ package org.primefaces.showcase.util;
 
 import java.util.Objects;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Marker {
 
     private final String name;
@@ -53,6 +56,11 @@ public class Marker {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -62,10 +70,5 @@ public class Marker {
         }
         Marker marker = (Marker) o;
         return Objects.equals(name, marker.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
     }
 }

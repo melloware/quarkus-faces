@@ -27,18 +27,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Team implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 1L;
 
     private String name;
-    
+
     private List<Stats> stats;
-    
+
     public Team() {
         stats = new ArrayList<Stats>();
     }
-    
+
     public Team(String name) {
         this.name = name;
         stats = new ArrayList<Stats>();
@@ -59,24 +62,24 @@ public class Team implements Serializable {
     public void setStats(List<Stats> stats) {
         this.stats = stats;
     }
-    
+
     public int getAllWins() {
         int sum = 0;
-        
-        for(Stats s : stats) {
+
+        for (Stats s : stats) {
             sum += s.getWin();
         }
-        
+
         return sum;
     }
-    
+
     public int getAllLosses() {
         int sum = 0;
-        
-        for(Stats s : stats) {
+
+        for (Stats s : stats) {
             sum += s.getLoss();
         }
-        
+
         return sum;
     }
 }
