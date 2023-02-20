@@ -23,14 +23,12 @@
  */
 package org.primefaces.showcase.view.misc;
 
-import org.primefaces.shaded.json.JSONArray;
-import org.primefaces.shaded.json.JSONException;
-import org.primefaces.shaded.json.JSONObject;
-
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.Serializable;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -38,28 +36,21 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
+
+import org.primefaces.shaded.json.JSONArray;
+import org.primefaces.shaded.json.JSONException;
+import org.primefaces.shaded.json.JSONObject;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @Named
 @ApplicationScoped
 public class PrimeIconsView implements Serializable {
 
     private List<Icon> icons;
-    
-    @PostConstruct
-    public void init() {
-        icons = new ArrayList<>();
-        
-        String url = "https://raw.githubusercontent.com/primefaces/primeicons/4.1.0/selection.json";
-        try {
-            JSONObject json = readJsonFromUrl(url);
-            JSONArray iconsArray = json.getJSONArray("icons");
-            for(int i = 0; i < iconsArray.length(); i++) {
-                JSONObject properties = iconsArray.optJSONObject(i).getJSONObject("properties");
-                icons.add(new Icon(properties.getString("name"), properties.getInt("code")));
-            }
-        } catch (IOException | JSONException ex) {
-            Logger.getLogger(PrimeIconsView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -70,6 +61,24 @@ public class PrimeIconsView implements Serializable {
         return sb.toString();
     }
 
+    @PostConstruct
+    public void init() {
+        icons = new ArrayList<>();
+
+        String url = "https://raw.githubusercontent.com/primefaces/primeicons/4.1.0/selection.json";
+        try {
+            JSONObject json = readJsonFromUrl(url);
+            JSONArray iconsArray = json.getJSONArray("icons");
+            for (int i = 0; i < iconsArray.length(); i++) {
+                JSONObject properties = iconsArray.optJSONObject(i).getJSONObject("properties");
+                icons.add(new Icon(properties.getString("name"), properties.getInt("code")));
+            }
+        }
+        catch (IOException | JSONException ex) {
+            Logger.getLogger(PrimeIconsView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
         InputStream is = new URL(url).openStream();
         try {
@@ -77,7 +86,8 @@ public class PrimeIconsView implements Serializable {
             String jsonText = readAll(rd);
             JSONObject json = new JSONObject(jsonText);
             return json;
-        } finally {
+        }
+        finally {
             is.close();
         }
     }
@@ -89,12 +99,13 @@ public class PrimeIconsView implements Serializable {
     public void setIcons(List<Icon> icons) {
         this.icons = icons;
     }
-    
+
+    @RegisterForReflection
     public class Icon {
-        
+
         private String name;
         private int key;
-        
+
         public Icon(String name, int key) {
             this.name = name;
             this.key = key;
