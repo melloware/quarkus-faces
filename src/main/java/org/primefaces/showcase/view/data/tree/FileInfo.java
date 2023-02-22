@@ -26,6 +26,9 @@ package org.primefaces.showcase.view.data.tree;
 import java.io.File;
 import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class FileInfo implements Serializable {
 
     private String path;
@@ -35,7 +38,8 @@ public class FileInfo implements Serializable {
         this.path = path;
         if (this.path.equals(File.separator)) {
             this.name = this.path;
-        } else {
+        }
+        else {
             String[] parts = path.split(File.separator.equals("\\") ? "\\\\" : File.separator);
             this.name = parts[parts.length - 1];
         }

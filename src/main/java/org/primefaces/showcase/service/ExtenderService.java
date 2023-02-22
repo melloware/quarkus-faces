@@ -30,9 +30,12 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.primefaces.component.schedule.Schedule;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 /**
  * Provides the examples for the [@code extender} options of various components,
@@ -42,71 +45,73 @@ import org.primefaces.component.schedule.Schedule;
 @ApplicationScoped
 public class ExtenderService {
 
-	public Map<String, ExtenderExample> createExtenderExamples() {
-		final Properties properties = new Properties();
+    public Map<String, ExtenderExample> createExtenderExamples() {
+        final Properties properties = new Properties();
 
-		try (final InputStream inStream = ExtenderService.class
-				.getResourceAsStream("/schedule-extender-examples.properties")) {
-			properties.load(inStream);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        try (final InputStream inStream = FacesContext.getCurrentInstance().getExternalContext()
+                    .getResourceAsStream("/schedule-extender-examples.properties")) {
+            properties.load(inStream);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		final Map<String, ExtenderExample> extenderExamples = new HashMap<>();
+        final Map<String, ExtenderExample> extenderExamples = new HashMap<>();
 
-		for (final String key : properties.stringPropertyNames()) {
-			if (key != null && key.endsWith(".name")) {
-				final String baseKey = key.substring(0, key.length() - 5);
-				final ExtenderExample example = new ExtenderExample(baseKey, properties);
-				if (example.getName() != null && example.getValue() != null && !example.getName().trim().isEmpty()
-						&& !example.getValue().trim().isEmpty()) {
-					extenderExamples.put(baseKey, example);
-				}
-			}
-		}
+        for (final String key : properties.stringPropertyNames()) {
+            if (key != null && key.endsWith(".name")) {
+                final String baseKey = key.substring(0, key.length() - 5);
+                final ExtenderExample example = new ExtenderExample(baseKey, properties);
+                if (example.getName() != null && example.getValue() != null && !example.getName().trim().isEmpty()
+                            && !example.getValue().trim().isEmpty()) {
+                    extenderExamples.put(baseKey, example);
+                }
+            }
+        }
 
-		return extenderExamples;
-	}
+        return extenderExamples;
+    }
 
-	public static class ExtenderExample {
-		private final String details;
-		private final String html;
-		private final String key;
-		private final String link;
-		private final String name;
-		private final String value;
+    @RegisterForReflection
+    public static class ExtenderExample {
+        private final String details;
+        private final String html;
+        private final String key;
+        private final String link;
+        private final String name;
+        private final String value;
 
-		public ExtenderExample(String key, Properties properties) {
-			this.key = key;
-			this.details = properties.getProperty(key + ".details");
-			this.html = properties.getProperty(key + ".html");
-			this.link = properties.getProperty(key + ".link");
-			this.name = properties.getProperty(key + ".name");
-			this.value = properties.getProperty(key + ".value");
-		}
+        public ExtenderExample(String key, Properties properties) {
+            this.key = key;
+            this.details = properties.getProperty(key + ".details");
+            this.html = properties.getProperty(key + ".html");
+            this.link = properties.getProperty(key + ".link");
+            this.name = properties.getProperty(key + ".name");
+            this.value = properties.getProperty(key + ".value");
+        }
 
-		public String getDetails() {
-			return details;
-		}
-		
-		public String getHtml() {
-			return html;
-		}
+        public String getDetails() {
+            return details;
+        }
 
-		public String getKey() {
-			return key;
-		}
+        public String getHtml() {
+            return html;
+        }
 
-		public String getLink() {
-			return link;
-		}
+        public String getKey() {
+            return key;
+        }
 
-		public String getName() {
-			return name;
-		}
+        public String getLink() {
+            return link;
+        }
 
-		public String getValue() {
-			return value;
-		}
-	}
+        public String getName() {
+            return name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
 }

@@ -26,18 +26,18 @@
     <ui:define name="implementation">
         <div class="card">
             <h:form id="productForm">
-                <p:dataView id="availableProducts" var="product" value="#{dndProductsView.products}" rows="9" layout="grid" gridIcon="pi pi-th-large" >
+                <p:dataView id="availableProducts" var="product" value="#{dndProductsView.products}" rows="9" layout="grid" gridIcon="pi pi-th-large">
                     <p:dataViewGridItem>
                         <p:panel id="pnl" header="#{product.name}" style="text-align:center">
                             <h:panelGrid columns="1" style="width:100%">
                                 <p:graphicImage name="/demo/images/product/#{product.image}"/>
                             </h:panelGrid>
                         </p:panel>
-    
+
                         <p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
                     </p:dataViewGridItem>
                 </p:dataView>
-                
+
                 <p:fieldset id="selectedProducts" legend="Selected Products" style="margin-top:20px">
                     <p:outputPanel id="dropArea">
                         <h:outputText value="!!!Drop here!!!" rendered="#{empty dndProductsView.droppedProducts}"
@@ -87,7 +87,7 @@
                                             <i class="pi pi-tag product-category-icon"/>
                                             <span class="product-category">#{dndProductsView.selectedProduct.category}</span>
                                         </div>
-                                        <span class="product-badge status-#{dndProductsView.selectedProduct.inventoryStatus.name().toLowerCase()}">#{dndProductsView.selectedProduct.inventoryStatus.text}</span>
+                                        <span class="product-badge status-#{dndProductsView.selectedProduct.inventoryStatus.statusName}">#{dndProductsView.selectedProduct.inventoryStatus.text}</span>
                                     </div>
                                     <div class="product-grid-item-content">
                                         <p:graphicImage

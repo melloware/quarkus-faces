@@ -23,44 +23,42 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
-import javax.faces.view.ViewScoped;
-import org.primefaces.showcase.domain.Product;
-import org.primefaces.showcase.service.ProductService;
-
-import javax.annotation.PostConstruct;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import org.primefaces.showcase.domain.Product;
+import org.primefaces.showcase.service.ProductService;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @Named("dtColumnsView")
 @ViewScoped
 public class ColumnsView implements Serializable {
-    
+
     private final static List<String> VALID_COLUMN_KEYS = Arrays.asList("code", "name", "category", "quantity");
-	
-    private String columnTemplate = "code name quantity";
-    
-    private List<ColumnModel> columns;
-    
-    private List<Product> products;
-    
-    private List<Product> filteredProducts;
-    
     @Inject
     ProductService service;
+    private String columnTemplate = "code name quantity";
+    private List<ColumnModel> columns;
+    private List<Product> products;
+    private List<Product> filteredProducts;
 
     @PostConstruct
     public void init() {
         products = service.getProducts(10);
-        
+
         createDynamicColumns();
     }
-    
+
     public List<Product> getProducts() {
         return products;
     }
@@ -92,25 +90,26 @@ public class ColumnsView implements Serializable {
     private void createDynamicColumns() {
         String[] columnKeys = columnTemplate.split(" ");
         columns = new ArrayList<>();
-        
-        for(String columnKey : columnKeys) {
+
+        for (String columnKey : columnKeys) {
             String key = columnKey.trim();
-            
-            if(VALID_COLUMN_KEYS.contains(key)) {
+
+            if (VALID_COLUMN_KEYS.contains(key)) {
                 columns.add(new ColumnModel(columnKey.toUpperCase(), columnKey));
             }
         }
     }
-    
+
     public void updateColumns() {
         //reset table state
         UIComponent table = FacesContext.getCurrentInstance().getViewRoot().findComponent(":form:products");
         table.setValueExpression("sortBy", null);
-        
+
         //update columns
         createDynamicColumns();
     }
-    
+
+    @RegisterForReflection
     static public class ColumnModel implements Serializable {
 
         private String header;

@@ -14,7 +14,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/datascroller"/>
-    <ui:param name="widgetLink" value="datascroller-1" />
+    <ui:param name="widgetLink" value="datascroller-1"/>
 
     <ui:define name="implementation">
         <div class="product card">
@@ -45,7 +45,7 @@
                                 <p:commandButton value="Add To Cart" icon="pi pi-shopping-cart"
                                                  disabled="#{product.inventoryStatus == 'OUTOFSTOCK'}">
                                 </p:commandButton>
-                                <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                                <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
                             </div>
                         </div>
                     </div>

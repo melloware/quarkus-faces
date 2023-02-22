@@ -23,6 +23,8 @@
  */
 package org.primefaces.showcase.domain;
 
+import java.util.Locale;
+
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection
@@ -39,5 +41,9 @@ public enum InventoryStatus {
 
     public String getText() {
         return text;
+    }
+
+    public String getStatusName() {
+        return name().toLowerCase(Locale.ROOT);
     }
 }

@@ -23,37 +23,36 @@
  */
 package org.primefaces.showcase.view.data.treetable;
 
-import javax.faces.view.ViewScoped;
-import org.primefaces.model.TreeNode;
-import org.primefaces.showcase.service.DocumentService;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import org.primefaces.model.TreeNode;
+import org.primefaces.showcase.service.DocumentService;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @Named("ttColumnsView")
 @ViewScoped
 public class ColumnsView implements Serializable {
-    
+
     private final static List<String> VALID_COLUMN_KEYS = Arrays.asList("name", "size", "type");
-	
-    private String columnTemplate = "name size type";
-    
-    private List<ColumnModel> columns;
-    
-    private TreeNode root;
-        
     @Inject
     DocumentService service;
-    
+    private String columnTemplate = "name size type";
+    private List<ColumnModel> columns;
+    private TreeNode root;
+
     @PostConstruct
     public void init() {
         root = service.createDocuments();
-        
+
         createDynamicColumns();
     }
 
@@ -64,15 +63,15 @@ public class ColumnsView implements Serializable {
     public void setService(DocumentService service) {
         this.service = service;
     }
-    
+
     public void createDynamicColumns() {
         String[] columnKeys = columnTemplate.split(" ");
-        columns = new ArrayList<ColumnModel>();   
-        
-        for(String columnKey : columnKeys) {
+        columns = new ArrayList<ColumnModel>();
+
+        for (String columnKey : columnKeys) {
             String key = columnKey.trim();
-            
-            if(VALID_COLUMN_KEYS.contains(key)) {
+
+            if (VALID_COLUMN_KEYS.contains(key)) {
                 columns.add(new ColumnModel(columnKey, columnKey));
             }
         }
@@ -84,12 +83,13 @@ public class ColumnsView implements Serializable {
 
     public void setColumnTemplate(String columnTemplate) {
         this.columnTemplate = columnTemplate;
-    } 
-    
+    }
+
     public List<ColumnModel> getColumns() {
         return columns;
     }
-  
+
+    @RegisterForReflection
     static public class ColumnModel implements Serializable {
 
         private String header;

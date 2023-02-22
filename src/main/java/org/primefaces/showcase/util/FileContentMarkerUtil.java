@@ -24,7 +24,7 @@
 package org.primefaces.showcase.util;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
@@ -51,30 +51,30 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 public class FileContentMarkerUtil {
 
     private static final FileContentSettings javaFileSettings = new FileContentSettings()
-            .setType("java")
-            .setStartMarkers(
-                    Marker.of("@Named"),
-                    Marker.of("@RequestScoped"),
-                    Marker.of("@ViewScoped"),
-                    Marker.of("@SessionScoped"),
-                    Marker.of("@FacesConverter"),
-                    Marker.of("@Target"),
-                    Marker.of(" class "),
-                    Marker.of(" enum "),
-                    Marker.of("EXCLUDE-SOURCE-END").excluded())
-            .setEndMarkers(Marker.of("EXCLUDE-SOURCE-START").excluded());
+                .setType("java")
+                .setStartMarkers(
+                            Marker.of("@Named"),
+                            Marker.of("@RequestScoped"),
+                            Marker.of("@ViewScoped"),
+                            Marker.of("@SessionScoped"),
+                            Marker.of("@FacesConverter"),
+                            Marker.of("@Target"),
+                            Marker.of(" class "),
+                            Marker.of(" enum "),
+                            Marker.of("EXCLUDE-SOURCE-END").excluded())
+                .setEndMarkers(Marker.of("EXCLUDE-SOURCE-START").excluded());
 
     private static final FileContentSettings xhtmlFileSettings = new FileContentSettings()
-            .setType("xml")
-            .setStartMarkers(
-                    Marker.of("EXAMPLE-SOURCE-START").excluded(),
-                    Marker.of("<ui:define name=\"implementation\">").excluded(),
-                    Marker.of("<ui:define name=\"head\">").excluded())
-            .setEndMarkers(
-                    Marker.of("EXAMPLE-SOURCE-END").excluded(),
-                    Marker.of("</ui:define>").excluded());
+                .setType("xml")
+                .setStartMarkers(
+                            Marker.of("EXAMPLE-SOURCE-START").excluded(),
+                            Marker.of("<ui:define name=\"implementation\">").excluded(),
+                            Marker.of("<ui:define name=\"head\">").excluded())
+                .setEndMarkers(
+                            Marker.of("EXAMPLE-SOURCE-END").excluded(),
+                            Marker.of("</ui:define>").excluded());
 
-    private static final Pattern SC_BEAN_PATTERN = Pattern.compile("#\\{\\w*?\\s?(\\w+)[\\.\\[].*\\}");
+    private static final Pattern SC_BEAN_PATTERN = Pattern.compile("#\\{\\w*?\\s?(\\w+)[.\\[].*}");
 
     private static final String SC_PREFIX = "org.primefaces.showcase";
 
@@ -96,13 +96,14 @@ public class FileContentMarkerUtil {
         }
     }
 
-    private static FileContent readFileContent(String fileName, InputStream inputStream, FileContentSettings settings, boolean readBeans) throws Exception {
+    private static FileContent readFileContent(String fileName, InputStream inputStream, FileContentSettings settings,
+                boolean readBeans) throws Exception {
         StringBuilder content = new StringBuilder();
         Set<FileContent> javaFiles = new LinkedHashSet<>();
         FacesContext facesContext = FacesContext.getCurrentInstance();
 
         try (InputStreamReader ir = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-                BufferedReader br = new BufferedReader(ir)) {
+                    BufferedReader br = new BufferedReader(ir)) {
             String line;
             boolean started = false;
 
@@ -116,7 +117,7 @@ public class FileContentMarkerUtil {
                 }
 
                 // if is before first end marker
-                if (started && getMatchingMarker(line, settings.getEndMarkers()) != null) {
+                if (getMatchingMarker(line, settings.getEndMarkers()) != null) {
                     started = false;
                     content.append("\n");
                     continue;
@@ -143,11 +144,12 @@ public class FileContentMarkerUtil {
     }
 
     private static void addBean(FacesContext facesContext, Set<FileContent> javaFiles, String group) throws Exception {
-        Object bean = facesContext.getApplication().evaluateExpressionGet(facesContext, "#{" + group + "}", Object.class);
+        Object bean = facesContext.getApplication()
+                    .evaluateExpressionGet(facesContext, "#{" + group + "}", Object.class);
         if (bean == null) {
             return;
         }
-        
+
         Class<?> beanClass = LangUtils.getUnproxiedClass(bean.getClass());
         if (isEligibleFile(beanClass.getName())) {
             // special handling for member classes (like ColumnsView and ColumnsView$ColumnModel)
@@ -157,11 +159,9 @@ public class FileContentMarkerUtil {
             }
 
             String javaFileName = packageToPathAccess(className);
-            if (!isFileContainedIn(javaFileName, javaFiles)) {
-            	FileContent content = createFileContent(className);
-            	if (content != null) {
-            		javaFiles.add(content);
-    			}
+            if (isFileContainedIn(javaFileName, javaFiles)) {
+                FileContent content = createFileContent(className);
+                javaFiles.add(content);
             }
 
             for (Field field : beanClass.getDeclaredFields()) {
@@ -174,26 +174,22 @@ public class FileContentMarkerUtil {
         String typeName = field.getType().getTypeName();
         String javaFileName = packageToPathAccess(typeName);
         if (isEligibleFile(typeName)
-                && !isFileContainedIn(javaFileName, javaFiles)) {
-        	FileContent content = createFileContent(typeName);
-        	if (content != null) {
-        		javaFiles.add(content);
-			}
+                    && isFileContainedIn(javaFileName, javaFiles)) {
+            FileContent content = createFileContent(typeName);
+            javaFiles.add(content);
         }
     }
 
     private static FileContent createFileContent(String fileName) throws Exception {
         String path = createFullPath(fileName);
-        InputStream is = FileContentMarkerUtil.class.getResourceAsStream(path);
+        InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(path);
+        String name = fileName.substring(fileName.lastIndexOf(".") + 1) + ".java";
 
         if (is == null) {
-            throw new FileNotFoundException("File " + path + " could not be found");
+            is = new ByteArrayInputStream(name.getBytes(StandardCharsets.UTF_8));
         }
 
-        return readFileContent(fileName.substring(fileName.lastIndexOf(".") + 1) + ".java",
-                is,
-                javaFileSettings,
-                false);
+        return readFileContent(name, is, javaFileSettings, false);
     }
 
     private static Marker getMatchingMarker(String line, Marker[] markers) {
@@ -208,26 +204,26 @@ public class FileContentMarkerUtil {
 
     private static String prettyFormat(String value) {
         String[] chunks = value.split("(?<=\\n)");
-        String pretty = "";
+        StringBuilder pretty = new StringBuilder();
         for (String chunk : chunks) {
-            pretty += chunk.replaceFirst("\\s{8}", "");
+            pretty.append(chunk.replaceFirst("\\s{8}", ""));
         }
-        return pretty;
+        return pretty.toString();
     }
 
     private static boolean isEligibleFile(String file) {
         return file != null && file.startsWith(SC_PREFIX);
     }
 
-    private static String packageToPathAccess(String pckage) { 
+    private static String packageToPathAccess(String pckage) {
         return pckage.substring(pckage.lastIndexOf(".") + 1) + ".java";
     }
 
     private static boolean isFileContainedIn(String filename, Set<FileContent> javaFiles) {
-        return javaFiles.contains(new FileContent(filename, null, null, null));
+        return !javaFiles.contains(new FileContent(filename, null, null, null));
     }
 
     private static String createFullPath(String filename) {
-    	return "/" + filename.replaceAll("\\.", "/") + ".java";
+        return "/java/" + filename.replaceAll("\\.", "/") + ".java";
     }
 }

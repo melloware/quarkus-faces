@@ -16,8 +16,9 @@
 ###
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.7
 
-######################### Set up environment ######################
-RUN microdnf update && microdnf install freetype
+######################### Set up environment for POI ##########################
+RUN microdnf update && microdnf install freetype && microdnf install fontconfig
+######################### Set up environment for POI ##########################
 
 WORKDIR /work/
 RUN chown 1001 /work \

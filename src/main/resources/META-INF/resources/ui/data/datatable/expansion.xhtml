@@ -69,7 +69,7 @@
                                     <p:commandButton value="Add To Cart" icon="pi pi-shopping-cart" type="button"
                                                      disabled="#{product.inventoryStatus == 'OUTOFSTOCK'}">
                                     </p:commandButton>
-                                    <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                                    <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
                                 </div>
                             </div>
                         </div>

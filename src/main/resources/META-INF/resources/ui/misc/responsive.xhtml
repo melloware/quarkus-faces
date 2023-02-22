@@ -95,7 +95,7 @@
                         <p:splitButton id="spbtn" value="Save" type="button" icon="pi pi-save">
                             <p:menuitem value="Update" url="#" icon="pi pi-refresh"/>
                             <p:menuitem value="Delete" url="#" icon="pi pi-times"/>
-                            <p:divider />
+                            <p:divider/>
                             <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="pi pi-home"/>
                         </p:splitButton>
 
@@ -191,7 +191,7 @@
                                         <i class="pi pi-tag product-category-icon"/>
                                         <span class="product-category">#{product.category}</span>
                                     </div>
-                                    <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                                    <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
                                 </div>
                                 <div class="product-grid-item-content">
                                     <p:graphicImage name="demo/images/product/#{product.image}"/>
@@ -246,7 +246,7 @@
                                         <i class="pi pi-tag product-category-icon"/>
                                         <span class="product-category">#{product.category}</span>
                                     </div>
-                                    <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                                    <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
                                 </div>
                                 <div class="product-grid-item-content">
                                     <p:graphicImage name="demo/images/product/#{product.image}"/>
@@ -331,7 +331,7 @@
                                 <p:submenu label="Non-Ajax Menuitem">
                                     <p:menuitem value="Delete" url="#" icon="pi pi-times"/>
                                 </p:submenu>
-                                <p:divider />
+                                <p:divider/>
                                 <p:submenu label="Navigations">
                                     <p:submenu label="Links" icon="pi pi-home">
                                         <p:submenu label="PrimeFaces" icon="pi pi-briefcase">

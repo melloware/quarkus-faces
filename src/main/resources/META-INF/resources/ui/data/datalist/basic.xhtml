@@ -43,7 +43,7 @@
                                 <f:setPropertyActionListener value="#{product}"
                                                              target="#{dataListView.selectedProduct}"/>
                             </p:commandButton>
-                            <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                            <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
                         </div>
                     </div>
                 </p:dataList>
@@ -74,7 +74,7 @@
                                     <f:setPropertyActionListener value="#{product}"
                                                                  target="#{dataListView.selectedProduct}"/>
                                 </p:commandButton>
-                                <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                                <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
                             </div>
                         </div>
                     </f:facet>
@@ -92,7 +92,7 @@
                                         <i class="pi pi-tag product-category-icon"/>
                                         <span class="product-category">#{dataListView.selectedProduct.category}</span>
                                     </div>
-                                    <span class="product-badge status-#{dataListView.selectedProduct.inventoryStatus.name().toLowerCase()}">#{dataListView.selectedProduct.inventoryStatus.text}</span>
+                                    <span class="product-badge status-#{dataListView.selectedProduct.inventoryStatus.statusName}">#{dataListView.selectedProduct.inventoryStatus.text}</span>
                                 </div>
                                 <div class="product-grid-item-content">
                                     <p:graphicImage name="demo/images/product/#{dataListView.selectedProduct.image}"/>

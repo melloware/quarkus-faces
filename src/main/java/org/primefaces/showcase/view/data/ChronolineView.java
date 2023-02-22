@@ -23,11 +23,14 @@
  */
 package org.primefaces.showcase.view.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.List;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @RequestScoped
@@ -59,6 +62,7 @@ public class ChronolineView {
         return events2;
     }
 
+    @RegisterForReflection
     public static class Event {
         String status;
         String date;

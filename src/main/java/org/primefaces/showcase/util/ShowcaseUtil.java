@@ -29,8 +29,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import javax.enterprise.inject.spi.CDI;
 
+import javax.enterprise.inject.spi.CDI;
 import javax.faces.application.ProjectStage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIPanel;
@@ -44,7 +44,7 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 @RegisterForReflection
 public class ShowcaseUtil {
 
-    public static final List<FileContent> getFilesContent(String fullPath, Boolean readBeans) {
+    public static List<FileContent> getFilesContent(String fullPath, Boolean readBeans) {
         CacheProvider provider = CDI.current().select(ShowcaseCacheProvider.class).get().getCacheProvider();
         List<FileContent> files = (List<FileContent>) provider.get("contents", fullPath);
 
@@ -56,6 +56,7 @@ public class ShowcaseUtil {
                 attach(tabs, srcContent);
             }
             files = new ArrayList<>();
+            assert srcContent != null;
             flatFileContent(srcContent, files);
 
             if (facesContext.isProjectStage(ProjectStage.Production)) {
@@ -64,14 +65,14 @@ public class ShowcaseUtil {
         }
         return files;
     }
-	
-    public static final Object getPropertyValueViaReflection(Object o, String field)
+
+    public static Object getPropertyValueViaReflection(Object o, String field)
                 throws ReflectiveOperationException, IllegalArgumentException, IntrospectionException {
         return new PropertyDescriptor(field, o.getClass()).getReadMethod().invoke(o);
     }
 
     // EXCLUDE-SOURCE-START
-    private static final FileContent getFileContent(String fullPath, Boolean readBeans) {
+    private static FileContent getFileContent(String fullPath, Boolean readBeans) {
         try {
             // Finding in WEB ...
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -85,7 +86,8 @@ public class ShowcaseUtil {
             if (is != null) {
                 return FileContentMarkerUtil.readFileContent(fullPath, is, readBeans);
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new IllegalStateException("Internal error: file " + fullPath + " could not be read", e);
         }
 
@@ -97,8 +99,8 @@ public class ShowcaseUtil {
             if (component instanceof Tab) {
                 String flatten = (String) component.getAttributes().get("flatten");
                 FileContent content = getFileContent(
-                        ((Tab) component).getTitle(),
-                        flatten == null ? false : Boolean.valueOf(flatten));
+                            ((Tab) component).getTitle(),
+                            Boolean.parseBoolean(flatten));
                 file.getAttached().add(content);
             }
             else if (component instanceof UIPanel) {
@@ -110,9 +112,13 @@ public class ShowcaseUtil {
     }
 
     private static void flatFileContent(FileContent source, List<FileContent> dest) {
-        dest.add(new FileContent(source.getTitle(), source.getValue(), source.getType(), Collections.<FileContent>emptySet()));
+        if (source == null) {
+            return;
+        }
+        dest.add(new FileContent(source.getTitle(), source.getValue(), source.getType(),
+                    Collections.emptySet()));
 
-        for(FileContent file : source.getAttached()) {
+        for (FileContent file : source.getAttached()) {
             flatFileContent(file, dest);
         }
     }

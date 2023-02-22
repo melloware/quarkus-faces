@@ -92,14 +92,11 @@ public class FileContent implements Serializable {
         }
         FileContent other = (FileContent) obj;
         if (title == null) {
-            if (other.title != null) {
-                return false;
-            }
+            return other.title == null;
         }
-        else if (!title.equals(other.title)) {
-            return false;
+        else {
+            return title.equals(other.title);
         }
-        return true;
     }
 
     @Override
