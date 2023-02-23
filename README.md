@@ -16,9 +16,9 @@ Some addition goals:
 
 ### Environment
 ***
-- OpenJDK 11.0.10
+- OpenJDK 17.0.5
 - JBoss Wildfly 18.0.1
-- Quarkus 2.6.2.Final
+- Quarkus 2.16.3.Final
 - JSF Production Mode
 - Intel(R) Core(TM) i7-8750H CPU @2.21 GHz 16GB RAM
 
@@ -36,20 +36,20 @@ Some addition goals:
 The following client and server metrics were captured while hitting the exact same page [/datatable/crud.xhtml](https://www.primefaces.org/showcase/ui/data/datatable/crud.xhtml)
 Using `Incognito Mode` and pressing CTRL+F5 so it forced the browser to load all resources from the server with nothing cached.
 
-Metric                |  WildFly EE | Quarkus (unoptimized) | Quarkus (optimized) | Improvement |
-----------------------| ----------  | ----------------------| --------------------|-------------|
-Package Size          | 48.5 MB WAR | 98 MB                 | 98 MB               | ------      |
-Cold Startup          | 10.3 s      | 3.04 s                | 3.01 s              | 70.78%      |
-Memory Used           | 140 MB      | 39 MB                 | 39 MB               | 72.14%      |
-HTTP Requests         | 114         | 114                   | 89                  | 21.93%      |
-Resource Size         | 4.4 MB      | 4.4 MB                | 4.4 MB              | -----       |
-Transferred Size      | 4.4 MB      | 4.4 MB                | 2.9 MB              | 34.09%      |
-DOM Loaded            | 1150 ms     | 745 ms                | 668 ms              | 41.91%      |
-Lighthouse Score      | 59/100      | 61/100                | 98/100              | 66.10%      |
-First Paint           | 2.4 s       | 1.0 s                 | 0.6 s               | 75.00%      |
-Largest Paint         | 2.7 s       | 5.2 s                 | 1.3 s               | 51.85%      |
-Speed Index           | 2.4 s       | 1.8 s                 | 0.9 s               | 62.50%      |
-Time To Interactive   | 3.9 s       | 5.2 s                 | 1.3 s               | 66.67%      |
+Metric                |  WildFly EE | Quarkus (DEV)  | Quarkus (JVM)  | Quarkus (GraalVM) |
+----------------------| ----------  | ---------------| ---------------|-------------------|
+Package Size          | 48.5 MB WAR | N/A            | 91 MB          | 206 MB            |
+Cold Startup          | 10.3 s      | 8.092 s        | 3.847 s        | 0.035 s           |
+Memory Used           | 140 MB      | 39 MB          | 39 MB          | 88.3 MB           |
+HTTP Requests         | 77          | 77             | 61             | 61                |
+Resource Size         | 2.4 MB      | 2.4 MB         | 2.4 MB         | 2.4 MB            |
+Transferred Size      | 2.4 MB      | 899 KB         | 888 KB         | 888 KB            |
+DOM Loaded            | 1150 ms     | 2200 ms        | 918 ms         | 580 ms            |
+Lighthouse Score      | 59/100      | 93/100         | 97/100         | 98/100            |
+First Paint           | 2.4 s       | 0.8 s          | 0.8 s          | 0.8 s             |
+Speed Index           | 2.4 s       | 1.9 s          | 1.0 s          | 0.8 s             |
+Time To Interactive   | 3.9 s       | 0.9 s          | 0.9 s          | 0.8 s             |
+Largest Paint         | 2.7 s       | 1.4 s          | 1.1 s          | 1.0 s             |
 
 
 ### Development
