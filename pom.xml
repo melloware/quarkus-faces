@@ -13,6 +13,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <omnifaces-quarkus.version>3.0.4</omnifaces-quarkus.version>
         <primefaces-quarkus.version>2.12.0</primefaces-quarkus.version>
+        <myfaces.version>2.3-next-M7</myfaces.version>
         <quarkus.version>2.16.3.Final</quarkus.version>
     </properties>
     <dependencyManagement>
@@ -45,6 +46,11 @@
             <artifactId>quarkus-smallrye-health</artifactId>
         </dependency>
         <!-- Faces -->
+        <dependency>
+            <groupId>org.apache.myfaces.core.extensions.quarkus</groupId>
+            <artifactId>myfaces-quarkus</artifactId>
+            <version>${myfaces.version}</version>
+        </dependency>
         <dependency>
             <groupId>io.quarkiverse.primefaces</groupId>
             <artifactId>quarkus-primefaces</artifactId>
@@ -80,9 +86,8 @@
         </dependency>
         <!-- Logging -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>2.0.6</version>
+            <groupId>org.jboss.slf4j</groupId>
+            <artifactId>slf4j-jboss-logmanager</artifactId>
         </dependency>
         <!-- Barcode -->
         <dependency>
@@ -196,7 +201,7 @@
                         </goals>
                         <configuration>
                             <propertiesEncoding>UTF-8</propertiesEncoding>
-                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                            <outputDirectory>${project.build.directory}/classes/META-INF/resources/java</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>src/main/java</directory>
@@ -295,7 +300,7 @@
             </build>
         </profile>
         <profile>
-            <id>native-build</id>
+            <id>native</id>
             <activation>
                 <property>
                     <name>native</name>
@@ -307,10 +312,11 @@
                 <quarkus.native.container-build>true</quarkus.native.container-build>
                 <quarkus.native.builder-image>mandrel</quarkus.native.builder-image>
                 <quarkus.native.additional-build-args>
-                    --enable-url-protocols=jar
+                    --enable-url-protocols=jar\,https
                 </quarkus.native.additional-build-args>
             </properties>
             <build>
+                <defaultGoal>clean package</defaultGoal>
                 <plugins>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>

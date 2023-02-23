@@ -95,7 +95,7 @@ Builds a native Docker image running as a GraalVM (Mandrel) application.
 > **⚠️**
 NOTE: not currently working because of limitations with some classloading.
 ```
-mvn clean package -Dnative
+mvn -Pnative
 docker run -i --rm -p 8080:8080 melloware/quarkus-faces:${version}
 ```
 
