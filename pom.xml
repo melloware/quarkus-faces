@@ -13,7 +13,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <omnifaces-quarkus.version>3.0.4</omnifaces-quarkus.version>
         <primefaces-quarkus.version>2.12.0</primefaces-quarkus.version>
-        <myfaces.version>2.3-next-M7</myfaces.version>
+        <myfaces.version>4.0.0-RC5</myfaces.version>
         <quarkus.version>2.16.3.Final</quarkus.version>
     </properties>
     <dependencyManagement>
