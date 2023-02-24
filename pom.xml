@@ -45,6 +45,11 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-health</artifactId>
         </dependency>
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.jboss.slf4j</groupId>
+            <artifactId>slf4j-jboss-logmanager</artifactId>
+        </dependency>
         <!-- Faces -->
         <dependency>
             <groupId>org.apache.myfaces.core.extensions.quarkus</groupId>
@@ -78,11 +83,6 @@
             <artifactId>mime-types</artifactId>
             <version>1.0.4</version>
         </dependency>
-        <!-- Logging -->
-        <dependency>
-            <groupId>org.jboss.slf4j</groupId>
-            <artifactId>slf4j-jboss-logmanager</artifactId>
-        </dependency>
         <!-- Barcode -->
         <dependency>
             <groupId>io.nayuki</groupId>
@@ -90,15 +90,9 @@
             <version>1.8.0</version>
         </dependency>
         <dependency>
-            <groupId>net.sf.barcode4j</groupId>
+            <groupId>org.primefaces.extensions</groupId>
             <artifactId>barcode4j-light</artifactId>
-            <version>2.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>xml-apis</groupId>
-                    <artifactId>xml-apis</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>2.3.0</version>
         </dependency>
         <!-- HTML sanitizer for the textEditor -->
         <dependency>
