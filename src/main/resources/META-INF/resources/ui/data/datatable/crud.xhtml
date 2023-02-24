@@ -32,8 +32,6 @@
                                          icon="pi pi-trash" actionListener="#{crudView.deleteSelectedProducts}"
                                          styleClass="ui-button-danger" disabled="#{!crudView.hasSelectedProducts()}"
                                          update="@this">
-                            <p:confirm header="Confirmation" message="Delete the selected products?"
-                                       icon="pi pi-exclamation-triangle"/>
                         </p:commandButton>
                     </p:toolbarGroup>
                     <p:toolbarGroup align="right">
@@ -43,6 +41,8 @@
                         </p:commandButton>
                     </p:toolbarGroup>
                 </p:toolbar>
+
+                <p:lifecycle />
 
                 <p:dataTable id="dt-products" widgetVar="dtProducts" var="product" value="#{crudView.products}"
                              reflow="true" styleClass="products-table"

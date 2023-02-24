@@ -152,7 +152,7 @@
     </filter>
     <filter-mapping>
         <filter-name>GzipResponseFilter</filter-name>
-        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-name>FacesServlet</servlet-name>
     </filter-mapping>
 
     <!-- No Cache Filter -->
@@ -162,7 +162,7 @@
     </filter>
     <filter-mapping>
         <filter-name>NoCacheFilter</filter-name>
-        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-name>FacesServlet</servlet-name>
     </filter-mapping>
 
     <error-page>
@@ -179,15 +179,15 @@
     </error-page>
 
     <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-name>FacesServlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-name>FacesServlet</servlet-name>
         <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-name>FacesServlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
