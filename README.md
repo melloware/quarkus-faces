@@ -41,15 +41,15 @@ Metric                |  WildFly EE | Quarkus (DEV)  | Quarkus (JVM)  | Quarkus 
 Package Size          | 48.5 MB WAR | N/A            | 91 MB          | 206 MB            |
 Cold Startup          | 10.3 s      | 8.092 s        | 3.847 s        | 0.035 s           |
 Memory Used           | 140 MB      | 39 MB          | 39 MB          | 88.3 MB           |
-HTTP Requests         | 77          | 77             | 61             | 61                |
+HTTP Requests         | 80          | 80             | 61             | 61                |
 Resource Size         | 2.4 MB      | 2.4 MB         | 2.4 MB         | 2.4 MB            |
-Transferred Size      | 2.4 MB      | 899 KB         | 888 KB         | 888 KB            |
-DOM Loaded            | 1150 ms     | 2200 ms        | 918 ms         | 580 ms            |
-Lighthouse Score      | 59/100      | 93/100         | 97/100         | 98/100            |
-First Paint           | 2.4 s       | 0.8 s          | 0.8 s          | 0.8 s             |
-Speed Index           | 2.4 s       | 1.9 s          | 1.0 s          | 0.8 s             |
-Time To Interactive   | 3.9 s       | 0.9 s          | 0.9 s          | 0.8 s             |
-Largest Paint         | 2.7 s       | 1.4 s          | 1.1 s          | 1.0 s             |
+Transferred Size      | 2.4 MB      | 2.4 KB         | 888 KB         | 888 KB            |
+DOM Loaded            | 1150 ms     | 1750 ms        | 918 ms         | 580 ms            |
+Lighthouse Score      | 59/100      | 72/100         | 97/100         | 98/100            |
+First Paint           | 2.4 s       | 2.3 s          | 0.8 s          | 0.8 s             |
+Speed Index           | 2.4 s       | 2.3 s          | 1.0 s          | 0.8 s             |
+Time To Interactive   | 3.9 s       | 2.3 s          | 0.9 s          | 0.8 s             |
+Largest Paint         | 2.7 s       | 2.6 s          | 1.1 s          | 1.0 s             |
 
 
 ### Development
