@@ -21,6 +21,8 @@
             <div class="card crud-demo">
                 <p:growl id="messages" showDetail="true"/>
 
+                <p:lifecycle />
+
                 <p:toolbar>
                     <p:toolbarGroup>
                         <p:commandButton value="New" icon="pi pi-plus" actionListener="#{crudView.openNew}"
@@ -41,8 +43,6 @@
                         </p:commandButton>
                     </p:toolbarGroup>
                 </p:toolbar>
-
-                <p:lifecycle />
 
                 <p:dataTable id="dt-products" widgetVar="dtProducts" var="product" value="#{crudView.products}"
                              reflow="true" styleClass="products-table"

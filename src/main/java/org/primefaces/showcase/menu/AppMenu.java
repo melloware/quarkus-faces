@@ -42,46 +42,6 @@ public class AppMenu {
         menuCategories = new ArrayList<>();
         menuItems = new ArrayList<>();
 
-        //GENERAL CATEGORY START
-        List<MenuItem> generalMenuItems = new ArrayList<>();
-        generalMenuItems.add(new MenuItem("Get Started", "/getstarted"));
-        generalMenuItems.add(new MenuItem("Content Security", "https://primefaces.github.io/primefaces/10_0_0/#/core/contentsecuritypolicy"));
-        generalMenuItems.add(new MenuItem("Forum", "https://forum.primefaces.org"));
-        generalMenuItems.add(new MenuItem("Discord Chat", "https://discord.gg/gzKFYnpmCY"));
-        generalMenuItems.add(new MenuItem("Source Code", "https://github.com/primefaces/primefaces"));
-        generalMenuItems.add(new MenuItem("Support", "/support"));
-        generalMenuItems.add(new MenuItem("Store", "https://www.primefaces.org/store"));
-        menuCategories.add(new MenuCategory("General", generalMenuItems));
-        //GENERAL CATEGORY END
-
-        //THEMING CATEGORY START
-        List<MenuItem> themingMenuItems = new ArrayList<>();
-        themingMenuItems.add(new MenuItem("Introduction", "/theming"));
-        themingMenuItems.add(new MenuItem("Theme Designer", "https://www.primefaces.org/designer/primefaces"));
-        themingMenuItems.add(new MenuItem("Visual Editor", null, "Coming Soon"));
-        themingMenuItems.add(new MenuItem("SASS API", null, "Coming Soon"));
-        menuCategories.add(new MenuCategory("Theming", themingMenuItems));
-        //THEMING CATEGORY END
-
-        //PRIMEFLEX CATEGORY START
-        List<MenuItem> primeFlexMenuItems = new ArrayList<>();
-        primeFlexMenuItems.add(new MenuItem("Setup", "/primeflex/setup"));
-        primeFlexMenuItems.add(new MenuItem("Display", "/primeflex/display"));
-        primeFlexMenuItems.add(new MenuItem("Elevation", "/primeflex/elevation"));
-        primeFlexMenuItems.add(new MenuItem("FlexBox", "/primeflex/flexbox"));
-        primeFlexMenuItems.add(new MenuItem("Form Layout", "/primeflex/formlayout"));
-        primeFlexMenuItems.add(new MenuItem("Grid System", "/primeflex/grid"));
-        primeFlexMenuItems.add(new MenuItem("Spacing", "/primeflex/spacing"));
-        primeFlexMenuItems.add(new MenuItem("Text", "/primeflex/text"));
-        menuCategories.add(new MenuCategory("PrimeFlex", primeFlexMenuItems));
-        //PRIMEFLEX CATEGORY END
-
-        //PRIMEICONS CATEGORY START
-        List<MenuItem> primeIconsMenuItems = new ArrayList<>();
-        primeIconsMenuItems.add(new MenuItem("Icons v4.1", "/icons"));
-        menuCategories.add(new MenuCategory("PrimeIcons", primeIconsMenuItems));
-        //PRIMEICONS CATEGORY END
-
         //AJAX FRAMEWORK CATEGORY START
         List<MenuItem> ajaxFrameworkMenuItems = new ArrayList<>();
         ajaxFrameworkMenuItems.add(new MenuItem("Introduction", "/ui/ajax/basic"));

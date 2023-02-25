@@ -20,13 +20,14 @@
 
         <h:form id="form">
             <p:growl id="msgs" showDetail="true"/>
+            <p:lifecycle />
 
             <div class="card">
                 <h5>Row Editing</h5>
                 <p:dataTable id="products1" var="product" value="#{dtEditView.products1}" editable="true"
                              style="margin-bottom:20px">
 
-                    <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs"/>
+                    <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs products1"/>
                     <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:msgs"/>
 
                     <p:column headerText="Code">

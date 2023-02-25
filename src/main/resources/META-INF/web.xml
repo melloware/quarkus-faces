@@ -80,6 +80,10 @@
         <param-name>primefaces.MULTI_VIEW_STATE_STORE</param-name>
         <param-value>client-window</param-value>
     </context-param>
+    <context-param>
+        <param-name>primefaces.js.COMBINED_RESOURCE_HANDLER_DISABLED</param-name>
+        <param-value>true</param-value>
+    </context-param>
     <!--
     <context-param>
         <param-name>primefaces.FLEX</param-name>
