@@ -21,8 +21,6 @@
             <div class="card crud-demo">
                 <p:growl id="messages" showDetail="true"/>
 
-                <p:lifecycle />
-
                 <p:toolbar>
                     <p:toolbarGroup>
                         <p:commandButton value="New" icon="pi pi-plus" actionListener="#{crudView.openNew}"
@@ -34,6 +32,7 @@
                                          icon="pi pi-trash" actionListener="#{crudView.deleteSelectedProducts}"
                                          styleClass="ui-button-danger" disabled="#{!crudView.hasSelectedProducts()}"
                                          update="@this">
+                                <p:confirm header="Confirmation" message="Delete the selected products?" icon="pi pi-exclamation-triangle" />
                         </p:commandButton>
                     </p:toolbarGroup>
                     <p:toolbarGroup align="right">
