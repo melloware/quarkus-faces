@@ -15,18 +15,10 @@
 
         <h:form styleClass="topbar-form">
             <ul class="topbar-menu">
-                <li>
-                    <h:link outcome="/getstarted">Get Started</h:link>
-                </li>
                 <li class="topbar-submenu">
                     <a tabindex="0">Themes</a>
                     <ul class="connected-overlay-in">
-                        <li class="topbar-submenu-header">THEMING</li>
-                        <li><h:link outcome="/theming"><i class="pi pi-fw pi-file"></i><span>Guide</span></h:link></li>
-                        <li><a href="https://www.primefaces.org/designer/primefaces"><i class="pi pi-fw pi-palette"></i><span>Designer</span></a></li>
-                        <li><a href="https://www.primefaces.org/designer-jsf"><i class="pi pi-fw pi-desktop"></i><span>Visual Editor</span></a></li>
-                        <li><h:link outcome="/icons"><i class="pi pi-fw pi-info-circle"></i><span>Icons</span></h:link></li>
-                        <li><a href="https://www.figma.com/community/file/890589747170608208/PrimeOne-Design-Library"><i class="pi pi-fw pi-pencil"></i><span>Figma UI Kit</span></a></li>
+    
                         <li class="topbar-submenu-header">PRIMEONE</li>
                         <li><p:commandLink actionListener="#{app.changeTheme('saga', false)}" oncomplete="window.location.reload();" update=":app-theme-logo"><h:graphicImage name="showcase/images/themes/saga.png" alt="Saga"/><span>Saga</span></p:commandLink></li>
                         <li><p:commandLink actionListener="#{app.changeTheme('vela', true)}" oncomplete="window.location.reload();" update=":app-theme-logo"><h:graphicImage name="showcase/images/themes/vela.png" alt="Vela"/><span>Vela</span></p:commandLink></li>
@@ -41,54 +33,8 @@
                         <li><p:commandLink actionListener="#{app.changeTheme('luna-pink', true)}" oncomplete="window.location.reload();" update=":app-theme-logo"><h:graphicImage name="showcase/images/themes/luna-pink.png" alt="Luna Pink"/><span>Luna Pink</span></p:commandLink></li>
                     </ul>
                 </li>
-                <li class="topbar-submenu">
-                    <a tabindex="0">Templates</a>
-                    <ul class="connected-overlay-in">
-                        <li class="topbar-submenu-header">PREMIUM ADMIN TEMPLATES</li>
-                        <li><a href="https://www.primefaces.org/layouts/freya"><h:graphicImage name="showcase/images/layouts/freya-logo.png" alt="Freya"/><span>Freya</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/rain"><h:graphicImage name="showcase/images/layouts/rain-logo.svg" alt="Rain"/><span>Rain</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/diamond"><h:graphicImage name="showcase/images/layouts/diamond-logo.png" alt="Diamond"/><span>Diamond</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/poseidon"><h:graphicImage name="showcase/images/layouts/poseidon-logo.svg" alt="Poseidon"/><span>Poseidon</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/serenity"><h:graphicImage name="showcase/images/layouts/serenity-logo.png" alt="Serenity"/><span>Serenity</span><span class="theme-badge material">material</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/sapphire"><h:graphicImage name="showcase/images/layouts/sapphire-logo.png" alt="Sapphire"/><span>Sapphire</span><span class="theme-badge material">material</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/avalon"><h:graphicImage name="showcase/images/layouts/avalon-logo.png" alt="Avalon"/><span>Avalon</span><span class="theme-badge bootstrap">bootstrap</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/mirage"><h:graphicImage name="showcase/images/layouts/mirage-logo.png" alt="Mirage"/><span>Mirage</span><span class="theme-badge bootstrap">bootstrap</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/prestige"><h:graphicImage name="showcase/images/layouts/prestige-logo.png" alt="Prestige"/><span>Prestige</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/roma"><h:graphicImage name="showcase/images/layouts/roma.jpg" alt="Roma"/><span>Roma</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/babylon"><h:graphicImage name="showcase/images/layouts/babylon-logo.png" alt="Babylon"/><span>Babylon</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/apollo"><h:graphicImage name="showcase/images/layouts/apollo-logo.png" alt="Apollo"/><span>Apollo</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/olympia"><h:graphicImage name="showcase/images/layouts/olympia-logo.png" alt="Olympia"/><span>Olympia</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/manhattan"><h:graphicImage name="showcase/images/layouts/manhattan-logo.png" alt="Manhattan"/><span>Manhattan</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/ecuador"><h:graphicImage name="showcase/images/layouts/ecuador-logo.png" alt="Ecuador"/><span>Ecuador</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/harmony"><h:graphicImage name="showcase/images/layouts/harmony-logo.png" alt="Harmony"/><span>Harmony</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/california"><h:graphicImage name="showcase/images/layouts/california-logo.png" alt="California"/><span>California</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/ultima"><h:graphicImage name="showcase/images/layouts/ultima-logo.png" alt="Ultima"/><span>Ultima</span><span class="theme-badge material">material</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/paradise"><h:graphicImage name="showcase/images/layouts/paradise-logo.png" alt="Paradise"/><span>Paradise</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/barcelona"><h:graphicImage name="showcase/images/layouts/barcelona-logo.png" alt="Barcelona"/><span>Barcelona</span><span class="theme-badge material">material</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/morpheus"><h:graphicImage name="showcase/images/layouts/morpheus-logo.png" alt="Morpheus"/><span>Morpheus</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/verona"><h:graphicImage name="showcase/images/layouts/verona-logo.png" alt="Verona"/><span>Verona</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/atlantis"><h:graphicImage name="showcase/images/layouts/atlantis-logo.png" alt="Atlantis"/><span>Atlantis</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/pandora"><h:graphicImage name="showcase/images/layouts/pandora-logo.png" alt="Pandora"/><span>Pandora</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/siberia"><h:graphicImage name="showcase/images/layouts/siberia-logo.png" alt="Siberia"/><span>Siberia</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/icarus"><h:graphicImage name="showcase/images/layouts/icarus-logo.png" alt="Icarus"/><span>Icarus</span></a></li>
-                        <li><a href="https://www.primefaces.org/layouts/omega"><h:graphicImage name="showcase/images/layouts/omega-logo.png" alt="Omega"/><span>Omega</span></a></li>
-                    </ul>
-                </li>
-                <li class="topbar-submenu">
-                    <a tabindex="0">Resources</a>
-                    <ul class="connected-overlay-in">
-                        <li><a href="https://forum.primefaces.org"><span>Forum</span></a></li>
-                        <li><a href="https://discord.gg/gzKFYnpmCY" target="_blank"><span>Discord Chat</span></a></li>
-                        <li><a href="https://github.com/primefaces/primefaces" target="_blank"><span>Source Code</span></a></li>
-                        <li><a href="https://www.primefaces.org/store" target="_blank"><span>PrimeStore</span></a></li>
-                        <li><a href="https://www.primefaces.org/category/primefaces/" target="_blank"><span>Blog</span></a></li>
-                        <li><a href="https://twitter.com/primefaces?lang=en" target="_blank"><span>Twitter</span></a></li>
-                        <li><a href="https://www.primefaces.org/whouses" target="_blank"><span>Who Uses</span></a></li>
-                        <li><a href="https://www.primefaces.org/newsletter" target="_blank"><span>Newsletter</span></a></li>
-                        <li><a href="https://www.primetek.com.tr" target="_blank"><span>About PrimeTek</span></a></li>
-                    </ul>
-                </li>
             </ul>
         </h:form>
+		<p:lifecycle />
     </div>
 </ui:composition>
