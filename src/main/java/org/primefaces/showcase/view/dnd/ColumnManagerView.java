@@ -23,37 +23,36 @@
  */
 package org.primefaces.showcase.view.dnd;
 
-import org.primefaces.model.DefaultTreeNode;
-import org.primefaces.model.TreeNode;
-import org.primefaces.showcase.domain.Product;
-import org.primefaces.showcase.service.ProductService;
-
-import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
+import org.primefaces.showcase.domain.Product;
+import org.primefaces.showcase.service.ProductService;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @Named
 @ViewScoped
 public class ColumnManagerView implements Serializable {
 
     private static final List<String> VALID_COLUMN_KEYS = Arrays.asList("id", "code", "name", "description",
-            "price", "category", "quantity");
-
-    private List<ColumnModel> columns = new ArrayList<>();
-
-    private List<Product> products;
-
-    private TreeNode<Product> availableColumns;
-
+                "price", "category", "quantity");
     @Inject
     ProductService service;
+    private List<ColumnModel> columns = new ArrayList<>();
+    private List<Product> products;
+    private TreeNode<Product> availableColumns;
 
     @PostConstruct
     public void init() {
@@ -76,7 +75,7 @@ public class ColumnManagerView implements Serializable {
     }
 
     public void createDynamicColumns() {
-        String[] columnKeys = new String[]{"code", "name", "quantity"};
+        String[] columnKeys = new String[] {"code", "name", "quantity"};
         columns.clear();
 
         for (String columnKey : columnKeys) {
@@ -139,6 +138,7 @@ public class ColumnManagerView implements Serializable {
         this.service = service;
     }
 
+    @RegisterForReflection
     public static class ColumnModel implements Serializable {
 
         private String header;
