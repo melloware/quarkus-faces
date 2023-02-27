@@ -63,7 +63,7 @@ cd quarkus-faces
 mvn -Pqdev
 ```
 
-Then open your web browser to http://localhost:8080/
+Then open your web browser to http://localhost:8081/
 
 ### Production
 
@@ -85,7 +85,7 @@ Then open your web browser to http://localhost:8080/
 Builds a Docker image running as a standard JVM application.
 ```
 mvn clean package -Ddocker
-docker run -i --rm -p 8080:8080 melloware/quarkus-faces:latest
+docker run -i --rm -p 8081:8081 melloware/quarkus-faces:latest
 ```
 
 ### Docker Native
@@ -96,7 +96,7 @@ Builds a native Docker image running as a GraalVM (Mandrel) application.
 NOTE: not currently working because of limitations with some classloading.
 ```
 mvn -Pnative
-docker run -i --rm -p 8080:8080 melloware/quarkus-faces:${version}
+docker run -i --rm -p 8081:8081 melloware/quarkus-faces:${version}
 ```
 
 ### Known Issues

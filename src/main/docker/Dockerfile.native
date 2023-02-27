@@ -11,13 +11,13 @@
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080  melloware/quarkus-faces
+# docker run -i --rm -p 8081:8081  melloware/quarkus-faces
 #
 ###
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.7
 
 ######################### Set up environment for POI ##########################
-RUN microdnf update && microdnf install freetype && microdnf install fontconfig
+RUN microdnf update && microdnf install freetype fontconfig && microdnf clean all
 ######################### Set up environment for POI ##########################
 
 WORKDIR /work/
@@ -26,7 +26,7 @@ RUN chown 1001 /work \
     && chown 1001:root /work
 COPY --chown=1001:root target/*-runner /work/application
 
-EXPOSE 8080
+EXPOSE 8081
 USER 1001
 
 CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
