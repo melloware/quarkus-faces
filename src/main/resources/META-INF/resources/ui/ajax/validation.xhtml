@@ -3,6 +3,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions"
                 template="../../template/template.xhtml">
 
     <ui:define name="title">
@@ -24,6 +25,7 @@
                     <p:outputLabel for="firstname" value="Firstname:"/>
                     <p:inputText id="firstname" value="#{remoteValidationView.firstname}" required="true" label="Firstname">
                         <f:validateLength minimum="2"/>
+                        <pe:sanitizer/>
                     </p:inputText>
                     <p:message for="firstname" display="icon"/>
 
@@ -31,6 +33,7 @@
                     <p:inputText id="lastname" value="#{remoteValidationView.lastname}" label="Lastname" required="true">
                         <f:validateLength minimum="2"/>
                         <p:ajax update="msgLastname" event="keyup"/>
+                        <pe:sanitizer/>
                     </p:inputText>
                     <p:message for="lastname" id="msgLastname" display="icon"/>
 

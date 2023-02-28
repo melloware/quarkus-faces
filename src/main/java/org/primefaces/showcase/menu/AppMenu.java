@@ -23,12 +23,13 @@
  */
 package org.primefaces.showcase.menu;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 
 @Named
 @ApplicationScoped
@@ -78,12 +79,14 @@ public class AppMenu {
         formMenuItems.add(new MenuItem("InputGroup", "/ui/input/inputGroup"));
         formMenuItems.add(new MenuItem("InputMask", "/ui/input/inputMask"));
         formMenuItems.add(new MenuItem("InputNumber", "/ui/input/inputNumber"));
+        formMenuItems.add(new MenuItem("InputPhone", "/ui/input/inputPhone"));
         formMenuItems.add(new MenuItem("InputText", "/ui/input/inputText"));
         formMenuItems.add(new MenuItem("InputTextArea", "/ui/input/inputTextarea"));
         formMenuItems.add(new MenuItem("KeyFilter", "/ui/input/keyFilter"));
         formMenuItems.add(new MenuItem("Keyboard", "/ui/input/keyboard"));
         formMenuItems.add(new MenuItem("Knob", "/ui/input/knob"));
         formMenuItems.add(new MenuItem("MultiSelectListBox", "/ui/input/multiSelectListbox"));
+        formMenuItems.add(new MenuItem("MonacoEditor", "/ui/input/monacoEditor"));
         formMenuItems.add(new MenuItem("Password", "/ui/input/password"));
         formMenuItems.add(new MenuItem("Rating", "/ui/input/rating"));
         formMenuItems.add(new MenuItem("SelectBooleanButton", "/ui/input/booleanButton"));
@@ -501,14 +504,14 @@ public class AppMenu {
         menuCategories.add(new MenuCategory("Misc", miscMenuItems));
         //MISC CATEGORY END
 
-        for (MenuCategory category: menuCategories) {
-            for (MenuItem menuItem: category.getMenuItems()) {
+        for (MenuCategory category : menuCategories) {
+            for (MenuItem menuItem : category.getMenuItems()) {
                 menuItem.setParentLabel(category.getLabel());
                 if (menuItem.getUrl() != null) {
                     menuItems.add(menuItem);
                 }
                 if (menuItem.getMenuItems() != null) {
-                    for (MenuItem item: menuItem.getMenuItems()) {
+                    for (MenuItem item : menuItem.getMenuItems()) {
                         item.setParentLabel(menuItem.getLabel());
                         if (item.getUrl() != null) {
                             menuItems.add(item);
@@ -522,12 +525,13 @@ public class AppMenu {
     public List<MenuItem> completeMenuItem(String query) {
         String queryLowerCase = query.toLowerCase();
         List<MenuItem> filteredItems = new ArrayList<>();
-        for (MenuItem item: menuItems) {
-            if (item.getUrl() != null && (item.getLabel().toLowerCase().contains(queryLowerCase) || item.getParentLabel().toLowerCase().contains(queryLowerCase))) {
+        for (MenuItem item : menuItems) {
+            if (item.getUrl() != null && (item.getLabel().toLowerCase().contains(queryLowerCase) ||
+                        item.getParentLabel().toLowerCase().contains(queryLowerCase))) {
                 filteredItems.add(item);
             }
             if (item.getBadge() != null) {
-                if (item.getBadge().toLowerCase().contains(queryLowerCase)){
+                if (item.getBadge().toLowerCase().contains(queryLowerCase)) {
                     filteredItems.add(item);
                 }
             }

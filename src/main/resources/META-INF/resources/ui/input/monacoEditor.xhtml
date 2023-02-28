@@ -1,0 +1,160 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                template="/template/template.xhtml">
+
+    <f:metadata>
+        <f:viewAction action="#{monacoEditorView.initBasicUsage('code')}"/>
+    </f:metadata>
+
+    <ui:define name="title">
+        Monaco Editor
+    </ui:define>
+
+    <ui:define name="description">
+        Editor is an input component with rich text editing features.
+    </ui:define>
+
+    <ui:param name="documentationLink" value="/components/texteditor"/>
+    <ui:param name="widgetLink" value="texteditor-1"/>
+
+    <ui:define name="implementation">
+        <div class="card">
+            <h:form>
+                <p:growl id="growl" showDetail="true" showSummary="true">
+                    <p:autoUpdate/>
+                </p:growl>
+
+                <p:selectOneButton id="type" value="#{monacoEditorView.type}">
+                    <f:selectItem itemLabel="Inline" itemValue="inline"/>
+                    <f:selectItem itemLabel="Iframe" itemValue="framed"/>
+                    <p:ajax process="monacoEditorWrapper,basicOptionsWrapper" update="monacoEditorWrapper,basicOptionsWrapper"/>
+                </p:selectOneButton>
+
+                <h:panelGroup id="basicOptionsWrapper" layout="block">
+
+                    <h:panelGrid id="basicOptions" rendered="#{monacoEditorView.type eq 'inline'}"
+                                 columns="14" style="margin-bottom:10px" cellpadding="5"
+                    >
+                        <p:outputLabel for="language" value="Code language: "/>
+                        <p:selectOneMenu id="language" value="#{monacoEditorView.language}" filter="true">
+                            <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItems value="#{monacoEditorView.languages}"/>
+                            <p:ajax listener="#{monacoEditorView.onLanguageChange}" process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="theme" value="Theme: "/>
+                        <p:selectOneMenu id="theme" value="#{monacoEditorView.theme}">
+                            <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItems value="#{monacoEditorView.themes}"/>
+                            <p:ajax process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="locale" value="Locale: "/>
+                        <p:selectOneMenu id="locale" value="#{monacoEditorView.locale}" converter="omnifaces.SelectItemsConverter">
+                            <f:selectItem itemLabel="(Default)" itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItems value="#{monacoEditorView.locales}" var="locale"
+                                           itemLabel="#{locale.displayName}" itemValue="#{locale}"/>
+                            <p:ajax process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                        </p:selectOneMenu>
+
+                        <p:selectBooleanCheckbox id="required" value="#{monacoEditorView.required}">
+                            <p:ajax process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                        </p:selectBooleanCheckbox>
+                        <p:outputLabel for="required" value="Required"/>
+
+                        <p:selectBooleanCheckbox id="disabled" value="#{monacoEditorView.disabled}">
+                            <p:ajax process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                        </p:selectBooleanCheckbox>
+                        <p:outputLabel for="disabled" value="Disabled"/>
+
+                        <p:selectBooleanCheckbox id="readOnly" value="#{monacoEditorView.readOnly}">
+                            <p:ajax process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                        </p:selectBooleanCheckbox>
+                        <p:outputLabel for="readOnly" value="Read-only"/>
+                    </h:panelGrid>
+
+                    <h:panelGrid id="basicOptionsFramed" rendered="#{monacoEditorView.type eq 'framed'}"
+                                 columns="14" style="margin-bottom:10px" cellpadding="5"
+                    >
+                        <p:outputLabel for="languageFramed" value="Code language: "/>
+                        <p:selectOneMenu id="languageFramed" value="#{monacoEditorView.languageFramed}" filter="true">
+                            <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItems value="#{monacoEditorView.languages}"/>
+                            <p:ajax listener="#{monacoEditorView.onLanguageChange}" process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="themeFramed" value="Theme: "/>
+                        <p:selectOneMenu id="themeFramed" value="#{monacoEditorView.themeFramed}">
+                            <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItems value="#{monacoEditorView.themes}"/>
+                            <p:ajax process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="localeFramed" value="Locale: "/>
+                        <p:selectOneMenu id="localeFramed" value="#{monacoEditorView.localeFramed}" converter="omnifaces.SelectItemsConverter">
+                            <f:selectItem itemLabel="(Default)" itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItems value="#{monacoEditorView.locales}" var="locale"
+                                           itemLabel="#{locale.displayName}" itemValue="#{locale}"/>
+                            <p:ajax process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                        </p:selectOneMenu>
+
+                        <p:selectBooleanCheckbox id="requiredFramed" value="#{monacoEditorView.requiredFramed}">
+                            <p:ajax process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                        </p:selectBooleanCheckbox>
+                        <p:outputLabel for="requiredFramed" value="Required"/>
+
+                        <p:selectBooleanCheckbox id="disabledFramed" value="#{monacoEditorView.disabledFramed}">
+                            <p:ajax process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                        </p:selectBooleanCheckbox>
+                        <p:outputLabel for="disabledFramed" value="Disabled"/>
+
+                        <p:selectBooleanCheckbox id="readOnlyFramed" value="#{monacoEditorView.readOnlyFramed}">
+                            <p:ajax process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                        </p:selectBooleanCheckbox>
+                        <p:outputLabel for="readOnlyFramed" value="Read-only"/>
+                    </h:panelGrid>
+                </h:panelGroup>
+
+                <h:panelGroup id="monacoEditorWrapper" layout="block" styleClass="monacoEditorBox">
+
+                    <pe:monacoEditor id="monacoEditor" widgetVar="monacoEditor"
+                                     rendered="#{monacoEditorView.type eq 'inline'}"
+                                     value="#{monacoEditorView.value}"
+                                     required="#{monacoEditorView.required}"
+                                     disabled="#{monacoEditorView.disabled}"
+                                     readonly="#{monacoEditorView.readOnly}"
+                                     locale="#{monacoEditorView.locale}"
+                                     editorOptions="#{monacoEditorView.editorOptions}"
+                                     width="100%" height="400px" autoResize="true"/>
+
+                    <pe:monacoEditorFramed id="monacoEditorFramed" widgetVar="monacoEditorFramed"
+                                           rendered="#{monacoEditorView.type eq 'framed'}"
+                                           value="#{monacoEditorView.valueFramed}"
+                                           required="#{monacoEditorView.requiredFramed}"
+                                           disabled="#{monacoEditorView.disabledFramed}"
+                                           readonly="#{monacoEditorView.readOnlyFramed}"
+                                           locale="#{monacoEditorView.localeFramed}"
+                                           editorOptions="#{monacoEditorView.editorOptionsFramed}"
+                                           width="100%" height="400px" autoResize="true"/>
+
+                    <p:commandButton id="btnSubmit" value="Submit" icon="pi pi-save"
+                                     rendered="#{monacoEditorView.type eq 'inline'}"
+                                     process="monacoEditor" update="monacoEditor" styleClass="mt-4"
+                                     actionListener="#{monacoEditorView.submitContent}"/>
+
+                    <p:commandButton id="btnSubmitFramed" value="Submit" icon="pi pi-save"
+                                     rendered="#{monacoEditorView.type eq 'framed'}" styleClass="mt-4"
+                                     process="monacoEditorFramed" update="monacoEditorFramed"
+                                     actionListener="#{monacoEditorView.submitContent}"/>
+
+                </h:panelGroup>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>
+

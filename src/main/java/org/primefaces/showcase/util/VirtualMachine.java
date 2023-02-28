@@ -3,8 +3,10 @@ package org.primefaces.showcase.util;
 import org.apache.commons.lang3.SystemUtils;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
+import lombok.extern.jbosslog.JBossLog;
 
 @RegisterForReflection
+@JBossLog
 public final class VirtualMachine {
 
     /**
@@ -98,13 +100,13 @@ public final class VirtualMachine {
         final long usedMemory = totalMemory - freeMemory;
         final long availableMemory = maxMemory - usedMemory;
 
-        String output = "Memory Used: " +
+        String output = "Used: " +
                     byteCountToDisplaySize(usedMemory) +
                     " Free: " +
                     byteCountToDisplaySize(availableMemory) +
                     " Max: " +
                     byteCountToDisplaySize(maxMemory);
-        System.out.println(output);
+        log.info(output);
 
         return output;
     }

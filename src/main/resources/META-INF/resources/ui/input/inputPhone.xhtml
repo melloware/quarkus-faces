@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">
+        InputPhone
+    </ui:define>
+
+    <ui:define name="description">
+        Input for entering and validating international telephone numbers. It adds a flag dropdown to any input, detects the user's country, displays a relevant placeholder and provides formatting/validation methods.
+    </ui:define>
+
+    <ui:param name="documentationLink" value="/components/inputtext"/>
+    <ui:param name="widgetLink" value="inputtext"/>
+
+    <ui:define name="implementation">
+        <script>
+            //<![CDATA[
+            var myGeoIpLookup = function (success, failure) {
+                $.get("https://ipinfo.io", function () {
+                }, "jsonp").always(function (resp) {
+                    var countryCode = (resp && resp.country) ? resp.country : "";
+                    success(countryCode);
+                });
+            }
+            //]]>
+        </script>
+        <h:form id="frmPhone">
+            <p:messages id="msgs">
+                <p:autoUpdate/>
+            </p:messages>
+            <div class="card">
+                <h5>Basic</h5>
+                <pe:inputPhone id="basic"
+                               initialCountry="us"
+                               value="#{inputPhoneView.phoneNumber}"
+                               required="true"
+                               requiredMessage="Basic is required!"
+                               formatOnDisplay="true">
+                    <p:ajax event="countrySelect" listener="#{inputPhoneView.onCountrySelect}"/>
+                </pe:inputPhone>
+                <p:commandButton value="Submit" update="@form" actionListener="#{inputPhoneView.submit}" styleClass="ml-3"/>
+
+                <h5>Localized</h5>
+                <pe:inputPhone id="localized"
+                               initialCountry="nl"
+                               onlyCountries="nl,be,de"
+                               localizedCountries="{'nl':'Nederland','be':'België','de':'Duitsland'}"
+                               value="#{inputPhoneView.localized}"/>
+
+                <h5>GEO IP Lookup</h5>
+                <pe:inputPhone id="geoIp"
+                               initialCountry="auto"
+                               geoIpLookup="myGeoIpLookup"
+                               value="#{inputPhoneView.geoIp}">
+                </pe:inputPhone>
+
+                <h5>Disabled</h5>
+                <pe:inputPhone disabled="true"/>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

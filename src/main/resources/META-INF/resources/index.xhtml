@@ -1,24 +1,62 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="template/template.xhtml">
-    
+
     <ui:define name="content">
         <div class="home">
             <div id="homepage-intro" class="introduction #{app.darkMode ? 'introduction-dark' : ''}">
                 <div class="introduction-promo">Quarkus meets Faces!</div>
                 <div class="introduction-title">The Ultimate Deployment Environment</div>
                 <div class="introduction-subtitle">for Faces/JSF</div>
-    
-                <h:link styleClass="action-button" outcome="/ui/ajax/basic.xhtml">GET STARTED</h:link>
-                <p:graphicImage alt="devices" styleClass="introduction-devices" name="images/home/quarkus_banner.png" library="showcase" />
-            </div>
-            
-            
 
-            
+                <h:link styleClass="action-button" outcome="/ui/ajax/basic.xhtml">GET STARTED</h:link>
+                <p:graphicImage alt="devices" styleClass="introduction-devices" name="images/home/quarkus_banner.png" library="showcase"/>
+            </div>
+
+            <div class="grid m-2">
+                <div class="col md:col-3">
+                    <p:card style="width: 28rem; margin-bottom: 2em" title="Quarkus">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.quarkus}</span>
+                    </p:card>
+                </div>
+                <div class="col md:col-3">
+                    <p:card style="width: 28rem; margin-bottom: 2em" title="PrimeFaces">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.primeFaces}</span>
+                    </p:card>
+                </div>
+                <div class="col md:col-3">
+                    <p:card style="width: 28rem; margin-bottom: 2em" title="OmniFaces">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.omniFaces}</span>
+                    </p:card>
+                </div>
+                <div class="col md:col-3">
+                    <p:card style="width: 25rem; margin-bottom: 2em" title="PrimeFaces Extensions">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.primeFacesExt}</span>
+                    </p:card>
+                </div>
+                <div class="col md:col-3">
+                    <p:card style="width: 28rem; margin-bottom: 2em" title="Faces">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.facesImpl}</span>
+                    </p:card>
+                </div>
+                <div class="col md:col-3">
+                    <p:card style="width: 28rem; margin-bottom: 2em" title="Server">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.server}</span>
+                    </p:card>
+                </div>
+                <div class="col md:col-3">
+                    <p:card style="width: 28rem; margin-bottom: 2em" title="Memory">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.memory}</span>
+                    </p:card>
+                </div>
+                <div class="col md:col-3">
+                    <p:card style="width: 25rem; margin-bottom: 2em" title="Startup">
+                        <span class="font-medium" style="font-family: monospace">#{startup}</span>
+                    </p:card>
+                </div>
+            </div>
         </div>
     </ui:define>
 
