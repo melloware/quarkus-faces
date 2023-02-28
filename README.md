@@ -40,7 +40,7 @@ Metric                |  WildFly EE | Quarkus (DEV)  | Quarkus (JVM)  | Quarkus 
 ----------------------| ----------  | ---------------| ---------------|-------------------|
 Package Size          | 48.5 MB WAR | N/A            | 91 MB          | 206 MB            |
 Cold Startup          | 10.3 s      | 8.092 s        | 3.847 s        | 0.035 s           |
-Memory Used           | 140 MB      | 39 MB          | 39 MB          | 88.3 MB           |
+Memory Used           | 140 MB      | 113 MB         | 40 MB          | 13.6 MB           |
 HTTP Requests         | 80          | 80             | 61             | 61                |
 Resource Size         | 2.4 MB      | 2.4 MB         | 2.4 MB         | 2.4 MB            |
 Transferred Size      | 2.4 MB      | 2.4 KB         | 888 KB         | 888 KB            |
@@ -68,7 +68,7 @@ Then open your web browser to http://localhost:8081/
 ### Production
 
 ***
-To run the example in HotSpot Production mode (GraalVM native-image not supported):
+To run the example in HotSpot Production mode:
 
 ```
 git clone https://github.com/melloware/quarkus-faces
@@ -92,8 +92,6 @@ docker run -i --rm -p 8081:8081 melloware/quarkus-faces:latest
 
 ***
 Builds a native Docker image running as a GraalVM (Mandrel) application. 
-> **⚠️**
-NOTE: not currently working because of limitations with some classloading.
 ```
 mvn -Pnative
 docker run -i --rm -p 8081:8081 melloware/quarkus-faces:${version}
