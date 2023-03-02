@@ -40,7 +40,7 @@ Metric                |  WildFly EE | Quarkus (DEV)  | Quarkus (JVM)  | Quarkus 
 ----------------------| ----------  | ---------------| ---------------|-------------------|
 Package Size          | 48.5 MB WAR | N/A            | 91 MB          | 206 MB            |
 Cold Startup          | 10.3 s      | 8.092 s        | 3.847 s        | 0.035 s           |
-Memory Used           | 140 MB      | 113 MB         | 40 MB          | 13.6 MB           |
+Memory Used           | 140 MB      | 113 MB         | 21 MB          | 13.6 MB           |
 HTTP Requests         | 80          | 80             | 61             | 61                |
 Resource Size         | 2.4 MB      | 2.4 MB         | 2.4 MB         | 2.4 MB            |
 Transferred Size      | 2.4 MB      | 2.4 KB         | 888 KB         | 888 KB            |
