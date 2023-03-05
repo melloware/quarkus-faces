@@ -30,10 +30,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.nio.file.Files;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.RequestScoped;
 import javax.imageio.ImageIO;
-import javax.inject.Named;
+import jakarta.inject.Named;
 
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;

@@ -23,8 +23,8 @@
  */
 package org.primefaces.showcase.util;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Named;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
 
 import org.omnifaces.cdi.Startup;
 import org.primefaces.cache.CacheProvider;

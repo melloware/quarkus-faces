@@ -30,11 +30,11 @@ import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.List;
 
-import javax.el.MethodExpression;
-import javax.faces.FacesException;
-import javax.faces.component.UIComponent;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+import jakarta.el.MethodExpression;
+import jakarta.faces.FacesException;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
 
 import org.primefaces.component.api.DynamicColumn;
 import org.primefaces.component.api.UIColumn;

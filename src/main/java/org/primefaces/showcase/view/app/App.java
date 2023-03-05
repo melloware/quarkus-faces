@@ -15,8 +15,8 @@
  */
 package org.primefaces.showcase.view.app;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Named;
 
 import org.primefaces.showcase.util.VirtualMachine;
 import org.primefaces.showcase.domain.Country;
