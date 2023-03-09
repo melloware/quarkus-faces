@@ -1,5 +1,6 @@
 [![License](https://img.shields.io/github/license/melloware/quarkus-faces?style=for-the-badge&logo=mit)](https://opensource.org/licenses/MIT)
 [![Discord Chat](https://img.shields.io/badge/discord-join_chat-blueviolet.svg?style=for-the-badge&logo=discord)](https://discord.gg/gzKFYnpmCY)
+[![Java CI with Maven](https://github.com/melloware/quarkus-faces/actions/workflows/maven.yml/badge.svg?style=for-the-badge)](https://github.com/melloware/quarkus-faces/actions/workflows/maven.yml)
 
 Quarkus Faces
 ==========================
