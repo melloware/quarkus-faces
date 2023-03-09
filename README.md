@@ -26,7 +26,7 @@ Some addition goals:
 ***
 - Apache MyFaces (Quarkus) instead of Jakarta Mojarra (Wildfly)
 - PrimeFaces [MOVE_SCRIPTS_TO_BOTTOM](https://primefaces.github.io/primefaces/10_0_0/#/gettingstarted/configuration?id=configuration)
-- OmniFaces [GzipResponseFilter](https://showcase.omnifaces.org/filters/GzipResponseFilter)
+- Quarkus Compression [ quarkus.http.enable-compression=true](https://quarkus.io/guides/http-reference#http-compression)
 - OmniFaces [CombinedResourceHandler](https://showcase.omnifaces.org/resourcehandlers/CombinedResourceHandler)
 - PrimeFaces Extensions [CombinedResourceHandler Helper](https://github.com/primefaces-extensions/primefaces-extensions/issues/293) 
 - jQuery [Hide Page Until Complete](https://stackoverflow.com/questions/9550760/hide-page-until-everything-is-loaded-advanced/28129691#28129691)

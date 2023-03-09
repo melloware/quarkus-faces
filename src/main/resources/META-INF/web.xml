@@ -151,16 +151,6 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- Apply GZIP compression on responses whenever applicable -->
-    <filter>
-        <filter-name>GzipResponseFilter</filter-name>
-        <filter-class>org.omnifaces.filter.GzipResponseFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>GzipResponseFilter</filter-name>
-        <servlet-name>FacesServlet</servlet-name>
-    </filter-mapping>
-
     <!-- No Cache Filter -->
     <filter>
         <filter-name>NoCacheFilter</filter-name>
