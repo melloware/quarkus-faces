@@ -14,7 +14,7 @@
         <omnifaces-quarkus.version>4.1.1</omnifaces-quarkus.version>
         <primefaces-quarkus.version>3.12.0</primefaces-quarkus.version>
         <myfaces.version>4.0.0</myfaces.version>
-        <quarkus.version>3.0.0.Alpha5</quarkus.version>
+        <quarkus.version>3.0.0.Alpha6</quarkus.version>
     </properties>
     <dependencyManagement>
         <dependencies>
