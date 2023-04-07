@@ -12,9 +12,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
         <omnifaces-quarkus.version>4.1.2</omnifaces-quarkus.version>
-        <primefaces-quarkus.version>3.12.2</primefaces-quarkus.version>
-        <myfaces.version>4.0.0</myfaces.version>
+        <primefaces-quarkus.version>3.12.3</primefaces-quarkus.version>
+        <myfaces.version>4.0.1-SNAPSHOT</myfaces.version>
         <quarkus.version>3.0.0.CR2</quarkus.version>
+
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -75,12 +76,6 @@
             <groupId>io.quarkiverse.omnifaces</groupId>
             <artifactId>quarkus-omnifaces</artifactId>
             <version>${omnifaces-quarkus.version}</version>
-        </dependency>
-        <!-- Data Exporter -->
-        <dependency>
-            <groupId>com.github.librepdf</groupId>
-            <artifactId>openpdf</artifactId>
-            <version>1.3.30</version>
         </dependency>
         <!-- File Upload -->
         <dependency>
