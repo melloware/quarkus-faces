@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.melloware</groupId>
     <artifactId>quarkus-faces</artifactId>
-    <version>12.0.0</version>
+    <version>12.0.2</version>
     <packaging>jar</packaging>
     <name>quarkus-faces</name>
     <description>Quarkus version of the PrimeFaces Showcase with many optimizations</description>
@@ -13,7 +13,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <omnifaces-quarkus.version>4.1.2</omnifaces-quarkus.version>
         <primefaces-quarkus.version>3.12.3</primefaces-quarkus.version>
-        <myfaces.version>4.0.1-SNAPSHOT</myfaces.version>
+        <myfaces.version>4.0.0</myfaces.version>
         <quarkus.version>3.0.0.CR2</quarkus.version>
 
     </properties>
