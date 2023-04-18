@@ -37,6 +37,7 @@
     <lifecycle>
         <phase-listener>org.primefaces.component.lifecycle.LifecyclePhaseListener</phase-listener>
         <phase-listener>org.primefaces.extensions.application.PrimeFacesResourceProcessor</phase-listener>
+        <phase-listener>org.primefaces.showcase.util.MultiPageMessagesSupport</phase-listener>
     </lifecycle>
 
     <factory>

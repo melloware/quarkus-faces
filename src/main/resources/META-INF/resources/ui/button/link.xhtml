@@ -16,6 +16,10 @@
     <ui:param name="documentationLink" value="/components/link"/>
 
     <ui:define name="implementation">
+        <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate />
+        </p:messages>
+
         <div class="card">
             <p:link outcome="productDetail" value="Bookmark">
                 <f:param name="productId" value="10"/>

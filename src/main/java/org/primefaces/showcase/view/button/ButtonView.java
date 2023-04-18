@@ -109,4 +109,9 @@ public class ButtonView {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
+
+    public String redirect() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Redirected Message Content."));
+        return "link?faces-redirect=true";
+    }
 }
