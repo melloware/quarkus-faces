@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2023 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -52,6 +52,7 @@ import org.primefaces.model.charts.data.BubblePoint;
 import org.primefaces.model.charts.data.NumericPoint;
 import org.primefaces.model.charts.donut.DonutChartDataSet;
 import org.primefaces.model.charts.donut.DonutChartModel;
+import org.primefaces.model.charts.donut.DonutChartOptions;
 import org.primefaces.model.charts.hbar.HorizontalBarChartDataSet;
 import org.primefaces.model.charts.hbar.HorizontalBarChartModel;
 import org.primefaces.model.charts.line.LineChartDataSet;
@@ -76,6 +77,8 @@ import org.primefaces.model.charts.scatter.ScatterChartModel;
 @Named
 @RequestScoped
 public class ChartJsView implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private PieChartModel pieModel;
 
@@ -218,10 +221,16 @@ public class ChartJsView implements Serializable {
 
         //Options
         LineChartOptions options = new LineChartOptions();
+        options.setMaintainAspectRatio(false);
         Title title = new Title();
         title.setDisplay(true);
         title.setText("Line Chart");
         options.setTitle(title);
+
+        Title subtitle = new Title();
+        subtitle.setDisplay(true);
+        subtitle.setText("Line Chart Subtitle");
+        options.setSubtitle(subtitle);
 
         lineModel.setOptions(options);
         lineModel.setData(data);
@@ -385,6 +394,7 @@ public class ChartJsView implements Serializable {
 
         //Options
         BarChartOptions options = new BarChartOptions();
+        options.setMaintainAspectRatio(false);
         CartesianScales cScales = new CartesianScales();
         CartesianLinearAxes linearAxes = new CartesianLinearAxes();
         linearAxes.setOffset(true);
@@ -467,6 +477,7 @@ public class ChartJsView implements Serializable {
 
         //Options
         BarChartOptions options = new BarChartOptions();
+        options.setMaintainAspectRatio(false);
         CartesianScales cScales = new CartesianScales();
         CartesianLinearAxes linearAxes = new CartesianLinearAxes();
         linearAxes.setOffset(true);
@@ -614,6 +625,7 @@ public class ChartJsView implements Serializable {
 
         //Options
         BarChartOptions options = new BarChartOptions();
+        options.setMaintainAspectRatio(false);
         CartesianScales cScales = new CartesianScales();
         CartesianLinearAxes linearAxes = new CartesianLinearAxes();
         linearAxes.setStacked(true);
@@ -938,6 +950,9 @@ public class ChartJsView implements Serializable {
     public void createDonutModel() {
         donutModel = new DonutChartModel();
         ChartData data = new ChartData();
+        DonutChartOptions options = new DonutChartOptions();
+        options.setMaintainAspectRatio(false);
+        donutModel.setOptions(options);
 
         DonutChartDataSet dataSet = new DonutChartDataSet();
         List<Number> values = new ArrayList<>();

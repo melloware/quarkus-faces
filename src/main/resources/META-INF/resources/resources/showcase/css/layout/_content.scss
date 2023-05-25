@@ -91,14 +91,38 @@
                 border: 0 none;
     
                 .ui-tabs-nav {
-                    border-bottom: 1px solid var(--surface-d);
                     background-color: transparent;
+
+                    &:before {
+                        border-bottom: 1px solid var(--surface-d) !important;
+                    }
     
                     li.ui-tabs-header {
                         background-color: transparent;
+                        border-bottom-width: 1px;
 
                         a {
                             text-decoration: none;
+                        }
+
+                        &.ui-state-hover {
+                            border-color: transparent;
+                            border-bottom-color: var(--primary-color);
+                            border-radius: 0;
+
+                            a {
+                                color: var(--text-color);
+                            }
+                        }
+
+                        &.ui-state-active {
+                            border-color: transparent;
+                            border-bottom-color: var(--primary-color);
+                            border-radius: 0;
+
+                            a {
+                                color: var(--primary-color);
+                            }
                         }
                     }
                 }

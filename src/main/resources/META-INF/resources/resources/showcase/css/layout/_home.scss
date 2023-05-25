@@ -19,7 +19,7 @@
         background-image: url("\#{resource['showcase:images/home/intro-bg.jpg']}");
         background-repeat: no-repeat;
         background-size: cover;
-        padding: 35px 30px 135px 50px;
+        padding: 115px 30px 135px 50px;
         color: var(--text-color);
         position: relative;
 
@@ -70,7 +70,7 @@
         text-align: center;
         padding: 2rem;
 
-        .p-col-12 {
+        .col-12 {
             padding: 1rem;
         }
 
@@ -120,7 +120,7 @@
             }
         }
 
-        .p-grid > div {
+        .grid > div {
             padding: 2rem .5rem;
             display: flex;
             align-items: center;
@@ -154,7 +154,18 @@
             text-align: center;
         }
     }
+    
+    .primeblocks {
+        color: var(--text-color);
+        padding: 2rem;
+    }
 
+    .primeflex {
+        background-color: var(--surface-d);
+        color: var(--text-color);
+        padding: 2rem;
+    }
+    
     .prosupport {
         border-bottom: 1px solid var(--surface-d);
         background-color: var(--surface-b);
@@ -165,7 +176,7 @@
             margin-top: 10px;
         }
 
-        .p-md-6:last-child {
+        .md-6:last-child {
             text-align: center;
         }
 

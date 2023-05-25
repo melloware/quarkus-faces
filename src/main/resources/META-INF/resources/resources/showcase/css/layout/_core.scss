@@ -5,8 +5,6 @@ $actionColor: #FEAB4D;
 
 html {
     font-size: 14px;
-    /** https://stackoverflow.com/questions/9550760/hide-page-until-everything-is-loaded-advanced/9551066 */
-    visibility: hidden;
 }
 
 body {
@@ -124,4 +122,8 @@ input[type="number"] {
 
 .text-secondary {
     color: var(--text-color-secondary);
+}
+
+.floatlabel-demo .field {
+    margin-top: 2rem;
 }

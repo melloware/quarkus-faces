@@ -104,6 +104,10 @@
             &.topbar-submenu {
                 position: relative;
 
+                .ui-overlay-badge {
+                    display: inline;
+                }
+
                 &.topbar-submenu-active {
                     > ul {
                         display: block;
