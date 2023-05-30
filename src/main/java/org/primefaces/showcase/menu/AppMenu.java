@@ -489,7 +489,6 @@ public class AppMenu {
         miscMenuItems.add(new MenuItem("IdleMonitor", "/ui/misc/idleMonitor"));
         miscMenuItems.add(new MenuItem("ImportConstants", "/ui/misc/importConstants"));
         miscMenuItems.add(new MenuItem("ImportEnum", "/ui/misc/importEnum"));
-        miscMenuItems.add(new MenuItem("Lifecycle", "/ui/misc/lifecycle"));
         miscMenuItems.add(new MenuItem("Log", "/ui/misc/log"));
         miscMenuItems.add(new MenuItem("Focus", "/ui/misc/focus"));
         miscMenuItems.add(new MenuItem("Hotkey", "/ui/misc/hotkey"));
