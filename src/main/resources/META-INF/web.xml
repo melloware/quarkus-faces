@@ -136,6 +136,13 @@
         <param-name>org.omnifaces.COMBINED_RESOURCE_HANDLER_DISABLED</param-name>
         <param-value>#{facesContext.application.projectStage eq 'Development'}</param-value>
     </context-param>
+    <context-param>
+        <param-name>org.omnifaces.CDN_RESOURCE_HANDLER_URLS</param-name>
+        <param-value>
+            cdn:hammer.js=https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js,
+            cdn:chartjs-plugin-zoom.js=https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.min.js
+        </param-value>
+    </context-param>
 
     <listener>
         <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
