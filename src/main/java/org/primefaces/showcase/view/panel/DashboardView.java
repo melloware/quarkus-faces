@@ -23,24 +23,29 @@
  */
 package org.primefaces.showcase.view.panel;
 
-import java.io.Serializable;
-import java.util.Arrays;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
-
 import org.primefaces.event.CloseEvent;
 import org.primefaces.event.DashboardReorderEvent;
 import org.primefaces.event.ToggleEvent;
-import org.primefaces.model.dashboard.*;
+import org.primefaces.model.dashboard.DashboardModel;
+import org.primefaces.model.dashboard.DashboardWidget;
+import org.primefaces.model.dashboard.DefaultDashboardModel;
+import org.primefaces.model.dashboard.DefaultDashboardWidget;
+
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
 @Named
 @ViewScoped
 public class DashboardView implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     private static final String RESPONSIVE_CLASS = "col-12 lg:col-6 xl:col-6";
 
@@ -58,9 +63,9 @@ public class DashboardView implements Serializable {
 
         // legacy
         legacyModel = new DefaultDashboardModel();
-        legacyModel.addColumn(new DefaultDashboardColumn(Arrays.asList("sports", "finance")));
-        legacyModel.addColumn(new DefaultDashboardColumn(Arrays.asList("lifestyle", "weather")));
-        legacyModel.addColumn(new DefaultDashboardColumn(Arrays.asList("politics")));
+        legacyModel.addWidget(new DefaultDashboardWidget(Arrays.asList("sports", "finance")));
+        legacyModel.addWidget(new DefaultDashboardWidget(Arrays.asList("lifestyle", "weather")));
+        legacyModel.addWidget(new DefaultDashboardWidget(List.of("politics")));
     }
 
     public void handleReorder(DashboardReorderEvent event) {
@@ -68,7 +73,7 @@ public class DashboardView implements Serializable {
         message.setSeverity(FacesMessage.SEVERITY_INFO);
         message.setSummary("Reordered: " + event.getWidgetId());
         String result = String.format("Dragged index: %d, Dropped Index: %d, Widget Index: %d",
-                event.getSenderColumnIndex(),  event.getColumnIndex(), event.getItemIndex());
+                event.getSenderColumnIndex(), event.getColumnIndex(), event.getItemIndex());
         message.setDetail(result);
 
         addMessage(message);
@@ -92,7 +97,7 @@ public class DashboardView implements Serializable {
      * Dashboard panel has been resized.
      *
      * @param widget the DashboardPanel
-     * @param size the new size CSS
+     * @param size   the new size CSS
      */
     public void onDashboardResize(final String widget, final String size) {
         final DashboardWidget dashboard = responsiveModel.getWidget(widget);

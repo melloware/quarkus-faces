@@ -23,17 +23,11 @@
  */
 package org.primefaces.showcase.view.chartjs;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
-
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.charts.ChartData;
 import org.primefaces.model.charts.axes.cartesian.CartesianScales;
@@ -73,6 +67,11 @@ import org.primefaces.model.charts.radar.RadarChartDataSet;
 import org.primefaces.model.charts.radar.RadarChartModel;
 import org.primefaces.model.charts.radar.RadarChartOptions;
 import org.primefaces.model.charts.scatter.ScatterChartModel;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Named
 @RequestScoped
@@ -425,7 +424,7 @@ public class ChartJsView implements Serializable {
         options.setAnimation(animation);
 
         barModel.setOptions(options);
-        barModel.setExtender("barChartExtender");
+        //barModel.setExtender("barChartExtender");
     }
 
     public void createBarModel2() {
@@ -846,7 +845,7 @@ public class ChartJsView implements Serializable {
         List<List<String>> labels = new ArrayList<>();
         labels.add(new ArrayList(Arrays.asList("Process", "Excellence")));
         labels.add(new ArrayList(Arrays.asList("Problem", "Solving")));
-        labels.add(new ArrayList(Arrays.asList("Facilitation")));
+        labels.add(new ArrayList(List.of("Facilitation")));
         labels.add(new ArrayList(Arrays.asList("Project", "Mgmt")));
         labels.add(new ArrayList(Arrays.asList("Change", "Mgmt")));
         data.setLabels(labels);
