@@ -212,7 +212,7 @@
                 <configuration>
                     <inputDir>${project.build.directory}/classes/META-INF/resources</inputDir>
                     <imagesDir>${project.build.directory}/classes/META-INF/resources</imagesDir>
-                    <useDataUri>true</useDataUri>
+                    <useDataUri>false</useDataUri>
                 </configuration>
                 <executions>
                     <execution>
