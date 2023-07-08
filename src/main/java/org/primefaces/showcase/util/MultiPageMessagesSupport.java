@@ -7,10 +7,12 @@ import jakarta.faces.event.PhaseId;
 import jakarta.faces.event.PhaseListener;
 
 import java.io.Serial;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Iterator;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Enables messages to be rendered on different pages from which they were set.
@@ -37,24 +39,24 @@ public class MultiPageMessagesSupport implements PhaseListener {
 
     @Serial
     private static final long serialVersionUID = 1250469273857785274L;
-    private static final String sessionToken = "MULTI_PAGE_MESSAGES_SUPPORT";
+    private static final String TOKEN = "MULTI_PAGE_MESSAGES_SUPPORT";
 
     public PhaseId getPhaseId() {
         return PhaseId.ANY_PHASE;
     }
 
-    /*
-     * Check to see if we are "naturally" in the RENDER_RESPONSE phase. If we
-     * have arrived here and the response is already complete, then the page is
-     * not going to show up: don't display messages yet.
-     */
     public void beforePhase(final PhaseEvent event) {
         FacesContext facesContext = event.getFacesContext();
-        this.saveMessages(facesContext);
+        this.saveMessages(facesContext, facesContext.getExternalContext().getSessionMap());
 
         if (PhaseId.RENDER_RESPONSE.equals(event.getPhaseId())) {
+            /*
+             * Check to see if we are "naturally" in the RENDER_RESPONSE phase. If
+             * we have arrived here and the response is already complete, then the
+             * page is not going to show up: don't display messages yet.
+             */
             if (!facesContext.getResponseComplete()) {
-                this.restoreMessages(facesContext);
+                this.restoreMessages(facesContext, facesContext.getExternalContext().getSessionMap());
             }
         }
     }
@@ -65,49 +67,75 @@ public class MultiPageMessagesSupport implements PhaseListener {
     public void afterPhase(final PhaseEvent event) {
         if (!PhaseId.RENDER_RESPONSE.equals(event.getPhaseId())) {
             FacesContext facesContext = event.getFacesContext();
-            this.saveMessages(facesContext);
+            this.saveMessages(facesContext, facesContext.getExternalContext().getSessionMap());
         }
     }
 
     @SuppressWarnings("unchecked")
-    private int saveMessages(final FacesContext facesContext) {
-        List<FacesMessage> messages = new ArrayList<>();
-        for (Iterator<FacesMessage> iter = facesContext.getMessages(null); iter.hasNext(); ) {
-            messages.add(iter.next());
-            iter.remove();
-        }
+    public void saveMessages(final FacesContext facesContext, final Map<String, Object> destination) {
+        if (facesContext != null) {
+            Set<FacesMessageWrapper> messages = new LinkedHashSet<>();
+            for (Iterator<FacesMessage> iter = facesContext.getMessages(null); iter.hasNext(); ) {
+                messages.add(new FacesMessageWrapper(iter.next()));
+            }
 
-        if (messages.size() == 0) {
-            return 0;
-        }
-
-        Map<String, Object> sessionMap = facesContext.getExternalContext().getSessionMap();
-        List<FacesMessage> existingMessages = (List<FacesMessage>) sessionMap.get(sessionToken);
-        if (existingMessages != null) {
-            for (FacesMessage fm : messages) {
-                if (!existingMessages.contains(fm)) {
-                    existingMessages.add(fm);
+            if (messages.size() > 0) {
+                Set<FacesMessageWrapper> existingMessages = (LinkedHashSet<FacesMessageWrapper>) destination.get(TOKEN);
+                if (existingMessages != null) {
+                    existingMessages.addAll(messages);
+                } else {
+                    destination.put(TOKEN, messages);
                 }
             }
-        } else {
-            sessionMap.put(sessionToken, messages);
         }
-        return messages.size();
     }
 
     @SuppressWarnings("unchecked")
-    private int restoreMessages(final FacesContext facesContext) {
-        Map<String, Object> sessionMap = facesContext.getExternalContext().getSessionMap();
-        List<FacesMessage> messages = (List<FacesMessage>) sessionMap.remove(sessionToken);
+    public void restoreMessages(final FacesContext facesContext, final Map<String, Object> source) {
+        if (facesContext != null) {
+            // get save messages from the session
+            Set<FacesMessageWrapper> messages = (LinkedHashSet<FacesMessageWrapper>) source.remove(TOKEN);
 
-        if (messages == null) {
-            return 0;
+            // nothing to do
+            if (messages == null) {
+                return;
+            }
+
+            // build set of message currently in the FacesContext
+            Set<FacesMessageWrapper> exitingMessages = new LinkedHashSet<>();
+            for (Iterator<FacesMessage> iter = facesContext.getMessages(null); iter.hasNext(); ) {
+                exitingMessages.add(new FacesMessageWrapper(iter.next()));
+            }
+
+            // restore all messages not already in the FacesContext
+            for (FacesMessageWrapper message : messages) {
+                if (!exitingMessages.contains(message)) {
+                    facesContext.addMessage(null, message.wrapped());
+                }
+            }
+
+        }
+    }
+
+    private record FacesMessageWrapper(FacesMessage wrapped) implements Serializable {
+
+        @Serial
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            FacesMessageWrapper other = (FacesMessageWrapper) o;
+            return Objects.equals(wrapped.getSeverity(), other.wrapped().getSeverity()) &&
+                    Objects.equals(wrapped.getSummary(), other.wrapped().getSummary()) &&
+                    Objects.equals(wrapped.getDetail(), other.wrapped().getDetail());
         }
 
-        int restoredCount = messages.size();
-        for (FacesMessage element : messages) {
-            facesContext.addMessage(null, element);
+        @Override
+        public int hashCode() {
+            return Objects.hash(wrapped.getSeverity(), wrapped.getSummary(), wrapped.getDetail());
         }
-        return restoredCount;
+
     }
 }

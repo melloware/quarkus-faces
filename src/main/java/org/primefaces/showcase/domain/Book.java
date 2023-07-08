@@ -23,9 +23,10 @@
  */
 package org.primefaces.showcase.domain;
 
-import java.io.Serializable;
-
 import io.quarkus.runtime.annotations.RegisterForReflection;
+
+import java.io.Serializable;
+import java.util.Objects;
 
 @RegisterForReflection
 public class Book implements Serializable {
@@ -69,27 +70,16 @@ public class Book implements Serializable {
         this.pages = pages;
     }
 
-    public int hashCode() {
-        int hash = 1;
-		if (title != null) {
-			hash = hash * 31 + title.hashCode();
-		}
-
-		if (author != null) {
-			hash = hash * 29 + author.hashCode();
-		}
-
-        return hash;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(title, book.title) && Objects.equals(author, book.author);
     }
 
-    public boolean equals(Object obj) {
-		if (!(obj instanceof Book)) {
-			return false;
-		}
-
-        Book book = (Book) obj;
-
-        return (book.getTitle() != null && book.getTitle().equals(title)) &&
-                    (book.getAuthor() != null && book.getAuthor().equals(author));
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, author);
     }
 }
