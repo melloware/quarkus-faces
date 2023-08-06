@@ -23,30 +23,28 @@
  */
 package org.primefaces.showcase.rest;
 
-import org.primefaces.model.rest.AutoCompleteSuggestion;
-import org.primefaces.model.rest.AutoCompleteSuggestionResponse;
-import org.primefaces.showcase.domain.Country;
-
 import jakarta.inject.Inject;
-import jakarta.inject.Named;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
+import org.primefaces.model.rest.AutoCompleteSuggestion;
+import org.primefaces.model.rest.AutoCompleteSuggestionResponse;
+import org.primefaces.showcase.domain.Country;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Named("countryRestService")
 @Path("/country")
-public class CountryService {
+public class CountryRestService {
 
     @Inject
     org.primefaces.showcase.service.CountryService service;
 
     @GET
     @Path("/autocomplete")
-    @Produces({ MediaType.APPLICATION_JSON })
+    @Produces({MediaType.APPLICATION_JSON})
     public AutoCompleteSuggestionResponse autocomplete(@QueryParam("query") String query) {
         String queryLowerCase = query.toLowerCase();
         List<Country> allCountrys = service.getCountries();
