@@ -36,5 +36,8 @@
             </ul>
         </h:form>
         <p:lifecycle />
+        <p:link href="/secure/logout" value="Logout" rendered="#{securityService.isLoggedIn()}">
+            <i class="pi pi-sign-out"/>
+        </p:link>
     </div>
 </ui:composition>
