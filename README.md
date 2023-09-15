@@ -16,6 +16,24 @@ Some addition goals:
 - See how much we can improve performance by incorporating various optimization tricks for JSF applications
 - See if Quarkus is a viable option for Faces and migrating to Docker containers
 
+### OIDC - KEYCLOAK
+***
+This code base modifies the demo to use Keycloak to protect the web pages.
+
+The main dashboard page is not protected, but all of the other links in the menu are.
+Clicking on any of them will redirect you to KeyCloaks login screen.
+
+You can log in with `bob:bob` or `alice:alice` and you will see in the console output that you were logged in.
+
+You will also see a `Logout` link appear at the top right of the screen.
+
+Clicking it will automatically log you out and redirect you back to the main page.
+
+You can see the various settings for oidc in the `application.properties` file.
+
+You can learn more about OIDC at - OIDC [OIDC](https://quarkus.io/guides/security-oidc-code-flow-authentication-tutorial)
+
+
 ### Environment
 ***
 - OpenJDK 17.0.5
@@ -33,25 +51,6 @@ Some addition goals:
 - PrimeFaces Extensions [CombinedResourceHandler Helper](https://github.com/primefaces-extensions/primefaces-extensions/issues/293) 
 - jQuery [Hide Page Until Complete](https://stackoverflow.com/questions/9550760/hide-page-until-everything-is-loaded-advanced/28129691#28129691)
 
-### Metrics
-***
-The following client and server metrics were captured while hitting the exact same page [/datatable/crud.xhtml](https://www.primefaces.org/showcase/ui/data/datatable/crud.xhtml)
-Using `Incognito Mode` and pressing CTRL+F5 so it forced the browser to load all resources from the server with nothing cached.
-
-Metric                |  WildFly EE | Quarkus (DEV)  | Quarkus (JVM)  | Quarkus (GraalVM) |
-----------------------| ----------  | ---------------| ---------------|-------------------|
-Package Size          | 48.5 MB WAR | N/A            | 91 MB          | 206 MB            |
-Cold Startup          | 10.3 s      | 8.092 s        | 3.847 s        | 0.035 s           |
-Memory Used           | 140 MB      | 113 MB         | 21 MB          | 13.6 MB           |
-HTTP Requests         | 80          | 80             | 61             | 61                |
-Resource Size         | 2.4 MB      | 2.4 MB         | 2.4 MB         | 2.4 MB            |
-Transferred Size      | 2.4 MB      | 2.4 KB         | 888 KB         | 888 KB            |
-DOM Loaded            | 1150 ms     | 1750 ms        | 918 ms         | 580 ms            |
-Lighthouse Score      | 59/100      | 72/100         | 97/100         | 98/100            |
-First Paint           | 2.4 s       | 2.3 s          | 0.8 s          | 0.8 s             |
-Speed Index           | 2.4 s       | 2.3 s          | 1.0 s          | 0.8 s             |
-Time To Interactive   | 3.9 s       | 2.3 s          | 0.9 s          | 0.8 s             |
-Largest Paint         | 2.7 s       | 2.6 s          | 1.1 s          | 1.0 s             |
 
 
 ### Development
@@ -62,6 +61,7 @@ To run the example in Dev mode:
 ```
 git clone https://github.com/melloware/quarkus-faces
 cd quarkus-faces
+git checkout oidc-auth
 mvn quarkus:dev
 ```
 
@@ -75,6 +75,7 @@ To run the example in HotSpot Production mode:
 ```
 git clone https://github.com/melloware/quarkus-faces
 cd quarkus-faces
+git checkout oidc-auth
 mvn clean package
 java -jar target/quarkus-app/quarkus-run.jar
 ```
@@ -87,7 +88,7 @@ Then open your web browser to http://localhost:8080/
 Builds a Docker image running as a standard JVM application.
 ```
 mvn clean package -Ddocker
-docker run -i --rm -p 8081:8081 melloware/quarkus-faces:latest
+docker run -i --rm -p 8081:8081 melloware/quarkus-faces:oidc-auth
 ```
 
 ### Docker Native
