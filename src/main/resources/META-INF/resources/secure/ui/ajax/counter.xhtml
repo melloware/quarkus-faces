@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">
+        Ajax Framework <span class="subitem">Counter</span>
+    </ui:define>
+
+    <ui:define name="description">
+        An integer variable is incremented each time the button is clicked and current value is updated with ajax.
+    </ui:define>
+
+    <ui:param name="documentationLink" value="/core/ajaxRendering"/>
+
+    <ui:define name="implementation">
+        <div class="card">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Counter: "/>
+                    <h:outputText id="output" value="#{counterView.number}"/>
+                </h:panelGrid>
+
+                <p:commandButton value="Count" action="#{counterView.increment}" update="output"/>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

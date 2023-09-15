@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">
+        Ajax Framework <span class="subitem">Events</span>
+    </ui:define>
+
+    <ui:define name="description">
+        p:ajax enables ajax features on supported components.
+    </ui:define>
+
+    <ui:param name="documentationLink" value="/components/ajaxbehavior"/>
+
+    <ui:define name="implementation">
+        <div class="card">
+            <h:form>
+                <h:panelGrid columns="3" cellpadding="5">
+                    <h:outputText value="KeyUp: "/>
+                    <p:inputText id="firstname" value="#{userView.firstname}">
+                        <p:ajax event="keyup" update="out1" process="@this"/>
+                    </p:inputText>
+                    <h:outputText id="out1" value="#{userView.firstname}"/>
+
+                    <h:outputText value="Blur: "/>
+                    <p:inputText id="middlename" value="#{userView.middlename}">
+                        <p:ajax event="blur" update="out2"/>
+                    </p:inputText>
+                    <h:outputText id="out2" value="#{userView.middlename}"/>
+
+                    <h:outputText value="Input: "/>
+                    <p:inputText id="lastname" value="#{userView.lastname}">
+                        <p:ajax event="input" update="out3"/>
+                    </p:inputText>
+                    <h:outputText id="out3" value="#{userView.lastname}"/>
+                </h:panelGrid>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>
