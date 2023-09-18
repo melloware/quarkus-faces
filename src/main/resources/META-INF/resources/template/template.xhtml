@@ -21,6 +21,7 @@
 
 <h:body>
     <f:view locale="#{app.locale.locale}">
+        <ui:include src="./sessionTimeoutDialog.xhtml"/>
         <div class="layout-wrapper #{app.inputStyleClass}">
             <ui:include src="./topbar.xhtml"></ui:include>
             <ui:include src="./menu.xhtml"></ui:include>
