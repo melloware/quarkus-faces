@@ -14,7 +14,7 @@ import org.jboss.logging.Logger;
 
 /**
  * Tracks user related stuff
- *
+ * 
  * @author tmulle
  */
 @Named
@@ -98,8 +98,14 @@ public class SecurityService {
     public Duration getIdleTimeoutWarning() {
         return idleTimeoutWarning;
     }
-    
-    
-
-
+   
+    /**
+     * Checks if we are logged in
+     * 
+     * @return True or False
+     */
+    public boolean isLoggedIn() {
+        log.infof("User is logged in = [%s] with name [%s] and roles %s", !identity.isAnonymous(),identity.getPrincipal().getName(), identity.getRoles() );
+        return identity != null && !identity.isAnonymous();
+    }
 }
