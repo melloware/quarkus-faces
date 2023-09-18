@@ -27,10 +27,10 @@ public class SecurityService {
     @Inject
     SecurityIdentity identity;
 
-    @ConfigProperty(name = "ssoIdleTimeout", defaultValue = "PT30M")
+    @ConfigProperty(name = "sso.idle.timeout", defaultValue = "PT30M")
     Duration idleTimeout;
 
-    @ConfigProperty(name = "ssoIdelTimeoutWarning", defaultValue = "PT1M")
+    @ConfigProperty(name = "sso.idle.timeout.warning", defaultValue = "PT1M")
     Duration idleTimeoutWarning;
     
     @ConfigProperty(name = "quarkus.oidc.logout.path")
@@ -98,14 +98,5 @@ public class SecurityService {
     public Duration getIdleTimeoutWarning() {
         return idleTimeoutWarning;
     }
-   
-    /**
-     * Checks if we are logged in
-     * 
-     * @return True or False
-     */
-    public boolean isLoggedIn() {
-        log.infof("User is logged in = [%s] with name [%s] and roles %s", !identity.isAnonymous(),identity.getPrincipal().getName(), identity.getRoles() );
-        return identity != null && !identity.isAnonymous();
-    }
+      
 }
