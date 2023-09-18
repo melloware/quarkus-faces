@@ -1,0 +1,40 @@
+<!-- Define a facelet component for session timeout logic -->
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <!-- Include the JavaScript file for countdown functionality -->
+    <h:outputScript library="showcase" name="script/countdown.js" target="head" />
+
+    <!-- Form for the session timeout logic; only rendered if the user is logged in -->
+    <h:form id="logoutDialogForm" rendered="#{securityService.isLoggedIn()}">
+
+        <!-- Monitor user inactivity; triggers when the calculated timeout is reached -->
+        <p:idleMonitor timeout="#{securityService.calculateIdleTimeWarningTime()}"
+                       onidle="startCountdown(#{securityService.idleTimeoutWarning.toMillis()}, 'countdown', 'cd', '#{component.findComponent('logoutButton').getClientId()}')">
+
+            <!-- Dialog that pops up to warn users about session expiration -->
+            <p:confirmDialog header="Session Expiration Warning"
+                             severity="alert"
+                             widgetVar="cd"
+                             closable="false">
+
+                <!-- Message displayed within the dialog -->
+                <f:facet name="message">
+                    Session will expire in <span id='countdown'></span> <!-- Display countdown timer here -->
+                </f:facet>
+
+                <!-- Button to "ping" or refresh the user session -->
+                <p:commandButton value="Refresh" action="#{securityService.ping}" id="refreshButton"
+                                 oncomplete="stopCountdown('countdown', 'cd')"/>
+
+                <!-- Logout button; hides the dialog and logs the user out -->
+                <p:commandButton value="Logout" action="#{securityService.logout}" id="logoutButton"
+                                 oncomplete="PF('cd').hide();"/>
+            </p:confirmDialog>
+        </p:idleMonitor>
+    </h:form>
+</ui:composition>
+
