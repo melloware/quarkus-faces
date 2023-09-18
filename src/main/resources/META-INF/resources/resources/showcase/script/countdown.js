@@ -18,7 +18,7 @@ function startCountdown(durationInMilliseconds, divId, dialogWidgetVar, buttonId
     }
 
     // Display the dialog right when the countdown starts
-    PF(dialogWidgetVar).show();
+    PF(dialogWidgetVar).show(500);
 
     // Start the countdown interval, updating every second
     countdownInterval = setInterval(function () {
@@ -64,4 +64,3 @@ function stopCountdown(divId, dialogWidgetVar) {
     // Close the PrimeFaces dialog
     PF(dialogWidgetVar).hide();
 }
-
