@@ -2,6 +2,12 @@ version: 2
 updates:
   - package-ecosystem: "maven"
     directory: "/"
+    target-branch: "master"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "maven"
+    directory: "/"
+    target-branch: "oidc-auth"
     schedule:
       interval: "daily"
   - package-ecosystem: "github-actions"
