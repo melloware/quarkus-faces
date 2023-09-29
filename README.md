@@ -79,7 +79,7 @@ mvn clean package
 java -jar target/quarkus-app/quarkus-run.jar
 ```
 
-Then open your web browser to http://localhost:8080/
+Then open your web browser to http://localhost:8081/
 
 ### Docker JVM
 
