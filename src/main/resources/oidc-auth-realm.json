@@ -664,7 +664,7 @@
     "attributes" : {
       "oidc.ciba.grant.enabled" : "false",
       "client.secret.creation.time" : "1695994965",
-      "backchannel.logout.url" : "http://192.168.1.233/back-channel-logout",
+      "backchannel.logout.url" : "http://192.168.1.233:8081/back-channel-logout",
       "backchannel.logout.session.required" : "true",
       "post.logout.redirect.uris" : "+",
       "display.on.consent.screen" : "false",
