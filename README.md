@@ -34,22 +34,48 @@ You can see the various settings for oidc in the `application.properties` file.
 You can learn more about OIDC at - OIDC [OIDC](https://quarkus.io/guides/security-oidc-code-flow-authentication-tutorial)
 
 
-### Environment
-***
-- OpenJDK 17.0.5
-- JBoss Wildfly 18.0.1
-- Quarkus 2.16.3.Final
-- JSF Production Mode
-- Intel(R) Core(TM) i7-8750H CPU @2.21 GHz 16GB RAM
+### Back Channel Logout
+This example also demonstrates how to implement `Back-Channel Logout` so that when you logout a session in Keycloak
+it will automatically contact Quarkus to log the user out.
 
-### Optimizations
-***
-- Apache MyFaces (Quarkus) instead of Jakarta Mojarra (Wildfly)
-- PrimeFaces [MOVE_SCRIPTS_TO_BOTTOM](https://primefaces.github.io/primefaces/10_0_0/#/gettingstarted/configuration?id=configuration)
-- Quarkus Compression [ quarkus.http.enable-compression=true](https://quarkus.io/guides/http-reference#http-compression)
-- OmniFaces [CombinedResourceHandler](https://showcase.omnifaces.org/resourcehandlers/CombinedResourceHandler)
-- PrimeFaces Extensions [CombinedResourceHandler Helper](https://github.com/primefaces-extensions/primefaces-extensions/issues/293) 
-- jQuery [Hide Page Until Complete](https://stackoverflow.com/questions/9550760/hide-page-until-everything-is-loaded-advanced/28129691#28129691)
+Before you start the server in Dev mode, you need to modify the `oidc-auth-realm.json` file so you can communicate
+from the Dev Keycloak Docker image to your PC running the Quarkus server.
+
+We can't use `localhost` because Keycloak will try to talk to itself and that won't work.
+
+So, in the `oidc-auth-realm.json` file look for the line
+```
+"backchannel.logout.url" : "http://192.168.1.233:8081/back-channel-logout"
+```
+
+and change the `host:port` to whichever IP and port you are running the Quarkus app on.
+
+Once that is saved, then you can  start quarkus with `mvn quarkus:dev`
+
+Thanks to https://github.com/pjgg/Back-channel-logout-demo for the great example on how to use Quarkus and Keycloak with `Back-Channel Logout`
+
+Once you visit http://localhost:8081 and try to access any of the links on the left menu, you'll be asked to log into Keycloak.
+
+You can use `alice:alice` or `bob:bob` as the username and password.
+
+Then in the web application you will see a `Logout` link displayed as mention in the previous section.
+
+Now, to test the logout:
+
+1. Visit http://localhost:51521/ 
+2. Log in using `admin:admin`
+3. Select the `oidc-auth-test` realm from the dropdown
+4. Select `Sessions` from the left hand menu
+5. You'll see a list of users logged into the realm (in this case `alice` or `bob`)
+6. Click the 3 dots on the far right for the user you want to log out and select `Sign Out` from the menu
+7. In the console running your Quarkus demo, you should see a log line:
+`2023-09-29 14:38:15,907 DEBUG [io.qua.oid.run.BackChannelLogoutHandler] (vert.x-eventloop-thread-2) Back channel logout request for the tenant Default received`
+8. When you attempt to refresh the page or go to another link on the left menu, you will now be asked to log in again.
+
+If this happens, then the logout has worked.
+
+**NOTE**: If you try to use the `Sign out all session` option under the `Action` menu on the session page, nothing will happen when you click the `Submit` button.
+There is an open issue with Keycloak about that: https://github.com/keycloak/keycloak/issues/23604
 
 
 
@@ -80,7 +106,7 @@ mvn clean package
 java -jar target/quarkus-app/quarkus-run.jar
 ```
 
-Then open your web browser to http://localhost:8080/
+Then open your web browser to http://localhost:8081/
 
 ### Docker JVM
 
