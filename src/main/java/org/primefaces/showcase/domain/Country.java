@@ -23,11 +23,11 @@
  */
 package org.primefaces.showcase.domain;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
-
-import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection
 public class Country implements Serializable, Comparable<Country> {
@@ -110,11 +110,6 @@ public class Country implements Serializable, Comparable<Country> {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id, name, code);
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -124,8 +119,13 @@ public class Country implements Serializable, Comparable<Country> {
         }
         Country country = (Country) o;
         return id == country.id
-                    && Objects.equals(name, country.name)
-                    && Objects.equals(code, country.code);
+                && Objects.equals(name, country.name)
+                && Objects.equals(code, country.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, code);
     }
 
     @Override
@@ -137,5 +137,4 @@ public class Country implements Serializable, Comparable<Country> {
     public int compareTo(Country o) {
         return name.compareTo(o.name);
     }
-
 }
