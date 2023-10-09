@@ -31,7 +31,7 @@ Clicking it will automatically log you out and redirect you back to the main pag
 
 You can see the various settings for oidc in the `application.properties` file.
 
-You can learn more about Quarkus OIDC at - OIDC [OIDC](https://quarkus.io/guides/security-oidc-code-flow-authentication-tutorial)
+You can learn more about Quarkus OIDC at -  [Quarkus OIDC](https://quarkus.io/guides/security-oidc-code-flow-authentication-tutorial)
 
 
 ### Back Channel Logout
