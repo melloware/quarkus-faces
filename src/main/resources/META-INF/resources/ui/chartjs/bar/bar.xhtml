@@ -13,10 +13,50 @@
         BarChart is created with a BarChartModel.
     </ui:define>
 
+<ui:define name="head">
+        <script type="text/javascript">
+            //<![CDATA[
+            function barChartExtender() {
+                console.log("extending chart.js");
+var options = {
+    options: {
+        plugins: {
+            zoom: {
+                pan: {
+                    enabled: true,
+                    mode: 'xy',
+                    threshold: 5,
+                },
+                zoom: {
+                    wheel: {
+                        enabled: true
+                    },
+                    pinch: {
+                        enabled: true
+                    },
+                    mode: 'xy',
+                },
+            }
+        }
+    }
+};
+    
+       //merge all options into the main chart options
+       $.extend(true, this.cfg.config, options);
+            };
+            //]]>
+        </script>
+
+    </ui:define>
+
     <ui:param name="documentationLink" value="/components/charts?id=barchart"/>
     <ui:param name="widgetLink" value="barchart"/>
 
     <ui:define name="implementation">
+	<!-- Must load Plugin JS (here using OmniFaces CDN handler) -->
+         <h:outputScript library="cdn" name="hammer.js" target="body"/>
+         <h:outputScript library="cdn" name="chartjs-plugin-zoom.js" target="body"/>
+		 
         <div class="card">
             <h5>Basic</h5>
             <p:barChart model="#{chartJsView.barModel}" style="width: 100%; height: 500px;"/>

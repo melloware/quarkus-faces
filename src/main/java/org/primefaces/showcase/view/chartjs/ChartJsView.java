@@ -424,7 +424,7 @@ public class ChartJsView implements Serializable {
         options.setAnimation(animation);
 
         barModel.setOptions(options);
-        //barModel.setExtender("barChartExtender");
+        barModel.setExtender("barChartExtender");
     }
 
     public void createBarModel2() {
