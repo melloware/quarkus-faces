@@ -7,7 +7,7 @@
 [![Discord Chat](https://img.shields.io/badge/discord-join_chat-blueviolet.svg?style=for-the-badge&logo=discord)](https://discord.gg/gzKFYnpmCY)
 [![Java CI with Maven](https://img.shields.io/github/actions/workflow/status/melloware/quarkus-faces/maven.yml?branch=main&logo=GitHub&style=for-the-badge)](https://github.com/melloware/quarkus-faces/actions/workflows/maven.yml)
 [![Quarkus](https://img.shields.io/badge/quarkus-power-blue?logo=quarkus&style=for-the-badge)](https://github.com/quarkusio/quarkus)
-![GitHub Sponsors](https://img.shields.io/github/sponsors/melloware)
+![GitHub Sponsors](https://img.shields.io/github/sponsors/melloware?style=for-the-badge)
 
 **If you like this project, please consider supporting me ❤️**
 
