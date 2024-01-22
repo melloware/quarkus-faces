@@ -9,7 +9,7 @@ updates:
     directory: "/"
     target-branch: "oidc-auth"
     schedule:
-      interval: "daily"
+      interval: "monthly"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
