@@ -1,6 +1,9 @@
 package org.primefaces.showcase.util;
 
+import java.util.logging.Logger;
+
 import org.apache.commons.lang3.SystemUtils;
+import org.primefaces.showcase.view.misc.PrimeIconsView;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.extern.jbosslog.JBossLog;
@@ -106,7 +109,7 @@ public final class VirtualMachine {
                     byteCountToDisplaySize(availableMemory) +
                     " Max: " +
                     byteCountToDisplaySize(maxMemory);
-        log.info(output);
+        Logger.getLogger(VirtualMachine.class.getName()).info(output);
 
         return output;
     }
