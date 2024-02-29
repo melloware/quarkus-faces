@@ -16,7 +16,7 @@
 
 ### Goals
 ***
-The main goal was to take an out of the box Faces (formerly JSF) application ([PrimeFaces Showcase](https://github.com/primefaces/primefaces-showcase)) 
+The main goal was to take an out of the box Faces (formerly JSF) application ([PrimeFaces Showcase](https://github.com/primefaces/primefaces/tree/master/primefaces-showcase)) 
 and run it in both a Java EE Server and in [Quarkus](https://quarkus.io/). 
 Some addition goals:
 - See how much we can improve performance by incorporating various optimization tricks for JSF applications
