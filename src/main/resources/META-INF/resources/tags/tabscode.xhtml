@@ -5,8 +5,8 @@
 
     <!-- EXAMPLE-SOURCE-START -->
 
-    <p:tabView var="entry" value="#{value}">
-        <p:tab title="#{entry.title}" >
+    <p:tabView var="entry" value="#{value}" touchable="false">
+        <p:tab title="#{entry.title}">
             <p:cache region="sources" key="#{entry}"
                      disabled="#{facesContext.application.projectStage eq 'Development'}">
 <pre class="line-numbers"><code class="language-#{entry.type}">
@@ -17,7 +17,7 @@
         </p:tab>
 
         <f:facet name="static-tabs">
-            <ui:insert />
+            <ui:insert/>
         </f:facet>
     </p:tabView>
 
