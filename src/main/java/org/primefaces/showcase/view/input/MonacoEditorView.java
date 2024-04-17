@@ -27,12 +27,8 @@ import static org.apache.commons.lang3.StringUtils.abbreviate;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import java.util.*;
+
 
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
@@ -44,11 +40,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.extensions.model.monaco.MonacoDiffEditorModel;
-import org.primefaces.extensions.model.monacoeditor.DiffEditorOptions;
-import org.primefaces.extensions.model.monacoeditor.ELanguage;
-import org.primefaces.extensions.model.monacoeditor.ETheme;
-import org.primefaces.extensions.model.monacoeditor.EditorOptions;
-import org.primefaces.extensions.model.monacoeditor.EditorStandaloneTheme;
+import org.primefaces.extensions.model.monacoeditor.*;
 import org.primefaces.showcase.util.MonacoEditorSettings;
 
 /**

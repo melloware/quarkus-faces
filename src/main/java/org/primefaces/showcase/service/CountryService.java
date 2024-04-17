@@ -23,19 +23,16 @@
  */
 package org.primefaces.showcase.service;
 
-import org.primefaces.showcase.domain.Country;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import org.primefaces.showcase.domain.Country;
 
 @Named
 @ApplicationScoped

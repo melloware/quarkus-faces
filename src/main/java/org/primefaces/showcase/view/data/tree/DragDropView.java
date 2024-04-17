@@ -23,16 +23,18 @@
  */
 package org.primefaces.showcase.view.data.tree;
 
-import jakarta.faces.view.ViewScoped;
-import org.primefaces.event.TreeDragDropEvent;
-import org.primefaces.model.DefaultTreeNode;
-import org.primefaces.model.TreeNode;
+import java.io.Serializable;
+
 
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
-import java.io.Serializable;
+
+import org.primefaces.event.TreeDragDropEvent;
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
 
 @Named("treeDNDView")
 @ViewScoped

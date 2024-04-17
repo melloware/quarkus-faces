@@ -23,15 +23,16 @@
  */
 package org.primefaces.showcase.view.app;
 
+import java.io.Serializable;
+import java.util.Locale;
+
+
 import jakarta.enterprise.context.SessionScoped;
-import jakarta.inject.Named;
 import jakarta.faces.context.FacesContext;
+import jakarta.inject.Named;
 
 import org.primefaces.context.PrimeApplicationContext;
 import org.primefaces.showcase.domain.Country;
-
-import java.io.Serializable;
-import java.util.Locale;
 
 @Named
 @SessionScoped

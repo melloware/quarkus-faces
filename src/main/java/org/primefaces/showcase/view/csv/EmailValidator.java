@@ -25,12 +25,15 @@ package org.primefaces.showcase.view.csv;
 
 import java.util.Map;
 import java.util.regex.Pattern;
+
+
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.validator.FacesValidator;
 import jakarta.faces.validator.Validator;
 import jakarta.faces.validator.ValidatorException;
+
 import org.primefaces.validate.ClientValidator;
 
 /**
@@ -39,8 +42,10 @@ import org.primefaces.validate.ClientValidator;
 @FacesValidator("custom.emailValidator")
 public class EmailValidator implements Validator, ClientValidator {
 
-    private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    private static final String EMAIL_PATTERN = """
+            ^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@\
+            [A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$\
+            """;
 
     private Pattern pattern;
 

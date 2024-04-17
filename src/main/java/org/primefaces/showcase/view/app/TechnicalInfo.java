@@ -24,13 +24,12 @@ package org.primefaces.showcase.view.app;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
-
-import org.apache.commons.lang3.StringUtils;
-import org.omnifaces.util.Faces;
-import org.primefaces.showcase.util.VirtualMachine;
-
 import lombok.Data;
 import lombok.extern.jbosslog.JBossLog;
+import org.omnifaces.util.Faces;
+
+import org.apache.commons.lang3.StringUtils;
+import org.primefaces.showcase.util.VirtualMachine;
 
 /**
  * TechnicalInfo.

@@ -1,9 +1,9 @@
 package org.primefaces.showcase.util;
 
-import org.apache.commons.lang3.SystemUtils;
-
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.extern.jbosslog.JBossLog;
+
+import org.apache.commons.lang3.SystemUtils;
 
 @RegisterForReflection
 @JBossLog

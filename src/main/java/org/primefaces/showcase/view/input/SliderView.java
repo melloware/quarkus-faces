@@ -23,13 +23,13 @@
  */
 package org.primefaces.showcase.view.input;
 
-import org.primefaces.event.SlideEndEvent;
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.ValueChangeEvent;
 import jakarta.inject.Named;
+
+import org.primefaces.event.SlideEndEvent;
 
 @Named
 @RequestScoped

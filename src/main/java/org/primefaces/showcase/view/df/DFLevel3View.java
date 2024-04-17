@@ -23,10 +23,10 @@
  */
 package org.primefaces.showcase.view.df;
 
-import org.primefaces.PrimeFaces;
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+
+import org.primefaces.PrimeFaces;
 
 @Named("dfLevel3View")
 @RequestScoped

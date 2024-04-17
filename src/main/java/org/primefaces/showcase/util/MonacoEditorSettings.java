@@ -28,21 +28,13 @@ import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.faces.model.SelectItem;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.extensions.model.monacoeditor.DiffEditorOptions;
-import org.primefaces.extensions.model.monacoeditor.ECursorStyle;
-import org.primefaces.extensions.model.monacoeditor.ELanguage;
-import org.primefaces.extensions.model.monacoeditor.ERenderWhitespace;
-import org.primefaces.extensions.model.monacoeditor.ETheme;
-import org.primefaces.extensions.model.monacoeditor.EditorOptions;
-import org.primefaces.extensions.model.monacoeditor.EditorRulerOption;
-import org.primefaces.extensions.model.monacoeditor.EditorStandaloneTheme;
-import org.primefaces.extensions.model.monacoeditor.EditorTokenThemeRule;
-
-import io.quarkus.runtime.annotations.RegisterForReflection;
+import org.primefaces.extensions.model.monacoeditor.*;
 
 @RegisterForReflection
 public class MonacoEditorSettings {

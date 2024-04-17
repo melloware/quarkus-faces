@@ -23,12 +23,12 @@
  */
 package org.primefaces.showcase.view.input;
 
-import org.primefaces.event.RateEvent;
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+
+import org.primefaces.event.RateEvent;
 
 @Named
 @RequestScoped

@@ -25,6 +25,8 @@ package org.primefaces.showcase.view.data.diagram;
 
 import java.io.Serializable;
 
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -44,8 +46,6 @@ import org.primefaces.model.diagram.endpoint.EndPoint;
 import org.primefaces.model.diagram.endpoint.EndPointAnchor;
 import org.primefaces.model.diagram.endpoint.RectangleEndPoint;
 import org.primefaces.model.diagram.overlay.ArrowOverlay;
-
-import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named("diagramEditableView")
 @ViewScoped

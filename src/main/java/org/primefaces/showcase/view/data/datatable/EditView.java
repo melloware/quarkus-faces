@@ -23,11 +23,9 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
-import org.primefaces.event.CellEditEvent;
-import org.primefaces.event.RowEditEvent;
-import org.primefaces.showcase.domain.InventoryStatus;
-import org.primefaces.showcase.domain.Product;
-import org.primefaces.showcase.service.ProductService;
+import java.io.Serializable;
+import java.util.List;
+
 
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
@@ -35,8 +33,12 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import java.io.Serializable;
-import java.util.List;
+
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
+import org.primefaces.showcase.domain.InventoryStatus;
+import org.primefaces.showcase.domain.Product;
+import org.primefaces.showcase.service.ProductService;
 
 @Named("dtEditView")
 @ViewScoped

@@ -23,12 +23,12 @@
  */
 package org.primefaces.showcase.view.misc;
 
-import org.primefaces.event.ResizeEvent;
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+
+import org.primefaces.event.ResizeEvent;
 
 @Named
 @RequestScoped

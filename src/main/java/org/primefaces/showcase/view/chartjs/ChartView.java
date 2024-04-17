@@ -27,58 +27,27 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
-
-import org.primefaces.event.ItemSelectEvent;
-import software.xdev.chartjs.model.charts.BarChart;
-import software.xdev.chartjs.model.charts.BubbleChart;
-import software.xdev.chartjs.model.charts.DoughnutChart;
-import software.xdev.chartjs.model.charts.LineChart;
-import software.xdev.chartjs.model.charts.PieChart;
-import software.xdev.chartjs.model.charts.PolarChart;
-import software.xdev.chartjs.model.charts.RadarChart;
-import software.xdev.chartjs.model.charts.ScatterChart;
+import software.xdev.chartjs.model.charts.*;
 import software.xdev.chartjs.model.color.Color;
-import software.xdev.chartjs.model.data.BarData;
-import software.xdev.chartjs.model.data.BubbleData;
-import software.xdev.chartjs.model.data.DoughnutData;
-import software.xdev.chartjs.model.data.LineData;
-import software.xdev.chartjs.model.data.PieData;
-import software.xdev.chartjs.model.data.PolarData;
-import software.xdev.chartjs.model.data.RadarData;
-import software.xdev.chartjs.model.data.ScatterData;
+import software.xdev.chartjs.model.data.*;
 import software.xdev.chartjs.model.datapoint.BubbleDataPoint;
 import software.xdev.chartjs.model.datapoint.ScatterDataPoint;
-import software.xdev.chartjs.model.dataset.BarDataset;
-import software.xdev.chartjs.model.dataset.BubbleDataset;
-import software.xdev.chartjs.model.dataset.DoughnutDataset;
-import software.xdev.chartjs.model.dataset.LineDataset;
-import software.xdev.chartjs.model.dataset.PieDataset;
-import software.xdev.chartjs.model.dataset.PolarDataset;
-import software.xdev.chartjs.model.dataset.RadarDataset;
-import software.xdev.chartjs.model.dataset.ScatterDataset;
+import software.xdev.chartjs.model.dataset.*;
 import software.xdev.chartjs.model.enums.FontStyle;
 import software.xdev.chartjs.model.enums.ScalesPosition;
-import software.xdev.chartjs.model.options.BarOptions;
-import software.xdev.chartjs.model.options.DoughnutOptions;
-import software.xdev.chartjs.model.options.LineOptions;
-import software.xdev.chartjs.model.options.Plugins;
-import software.xdev.chartjs.model.options.RadarOptions;
-import software.xdev.chartjs.model.options.Title;
-import software.xdev.chartjs.model.options.Tooltip;
+import software.xdev.chartjs.model.options.*;
 import software.xdev.chartjs.model.options.elements.Fill;
-import software.xdev.chartjs.model.options.scales.AngleLines;
-import software.xdev.chartjs.model.options.scales.BarScale;
-import software.xdev.chartjs.model.options.scales.LinearScale;
-import software.xdev.chartjs.model.options.scales.PointLabels;
-import software.xdev.chartjs.model.options.scales.RadialLinearScale;
-import software.xdev.chartjs.model.options.scales.Scales;
+import software.xdev.chartjs.model.options.scales.*;
 import software.xdev.chartjs.model.options.ticks.CategoryTicks;
 import software.xdev.chartjs.model.options.ticks.RadialLinearTicks;
+
+import org.primefaces.event.ItemSelectEvent;
 
 @Named
 @RequestScoped
@@ -389,116 +358,118 @@ public class ChartView implements Serializable {
     }
 
     public void createJsonModel() {
-        json = "{\r\n"
-                + "   \"type\":\"line\",\r\n"
-                + "   \"data\":{\r\n"
-                + "      \"datasets\":[\r\n"
-                + "         {\r\n"
-                + "            \"backgroundColor\":\"rgba(40, 180, 99, 0.3)\",\r\n"
-                + "            \"borderColor\":\"rgb(40, 180, 99)\",\r\n"
-                + "            \"borderWidth\":1,\r\n"
-                + "            \"data\":[\r\n"
-                + "               {\r\n"
-                + "                  \"x\":1699457269877,\r\n"
-                + "                  \"y\":20\r\n"
-                + "               },\r\n"
-                + "               {\r\n"
-                + "                  \"x\":1700047109694,\r\n"
-                + "                  \"y\":20\r\n"
-                + "               }\r\n"
-                + "            ],\r\n"
-                + "            \"hidden\":false,\r\n"
-                + "            \"label\":\"Device Id: 524967 Register: A - total Wh \",\r\n"
-                + "            \"minBarLength\":3\r\n"
-                + "         },\r\n"
-                + "         {\r\n"
-                + "            \"backgroundColor\":\"rgba(218, 117, 255, 0.3)\",\r\n"
-                + "            \"borderColor\":\"rgb(218, 117, 255)\",\r\n"
-                + "            \"borderWidth\":1,\r\n"
-                + "            \"data\":[\r\n"
-                + "               {\r\n"
-                + "                  \"x\":1699457267847,\r\n"
-                + "                  \"y\":10\r\n"
-                + "               },\r\n"
-                + "               {\r\n"
-                + "                  \"x\":1700047108397,\r\n"
-                + "                  \"y\":234\r\n"
-                + "               }\r\n"
-                + "            ],\r\n"
-                + "            \"hidden\":false,\r\n"
-                + "            \"label\":\"Device Id: 524967 Register: A+ total Wh \",\r\n"
-                + "            \"minBarLength\":3\r\n"
-                + "         }\r\n"
-                + "      ]\r\n"
-                + "   },\r\n"
-                + "   \"options\":{\r\n"
-                + "      \"plugins\":{\r\n"
-                + "         \"legend\":{\r\n"
-                + "            \"display\":true,\r\n"
-                + "            \"fullWidth\":true,\r\n"
-                + "            \"position\":\"top\",\r\n"
-                + "            \"reverse\":false,\r\n"
-                + "            \"rtl\":false\r\n"
-                + "         },\r\n"
-                + "         \"title\":{\r\n"
-                + "            \"display\":true,\r\n"
-                + "            \"text\":\"Values from the meter\"\r\n"
-                + "         },\r\n"
-                + "         \"zoom\":{\r\n"
-                + "            \"pan\":{\r\n"
-                + "               \"enabled\":true,\r\n"
-                + "               \"mode\":\"xy\",\r\n"
-                + "               \"threshold\":5\r\n"
-                + "            },\r\n"
-                + "            \"zoom\":{\r\n"
-                + "               \"wheel\":{\r\n"
-                + "                  \"enabled\":true\r\n"
-                + "               },\r\n"
-                + "               \"pinch\":{\r\n"
-                + "                  \"enabled\":true\r\n"
-                + "               },\r\n"
-                + "               \"mode\":\"xy\"\r\n"
-                + "            }\r\n"
-                + "         }\r\n"
-                + "      },\r\n"
-                + "      \"scales\":{\r\n"
-                + "         \"x\":{\r\n"
-                + "            \"beginAtZero\":false,\r\n"
-                + "            \"offset\":true,\r\n"
-                + "            \"reverse\":false,\r\n"
-                + "            \"stacked\":true,\r\n"
-                + "            \"ticks\":{\r\n"
-                + "               \"autoSkip\":true,\r\n"
-                + "               \"maxRotation\":0,\r\n"
-                + "               \"minRotation\":0,\r\n"
-                + "               \"mirror\":false,\r\n"
-                + "               \"source\":\"data\"\r\n"
-                + "            },\r\n"
-                + "            \"time\":{\r\n"
-                + "               \"displayFormats\":{\r\n"
-                + "                  \"minute\":\"dd.LL T\"\r\n"
-                + "               },\r\n"
-                + "               \"round\":\"minute\",\r\n"
-                + "               \"stepSize\":\"60\",\r\n"
-                + "               \"unit\":\"minute\"\r\n"
-                + "            },\r\n"
-                + "            \"type\":\"time\"\r\n"
-                + "         },\r\n"
-                + "         \"y\":{\r\n"
-                + "            \"beginAtZero\":false,\r\n"
-                + "            \"offset\":false,\r\n"
-                + "            \"reverse\":false,\r\n"
-                + "            \"stacked\":true,\r\n"
-                + "            \"ticks\":{\r\n"
-                + "               \"autoSkip\":true,\r\n"
-                + "               \"mirror\":false\r\n"
-                + "            }\r\n"
-                + "         }\r\n"
-                + "      },\r\n"
-                + "      \"showLine\":true,\r\n"
-                + "      \"spanGaps\":false\r\n"
-                + "   }\r\n"
-                + "}";
+        json = """
+                {
+                   "type":"line",
+                   "data":{
+                      "datasets":[
+                         {
+                            "backgroundColor":"rgba(40, 180, 99, 0.3)",
+                            "borderColor":"rgb(40, 180, 99)",
+                            "borderWidth":1,
+                            "data":[
+                               {
+                                  "x":1699457269877,
+                                  "y":20
+                               },
+                               {
+                                  "x":1700047109694,
+                                  "y":20
+                               }
+                            ],
+                            "hidden":false,
+                            "label":"Device Id: 524967 Register: A - total Wh ",
+                            "minBarLength":3
+                         },
+                         {
+                            "backgroundColor":"rgba(218, 117, 255, 0.3)",
+                            "borderColor":"rgb(218, 117, 255)",
+                            "borderWidth":1,
+                            "data":[
+                               {
+                                  "x":1699457267847,
+                                  "y":10
+                               },
+                               {
+                                  "x":1700047108397,
+                                  "y":234
+                               }
+                            ],
+                            "hidden":false,
+                            "label":"Device Id: 524967 Register: A+ total Wh ",
+                            "minBarLength":3
+                         }
+                      ]
+                   },
+                   "options":{
+                      "plugins":{
+                         "legend":{
+                            "display":true,
+                            "fullWidth":true,
+                            "position":"top",
+                            "reverse":false,
+                            "rtl":false
+                         },
+                         "title":{
+                            "display":true,
+                            "text":"Values from the meter"
+                         },
+                         "zoom":{
+                            "pan":{
+                               "enabled":true,
+                               "mode":"xy",
+                               "threshold":5
+                            },
+                            "zoom":{
+                               "wheel":{
+                                  "enabled":true
+                               },
+                               "pinch":{
+                                  "enabled":true
+                               },
+                               "mode":"xy"
+                            }
+                         }
+                      },
+                      "scales":{
+                         "x":{
+                            "beginAtZero":false,
+                            "offset":true,
+                            "reverse":false,
+                            "stacked":true,
+                            "ticks":{
+                               "autoSkip":true,
+                               "maxRotation":0,
+                               "minRotation":0,
+                               "mirror":false,
+                               "source":"data"
+                            },
+                            "time":{
+                               "displayFormats":{
+                                  "minute":"dd.LL T"
+                               },
+                               "round":"minute",
+                               "stepSize":"60",
+                               "unit":"minute"
+                            },
+                            "type":"time"
+                         },
+                         "y":{
+                            "beginAtZero":false,
+                            "offset":false,
+                            "reverse":false,
+                            "stacked":true,
+                            "ticks":{
+                               "autoSkip":true,
+                               "mirror":false
+                            }
+                         }
+                      },
+                      "showLine":true,
+                      "spanGaps":false
+                   }
+                }\
+                """;
     }
 
     public void itemSelect(ItemSelectEvent event) {

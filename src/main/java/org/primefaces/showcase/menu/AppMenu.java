@@ -23,12 +23,14 @@
  */
 package org.primefaces.showcase.menu;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Named;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
 
 @Named
 @ApplicationScoped

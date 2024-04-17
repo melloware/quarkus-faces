@@ -23,13 +23,13 @@
  */
 package org.primefaces.showcase.view.data.tree;
 
-import org.primefaces.model.TreeNode;
-import org.primefaces.showcase.service.DocumentService;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+
+import org.primefaces.model.TreeNode;
+import org.primefaces.showcase.service.DocumentService;
 
 @Named("treeIconView")
 @RequestScoped

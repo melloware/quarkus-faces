@@ -27,6 +27,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
@@ -40,17 +41,21 @@ public class OutputPanelView implements Serializable {
     public void loadData() throws InterruptedException {
         Thread.sleep(1000); // Sleep a bit to show the skeletons
         data.put("title", "OutputPanel loading facet");
-        data.put("body", "Deferred loading can be used with the \"loading\" facet to show UI while the data is being "
-                + "loaded. This is normally combined with the load ajax event with a listener which loads the data you "
-                + "want to show in your panel. See xhtml and OutputPanelView.java");
+        data.put("body", """
+                Deferred loading can be used with the "loading" facet to show UI while the data is being \
+                loaded. This is normally combined with the load ajax event with a listener which loads the data you \
+                want to show in your panel. See xhtml and OutputPanelView.java\
+                """);
     }
 
     public void loadData2() throws InterruptedException {
         Thread.sleep(1000); // Sleep a bit to show the skeletons
         data2.put("title", "Deferred loading in Ajax requests");
-        data2.put("body", "By default deferred loading does not work with Ajax requests. As a solution you can use the "
-                + "\"loaded\" boolean attribute to enforce loading (even in Ajax requests). Normally you would use "
-                + "an expression here checking if your data is empty. See xhtml and OutputPanelView.java");
+        data2.put("body", """
+                By default deferred loading does not work with Ajax requests. As a solution you can use the \
+                "loaded" boolean attribute to enforce loading (even in Ajax requests). Normally you would use \
+                an expression here checking if your data is empty. See xhtml and OutputPanelView.java\
+                """);
     }
 
     public Map<String, String> getData() {

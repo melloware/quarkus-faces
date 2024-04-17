@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.faces.application.ProjectStage;
 import jakarta.faces.component.UIComponent;
@@ -38,8 +40,6 @@ import jakarta.faces.context.FacesContext;
 
 import org.primefaces.cache.CacheProvider;
 import org.primefaces.component.tabview.Tab;
-
-import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection
 public class ShowcaseUtil {

@@ -23,14 +23,16 @@
  */
 package org.primefaces.showcase.view.data.tree;
 
-import jakarta.faces.view.ViewScoped;
-import org.primefaces.model.DefaultTreeNode;
-import org.primefaces.model.TreeNode;
-
-import jakarta.annotation.PostConstruct;
-import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.Locale;
+
+
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
+
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
 import org.primefaces.util.LangUtils;
 
 @Named("treeBasicView")

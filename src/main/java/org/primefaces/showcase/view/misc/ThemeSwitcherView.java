@@ -23,14 +23,16 @@
  */
 package org.primefaces.showcase.view.misc;
 
-import org.primefaces.showcase.domain.Theme;
-import org.primefaces.showcase.service.ThemeService;
+import java.util.List;
+
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import java.util.List;
+
+import org.primefaces.showcase.domain.Theme;
+import org.primefaces.showcase.service.ThemeService;
 
 @Named
 @RequestScoped

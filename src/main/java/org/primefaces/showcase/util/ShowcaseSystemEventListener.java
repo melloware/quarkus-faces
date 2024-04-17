@@ -23,14 +23,14 @@
  */
 package org.primefaces.showcase.util;
 
-import org.primefaces.component.datatable.DataTable;
-import org.primefaces.component.export.DataExporters;
-import org.primefaces.showcase.view.data.dataexporter.TextExporter;
-
 import jakarta.faces.application.Application;
 import jakarta.faces.event.AbortProcessingException;
 import jakarta.faces.event.SystemEvent;
 import jakarta.faces.event.SystemEventListener;
+
+import org.primefaces.component.datatable.DataTable;
+import org.primefaces.component.export.DataExporters;
+import org.primefaces.showcase.view.data.dataexporter.TextExporter;
 
 public class ShowcaseSystemEventListener implements SystemEventListener {
 

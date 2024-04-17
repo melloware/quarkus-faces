@@ -29,13 +29,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
 import org.primefaces.component.schedule.Schedule;
-
-import io.quarkus.runtime.annotations.RegisterForReflection;
 
 /**
  * Provides the examples for the [@code extender} options of various components,

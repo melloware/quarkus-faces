@@ -23,12 +23,12 @@
  */
 package org.primefaces.showcase.view.panel;
 
-import org.primefaces.event.ToggleEvent;
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+
+import org.primefaces.event.ToggleEvent;
 
 @Named
 @RequestScoped

@@ -23,14 +23,16 @@
  */
 package org.primefaces.showcase.view.data;
 
-import org.primefaces.event.SelectEvent;
-import org.primefaces.model.mindmap.DefaultMindmapNode;
-import org.primefaces.model.mindmap.MindmapNode;
+import java.io.Serializable;
+import java.util.UUID;
+
 
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
-import java.io.Serializable;
-import java.util.UUID;
+
+import org.primefaces.event.SelectEvent;
+import org.primefaces.model.mindmap.DefaultMindmapNode;
+import org.primefaces.model.mindmap.MindmapNode;
 
 @Named
 @ViewScoped

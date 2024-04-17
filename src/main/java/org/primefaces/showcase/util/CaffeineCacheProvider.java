@@ -23,12 +23,11 @@
  */
 package org.primefaces.showcase.util;
 
-import org.primefaces.cache.CacheProvider;
-
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
-
 import io.quarkus.runtime.annotations.RegisterForReflection;
+
+import org.primefaces.cache.CacheProvider;
 
 /**
  * Caffeine Cache Provider

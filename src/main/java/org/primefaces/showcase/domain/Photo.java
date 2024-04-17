@@ -26,6 +26,7 @@ package org.primefaces.showcase.domain;
 import java.io.Serializable;
 import java.util.UUID;
 
+
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection

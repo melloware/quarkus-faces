@@ -23,13 +23,13 @@
  */
 package org.primefaces.showcase.service;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
+
 import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.primefaces.showcase.domain.Document;
-
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Named;
 
 @Named
 @ApplicationScoped

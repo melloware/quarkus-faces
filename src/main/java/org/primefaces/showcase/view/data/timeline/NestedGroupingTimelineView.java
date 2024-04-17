@@ -23,24 +23,25 @@
  */
 package org.primefaces.showcase.view.data.timeline;
 
-import org.primefaces.model.timeline.TimelineGroup;
-import org.primefaces.showcase.domain.Order;
-import org.primefaces.event.timeline.*;
-import org.primefaces.model.timeline.TimelineEvent;
-import org.primefaces.model.timeline.TimelineModel;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.*;
+
 
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.*;
 
 import org.primefaces.PrimeFaces;
 import org.primefaces.component.timeline.TimelineUpdater;
+import org.primefaces.event.timeline.*;
+import org.primefaces.model.timeline.TimelineEvent;
+import org.primefaces.model.timeline.TimelineGroup;
+import org.primefaces.model.timeline.TimelineModel;
+import org.primefaces.showcase.domain.Order;
 
 @Named("nestedGroupingTimelineView")
 @ViewScoped

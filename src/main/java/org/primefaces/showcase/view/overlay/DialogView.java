@@ -23,13 +23,13 @@
  */
 package org.primefaces.showcase.view.overlay;
 
-import org.primefaces.event.CloseEvent;
-import org.primefaces.event.MoveEvent;
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+
+import org.primefaces.event.CloseEvent;
+import org.primefaces.event.MoveEvent;
 
 @Named
 @RequestScoped

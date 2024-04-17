@@ -23,14 +23,16 @@
  */
 package org.primefaces.showcase.view.data.gmap;
 
-import org.primefaces.event.map.GeocodeEvent;
-import org.primefaces.event.map.ReverseGeocodeEvent;
-import org.primefaces.model.map.*;
+import java.util.List;
+
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
-import java.util.List;
+
+import org.primefaces.event.map.GeocodeEvent;
+import org.primefaces.event.map.ReverseGeocodeEvent;
+import org.primefaces.model.map.*;
 
 @Named
 @RequestScoped

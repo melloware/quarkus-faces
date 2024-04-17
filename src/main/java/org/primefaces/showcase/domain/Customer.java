@@ -27,6 +27,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection

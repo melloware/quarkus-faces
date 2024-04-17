@@ -34,11 +34,11 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.faces.context.FacesContext;
 
 import org.primefaces.util.LangUtils;
-
-import io.quarkus.runtime.annotations.RegisterForReflection;
 
 /**
  * FileContentMarkerUtil

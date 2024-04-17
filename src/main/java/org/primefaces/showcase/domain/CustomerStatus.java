@@ -25,6 +25,7 @@ package org.primefaces.showcase.domain;
 
 import java.util.Random;
 
+
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection

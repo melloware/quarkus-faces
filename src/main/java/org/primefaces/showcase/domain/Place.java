@@ -25,6 +25,7 @@ package org.primefaces.showcase.domain;
 
 import java.util.Objects;
 
+
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection

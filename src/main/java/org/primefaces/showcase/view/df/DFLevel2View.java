@@ -23,13 +23,15 @@
  */
 package org.primefaces.showcase.view.df;
 
-import org.primefaces.PrimeFaces;
-import org.primefaces.event.SelectEvent;
+import java.util.HashMap;
+import java.util.Map;
+
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
-import java.util.HashMap;
-import java.util.Map;
+
+import org.primefaces.PrimeFaces;
+import org.primefaces.event.SelectEvent;
 
 @Named("dfLevel2View")
 @RequestScoped

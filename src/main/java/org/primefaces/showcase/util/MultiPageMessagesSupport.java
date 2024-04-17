@@ -1,18 +1,15 @@
 package org.primefaces.showcase.util;
 
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.*;
+
+
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.PhaseEvent;
 import jakarta.faces.event.PhaseId;
 import jakarta.faces.event.PhaseListener;
-
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
 
 /**
  * Enables messages to be rendered on different pages from which they were set.
