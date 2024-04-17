@@ -14,7 +14,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/datatable"/>
-    <ui:param name="widgetLink" value="datatable-1"/>
+    <ui:param name="widgetLink" value="DataTable-1"/>
 
     <ui:define name="implementation">
         <div class="card">
@@ -23,7 +23,7 @@
                     <f:facet name="header">
                         Expand rows to see detailed information
                     </f:facet>
-                    <p:column style="width:2rem">
+                    <p:column style="width:2rem" ariaHeaderText="Row Toggler">
                         <p:rowToggler/>
                     </p:column>
 
@@ -36,7 +36,9 @@
                     </p:column>
 
                     <p:column headerText="Price">
-                        <h:outputText value="$#{product.price}"/>
+                        <h:outputText value="#{product.price}">
+                            <f:convertNumber type="currency" currencySymbol="$"/>
+                        </h:outputText>
                     </p:column>
 
                     <p:column headerText="Category">
@@ -69,7 +71,7 @@
                                     <p:commandButton value="Add To Cart" icon="pi pi-shopping-cart" type="button"
                                                      disabled="#{product.inventoryStatus == 'OUTOFSTOCK'}">
                                     </p:commandButton>
-                                    <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
+                                    <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
                                 </div>
                             </div>
                         </div>

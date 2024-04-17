@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2023 PrimeTek Informatics
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -65,11 +65,6 @@ public class Place {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(name, code, status);
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -79,8 +74,13 @@ public class Place {
         }
         Place place = (Place) o;
         return Objects.equals(name, place.name)
-                    && Objects.equals(code, place.code)
-                    && Objects.equals(status, place.status);
+                && Objects.equals(code, place.code)
+                && Objects.equals(status, place.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, code, status);
     }
 
     @Override

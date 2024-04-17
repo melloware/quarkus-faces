@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,21 +31,21 @@ import jakarta.inject.Named;
 @Named
 @RequestScoped
 public class ToolbarView {
-    
+
     public void save() {
-		addMessage("Success", "Data saved");
-	}
-	
-	public void update() {
-		addMessage("Success", "Data updated");
-	}
-	
-	public void delete() {
-		addMessage("Success", "Data deleted");
-	}
-	
-	public void addMessage(String summary, String detail) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-		FacesContext.getCurrentInstance().addMessage(null, message);
-	}
+        addMessage("Success", "Data saved");
+    }
+
+    public void update() {
+        addMessage("Success", "Data updated");
+    }
+
+    public void delete() {
+        addMessage("Success", "Data deleted");
+    }
+
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 }

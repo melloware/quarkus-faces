@@ -22,12 +22,12 @@
                     <p:dataExporter type="xls" target="tbl" fileName="products"/>
                 </p:commandButton>
 
-                <p:commandButton value="XLXS" styleClass="mr-2 mb-2">
+                <p:commandButton value="XLSX" styleClass="mr-2 mb-2">
                     <p:dataExporter type="xlsxstream" target="tbl" fileName="products"/>
                 </p:commandButton>
 
                 <p:commandButton value="PDF" styleClass="mr-2 mb-2">
-                    <p:dataExporter type="pdf" target="tbl" fileName="products"/>
+                    <p:dataExporter type="pdf" target="tbl" fileName="products" exportHeader="false"/>
                 </p:commandButton>
 
                 <p:commandButton value="CSV" styleClass="mr-2 mb-2">

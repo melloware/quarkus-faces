@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,48 +33,33 @@ import java.io.Serializable;
 @Named
 @ViewScoped
 public class ProgressBarView implements Serializable {
-    
+
     private Integer progress1;
     private Integer progress2;
 
-    public Integer getProgress1() {
-        progress1 = updateProgress(progress1);
-        return progress1;
-    }
-
-    public Integer getProgress2() {
-        progress2 = updateProgress(progress2);
-        return progress2;
-    }
-
     public void longRunning() throws InterruptedException {
-        progress2 = 0;
-        while (progress2 == null || progress2 < 100) {
-            progress2 = updateProgress(progress2);
+        setProgress2(0);
+        Integer k = getProgress2();
+        while (k == null || k < 100) {
+            k = updateProgress(k);
+            setProgress2(k);
             Thread.sleep(500);
         }
     }
 
-    private Integer updateProgress(Integer progress) {
-        if(progress == null) {
+    private static Integer updateProgress(Integer progress) {
+        if (progress == null) {
             progress = 0;
         }
         else {
-            progress = progress + (int)(Math.random() * 35);
-            
-            if(progress > 100)
+            progress = progress + (int) (Math.random() * 35);
+
+            if (progress > 100) {
                 progress = 100;
+            }
         }
-        
+
         return progress;
-    }
-
-    public void setProgress1(Integer progress1) {
-        this.progress1 = progress1;
-    }
-
-    public void setProgress2(Integer progress2) {
-        this.progress2 = progress2;
     }
 
     public void onComplete() {
@@ -84,5 +69,22 @@ public class ProgressBarView implements Serializable {
     public void cancel() {
         progress1 = null;
         progress2 = null;
+    }
+
+    public Integer getProgress1() {
+        progress1 = updateProgress(progress1);
+        return progress1;
+    }
+
+    public Integer getProgress2() {
+        return progress2;
+    }
+
+    public void setProgress1(Integer progress1) {
+        this.progress1 = progress1;
+    }
+
+    public void setProgress2(Integer progress2) {
+        this.progress2 = progress2;
     }
 }

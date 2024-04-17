@@ -32,7 +32,7 @@
                         <p:commandButton type="button" title="Delete" icon="pi pi-trash" styleClass="ui-button-danger"/>
                     </p:toolbarGroup>
 
-                    <p:toolbarGroup name="right">
+                    <p:toolbarGroup align="right">
                         <p:menuButton value="Options">
                             <p:menuitem value="Save" action="#{toolbarView.save}" update="messages" icon="pi pi-save"/>
                             <p:menuitem value="Update" action="#{toolbarView.update}" update="messages" icon="pi pi-refresh"/>
@@ -40,7 +40,6 @@
                             <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="pi pi-home"/>
                         </p:menuButton>
                     </p:toolbarGroup>
-
                 </p:toolbar>
             </h:form>
         </div>

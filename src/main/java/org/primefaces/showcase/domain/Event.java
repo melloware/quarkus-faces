@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2023 PrimeTek Informatics
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@ package org.primefaces.showcase.domain;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
@@ -64,11 +65,6 @@ public class Event implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -80,10 +76,11 @@ public class Event implements Serializable {
 
         Event event = (Event) o;
 
-        if (name != null ? !name.equals(event.name) : event.name != null) {
-            return false;
-        }
+        return Objects.equals(name, event.name);
+    }
 
-        return true;
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 }

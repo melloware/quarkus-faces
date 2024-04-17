@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,20 +23,27 @@
  */
 package org.primefaces.showcase.view.menu;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.concurrent.TimeUnit;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
+
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.FacesContext;
-import jakarta.inject.Named;
-
 @Named
-@RequestScoped
-public class MenuView {
+@ViewScoped
+public class MenuView implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private MenuModel model;
 
@@ -46,13 +53,32 @@ public class MenuView {
 
         //First submenu
         DefaultSubMenu firstSubmenu = DefaultSubMenu.builder()
-                .label("Dynamic Submenu")
+                .label("Options")
+                .expanded(true)
                 .build();
 
         DefaultMenuItem item = DefaultMenuItem.builder()
-                .value("External")
-                .url("http://www.primefaces.org")
-                .icon("pi pi-home")
+                .value("Save (Non-Ajax)")
+                .icon("pi pi-save")
+                .ajax(false)
+                .command("#{menuView.save}")
+                .update("messages")
+                .build();
+        firstSubmenu.getElements().add(item);
+
+        item = DefaultMenuItem.builder()
+                .value("Update")
+                .icon("pi pi-refresh")
+                .command("#{menuView.update}")
+                .update("messages")
+                .build();
+        firstSubmenu.getElements().add(item);
+
+        item = DefaultMenuItem.builder()
+                .value("Delete")
+                .icon("pi pi-times")
+                .command("#{menuView.delete}")
+                .update("messages")
                 .build();
         firstSubmenu.getElements().add(item);
 
@@ -60,28 +86,20 @@ public class MenuView {
 
         //Second submenu
         DefaultSubMenu secondSubmenu = DefaultSubMenu.builder()
-                .label("Dynamic Actions")
+                .label("Navigations")
+                .expanded(false)
                 .build();
 
         item = DefaultMenuItem.builder()
-                .value("Save")
-                .icon("pi pi-save")
-                .command("#{menuView.save}")
-                .update("messages")
-                .build();
-        secondSubmenu.getElements().add(item);
-
-        item = DefaultMenuItem.builder()
-                .value("Delete")
-                .icon("pi pi-times")
-                .command("#{menuView.delete}")
-                .ajax(false)
+                .value("Website")
+                .url("http://www.primefaces.org")
+                .icon("pi pi-external-link")
                 .build();
         secondSubmenu.getElements().add(item);
 
         item = DefaultMenuItem.builder()
-                .value("Redirect")
-                .icon("pi pi-search")
+                .value("Internal")
+                .icon("pi pi-upload")
                 .command("#{menuView.redirect}")
                 .build();
         secondSubmenu.getElements().add(item);
@@ -93,16 +111,37 @@ public class MenuView {
         return model;
     }
 
+    public void redirect() throws IOException {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect(ec.getRequestContextPath());
+    }
+
     public void save() {
-        addMessage("Success", "Data saved");
+        addMessage("Save", "Data saved");
     }
 
     public void update() {
-        addMessage("Success", "Data updated");
+        addMessage("Update", "Data updated");
     }
 
     public void delete() {
-        addMessage("Success", "Data deleted");
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Delete", "Data deleted");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    public void sleepAndSave() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+        save();
+    }
+
+    public void sleepAndUpdate() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+        update();
+    }
+
+    public void sleepAndDelete() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+        delete();
     }
 
     public void addMessage(String summary, String detail) {

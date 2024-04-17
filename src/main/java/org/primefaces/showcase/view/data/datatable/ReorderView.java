@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,11 +39,11 @@ import java.util.List;
 @Named("dtReorderView")
 @RequestScoped
 public class ReorderView implements Serializable {
-    
+
     private List<Product> products1;
-    
+
     private List<Product> products2;
-    
+
     @Inject
     ProductService service;
 
@@ -64,7 +64,7 @@ public class ReorderView implements Serializable {
     public void setService(ProductService service) {
         this.service = service;
     }
-    
+
     public void onRowReorder(ReorderEvent event) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Row Moved", "From: " + event.getFromIndex() + ", To:" + event.getToIndex());
         FacesContext.getCurrentInstance().addMessage(null, msg);

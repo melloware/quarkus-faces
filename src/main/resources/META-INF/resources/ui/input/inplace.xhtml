@@ -15,7 +15,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/inplace"/>
-    <ui:param name="widgetLink" value="inplace-1"/>
+    <ui:param name="widgetLink" value="Inplace-1"/>
 
     <ui:define name="implementation">
         <div class="card">
@@ -46,13 +46,18 @@
                         Yes or No
                     </f:facet>
                     <f:facet name="input">
-                        <h:selectBooleanCheckbox/>
+                        <p:selectBooleanCheckbox/>
                     </f:facet>
                 </p:inplace>
 
                 <h5>Image</h5>
                 <p:inplace label="Show" effect="slide">
                     <p:graphicImage name="/demo/images/nature/nature3.jpg"/>
+                </p:inplace>
+
+                <h5>Password</h5>
+                <p:inplace>
+                    <p:password redisplay="true" value="#{inplaceView.password}"/>
                 </p:inplace>
             </h:form>
         </div>

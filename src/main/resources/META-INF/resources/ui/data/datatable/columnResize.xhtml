@@ -14,7 +14,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/datatable"/>
-    <ui:param name="widgetLink" value="datatable-1"/>
+    <ui:param name="widgetLink" value="DataTable-1"/>
 
     <ui:define name="implementation">
 
@@ -115,9 +115,20 @@
                     <p:columnGroup type="footer">
                         <p:row>
                             <p:column colspan="3" style="text-align:right" footerText="Totals:"/>
-                            <p:column footerText="$#{dtGroupView.lastYearTotal}"/>
-
-                            <p:column footerText="$#{dtGroupView.thisYearTotal}"/>
+                            <p:column>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{dtGroupView.lastYearTotal}">
+                                        <f:convertNumber type="currency" currencySymbol="$"/>
+                                    </h:outputText>
+                                </f:facet>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{dtGroupView.thisYearTotal}">
+                                        <f:convertNumber type="currency" currencySymbol="$"/>
+                                    </h:outputText>
+                                </f:facet>
+                            </p:column>
                         </p:row>
                     </p:columnGroup>
                 </p:dataTable>

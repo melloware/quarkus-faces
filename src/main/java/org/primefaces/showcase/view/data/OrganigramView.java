@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -99,7 +99,8 @@ public class OrganigramView implements Serializable {
 
     public void nodeDragDropListener(OrganigramNodeDragDropEvent event) {
         FacesMessage message = new FacesMessage();
-        message.setSummary("Node '" + event.getOrganigramNode().getData() + "' moved from " + event.getSourceOrganigramNode().getData() + " to '" + event.getTargetOrganigramNode().getData() + "'");
+        message.setSummary("Node '" + event.getOrganigramNode().getData()
+                + "' moved from " + event.getSourceOrganigramNode().getData() + " to '" + event.getTargetOrganigramNode().getData() + "'");
         message.setSeverity(FacesMessage.SEVERITY_INFO);
 
         FacesContext.getCurrentInstance().addMessage(null, message);

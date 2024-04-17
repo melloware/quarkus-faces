@@ -14,56 +14,66 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/menubar"/>
-    <ui:param name="widgetLink" value="menubar"/>
+    <ui:param name="widgetLink" value="Menubar"/>
 
     <ui:define name="implementation">
         <div class="card">
             <h:form>
                 <p:growl id="messages"/>
 
-                <p:menubar>
-                    <p:submenu label="File" icon="pi pi-file">
-                        <p:submenu label="New" icon="pi pi-briefcase">
-                            <p:menuitem value="Project" url="#"/>
-                            <p:menuitem value="Other" url="#"/>
+                <p:menubar hideDelay="1000">
+                    <f:facet name="start">
+                        <p:graphicImage name="images/primefaces-logo.svg" library="showcase" width="150"
+                                        styleClass="mt-2"/>
+                    </f:facet>
+                    <p:submenu label="File" icon="pi pi-fw pi-file">
+                        <p:submenu label="New" icon="pi pi-fw pi-plus">
+                            <p:menuitem value="Bookmark" icon="pi pi-fw pi-bookmark"/>
+                            <p:menuitem value="Video" icon="pi pi-fw pi-video"/>
                         </p:submenu>
-                        <p:menuitem value="Open" url="#"/>
-                        <p:divider />
-                        <p:menuitem value="Quit" url="#"/>
+                        <p:menuitem value="Delete" icon="pi pi-fw pi-trash"/>
+                        <p:divider/>
+                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
                     </p:submenu>
 
-                    <p:submenu label="Edit" icon="pi pi-pencil">
-                        <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left"/>
-                        <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right"/>
+                    <p:submenu label="Edit" icon="pi pi-fw pi-pencil">
+                        <p:menuitem value="Left" icon="pi pi-fw pi-align-left"/>
+                        <p:menuitem value="Right" icon="pi pi-fw pi-align-right"/>
+                        <p:menuitem value="Center" icon="pi pi-fw pi-align-center"/>
+                        <p:menuitem value="Justify" icon="pi pi-fw pi-align-justify"/>
                     </p:submenu>
 
-                    <p:submenu label="Help" icon="pi pi-question">
-                        <p:menuitem value="Contents" url="#"/>
-                        <p:submenu label="Search" icon="pi pi-search">
-                            <p:submenu label="Text">
-                                <p:menuitem value="Workspace" url="#"/>
+                    <p:submenu label="Users" icon="pi pi-fw pi-user">
+                        <p:menuitem value="New" icon="pi pi-fw pi-user-plus"/>
+                        <p:menuitem value="Delete" icon="pi pi-fw pi-user-minus"/>
+                        <p:submenu label="Search" icon="pi pi-fw pi-users">
+                            <p:submenu label="Filter" icon="pi pi-fw pi-filter">
+                                <p:menuitem value="Print" icon="pi pi-fw pi-print"/>
                             </p:submenu>
-                            <p:menuitem value="File" url="#"/>
+                            <p:menuitem value="List" icon="pi pi-fw pi-bars"/>
                         </p:submenu>
                     </p:submenu>
 
-                    <p:submenu label="Actions" icon="pi pi-cog">
-                        <p:submenu label="Ajax" icon="pi pi-refresh">
-                            <p:menuitem value="Save" action="#{menuView.save}" icon="pi pi-save" update="messages"/>
-                            <p:menuitem value="Update" action="#{menuView.update}" icon="pi pi-refresh"
-                                        update="messages"/>
+                    <p:submenu label="Events" icon="pi pi-fw pi-calendar">
+                        <p:submenu label="Edit" icon="pi pi-fw pi-pencil">
+                            <p:menuitem value="Save" icon="pi pi-fw pi-calendar-plus"/>
+                            <p:menuitem value="Delete" icon="pi pi-fw pi-calendar-minus"/>
                         </p:submenu>
-                        <p:submenu label="Non-Ajax" icon="pi pi-clone">
-                            <p:menuitem value="Delete" action="#{menuView.delete}" icon="pi pi-times" update="messages"
-                                        ajax="false"/>
+                        <p:submenu label="Archieve" icon="pi pi-fw pi-calendar-times">
+                            <p:menuitem value="Remove" icon="pi pi-fw pi-calendar-minus"/>
                         </p:submenu>
                     </p:submenu>
 
-                    <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times"/>
+                    <p:divider layout="vertical"/>
 
-                    <f:facet name="options">
-                        <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
-                        <p:commandButton type="button" value="Logout" icon="pi pi-home"/>
+                    <p:menuitem value="Quit" icon="pi pi-fw pi-power-off"/>
+
+                    <f:facet name="end">
+                        <div class="ui-input-icon-left mr-2">
+                            <i class="pi pi-fw pi-search"/>
+                            <p:inputText placeholder="Search"/>
+                        </div>
+                        <p:button value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
                     </f:facet>
                 </p:menubar>
             </h:form>

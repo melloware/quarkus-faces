@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,9 @@ public class MenuItem implements Serializable {
     private String url;
     private List<MenuItem> menuItems;
     private String badge;
-    private String parentLabel;
+    private String badgeSeverity;
+    private MenuItem parent;
+    private String imageSrc;
 
     public MenuItem(String label, String url) {
         this.label = label;
@@ -50,9 +52,22 @@ public class MenuItem implements Serializable {
         this.badge = badge;
     }
 
+    public MenuItem(String label, String url, String badge, String imageSrc) {
+        this.label = label;
+        this.url = url;
+        this.badge = badge;
+        this.imageSrc = imageSrc;
+    }
+
     public MenuItem(String label, List<MenuItem> menuItems) {
         this.label = label;
         this.menuItems = menuItems;
+    }
+
+    public MenuItem(String label, List<MenuItem> menuItems, String badge) {
+        this.label = label;
+        this.menuItems = menuItems;
+        this.badge = badge;
     }
 
     public String getLabel() {
@@ -67,16 +82,34 @@ public class MenuItem implements Serializable {
         return badge;
     }
 
+    public String getBadgeSeverity() {
+        if (badgeSeverity != null) {
+            return badgeSeverity;
+        }
+        badgeSeverity = "primary";
+        if ("Deprecated".equalsIgnoreCase(badge)) {
+            badgeSeverity = "warning";
+        }
+        if ("New".equalsIgnoreCase(badge)) {
+            badgeSeverity = "success";
+        }
+        return badgeSeverity;
+    }
+
     public List<MenuItem> getMenuItems() {
         return menuItems;
     }
 
-    public String getParentLabel() {
-        return parentLabel;
+    public MenuItem getParent() {
+        return parent;
     }
 
-    public void setParentLabel(String parentLabel) {
-        this.parentLabel = parentLabel;
+    public void setParent(MenuItem parent) {
+        this.parent = parent;
+    }
+
+    public String getImageSrc() {
+        return imageSrc;
     }
 
     @Override

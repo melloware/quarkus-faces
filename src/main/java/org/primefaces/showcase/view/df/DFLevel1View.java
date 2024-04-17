@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,23 +26,41 @@ package org.primefaces.showcase.view.df;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
 @Named("dfLevel1View")
 @RequestScoped
 public class DFLevel1View {
-    
+
+    private LocalDateTime valueFromFlash;
+
+    @PostConstruct
+    public void init() {
+        valueFromFlash = (LocalDateTime) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("param1");
+    }
+
     public void openLevel2() {
-        Map<String,Object> options = new HashMap<String, Object>();
+        Map<String, Object> options = new HashMap<String, Object>();
         options.put("modal", true);
         PrimeFaces.current().dialog().openDynamic("level2", options, null);
     }
-    
+
     public void onReturnFromLevel2(SelectEvent event) {
         //pass back to root
         PrimeFaces.current().dialog().closeDynamic(event.getObject());
+    }
+
+    public LocalDateTime getValueFromFlash() {
+        return valueFromFlash;
+    }
+
+    public void setValueFromFlash(LocalDateTime valueFromFlash) {
+        this.valueFromFlash = valueFromFlash;
     }
 }

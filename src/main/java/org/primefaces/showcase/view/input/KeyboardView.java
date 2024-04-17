@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,12 +29,12 @@ import jakarta.inject.Named;
 @Named
 @RequestScoped
 public class KeyboardView {
-    
-    private String value1;	
-	private String value2;	
-	private String value3;	
-	private String value4;
-	private String value5;
+
+    private String value1;
+    private String value2;
+    private String value3;
+    private String value4;
+    private String value5;
     private String value6;
     private String value7;
     private String value8;
@@ -111,5 +111,5 @@ public class KeyboardView {
     public void setValue9(String value9) {
         this.value9 = value9;
     }
-    
+
 }

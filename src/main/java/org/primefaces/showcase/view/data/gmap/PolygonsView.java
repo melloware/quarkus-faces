@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,46 +30,50 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Polygon;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import java.io.Serializable;
+import jakarta.faces.view.ViewScoped;
+import org.primefaces.model.map.Overlay;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class PolygonsView implements Serializable {
- 
-    private MapModel polygonModel;
-     
+
+    private MapModel<Long> polygonModel;
+
     @PostConstruct
     public void init() {
-        polygonModel = new DefaultMapModel();
-         
+        polygonModel = new DefaultMapModel<>();
+
         //Shared coordinates
         LatLng coord1 = new LatLng(36.879466, 30.667648);
         LatLng coord2 = new LatLng(36.883707, 30.689216);
         LatLng coord3 = new LatLng(36.879703, 30.706707);
- 
+
         //Polygon
-        Polygon polygon = new Polygon();
+        Polygon<Long> polygon = new Polygon<>();
+        polygon.setData(1L);
         polygon.getPaths().add(coord1);
         polygon.getPaths().add(coord2);
         polygon.getPaths().add(coord3);
- 
+
         polygon.setStrokeColor("#FF9900");
         polygon.setFillColor("#FF9900");
         polygon.setStrokeOpacity(0.7);
         polygon.setFillOpacity(0.7);
-         
+
         polygonModel.addOverlay(polygon);
     }
- 
-    public MapModel getPolygonModel() {
+
+    public MapModel<Long> getPolygonModel() {
         return polygonModel;
     }
- 
-    public void onPolygonSelect(OverlaySelectEvent event) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Polygon Selected", null));
+
+    public void onPolygonSelect(OverlaySelectEvent<Long> event) {
+        Overlay<Long> overlay = event.getOverlay();
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Polygon " + overlay.getData() + " Selected", null));
     }
 }

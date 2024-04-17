@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,18 +39,18 @@ import java.util.List;
 @Named
 @SessionScoped
 public class DataListView implements Serializable {
-    
+
     private List<Product> products1;
-    
+
     private List<Product> products2;
-    
+
     private List<Product> products3;
-    
+
     private Product selectedProduct;
-    
+
     @Inject
     ProductService service;
-    
+
     @PostConstruct
     public void init() {
         products1 = service.getProducts(10);
@@ -68,7 +68,7 @@ public class DataListView implements Serializable {
 
     public List<Product> getProducts3() {
         return products3;
-    }    
+    }
 
     public void setService(ProductService service) {
         this.service = service;

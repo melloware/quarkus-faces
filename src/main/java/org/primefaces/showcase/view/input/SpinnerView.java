@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,14 +29,17 @@ import jakarta.inject.Named;
 @Named
 @RequestScoped
 public class SpinnerView {
-    
-    private int number1; 
-    private double number2; 
+
+    private int number1;
+    private double number2;
     private int number3;
-    private int number4;  
+    private int number4 = 15;
     private int number5;
     private int number6;
     private int number7;
+    private int number8;
+    private int number9;
+    private int number10;
 
     public int getNumber1() {
         return number1;
@@ -77,7 +80,7 @@ public class SpinnerView {
     public void setNumber5(int number5) {
         this.number5 = number5;
     }
-    
+
     public int getNumber6() {
         return number6;
     }
@@ -92,5 +95,29 @@ public class SpinnerView {
 
     public void setNumber7(int number7) {
         this.number7 = number7;
+    }
+
+    public int getNumber8() {
+        return number8;
+    }
+
+    public void setNumber8(int number8) {
+        this.number8 = number8;
+    }
+
+    public int getNumber9() {
+        return number9;
+    }
+
+    public void setNumber9(int number9) {
+        this.number9 = number9;
+    }
+
+    public int getNumber10() {
+        return number10;
+    }
+
+    public void setNumber10(int number10) {
+        this.number10 = number10;
     }
 }

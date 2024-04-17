@@ -14,7 +14,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/schedule"/>
-    <ui:param name="widgetLink" value="schedule-1"/>
+    <ui:param name="widgetLink" value="Schedule-1"/>
 
     <ui:define name="implementation">
         <div class="card">
@@ -30,6 +30,9 @@
                             <p:ajax update="schedule"/>
                         </p:selectBooleanCheckbox>
                         <p:selectBooleanCheckbox value="#{scheduleJava8View.draggable}" itemLabel="draggable events">
+                            <p:ajax update="schedule"/>
+                        </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox value="#{scheduleJava8View.selectable}" itemLabel="range selection">
                             <p:ajax update="schedule"/>
                         </p:selectBooleanCheckbox>
                         <p:selectBooleanCheckbox value="#{scheduleJava8View.showWeekends}" itemLabel="show weekends">
@@ -140,6 +143,9 @@
                         <p:selectOneMenu id="timeZone" value="#{scheduleJava8View.timeZone}">
                             <f:selectItem itemLabel="ZoneId.systemDefault()"/>
                             <f:selectItem itemLabel="UTC" itemValue="UTC"/>
+                            <f:selectItem itemLabel="America/New_York" itemValue="America/New_York"/>
+                            <f:selectItem itemLabel="Europe/Moscow" itemValue="Europe/Moscow"/>
+                            <f:selectItem itemLabel="Europe/Vienna" itemValue="Europe/Vienna"/>
                             <f:selectItem itemLabel="GMT-5" itemValue="GMT-5"/>
                             <f:selectItem itemLabel="GMT+13" itemValue="GMT+13"/>
 
@@ -152,6 +158,7 @@
                             <f:selectItem itemLabel="UTC" itemValue="UTC"/>
                             <f:selectItem itemLabel="America/New_York" itemValue="America/New_York"/>
                             <f:selectItem itemLabel="Europe/Moscow" itemValue="Europe/Moscow"/>
+                            <f:selectItem itemLabel="Europe/Vienna" itemValue="Europe/Vienna"/>
 
                             <p:ajax update="schedule"/>
                         </p:selectOneMenu>
@@ -225,6 +232,7 @@
                             initialDate="#{scheduleJava8View.initialDate}"
                             aspectRatio="#{scheduleJava8View.aspectRatio}"
                             resizable="#{scheduleJava8View.resizable}"
+                            selectable="#{scheduleJava8View.selectable}"
                             draggable="#{scheduleJava8View.draggable}" showHeader="#{scheduleJava8View.showHeader}"
                             slotLabelFormat="#{scheduleJava8View.slotLabelFormat}"
                             showWeekNumbers="#{scheduleJava8View.showWeekNumbers}"
@@ -244,6 +252,7 @@
                             oncomplete="PF('eventDialog').show();"/>
                     <p:ajax event="eventMove" listener="#{scheduleJava8View.onEventMove}" update="messages"/>
                     <p:ajax event="eventResize" listener="#{scheduleJava8View.onEventResize}" update="messages"/>
+                    <p:ajax event="rangeSelect" listener="#{scheduleJava8View.onRangeSelect}" update="messages"/>
                     <p:ajax event="viewChange" listener="#{scheduleJava8View.onViewChange}" update="view"/>
 
                 </p:schedule>
@@ -265,11 +274,13 @@
                         <h:selectBooleanCheckbox id="allDay" value="#{scheduleJava8View.event.allDay}"/>
                     </h:panelGrid>
 
+                    <div>Info: "From" and "To" are located in (server-)timezone</div>
+
                     <div class="flex justify-content-between mt-3">
                         <p:commandButton type="reset" value="Reset" styleClass="font-bold ui-button-outlined"/>
-                        <p:commandButton id="addButton" value="Save" action="#{scheduleJava8View.addEvent}" 
-                                    oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
-                    </div>               
+                        <p:commandButton id="addButton" value="Save" action="#{scheduleJava8View.addEvent}"
+                                         oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
+                    </div>
                 </p:dialog>
             </h:form>
         </div>

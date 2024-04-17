@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,15 +31,16 @@ import org.primefaces.showcase.util.ShowcaseUtil;
 
 public class LazySorter implements Comparator<Customer> {
 
-    private final String sortField;
-    private final SortOrder sortOrder;
+    private String sortField;
+    private SortOrder sortOrder;
 
     public LazySorter(String sortField, SortOrder sortOrder) {
         this.sortField = sortField;
         this.sortOrder = sortOrder;
     }
 
-    @Override public int compare(Customer customer1, Customer customer2) {
+    @Override
+    public int compare(Customer customer1, Customer customer2) {
         try {
             Object value1 = ShowcaseUtil.getPropertyValueViaReflection(customer1, sortField);
             Object value2 = ShowcaseUtil.getPropertyValueViaReflection(customer2, sortField);
@@ -52,4 +53,5 @@ public class LazySorter implements Comparator<Customer> {
             throw new RuntimeException(e);
         }
     }
+
 }

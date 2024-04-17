@@ -6,7 +6,7 @@
                 template="/template/template.xhtml">
 
     <ui:define name="head">
-        <style type="text/css">
+        <style>
             button.ui-button {
                 margin-right: .5rem;
             }
@@ -22,7 +22,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/button"/>
-    <ui:param name="widgetLink" value="button"/>
+    <ui:param name="widgetLink" value="Button"/>
 
     <ui:define name="implementation">
         <div class="card">
@@ -31,7 +31,7 @@
             <p:button value="Disabled" disabled="true" />
 
             <h5>Icons</h5>
-            <p:button icon="pi pi-check" />
+            <p:button icon="pi pi-check" title="Save" />
             <p:button value="Submit" icon="pi pi-check" />
             <p:button value="Submit" icon="pi pi-check" iconPos="right" />
 

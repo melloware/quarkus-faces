@@ -1,9 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="jakarta.faces.facelets"
-                xmlns:h="jakarta.faces.html"
-                xmlns:f="jakarta.faces.core"
-                xmlns:p="http://primefaces.org/ui"
-                template="/template/template.xhtml">
+    xmlns:ui="jakarta.faces.facelets"
+    xmlns:h="jakarta.faces.html"
+    xmlns:f="jakarta.faces.core"
+    xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
     <ui:define name="head">
         <style>
@@ -35,7 +34,7 @@ body .ui-panel.chart-dashlet .ui-panel-content .ui-chart {
     </ui:define>
 
     <ui:define name="description">
-        Dashboard is a layout component featuring dragdrop based content reordering similar to portal environments. Responsive layout requires PrimeFlex CSS.
+        Dashboard is a layout component featuring dragdrop based content reordering similar to portal environments. Responsive layout requires <a href="https://primeflex.org/" target="_blank" rel="noopener noreferrer">PrimeFlex</a> CSS.
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/dashboard" />
@@ -73,7 +72,7 @@ body .ui-panel.chart-dashlet .ui-panel-content .ui-chart {
                             </p:menu>
                         </f:facet>
                         
-                        <p:barChart model="#{chartJsView.barModel}" style="width: 100%; height: 100%;" />
+                        <p:chart value="#{chartView.barModel}" style="width: 100%; height: 100%;" />
                     </p:panel>
 
                     <p:panel id="stacked" header="Stacked" closable="true" styleClass="chart-dashlet" >
@@ -96,10 +95,10 @@ body .ui-panel.chart-dashlet .ui-panel-content .ui-chart {
                                 </p:submenu>
                             </p:menu>
                         </f:facet>
-                        <p:barChart model="#{chartJsView.stackedBarModel}" style="width: 100%; height: 100%;" />
+                        <p:chart value="#{chartView.stackedBarModel}" style="width: 100%; height: 100%;" />
                     </p:panel>
 
-                    <p:panel id="donut" header="Donut" closable="true" styleClass="chart-dashlet" >
+                    <p:panel id="donut" header="Doughnut" closable="true" styleClass="chart-dashlet" >
                         <p:ajax event="close" listener="#{dashboardView.handleClose}" />
                         <f:facet name="options">
                             <p:menu>
@@ -120,7 +119,7 @@ body .ui-panel.chart-dashlet .ui-panel-content .ui-chart {
                             </p:menu>
                         </f:facet>
 
-                        <p:donutChart model="#{chartJsView.donutModel}" />
+                        <p:chart value="#{chartView.donutModel}" style="width: 100%; height: 100%;" />
                     </p:panel>
 
                     <p:panel id="cartesian" header="Cartesian" closable="true" styleClass="chart-dashlet" >
@@ -144,7 +143,7 @@ body .ui-panel.chart-dashlet .ui-panel-content .ui-chart {
                             </p:menu>
                         </f:facet>
 
-                        <p:lineChart id="chartline" model="#{chartJsView.lineModel}" style="width: 100%; height: 100%;"  />
+                        <p:chart id="chartline" value="#{chartView.cartesianLinerModel}" style="width: 100%; height: 100%;" />
                     </p:panel>
                 </p:dashboard>
             </div>
@@ -184,7 +183,7 @@ body .ui-panel.chart-dashlet .ui-panel-content .ui-chart {
                         <h:outputText value="Politics Content" />
                     </p:panel>
                 </p:dashboard>
-                <div style="clear: both"></div>
+                <div style="clear: both" />
             </div>
         </h:form>
     </ui:define>

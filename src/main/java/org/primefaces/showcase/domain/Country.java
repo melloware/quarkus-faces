@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2023 PrimeTek Informatics
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,11 +23,11 @@
  */
 package org.primefaces.showcase.domain;
 
-import io.quarkus.runtime.annotations.RegisterForReflection;
-
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection
 public class Country implements Serializable, Comparable<Country> {
@@ -137,4 +137,5 @@ public class Country implements Serializable, Comparable<Country> {
     public int compareTo(Country o) {
         return name.compareTo(o.name);
     }
+
 }

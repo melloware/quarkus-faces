@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2023 PrimeTek Informatics
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -91,27 +91,19 @@ public class Document implements Serializable, Comparable<Document> {
             if (other.name != null) {
                 return false;
             }
-        }
-        else if (!name.equals(other.name)) {
+        } else if (!name.equals(other.name)) {
             return false;
         }
         if (size == null) {
             if (other.size != null) {
                 return false;
             }
-        }
-        else if (!size.equals(other.size)) {
+        } else if (!size.equals(other.size)) {
             return false;
         }
         if (type == null) {
-            if (other.type != null) {
-                return false;
-            }
-        }
-        else if (!type.equals(other.type)) {
-            return false;
-        }
-        return true;
+            return other.type == null;
+        } else return type.equals(other.type);
     }
 
     @Override

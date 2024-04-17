@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,10 +33,10 @@ import jakarta.inject.Named;
 @Named
 @RequestScoped
 public class ResizableView {
-    
+
     public void onResize(ResizeEvent event) {
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, 
-                        "Image resized", "Width:" + event.getWidth() + ",Height:" + event.getHeight());
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                "Image resized", "Width:" + event.getWidth() + ",Height:" + event.getHeight());
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }

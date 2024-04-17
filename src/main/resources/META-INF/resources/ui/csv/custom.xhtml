@@ -6,7 +6,7 @@
                 template="/template/template.xhtml">
 
     <ui:define name="head">
-        <script type="text/javascript">
+        <script>
             //<![CDATA[
             /**
              * Faces Validator
@@ -20,7 +20,8 @@
                     if (!this.pattern.test(value)) {
                         throw {
                             summary: 'Validation Error',
-                            detail: value + ' is not a valid email.'
+                            detail: value + ' is not a valid email.',
+                            severity: 'error'
                         }
                     }
                 }
@@ -40,7 +41,7 @@
 
                     if (!this.pattern.test(value)) {
                         var msgStr = element.data('p-email-msg'),
-                            msg = msgStr ? {summary: msgStr, detail: msgStr} : vc.getMessage(this.MESSAGE_ID);
+                            msg = msgStr ? {summary: 'Validation Error', detail: msgStr, severity: 'error'} : vc.getMessage(this.MESSAGE_ID);
 
                         throw msg;
                     }
@@ -58,8 +59,8 @@
         A custom client converter or a validator can be implemented easily. Both JSF and Bean Validation APIs are supported.
     </ui:define>
 
-    <ui:param name="documentationLink" value="/core/clientsidevalidation?id=extending-csv"/>
-    <ui:param name="primefacesClientApiLink" value="modules/src_primefaces.primefaces.html#validator-1" />
+    <ui:param name="documentationLink" value="/core/csvJavascriptAPI"/>
+    <ui:param name="primefacesClientApiLink" value="interfaces/src_PrimeFaces.PrimeFaces.Validator.html" />
 
     <ui:define name="implementation">
         <div class="card">
@@ -67,14 +68,14 @@
                 <p:growl showDetail="true"/>
 
                 <h:panelGrid columns="4" cellpadding="7">
-                    <h:outputLabel for="email1" value="Email 1: (JSF Validation)"/>
+                    <p:outputLabel for="email1" value="Email 1: (JSF Validation)"/>
                     <p:inputText id="email1" value="#{customValidationView.text}">
                         <f:validator validatorId="custom.emailValidator"/>
                     </p:inputText>
                     <p:message for="email1" display="tooltip"/>
                     <h:outputText value="#{customValidationView.text}"/>
 
-                    <h:outputLabel for="email2" value="Email 2: (Bean Validation)"/>
+                    <p:outputLabel for="email2" value="Email 2: (Bean Validation)"/>
                     <p:inputText id="email2" value="#{customValidationView.email}"/>
                     <p:message for="email2" display="tooltip"/>
                     <h:outputText value="#{customValidationView.email}"/>

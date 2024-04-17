@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,11 +36,11 @@ import java.util.List;
 @Named("dtContextMenuView")
 @ViewScoped
 public class ContextMenuView implements Serializable {
-    
+
     private List<Product> products;
-    
+
     private Product selectedProduct;
-    
+
     @Inject
     ProductService service;
 
@@ -48,7 +48,7 @@ public class ContextMenuView implements Serializable {
     public void init() {
         products = service.getProducts(10);
     }
-    
+
     public List<Product> getProducts() {
         return products;
     }
@@ -64,9 +64,13 @@ public class ContextMenuView implements Serializable {
     public void setService(ProductService service) {
         this.service = service;
     }
-    
+
     public void deleteProduct() {
         products.remove(selectedProduct);
         selectedProduct = null;
+    }
+
+    public void viewProduct() {
+        // no-op
     }
 }

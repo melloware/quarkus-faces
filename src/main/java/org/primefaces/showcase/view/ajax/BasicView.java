@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +23,10 @@
  */
 package org.primefaces.showcase.view.ajax;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.inject.Named;
 import java.io.Serializable;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -37,49 +37,39 @@ import java.util.Map;
 @Named
 @ViewScoped
 public class BasicView implements Serializable {
-    
+
     private String text1;
-
     private String text2;
-
     private String text3;
-
     private String text4;
-
     private String text5;
-
     private int number;
-
-    private Map<String,Map<String,String>> data = new HashMap<String, Map<String,String>>();
-
-    private String country;  
-    
+    private Map<String, Map<String, String>> data = new HashMap<>();
+    private String country;
     private String city;
+    private Map<String, String> countries;
+    private Map<String, String> cities;
 
-    private Map<String,String> countries;
-
-	private Map<String,String> cities;
-    
     @PostConstruct
     public void init() {
-        countries  = new HashMap<String, String>();
+        countries = new HashMap<>();
         countries.put("USA", "USA");
         countries.put("Germany", "Germany");
         countries.put("Brazil", "Brazil");
-        
-        Map<String,String> map = new HashMap<String, String>();
-		map.put("New York", "New York");
-		map.put("San Francisco", "San Francisco");
-		map.put("Denver", "Denver");
+
+        Map<String, String> map = new HashMap<>();
+        map.put("New York", "New York");
+        map.put("San Francisco", "San Francisco");
+        map.put("Denver", "Denver");
         data.put("USA", map);
-        
-        map = new HashMap<String, String>();
-		map.put("Berlin", "Berlin");
-		map.put("Munich", "Munich");
-		map.put("Frankfurt", "Frankfurt");
+
+        map = new HashMap<>();
+        map.put("Berlin", "Berlin");
+        map.put("Munich", "Munich");
+        map.put("Frankfurt", "Frankfurt");
         data.put("Germany", map);
-        
-        map = new HashMap<String, String>();
+
+        map = new HashMap<>();
         map.put("Sao Paulo", "Sao Paulo");
         map.put("Rio de Janerio", "Rio de Janerio");
         map.put("Salvador", "Salvador");
@@ -89,16 +79,17 @@ public class BasicView implements Serializable {
     public void increment() {
         number++;
     }
-    
+
     public void handleKeyEvent() {
         if (text5 != null) {
-           text5 = text5.toUpperCase();
+            text5 = text5.toUpperCase();
         }
     }
 
     public String getText1() {
         return text1;
     }
+
     public void setText1(String text1) {
         this.text1 = text1;
     }
@@ -106,6 +97,7 @@ public class BasicView implements Serializable {
     public String getText2() {
         return text2;
     }
+
     public void setText2(String text2) {
         this.text2 = text2;
     }
@@ -167,19 +159,23 @@ public class BasicView implements Serializable {
     }
 
     public void onCountryChange() {
-		if(country !=null && !country.equals(""))
-			cities = data.get(country);
-		else
-			cities = new HashMap<String, String>();
-	}
-    
+        if (country != null && !"".equals(country)) {
+            cities = data.get(country);
+        }
+        else {
+            cities = new HashMap<>();
+        }
+    }
+
     public void displayLocation() {
         FacesMessage msg;
-        if(city != null && country != null)
+        if (city != null && country != null) {
             msg = new FacesMessage("Selected", city + " of " + country);
-        else
-            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid", "City is not selected."); 
-            
-        FacesContext.getCurrentInstance().addMessage(null, msg);  
+        }
+        else {
+            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid", "City is not selected.");
+        }
+
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }

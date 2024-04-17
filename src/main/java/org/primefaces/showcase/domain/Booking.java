@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2023 PrimeTek Informatics
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,7 @@
 package org.primefaces.showcase.domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
@@ -78,11 +79,6 @@ public class Booking implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        return roomNumber != null ? roomNumber.hashCode() : 0;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -94,10 +90,11 @@ public class Booking implements Serializable {
 
         Booking booking = (Booking) o;
 
-        if (roomNumber != null ? !roomNumber.equals(booking.roomNumber) : booking.roomNumber != null) {
-            return false;
-        }
+        return Objects.equals(roomNumber, booking.roomNumber);
+    }
 
-        return true;
+    @Override
+    public int hashCode() {
+        return roomNumber != null ? roomNumber.hashCode() : 0;
     }
 }

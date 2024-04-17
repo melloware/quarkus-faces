@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,29 +23,29 @@
  */
 package org.primefaces.showcase.view.data.treetable;
 
-import jakarta.faces.view.ViewScoped;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.primefaces.showcase.domain.Document;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
 
 @Named("ttPaginatorView")
 @ViewScoped
 public class PaginatorView implements Serializable {
-    
-    private TreeNode root;
-            
+
+    private TreeNode<Document> root;
+
     @PostConstruct
     public void init() {
         root = new DefaultTreeNode();
-        
-        for(int i = 0; i < 50; i++) {
+
+        for (int i = 0; i < 50; i++) {
             TreeNode node = new DefaultTreeNode(new Document("Node " + i, String.valueOf((int) (Math.random() * 1000)), "Document"), root);
-            
-            for(int j = 0; j < 5; j++) {
+
+            for (int j = 0; j < 5; j++) {
                 new DefaultTreeNode(new Document("Node " + i + "." + j, String.valueOf((int) (Math.random() * 1000)), "Document"), node);
             }
         }

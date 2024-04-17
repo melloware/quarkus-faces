@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,59 +29,68 @@ import jakarta.inject.Named;
 @Named
 @RequestScoped
 public class MaskView {
-    
+
     private String date;
-	private String phone;
-	private String phoneExt;
-	private String taxId;
-	private String ssn;
-	private String productKey;
+    private String phone;
+    private String phoneExt;
+    private String taxId;
+    private String ssn;
+    private String productKey;
+    private String rtl;
 
-	public String getDate() {
-		return date;
-	}
+    public String getDate() {
+        return date;
+    }
 
-	public void setDate(String date) {
-		this.date = date;
-	}
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public String getPhoneExt() {
-		return phoneExt;
-	}
+    public String getPhoneExt() {
+        return phoneExt;
+    }
 
-	public void setPhoneExt(String phoneExt) {
-		this.phoneExt = phoneExt;
-	}
+    public void setPhoneExt(String phoneExt) {
+        this.phoneExt = phoneExt;
+    }
 
-	public String getTaxId() {
-		return taxId;
-	}
+    public String getTaxId() {
+        return taxId;
+    }
 
-	public void setTaxId(String taxId) {
-		this.taxId = taxId;
-	}
+    public void setTaxId(String taxId) {
+        this.taxId = taxId;
+    }
 
-	public String getSsn() {
-		return ssn;
-	}
+    public String getSsn() {
+        return ssn;
+    }
 
-	public void setSsn(String ssn) {
-		this.ssn = ssn;
-	}
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
 
-	public String getProductKey() {
-		return productKey;
-	}
+    public String getProductKey() {
+        return productKey;
+    }
 
-	public void setProductKey(String productKey) {
-		this.productKey = productKey;
-	}
+    public void setProductKey(String productKey) {
+        this.productKey = productKey;
+    }
+
+    public String getRtl() {
+        return rtl;
+    }
+
+    public void setRtl(String rtl) {
+        this.rtl = rtl;
+    }
 }

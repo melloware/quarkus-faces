@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,17 +37,17 @@ import java.io.Serializable;
 @Named("treeSelectionView")
 @ViewScoped
 public class SelectionView implements Serializable {
-    
+
     private TreeNode root1;
     private TreeNode root2;
     private TreeNode root3;
     private TreeNode selectedNode;
     private TreeNode[] selectedNodes1;
     private TreeNode[] selectedNodes2;
-    
+
     @Inject
     DocumentService service;
-    
+
     @PostConstruct
     public void init() {
         root1 = service.createDocuments();
@@ -96,17 +96,17 @@ public class SelectionView implements Serializable {
     }
 
     public void displaySelectedSingle() {
-        if(selectedNode != null) {
+        if (selectedNode != null) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Selected", selectedNode.getData().toString());
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
-	}
-    
+    }
+
     public void displaySelectedMultiple(TreeNode[] nodes) {
-        if(nodes != null && nodes.length > 0) {
+        if (nodes != null && nodes.length > 0) {
             StringBuilder builder = new StringBuilder();
 
-            for(TreeNode node : nodes) {
+            for (TreeNode node : nodes) {
                 builder.append(node.getData().toString());
                 builder.append("<br />");
             }
@@ -114,5 +114,5 @@ public class SelectionView implements Serializable {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Selected", builder.toString());
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
-	}
+    }
 }

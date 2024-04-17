@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,11 +23,12 @@
  */
 package org.primefaces.showcase.view.data.treetable;
 
-import jakarta.faces.view.ViewScoped;
 import org.primefaces.model.TreeNode;
+import org.primefaces.showcase.domain.Document;
 import org.primefaces.showcase.service.DocumentService;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.Serializable;
@@ -35,20 +36,20 @@ import java.io.Serializable;
 @Named("ttContextMenuView")
 @ViewScoped
 public class ContextMenuView implements Serializable {
-    
-    private TreeNode root;
-    
-    private TreeNode selectedNode;
-        
+
+    private TreeNode<Document> root;
+
+    private TreeNode<Document> selectedNode;
+
     @Inject
     DocumentService service;
-    
+
     @PostConstruct
     public void init() {
         root = service.createDocuments();
     }
 
-    public TreeNode getRoot() {
+    public TreeNode<Document> getRoot() {
         return root;
     }
 
@@ -56,19 +57,23 @@ public class ContextMenuView implements Serializable {
         this.service = service;
     }
 
-    public TreeNode getSelectedNode() {
+    public TreeNode<Document> getSelectedNode() {
         return selectedNode;
     }
 
-    public void setSelectedNode(TreeNode selectedNode) {
+    public void setSelectedNode(TreeNode<Document> selectedNode) {
         this.selectedNode = selectedNode;
     }
-    
+
     public void deleteNode() {
         selectedNode.getChildren().clear();
         selectedNode.getParent().getChildren().remove(selectedNode);
         selectedNode.setParent(null);
-        
+
         selectedNode = null;
+    }
+
+    public void viewNode() {
+        // no-op
     }
 }

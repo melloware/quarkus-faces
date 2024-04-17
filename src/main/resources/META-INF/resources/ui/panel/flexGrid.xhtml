@@ -6,7 +6,7 @@
                 template="/template/template.xhtml">
 
     <ui:define name="head">
-        <style type="text/css">
+        <style>
             .box,
             .sample-layout > div {
                 background-color: #cce4f7;
@@ -70,8 +70,7 @@
     <ui:define name="description">
         Flex Grid CSS is a lightweight flex based responsive layout utility optimized for mobile phones, tablets and desktops. Flex
         Grid CSS is not included in PrimeFaces as it is provided by
-        <a href="https://github.com/primefaces/primeflex"
-           target="_blank">PrimeFlex</a>, a shared grid library between PrimeFaces, PrimeNG and PrimeReact projects.
+        <a href="https://primeflex.org/" target="_blank" rel="noopener noreferrer">PrimeFlex</a>, a shared grid library between PrimeFaces, PrimeNG and PrimeReact projects.
     </ui:define>
 
     <ui:param name="documentationLink" value=""/>
@@ -79,9 +78,19 @@
     <ui:define name="implementation">
         <h3 style="margin-top:0">Getting Started</h3>
         <p>To use PrimeFlex you must include the CSS on your page after you download it into your /css folder or wherever you keep your CSS files.</p>
-        <pre name="code" class="brush:xml">
+        <pre class="language-xml"><code>
         &lt;h:outputStylesheet name="css/primeflex.css" /&gt;
-        </pre>
+        </code></pre>
+        <p>Or use WebJars...</p>
+        <pre class="language-xml"><code>
+        &lt;dependency&gt;
+           &lt;groupId>org.webjars.npm&lt;/groupId&gt;
+           &lt;artifactId>primeflex&lt;/artifactId&gt;
+           &lt;version>2.0.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        
+        &lt;h:outputStylesheet library="webjars" name="primeflex/2.0.0/primeflex.min.css" /&gt;
+        </code></pre>
 
         <div class="card">
             <h5>Basic</h5>
@@ -431,13 +440,13 @@
         <div class="card">
             <h5>Vertical Alignment - Per Column</h5>
             <div class="grid vertical-container">
-                <div class="col align-self-start">
+                <div class="col col-align-start">
                     <div class="box">4</div>
                 </div>
-                <div class="col align-self-center">
+                <div class="col col-align-center">
                     <div class="box">4</div>
                 </div>
-                <div class="col align-self-end">
+                <div class="col col-align-end">
                     <div class="box">4</div>
                 </div>
             </div>

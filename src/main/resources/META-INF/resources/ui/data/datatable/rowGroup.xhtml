@@ -6,7 +6,7 @@
                 template="/template/template.xhtml">
 
     <ui:define name="title">
-        DataTable <span class="subitem">Row Grouping</span>
+        DataTable <span class="subitem">Row Group</span>
     </ui:define>
 
     <ui:define name="description">
@@ -14,7 +14,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/datatable"/>
-    <ui:param name="widgetLink" value="datatable-1"/>
+    <ui:param name="widgetLink" value="DataTable-1"/>
 
     <ui:define name="implementation">
 
@@ -23,9 +23,9 @@
             <h:form>
                 <p:dataTable var="customer" value="#{dtRowGroupView.customers}" sortBy="#{customer.representative.name}">
                     <p:headerRow field="representative.name"
-                                 expandable="true"
+                                 expandable="true" 
                                  expanded="#{customer.representative.name != 'Stephen Shaw'}">
-
+                        
                         <p:column colspan="6">
                             <div class="inline-flex align-items-center" style="vertical-align: middle">
                                 <p:graphicImage name="images/avatar/#{customer.representative.image}" library="demo" width="32" style="vertical-align: middle"/>
@@ -35,11 +35,11 @@
                     </p:headerRow>
 
                     <p:column headerText="Representative">
-                        <h:outputText value="#{customer.representative.name}"/>
+                        <h:outputText value="#{customer.representative.name}" />
                     </p:column>
 
                     <p:column headerText="Name">
-                        <h:outputText value="#{customer.name}"/>
+                        <h:outputText value="#{customer.name}" />
                     </p:column>
 
                     <p:column headerText="Country">
@@ -48,11 +48,11 @@
                     </p:column>
 
                     <p:column headerText="Company">
-                        <h:outputText value="#{customer.company}"/>
+                        <h:outputText value="#{customer.company}" />
                     </p:column>
 
                     <p:column headerText="Status">
-                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
                     </p:column>
 
                     <p:column headerText="Date">
@@ -77,7 +77,7 @@
             <h5>Rowspan</h5>
             <h:form>
                 <p:dataTable var="customer" value="#{dtRowGroupView.customers}">
-                    <p:column headerText="Representative" groupRow="true">
+                    <p:column  headerText="Representative" groupRow="true">
                         <p:graphicImage name="images/avatar/#{customer.representative.image}" library="demo"
                                         width="32" style="vertical-align: middle"/>
                         <h:outputText style="vertical-align: middle; margin-left: .5rem"
@@ -85,7 +85,7 @@
                     </p:column>
 
                     <p:column headerText="Name">
-                        <h:outputText value="#{customer.name}"/>
+                        <h:outputText value="#{customer.name}" />
                     </p:column>
 
                     <p:column headerText="Country">
@@ -94,11 +94,11 @@
                     </p:column>
 
                     <p:column headerText="Company">
-                        <h:outputText value="#{customer.company}"/>
+                        <h:outputText value="#{customer.company}" />
                     </p:column>
 
                     <p:column headerText="Status">
-                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
                     </p:column>
 
                     <p:column headerText="Date">

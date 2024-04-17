@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,9 +36,9 @@ import java.util.List;
 @Named("dtRowGroupView")
 @ViewScoped
 public class RowGroupView implements Serializable {
-    
+
     private List<Customer> customers;
-    
+
     @Inject
     CustomerService service;
 
@@ -48,7 +48,7 @@ public class RowGroupView implements Serializable {
     }
 
     public long getTotalCount(String name) {
-        return customers.stream().filter(customers -> name.equals(customers.representative.name)).count();
+        return customers.stream().filter(customer -> name.equals(customer.getRepresentative().getName())).count();
     }
 
     public List<Customer> getCustomers() {

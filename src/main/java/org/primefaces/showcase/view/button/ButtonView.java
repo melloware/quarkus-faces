@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
  */
 package org.primefaces.showcase.view.button;
 
+import java.util.concurrent.TimeUnit;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
@@ -50,7 +51,6 @@ public class ButtonView {
                 .url("http://www.primefaces.org")
                 .icon("pi pi-home")
                 .build();
-
 
         DefaultSubMenu firstSubmenu = DefaultSubMenu.builder()
                 .label("Dynamic Submenu")
@@ -101,6 +101,21 @@ public class ButtonView {
         addMessage("Data deleted");
     }
 
+    public String sleepAndSave() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+        return save();
+    }
+
+    public void sleepAndUpdate() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+        update();
+    }
+
+    public void sleepAndDelete() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+        delete();
+    }
+
     public void buttonAction() {
         addMessage("Welcome to PrimeFaces!!");
     }
@@ -108,10 +123,5 @@ public class ButtonView {
     public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-
-    public String redirect() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Redirected Message Content."));
-        return "link?faces-redirect=true";
     }
 }

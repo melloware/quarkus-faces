@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,13 +34,13 @@ import java.util.Map;
 @Named("dfLevel2View")
 @RequestScoped
 public class DFLevel2View {
-    
+
     public void openLevel3() {
-        Map<String,Object> options = new HashMap<String, Object>();
+        Map<String, Object> options = new HashMap<String, Object>();
         options.put("modal", true);
         PrimeFaces.current().dialog().openDynamic("level3", options, null);
     }
-    
+
     public void onReturnFromLevel3(SelectEvent event) {
         //pass back to level 1
         PrimeFaces.current().dialog().closeDynamic(event.getObject());

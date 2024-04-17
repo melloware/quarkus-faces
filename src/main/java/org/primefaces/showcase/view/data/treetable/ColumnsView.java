@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,31 +23,31 @@
  */
 package org.primefaces.showcase.view.data.treetable;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import org.primefaces.model.TreeNode;
+import org.primefaces.showcase.domain.Document;
+import org.primefaces.showcase.service.DocumentService;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-
-import org.primefaces.model.TreeNode;
-import org.primefaces.showcase.service.DocumentService;
-
-import io.quarkus.runtime.annotations.RegisterForReflection;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Named("ttColumnsView")
 @ViewScoped
 public class ColumnsView implements Serializable {
 
-    private final static List<String> VALID_COLUMN_KEYS = Arrays.asList("name", "size", "type");
+    private static final List<String> VALID_COLUMN_KEYS = Arrays.asList("name", "size", "type");
+
     @Inject
     DocumentService service;
+
     private String columnTemplate = "name size type";
     private List<ColumnModel> columns;
-    private TreeNode root;
+    private TreeNode<Document> root;
 
     @PostConstruct
     public void init() {
@@ -56,7 +56,7 @@ public class ColumnsView implements Serializable {
         createDynamicColumns();
     }
 
-    public TreeNode getRoot() {
+    public TreeNode<Document> getRoot() {
         return root;
     }
 
@@ -66,7 +66,7 @@ public class ColumnsView implements Serializable {
 
     public void createDynamicColumns() {
         String[] columnKeys = columnTemplate.split(" ");
-        columns = new ArrayList<ColumnModel>();
+        columns = new ArrayList<>();
 
         for (String columnKey : columnKeys) {
             String key = columnKey.trim();
@@ -89,8 +89,7 @@ public class ColumnsView implements Serializable {
         return columns;
     }
 
-    @RegisterForReflection
-    static public class ColumnModel implements Serializable {
+    public static class ColumnModel implements Serializable {
 
         private String header;
         private String property;

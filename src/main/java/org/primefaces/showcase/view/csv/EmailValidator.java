@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,33 +39,35 @@ import org.primefaces.validate.ClientValidator;
 @FacesValidator("custom.emailValidator")
 public class EmailValidator implements Validator, ClientValidator {
 
-    private Pattern pattern;
- 
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                                                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
- 
-	public EmailValidator() {
-		pattern = Pattern.compile(EMAIL_PATTERN);
-	}
+    private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
+    private Pattern pattern;
+
+    public EmailValidator() {
+        pattern = Pattern.compile(EMAIL_PATTERN);
+    }
+
+    @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-        if(value == null) {
+        if (value == null) {
             return;
         }
-        
-        if(!pattern.matcher(value.toString()).matches()) {
-            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Validation Error", 
-                        value + " is not a valid email;"));
+
+        if (!pattern.matcher(value.toString()).matches()) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Validation Error",
+                    value + " is not a valid email;"));
         }
     }
 
+    @Override
     public Map<String, Object> getMetadata() {
         return null;
     }
 
+    @Override
     public String getValidatorId() {
         return "custom.emailValidator";
     }
-    
-}
 
+}

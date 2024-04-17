@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,13 +23,14 @@
  */
 package org.primefaces.showcase.view.data.treetable;
 
-import jakarta.faces.view.ViewScoped;
 import org.primefaces.model.TreeNode;
+import org.primefaces.showcase.domain.Document;
 import org.primefaces.showcase.service.DocumentService;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.Serializable;
@@ -37,17 +38,17 @@ import java.io.Serializable;
 @Named("ttSelectionView")
 @ViewScoped
 public class SelectionView implements Serializable {
-    
-    private TreeNode root1;
-    private TreeNode root2;
-    private TreeNode root3;
-    private TreeNode selectedNode;
-    private TreeNode[] selectedNodes1;
-    private TreeNode[] selectedNodes2;
-    
+
+    private TreeNode<Document> root1;
+    private TreeNode<Document> root2;
+    private TreeNode<Document> root3;
+    private TreeNode<Document> selectedNode;
+    private TreeNode<Document>[] selectedNodes1;
+    private TreeNode<Document>[] selectedNodes2;
+
     @Inject
     DocumentService service;
-    
+
     @PostConstruct
     public void init() {
         root1 = service.createDocuments();
@@ -55,39 +56,39 @@ public class SelectionView implements Serializable {
         root3 = service.createCheckboxDocuments();
     }
 
-    public TreeNode getRoot1() {
+    public TreeNode<Document> getRoot1() {
         return root1;
     }
 
-    public TreeNode getRoot2() {
+    public TreeNode<Document> getRoot2() {
         return root2;
     }
 
-    public TreeNode getRoot3() {
+    public TreeNode<Document> getRoot3() {
         return root3;
     }
 
-    public TreeNode getSelectedNode() {
+    public TreeNode<Document> getSelectedNode() {
         return selectedNode;
     }
 
-    public void setSelectedNode(TreeNode selectedNode) {
+    public void setSelectedNode(TreeNode<Document> selectedNode) {
         this.selectedNode = selectedNode;
     }
 
-    public TreeNode[] getSelectedNodes1() {
+    public TreeNode<Document>[] getSelectedNodes1() {
         return selectedNodes1;
     }
 
-    public void setSelectedNodes1(TreeNode[] selectedNodes1) {
+    public void setSelectedNodes1(TreeNode<Document>[] selectedNodes1) {
         this.selectedNodes1 = selectedNodes1;
     }
 
-    public TreeNode[] getSelectedNodes2() {
+    public TreeNode<Document>[] getSelectedNodes2() {
         return selectedNodes2;
     }
 
-    public void setSelectedNodes2(TreeNode[] selectedNodes2) {
+    public void setSelectedNodes2(TreeNode<Document>[] selectedNodes2) {
         this.selectedNodes2 = selectedNodes2;
     }
 
@@ -96,17 +97,17 @@ public class SelectionView implements Serializable {
     }
 
     public void displaySelectedSingle() {
-        if(selectedNode != null) {
+        if (selectedNode != null) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Selected", selectedNode.getData().toString());
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
-	}
-    
-    public void displaySelectedMultiple(TreeNode[] nodes) {
-        if(nodes != null && nodes.length > 0) {
+    }
+
+    public void displaySelectedMultiple(TreeNode<Document>[] nodes) {
+        if (nodes != null && nodes.length > 0) {
             StringBuilder builder = new StringBuilder();
 
-            for(TreeNode node : nodes) {
+            for (TreeNode node : nodes) {
                 builder.append(node.getData().toString());
                 builder.append("<br />");
             }
@@ -114,6 +115,5 @@ public class SelectionView implements Serializable {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Selected", builder.toString());
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
-	}
+    }
 }
-

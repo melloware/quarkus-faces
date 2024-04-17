@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,13 +40,13 @@ import java.util.List;
 @Named("dtMultiViewStateView")
 @ViewScoped
 public class MultiViewStateView implements Serializable {
-    
+
     private List<Customer> customers;
-    
+
     private List<Customer> filteredCustomers;
-    
+
     private Customer selectedCustomer;
-    
+
     @Inject
     CustomerService service;
 
@@ -54,7 +54,7 @@ public class MultiViewStateView implements Serializable {
     public void init() {
         customers = service.getCustomers(50);
     }
-    
+
     public List<Customer> getCustomers() {
         return customers;
     }

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,34 +23,34 @@
  */
 package org.primefaces.showcase.view.data.treetable;
 
-import jakarta.faces.view.ViewScoped;
+import org.primefaces.PrimeFaces;
 import org.primefaces.model.TreeNode;
+import org.primefaces.showcase.domain.Document;
 import org.primefaces.showcase.service.DocumentService;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.Serializable;
-import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.FacesContext;
-import org.primefaces.PrimeFaces;
-import org.primefaces.showcase.domain.Document;
 
 @Named("ttMultiViewStateView")
 @ViewScoped
 public class MultiViewStateView implements Serializable {
-    
-    private TreeNode root;
-    
+
+    private TreeNode<Document> root;
+
     @Inject
     DocumentService service;
-    
+
     @PostConstruct
     public void init() {
         root = service.createDocuments();
     }
 
-    public TreeNode getRoot() {
+    public TreeNode<Document> getRoot() {
         return root;
     }
 
@@ -70,10 +70,9 @@ public class MultiViewStateView implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, clientId + " multiview state has been cleared out", null));
     }
-    
+
     public void someAction(Document document) {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Action on " + document.getName(), null));
     }
 }
-

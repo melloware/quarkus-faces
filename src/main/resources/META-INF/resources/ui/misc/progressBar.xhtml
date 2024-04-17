@@ -6,7 +6,7 @@
                 template="/template/template.xhtml">
 
     <ui:define name="head">
-        <script type="text/javascript">
+        <script>
             //<![CDATA[
             function start() {
                 PF('startButton1').disable();
@@ -45,7 +45,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/progressbar"/>
-    <ui:param name="widgetLink" value="progressbar"/>
+    <ui:param name="widgetLink" value="ProgressBar"/>
 
     <ui:define name="implementation">
         <div class="card">
@@ -71,7 +71,7 @@
                 </p:progressBar>
 
                 <h5>Ajax ProgressBar (with long running method)</h5>
-                <p:commandButton value="Start" type="button"
+                <p:commandButton value="Start"
                                  onclick="PF('pbAjaxLong').start();PF('startButton3').disable()"
                                  widgetVar="startButton3" actionListener="#{progressBarView.longRunning}" styleClass="mr-2"/>
                 <p:commandButton value="Cancel" action="#{progressBarView.cancel}"
@@ -88,6 +88,12 @@
 
                 <h5>Indeterminate</h5>
                 <p:progressBar id="progressBarIndeterminate" style="height:6px" mode="indeterminate"/>
+
+                <h5>Severities</h5>
+                <p:progressBar id="progressBarDanger" value="25" severity="danger" displayOnly="true"/>
+                <p:progressBar id="progressBarWarning" value="50" severity="warning" displayOnly="true" styleClass="mt-3"/>
+                <p:progressBar id="progressBarInfo" value="75" severity="info" displayOnly="true" styleClass="mt-3"/>
+                <p:progressBar id="progressBarSuccess" value="100" severity="success" displayOnly="true" styleClass="mt-3"/>
             </h:form>
         </div>
     </ui:define>

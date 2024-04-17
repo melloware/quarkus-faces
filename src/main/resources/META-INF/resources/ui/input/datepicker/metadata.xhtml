@@ -6,14 +6,10 @@
                 template="/template/template.xhtml">
 
     <ui:define name="head">
-        <style type="text/css">
-            .start {
-                background: #81c784;
-            }
-
-            .deadline {
-                background: #ef9a9a;
-            }
+        <style>
+            .start { background: #81c784; }
+            .deadline { background: #ef9a9a; }
+            .ui-datepicker-calendar .ui-state-disabled { opacity: .2; }
         </style>
     </ui:define>
 
@@ -27,10 +23,9 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/datepicker"/>
-    <ui:param name="widgetLink" value="datepicker-1"/>
+    <ui:param name="widgetLink" value="DatePicker-1"/>
 
     <ui:define name="implementation">
-
         <p:growl id="growl"/>
 
         <div class="card">
@@ -40,9 +35,15 @@
                     <p:datePicker id="basic" value="#{datePickerMetadataView.date1}"
                                   model="#{datePickerMetadataView.model}"/>
 
-                    <p:outputLabel for="lazy" value="Lazy"/>
+                    <p:outputLabel for="lazy" value="Lazy and Navigator"/>
                     <p:datePicker pattern="yyyy-MM-dd" id="lazy" value="#{datePickerMetadataView.date2}"
-                                  model="#{datePickerMetadataView.modelLazy}"/>
+                                  model="#{datePickerMetadataView.modelLazy}"
+                                  monthNavigator="true" yearNavigator="true"/>
+
+                    <p:outputLabel for="lazyEnabled" value="Lazy and Navigator - Enabled dates"/>
+                    <p:datePicker pattern="yyyy-MM-dd" id="lazyEnabled" value="#{datePickerMetadataView.date5}"
+                                  model="#{datePickerMetadataView.modelEnabledDaysLazy}"
+                                  monthNavigator="true" yearNavigator="true"/>
 
                     <p:outputLabel for="basicEvent" value="Basic and Event"/>
                     <p:datePicker id="basicEvent" value="#{datePickerMetadataView.date3}"
@@ -51,8 +52,14 @@
                     </p:datePicker>
 
                     <p:outputLabel for="lazyEvent" value="Lazy and Event"/>
-                    <p:datePicker pattern="yyyy-MM-dd" id="lazyEvent" value="#{datePickerMetadataView.date4}"
+                    <p:datePicker inline="true" id="lazyEvent" value="#{datePickerMetadataView.date4}"
                                   model="#{datePickerMetadataView.modelLazy}">
+                        <p:ajax event="viewChange" listener="#{datePickerMetadataView.onViewChange}" update="growl"/>
+                    </p:datePicker>
+
+                    <p:outputLabel for="lazyEnabledEvent" value="Lazy and Event - Enabled dates"/>
+                    <p:datePicker pattern="yyyy-MM-dd" id="lazyEnabledEvent" value="#{datePickerMetadataView.date6}"
+                                  model="#{datePickerMetadataView.modelEnabledDaysLazy}">
                         <p:ajax event="viewChange" listener="#{datePickerMetadataView.onViewChange}" update="growl"/>
                     </p:datePicker>
                 </h:panelGrid>

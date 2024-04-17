@@ -16,7 +16,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/overlaypanel"/>
-    <ui:param name="widgetLink" value="overlaypanel"/>
+    <ui:param name="widgetLink" value="OverlayPanel-1"/>
 
     <ui:define name="implementation">
         <div class="card">
@@ -31,7 +31,7 @@
                 </p:overlayPanel>
 
                 <h5>Images</h5>
-                <p:commandButton id="images" type="button" icon="pi pi-image"/>
+                <p:commandButton id="images" type="button" icon="pi pi-image" />
                 <p:overlayPanel for="images" dismissable="false" showCloseIcon="true">
                     <p:imageSwitch effect="fade">
                         <ui:repeat value="#{imageSwitchView.images}" var="image">
@@ -40,13 +40,32 @@
                     </p:imageSwitch>
                 </p:overlayPanel>
 
-                <h5>Choose Data</h5>
-                <p:growl id="msgs" showDetail="true"/>
+                <h5>SplitButton</h5>
+                <p:splitButton id="split" value="SplitButton">
+                    <p:overlayPanel style="width:350px">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </p:overlayPanel>
+                </p:splitButton>
 
-                <p:commandButton id="movieBtn" value="Find" type="button" icon="pi pi-search"/>
-                <p:overlayPanel for="movieBtn" hideEffect="fade" dynamic="true" showEffect="fade" style="width:600px" widgetVar="moviePicker">
+                <h5>AutoHide (false)</h5>
+                <p:inputText id="autohide" value="Hover Me" />
+                <p:overlayPanel for="autohide" style="width:350px" showEvent="mouseover" hideEvent="mouseout" autoHide="false">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </p:overlayPanel>
+
+                <h5>Choose Data</h5>
+                <p:growl id="msgs" showDetail="true" />
+
+                <p:commandButton id="movieBtn" value="Find" type="button" icon="pi pi-search" />
+                <p:overlayPanel for="movieBtn" dynamic="true" style="width:600px" widgetVar="moviePicker">
                     <p:dataTable var="movie" value="#{movieView.movieList}" rows="5" paginator="true" selectionMode="single"
-                                 selection="#{movieView.movie}" rowKey="#{movie.movie}">
+                        selection="#{movieView.movie}" rowKey="#{movie.movie}">
                         <p:ajax event="rowSelect" listener="#{movieView.onRowSelect}" update=":form:msgs" oncomplete="PF('moviePicker').hide()"/>
 
                         <p:column headerText="Movie">
@@ -91,8 +110,7 @@
                     </p:column>
                 </p:dataTable>
 
-                <p:overlayPanel widgetVar="productOP" dismissable="false"
-                                showCloseIcon="true" dynamic="true">
+                <p:overlayPanel widgetVar="productOP" dismissable="false" showCloseIcon="true" dynamic="true">
                     <p:outputPanel id="productDetail" style="text-align:center;">
                         <p:column rendered="#{not empty dtSelectionView.selectedProduct}">
                             <div class="product">
@@ -102,7 +120,7 @@
                                             <i class="pi pi-tag product-category-icon"/>
                                             <span class="product-category">#{dtSelectionView.selectedProduct.category}</span>
                                         </div>
-                                        <span class="product-badge status-#{dtSelectionView.selectedProduct.inventoryStatus.statusName}">#{dtSelectionView.selectedProduct.inventoryStatus.text}</span>
+                                        <span class="product-badge status-#{dtSelectionView.selectedProduct.inventoryStatus.name().toLowerCase()}">#{dtSelectionView.selectedProduct.inventoryStatus.text}</span>
                                     </div>
                                     <div class="product-grid-item-content">
                                         <p:graphicImage

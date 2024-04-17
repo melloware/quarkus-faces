@@ -14,7 +14,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/datatable"/>
-    <ui:param name="widgetLink" value="datatable-1"/>
+    <ui:param name="widgetLink" value="DataTable-1"/>
 
     <ui:define name="implementation">
 
@@ -26,7 +26,7 @@
                 <p:dataTable id="products1" var="product" value="#{dtEditView.products1}" editable="true"
                              style="margin-bottom:20px">
 
-                    <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs products1"/>
+                    <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs"/>
                     <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:msgs"/>
 
                     <p:column headerText="Code">
@@ -65,9 +65,14 @@
 
                     <p:column headerText="Price">
                         <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="$#{product.price}"/></f:facet>
-                            <f:facet name="input"><p:inputText value="#{product.price}" style="width:100%"
-                                                               label="Price"/></f:facet>
+                            <f:facet name="output">
+                                <h:outputText value="#{product.price}">
+                                    <f:convertNumber type="currency" currencySymbol="$"/>
+                                </h:outputText>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputNumber value="#{product.price}" style="width:100%" label="Price" symbol="$"/>
+                            </f:facet>
                         </p:cellEditor>
                     </p:column>
 
@@ -123,10 +128,12 @@
                     <p:column headerText="Price">
                         <p:cellEditor>
                             <f:facet name="output">
-                                <h:outputText value="$#{product.price}"/>
+                                <h:outputText value="#{product.price}">
+                                    <f:convertNumber type="currency" currencySymbol="$"/>
+                                </h:outputText>
                             </f:facet>
                             <f:facet name="input">
-                                <p:inputText value="#{product.price}" style="width:100%" label="Price"/>
+                                <p:inputNumber value="#{product.price}" style="width:100%" label="Price" symbol="$"/>
                             </f:facet>
                         </p:cellEditor>
                     </p:column>
@@ -179,10 +186,12 @@
                     <p:column headerText="Price">
                         <p:cellEditor>
                             <f:facet name="output">
-                                <h:outputText value="$#{product.price}"/>
+                                <h:outputText value="#{product.price}">
+                                    <f:convertNumber type="currency" currencySymbol="$"/>
+                                </h:outputText>
                             </f:facet>
                             <f:facet name="input">
-                                <p:inputText value="#{product.price}" style="width:100%" label="Price"/>
+                                <p:inputNumber value="#{product.price}" style="width:100%" label="Price" symbol="$"/>
                             </f:facet>
                         </p:cellEditor>
                     </p:column>

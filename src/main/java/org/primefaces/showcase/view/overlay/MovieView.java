@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,19 +39,19 @@ import org.primefaces.event.SelectEvent;
 @Named
 @RequestScoped
 public class MovieView {
-    
+
     private Movie movie;
 
     private List<Movie> movieList;
-    
+
     public List<Movie> getMovieList() {
         return movieList;
     }
-    
+
     @PostConstruct
     public void init() {
         movieList = new ArrayList<Movie>();
-        
+
         movieList.add(new Movie("The Lord of the Rings: The Two Towers", "Peter Jackson", "Fantasy, Epic", 179));
         movieList.add(new Movie("The Amazing Spider-Man 2", "Marc Webb", "Action", 142));
         movieList.add(new Movie("Iron Man 3", "Shane Black", "Action", 109));
@@ -64,7 +64,7 @@ public class MovieView {
         movieList.add(new Movie("Captain America: The Winter Soldier", "Joe Russo", "Action", 136));
         movieList.add(new Movie("Fast Five", "Justin Lin", "Action", 132));
         movieList.add(new Movie("The Lord of the Rings: The Return of the King", "Peter Jackson", "Fantasy, Epic", 200));
-        
+
     }
 
     public Movie getMovie() {

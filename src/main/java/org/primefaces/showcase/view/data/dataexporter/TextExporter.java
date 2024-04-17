@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,20 +23,20 @@
  */
 package org.primefaces.showcase.view.data.dataexporter;
 
-import jakarta.faces.FacesException;
-import jakarta.faces.context.FacesContext;
-import org.primefaces.component.api.UIColumn;
-import org.primefaces.component.datatable.DataTable;
-import org.primefaces.component.datatable.export.DataTableExporter;
-import org.primefaces.component.export.ExporterOptions;
-import org.primefaces.component.export.ExporterUtils;
-import org.primefaces.util.EscapeUtils;
-
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Collections;
+import jakarta.faces.FacesException;
+import jakarta.faces.context.FacesContext;
+
+import org.primefaces.component.api.UIColumn;
+import org.primefaces.component.datatable.DataTable;
+import org.primefaces.component.datatable.export.DataTableExporter;
+import org.primefaces.component.export.ColumnValue;
+import org.primefaces.component.export.ExporterOptions;
+import org.primefaces.util.EscapeUtils;
 
 public class TextExporter extends DataTableExporter<PrintWriter, ExporterOptions> {
 
@@ -49,7 +49,8 @@ public class TextExporter extends DataTableExporter<PrintWriter, ExporterOptions
         try {
             OutputStreamWriter osw = new OutputStreamWriter(os(), exportConfiguration.getEncodingType());
             return new PrintWriter(osw);
-        } catch (UnsupportedEncodingException e) {
+        }
+        catch (UnsupportedEncodingException e) {
             throw new FacesException(e);
         }
     }
@@ -69,12 +70,12 @@ public class TextExporter extends DataTableExporter<PrintWriter, ExporterOptions
     }
 
     @Override
-    protected void exportCellValue(FacesContext context, DataTable table, UIColumn col, String text, int index) {
-        String columnTag = ExporterUtils.getColumnExportTag(context, col);
+    protected void exportCellValue(FacesContext context, DataTable table, UIColumn col, ColumnValue columnValue, int index) {
+        String columnTag = getColumnExportTag(context, col);
         document.append("\t\t")
                 .append(columnTag)
                 .append(": ")
-                .append(EscapeUtils.forXml(text))
+                .append(EscapeUtils.forXml(columnValue.toString()))
                 .append("\n");
     }
 

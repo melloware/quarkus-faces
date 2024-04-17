@@ -14,12 +14,20 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/tree"/>
-    <ui:param name="widgetLink" value="verticaltree-1"/>
+    <ui:param name="widgetLink" value="VerticalTree-1"/>
 
     <ui:define name="implementation">
         <div class="card">
             <h:form>
-                <p:tree value="#{treeBasicView.root}" var="node" filterBy="#{node}">
+                <h5>Basic</h5>
+                <p:tree value="#{treeBasicView.root}" var="node" filterBy="#{node}" filterDelay="400">
+                    <p:treeNode>
+                        <h:outputText value="#{node}"/>
+                    </p:treeNode>
+                </p:tree>
+
+                <h5>Custom</h5>
+                <p:tree value="#{treeBasicView.root}" var="node" filterFunction="#{treeBasicView.customFilter}">
                     <p:treeNode>
                         <h:outputText value="#{node}"/>
                     </p:treeNode>

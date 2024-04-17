@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,8 +39,8 @@ import java.util.List;
 
 @Named
 @ViewScoped
-public class MailboxView implements Serializable{
-    
+public class MailboxView implements Serializable {
+
     private TreeNode mailboxes;
 
     private List<Mail> mails;
@@ -53,9 +53,9 @@ public class MailboxView implements Serializable{
     public void init() {
         mailboxes = new DefaultTreeNode("root", null);
 
-        TreeNode inbox = new DefaultTreeNode("i","Inbox", mailboxes);
-		TreeNode sent = new DefaultTreeNode("s", "Sent", mailboxes);
-		TreeNode trash = new DefaultTreeNode("t", "Trash", mailboxes);
+        TreeNode inbox = new DefaultTreeNode("i", "Inbox", mailboxes);
+        TreeNode sent = new DefaultTreeNode("s", "Sent", mailboxes);
+        TreeNode trash = new DefaultTreeNode("t", "Trash", mailboxes);
         TreeNode junk = new DefaultTreeNode("j", "Junk", mailboxes);
 
         TreeNode gmail = new DefaultTreeNode("Gmail", inbox);
@@ -65,7 +65,7 @@ public class MailboxView implements Serializable{
         mails.add(new Mail("optimus@primefaces.com", "Team Meeting", "Meeting to discuss roadmap", new Date()));
         mails.add(new Mail("spammer@spammer.com", "You've won Lottery", "Send me your credit card info to claim", new Date()));
         mails.add(new Mail("spammer@spammer.com", "Your email has won", "Click the exe file to claim", new Date()));
-        mails.add(new Mail("primefaces-commits", "[primefaces] r4491 - Layout mailbox sample", "Revision:4490 Author:cagatay.civici" ,new Date()));
+        mails.add(new Mail("primefaces-commits", "[primefaces] r4491 - Layout mailbox sample", "Revision:4490 Author:cagatay.civici", new Date()));
     }
 
     public TreeNode getMailboxes() {

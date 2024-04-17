@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,6 +39,7 @@ public class ComplexValidationView {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -46,6 +47,7 @@ public class ComplexValidationView {
     public boolean isNameRequired() {
         return nameRequired;
     }
+
     public void setNameRequired(boolean checked) {
         this.nameRequired = checked;
     }
@@ -53,6 +55,7 @@ public class ComplexValidationView {
     public boolean isAcceptTermnsAndCondition() {
         return acceptTermnsAndCondition;
     }
+
     public void setAcceptTermnsAndCondition(boolean acceptTermnsAndCondition) {
         this.acceptTermnsAndCondition = acceptTermnsAndCondition;
     }

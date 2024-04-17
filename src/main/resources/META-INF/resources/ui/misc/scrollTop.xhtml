@@ -6,20 +6,21 @@
                 template="/template/template.xhtml">
 
     <ui:define name="head">
-        <style type="text/css">
-            .custom-scrolltop {
-                width: 2rem !important;
-                height: 2rem !important;
-                border-radius: 4px !important;
-                background-color: var(--primary-color) !important;
+        <style>
+            .custom-scrolltop.ui-scrolltop {
+                width: 2rem;
+                height: 2rem;
+                border-radius: 4px;
+                outline: 0 none;
+                background-color: var(--primary-color);
             }
-            .custom-scrolltop:hover {
-                    background-color: var(--primary-color) !important;
+            .custom-scrolltop.ui-scrolltop:hover {
+                    background-color: var(--primary-color);
                 }
 
-            .custom-scrolltop .ui-scrolltop-icon {
-                font-size: 1rem !important;
-                color: var(--primary-color-text) !important;
+            .custom-scrolltop.ui-scrolltop .ui-scrolltop-icon {
+                font-size: 1rem;
+                color: var(--primary-color-text);
             }
         </style>
     </ui:define>
@@ -33,7 +34,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/scrolltop"/>
-    <ui:param name="widgetLink" value="scrolltop" />
+    <ui:param name="widgetLink" value="ScrollTop" />
 
     <ui:define name="implementation">
         <div class="card">

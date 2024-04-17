@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@ package org.primefaces.showcase.view.data;
 
 import jakarta.faces.view.ViewScoped;
 
+import org.primefaces.model.ResponsiveOption;
 import org.primefaces.showcase.domain.Product;
 import org.primefaces.showcase.service.ProductService;
 
@@ -32,22 +33,27 @@ import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
 @ViewScoped
 public class CarouselView implements Serializable {
-    
+
     private List<Product> products;
-    
-    private Product selectedProduct;
-    
+
+    private List<ResponsiveOption> responsiveOptions;
+
     @Inject
     ProductService service;
-    
+
     @PostConstruct
     public void init() {
         products = service.getProducts(9);
+        responsiveOptions = new ArrayList<>();
+        responsiveOptions.add(new ResponsiveOption("1024px", 3, 3));
+        responsiveOptions.add(new ResponsiveOption("768px", 2, 2));
+        responsiveOptions.add(new ResponsiveOption("560px", 1, 1));
     }
 
     public List<Product> getProducts() {
@@ -58,11 +64,11 @@ public class CarouselView implements Serializable {
         this.service = service;
     }
 
-    public Product getSelectedProduct() {
-        return selectedProduct;
+    public List<ResponsiveOption> getResponsiveOptions() {
+        return responsiveOptions;
     }
 
-    public void setSelectedProduct(Product selectedProduct) {
-        this.selectedProduct = selectedProduct;
+    public void setResponsiveOptions(List<ResponsiveOption> responsiveOptions) {
+        this.responsiveOptions = responsiveOptions;
     }
 }

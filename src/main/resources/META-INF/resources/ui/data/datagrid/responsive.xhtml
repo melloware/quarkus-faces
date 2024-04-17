@@ -6,7 +6,7 @@
                 template="/template/template.xhtml">
 
     <ui:define name="head">
-        <style type="text/css">
+        <style>
             .value {
                 font-weight: bold;
             }
@@ -15,8 +15,8 @@
                 margin-bottom: 30px;
             }
         </style>
-    </ui:define>
-
+	</ui:define>
+    
     <ui:define name="title">
         DataGrid <span class="subitem">Responsive</span>
     </ui:define>
@@ -26,8 +26,8 @@
         You can improve this for e.g. large screen via rowStyleClass-attribute.
     </ui:define>
 
-    <ui:param name="documentationLink" value="/components/datagrid"/>
-    <ui:param name="widgetLink" value="datagrid"/>
+    <ui:param name="documentationLink" value="/components/datagrid" />
+    <ui:param name="widgetLink" value="DataGrid" />
 
     <ui:define name="implementation">
         <div class="product card">
@@ -47,7 +47,7 @@
                                 <i class="pi pi-tag product-category-icon"/>
                                 <span class="product-category">#{product.category}</span>
                             </div>
-                            <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
+                            <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
                         </div>
                         <div class="product-grid-item-content">
                             <p:graphicImage name="demo/images/product/#{product.image}"/>
@@ -83,7 +83,7 @@
                                             <i class="pi pi-tag product-category-icon"/>
                                             <span class="product-category">#{dataGridView.selectedProduct.category}</span>
                                         </div>
-                                        <span class="product-badge status-#{dataGridView.selectedProduct.inventoryStatus.statusName}">#{dataGridView.selectedProduct.inventoryStatus.text}</span>
+                                        <span class="product-badge status-#{dataGridView.selectedProduct.inventoryStatus.name().toLowerCase()}">#{dataGridView.selectedProduct.inventoryStatus.text}</span>
                                     </div>
                                     <div class="product-grid-item-content">
                                         <p:graphicImage

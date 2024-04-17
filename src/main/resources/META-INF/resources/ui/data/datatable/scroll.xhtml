@@ -5,7 +5,7 @@
                 template="/template/template.xhtml">
 
     <ui:define name="head">
-        <style type="text/css">
+        <style>
             .ui-datatable-frozenlayout-left {
                 width: 20%;
             }
@@ -17,7 +17,7 @@
     </ui:define>
 
     <ui:define name="title">
-        DataTable <span class="subitem">Scrollable</span>
+        DataTable <span class="subitem">Scroll</span>
     </ui:define>
 
     <ui:define name="description">
@@ -25,7 +25,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/datatable"/>
-    <ui:param name="widgetLink" value="datatable-1"/>
+    <ui:param name="widgetLink" value="DataTable-1"/>
 
     <ui:define name="implementation">
 
@@ -43,7 +43,7 @@
                         <h:outputText value="#{customer.representative.name}"/>
                     </p:column>
                     <p:column headerText="Status" footerText="Status">
-                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
                     </p:column>
                 </p:dataTable>
             </div>
@@ -61,7 +61,7 @@
                         <h:outputText value="#{customer.representative.name}"/>
                     </p:column>
                     <p:column headerText="Status" footerText="Status">
-                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
                     </p:column>
                 </p:dataTable>
             </div>
@@ -85,7 +85,7 @@
                         <h:outputText value="#{customer.company}"/>
                     </p:column>
                     <p:column headerText="Status" footerText="Status">
-                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
                     </p:column>
                     <p:column headerText="Activity" footerText="Activity">
                         <h:outputText value="#{customer.activity}"/>
@@ -110,7 +110,7 @@
                         <h:outputText value="#{customer.representative.name}"/>
                     </p:column>
                     <p:column headerText="Status" footerText="Status">
-                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
                     </p:column>
                 </p:dataTable>
             </div>
@@ -119,6 +119,24 @@
                 <h5>Frozen Columns</h5>
                 <p:dataTable var="customer" value="#{dtScrollView.customers5}" scrollable="true" scrollHeight="250"
                              scrollWidth="300" frozenColumns="1">
+                    <p:column headerText="Name" footerText="Name">
+                        <h:outputText value="#{customer.name}"/>
+                    </p:column>
+                    <p:column headerText="Id" footerText="Id">
+                        <h:outputText value="#{customer.id}"/>
+                    </p:column>
+                    <p:column headerText="Country" footerText="Country">
+                        <h:outputText value="#{customer.country}"/>
+                    </p:column>
+                    <p:column headerText="Date" footerText="Date">
+                        <h:outputText value="#{customer.date}"/>
+                    </p:column>
+                </p:dataTable>
+            </div>
+
+            <div class="card">
+                <h3>On-Demand Data</h3>
+                <p:dataTable var="customer" value="#{dtScrollView.customers6}" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="150">
                     <p:column headerText="Name" footerText="Name">
                         <h:outputText value="#{customer.name}"/>
                     </p:column>
@@ -148,7 +166,7 @@
                         <h:outputText value="#{customer.representative.name}"/>
                     </p:column>
                     <p:column headerText="Status" footerText="Status">
-                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
                     </p:column>
                 </p:dataTable>
             </div>

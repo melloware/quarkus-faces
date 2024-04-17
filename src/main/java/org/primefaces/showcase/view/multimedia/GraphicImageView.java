@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,64 +23,48 @@
  */
 package org.primefaces.showcase.view.multimedia;
 
-import java.awt.Graphics2D;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+
+import jakarta.enterprise.context.RequestScoped;
+import javax.imageio.ImageIO;
+import jakarta.inject.Named;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.nio.file.Files;
-
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
-import javax.imageio.ImageIO;
-import jakarta.inject.Named;
-
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
-
-import io.quarkus.runtime.annotations.RegisterForReflection;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 @Named
 @RequestScoped
-@RegisterForReflection
 public class GraphicImageView {
 
-    private StreamedContent graphicText;
-
-    private StreamedContent chart;
-
-    @PostConstruct
-    public void init() {
+    public StreamedContent getGraphicText() {
         try {
-            graphicText = DefaultStreamedContent.builder()
-                        .contentType("image/png")
-                        .stream(() -> {
-                            try {
-                                BufferedImage bufferedImg = new BufferedImage(100, 25, BufferedImage.TYPE_INT_RGB);
-                                Graphics2D g2 = bufferedImg.createGraphics();
-                                g2.drawString("This is a text", 0, 10);
-                                ByteArrayOutputStream os = new ByteArrayOutputStream();
-                                ImageIO.write(bufferedImg, "png", os);
-                                return new ByteArrayInputStream(os.toByteArray());
-                            }
-                            catch (Exception e) {
-                                e.printStackTrace();
-                                return null;
-                            }
-                        })
-                        .build();
-
+            return DefaultStreamedContent.builder()
+                    .contentType("image/png")
+                    .stream(() -> {
+                        try {
+                            BufferedImage bufferedImg = new BufferedImage(100, 25, BufferedImage.TYPE_INT_RGB);
+                            Graphics2D g2 = bufferedImg.createGraphics();
+                            g2.drawString("This is a text", 0, 10);
+                            ByteArrayOutputStream os = new ByteArrayOutputStream();
+                            ImageIO.write(bufferedImg, "png", os);
+                            return new ByteArrayInputStream(os.toByteArray());
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                            return null;
+                        }
+                    })
+                    .build();
         }
         catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-    }
-
-    public StreamedContent getGraphicText() {
-        return graphicText;
-    }
-
-    public StreamedContent getChart() {
-        return chart;
     }
 }

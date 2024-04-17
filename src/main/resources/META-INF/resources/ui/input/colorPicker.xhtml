@@ -1,9 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="jakarta.faces.facelets"
-                xmlns:h="jakarta.faces.html"
-                xmlns:f="jakarta.faces.core"
-                xmlns:p="http://primefaces.org/ui"
-                template="/template/template.xhtml">
+    xmlns:ui="jakarta.faces.facelets"
+    xmlns:h="jakarta.faces.html"
+    xmlns:f="jakarta.faces.core"
+    xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
     <ui:define name="head">
         <style>
@@ -175,9 +174,8 @@
                 
                  <p:commandButton value="Open Dialog" type="button" icon="pi pi-external-link" onclick="PF('dlg').show()"/>
             </div>
-        </h:form>
-        <h:form>
-             <p:dialog header="Pick Color" widgetVar="dlg" minHeight="50" width="350" showEffect="fade" modal="true">
+
+            <p:dialog header="Pick Color" widgetVar="dlg" minHeight="50" width="350" showEffect="fade" modal="true">
                 <div style="height: 300px">
                 <p:outputLabel for="@next" value="Pick Color:" />
                 <p:colorPicker id="dialogPicker" clearButton="true" closeButton="true" alpha="false" />

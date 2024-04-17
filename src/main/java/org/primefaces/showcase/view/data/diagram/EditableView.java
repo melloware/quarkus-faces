@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -108,7 +108,7 @@ public class EditableView implements Serializable {
     public void onConnect(ConnectEvent event) {
         if (!suspendEvent) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Connected",
-                        "From " + event.getSourceElement().getData() + " To " + event.getTargetElement().getData());
+                    "From " + event.getSourceElement().getData() + " To " + event.getTargetElement().getData());
 
             FacesContext.getCurrentInstance().addMessage(null, msg);
 
@@ -121,7 +121,7 @@ public class EditableView implements Serializable {
 
     public void onDisconnect(DisconnectEvent event) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Disconnected",
-                    "From " + event.getSourceElement().getData() + " To " + event.getTargetElement().getData());
+                "From " + event.getSourceElement().getData() + " To " + event.getTargetElement().getData());
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
 
@@ -130,10 +130,10 @@ public class EditableView implements Serializable {
 
     public void onConnectionChange(ConnectionChangeEvent event) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Connection Changed",
-                    "Original Source:" + event.getOriginalSourceElement().getData() +
-                                ", New Source: " + event.getNewSourceElement().getData() +
-                                ", Original Target: " + event.getOriginalTargetElement().getData() +
-                                ", New Target: " + event.getNewTargetElement().getData());
+                "Original Source:" + event.getOriginalSourceElement().getData()
+                + ", New Source: " + event.getNewSourceElement().getData()
+                + ", Original Target: " + event.getOriginalTargetElement().getData()
+                + ", New Target: " + event.getNewTargetElement().getData());
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
 

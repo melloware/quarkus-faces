@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,8 @@ public class InputNumberView implements Serializable {
     private Double input5 = Double.valueOf(0);
     private Double input6 = Double.valueOf(0);
     private Double input7 = null;
-    private BigDecimal input8 = new BigDecimal(0);
+    private BigDecimal input8 = BigDecimal.valueOf(0);
+    private Double input9 = null;
 
     public InputNumberView() {
         input1 = 0d;
@@ -50,6 +51,7 @@ public class InputNumberView implements Serializable {
         input5 = 251.31;
         input6 = 60d;
         input8 = new BigDecimal("1234.000000001");
+        input9 = 0d;
     }
 
     public Double getInput1() {
@@ -114,5 +116,13 @@ public class InputNumberView implements Serializable {
 
     public void setInput8(BigDecimal input8) {
         this.input8 = input8;
+    }
+
+    public Double getInput9() {
+        return input9;
+    }
+
+    public void setInput9(Double input9) {
+        this.input9 = input9;
     }
 }

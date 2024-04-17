@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2023 PrimeTek Informatics
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -47,7 +47,7 @@ public class Product implements Serializable {
     }
 
     public Product(int id, String code, String name, String description, String image, double price, String category, int quantity,
-            InventoryStatus inventoryStatus, int rating) {
+                   InventoryStatus inventoryStatus, int rating) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -176,8 +176,7 @@ public class Product implements Serializable {
         Product other = (Product) obj;
         if (code == null) {
             return other.code == null;
-        }
-        else {
+        } else {
             return code.equals(other.code);
         }
     }

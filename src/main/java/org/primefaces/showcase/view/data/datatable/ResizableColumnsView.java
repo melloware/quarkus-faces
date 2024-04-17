@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,10 +39,10 @@ import java.util.List;
 @Named("dtResizableColumnsView")
 @RequestScoped
 public class ResizableColumnsView implements Serializable {
-    
+
     private List<Product> products1;
     private List<Product> products2;
-    
+
     @Inject
     ProductService service;
 
@@ -51,16 +51,16 @@ public class ResizableColumnsView implements Serializable {
         products1 = service.getProducts(10);
         products2 = service.getProducts(10);
     }
-    
+
     public void onResize(ColumnResizeEvent event) {
         FacesMessage msg = new FacesMessage("Column " + event.getColumn().getClientId() + " resized", "W:" + event.getWidth() + ", H:" + event.getHeight());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-    
+
     public List<Product> getProducts1() {
         return products1;
     }
-    
+
     public List<Product> getProducts2() {
         return products2;
     }

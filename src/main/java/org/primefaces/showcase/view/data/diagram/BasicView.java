@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ import java.io.Serializable;
 @Named("diagramBasicView")
 @ViewScoped
 public class BasicView implements Serializable {
-    
+
     private DefaultDiagramModel model;
 
     @PostConstruct
@@ -46,24 +46,24 @@ public class BasicView implements Serializable {
         model = new DefaultDiagramModel();
         model.setMaxConnections(-1);
         model.setConnectionsDetachable(false);
-        
+
         Element elementA = new Element("A", "20em", "6em");
         elementA.addEndPoint(new DotEndPoint(EndPointAnchor.BOTTOM));
-        
+
         Element elementB = new Element("B", "10em", "18em");
         elementB.addEndPoint(new DotEndPoint(EndPointAnchor.TOP));
-        
+
         Element elementC = new Element("C", "40em", "18em");
         elementC.addEndPoint(new DotEndPoint(EndPointAnchor.TOP));
-                        
+
         model.addElement(elementA);
         model.addElement(elementB);
         model.addElement(elementC);
-        
-        model.connect(new Connection(elementA.getEndPoints().get(0), elementB.getEndPoints().get(0)));        
+
+        model.connect(new Connection(elementA.getEndPoints().get(0), elementB.getEndPoints().get(0)));
         model.connect(new Connection(elementA.getEndPoints().get(0), elementC.getEndPoints().get(0)));
     }
-    
+
     public DiagramModel getModel() {
         return model;
     }

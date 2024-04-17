@@ -14,7 +14,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/panelmenu"/>
-    <ui:param name="widgetLink" value="panelmenu"/>
+    <ui:param name="widgetLink" value="PanelMenu"/>
 
     <ui:define name="implementation">
         <div class="card">
@@ -24,27 +24,15 @@
                 </p:growl>
 
                 <p:panelMenu style="width:300px">
-                    <p:submenu label="Ajax Menuitems">
-                        <p:menuitem value="Save" action="#{menuView.save}" icon="pi pi-save"/>
+                    <p:submenu label="Options">
+                        <p:menuitem value="Save (Non-Ajax)" action="#{menuView.save}" ajax="false"
+                                    icon="pi pi-save"/>
                         <p:menuitem value="Update" action="#{menuView.update}" icon="pi pi-refresh"/>
+                        <p:menuitem value="Delete" action="#{menuView.delete}" icon="pi pi-times"/>
                     </p:submenu>
-                    <p:submenu label="Non-Ajax Menuitem">
-                        <p:menuitem value="Delete" action="#{menuView.delete}" ajax="false" icon="pi pi-times"/>
-                    </p:submenu>
-                    <p:divider />
                     <p:submenu label="Navigations">
-                        <p:submenu label="Links" icon="pi pi-home">
-                            <p:submenu label="PrimeFaces" icon="pi pi-briefcase">
-                                <p:menuitem value="Home" url="http://www.primefaces.org" icon="pi pi-home"/>
-                                <p:menuitem value="Docs" url="http://www.primefaces.org/documentation"
-                                            icon="pi pi-file"/>
-                                <p:menuitem value="Download" url="http://www.primefaces.org/downloads"
-                                            icon="pi pi-arrow-down"/>
-                                <p:menuitem value="Support" url="http://www.primefaces.org/support"
-                                            icon="pi pi-briefcase"/>
-                            </p:submenu>
-                        </p:submenu>
-                        <p:menuitem value="Mobile" icon="pi pi-mobile"/>
+                        <p:menuitem value="Website" url="http://www.primefaces.org" icon="pi pi-external-link"/>
+                        <p:menuitem value="Internal" outcome="/ui/menu/menubar" icon="pi pi-upload"/>
                     </p:submenu>
                 </p:panelMenu>
             </h:form>

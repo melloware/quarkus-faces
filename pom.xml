@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.melloware</groupId>
     <artifactId>quarkus-faces</artifactId>
-    <version>13.0.8</version>
+    <version>14.0.0</version>
     <packaging>jar</packaging>
     <name>quarkus-faces</name>
     <description>Quarkus version of the PrimeFaces Showcase with many optimizations</description>
@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
         <omnifaces-quarkus.version>4.4.0</omnifaces-quarkus.version>
-        <primefaces-quarkus.version>3.13.11</primefaces-quarkus.version>
+        <primefaces-quarkus.version>3.14.0-RC3</primefaces-quarkus.version>
         <myfaces.version>4.0.2</myfaces.version>
         <quarkus.version>3.9.3</quarkus.version>
     </properties>
@@ -93,6 +93,12 @@
             <artifactId>barcode4j-light</artifactId>
             <version>2.3.0</version>
         </dependency>
+        <!-- ChartJS model -->
+        <dependency>
+           <groupId>software.xdev</groupId>
+           <artifactId>chartjs-java-model</artifactId>
+           <version>1.1.3</version>
+        </dependency>
         <!-- HTML sanitizer for the textEditor -->
         <dependency>
             <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
@@ -103,6 +109,12 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.14.0</version>
+        </dependency>
+        <!-- PrimeIcons View-->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20240303</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

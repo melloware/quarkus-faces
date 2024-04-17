@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,10 @@
  */
 package org.primefaces.showcase.view.input;
 
-import org.primefaces.showcase.domain.Country;
-import org.primefaces.showcase.service.CountryService;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
@@ -32,10 +34,9 @@ import jakarta.faces.model.SelectItem;
 import jakarta.faces.model.SelectItemGroup;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import org.primefaces.showcase.domain.Country;
+import org.primefaces.showcase.service.CountryService;
 
 @Named
 @RequestScoped
@@ -59,7 +60,9 @@ public class SelectOneMenuView {
 
     private String longItemLabel;
     private String labeled;
-    
+
+    private String icon = "flag";
+
     @Inject
     CountryService service;
 
@@ -70,16 +73,19 @@ public class SelectOneMenuView {
 
         SelectItemGroup europeCountries = new SelectItemGroup("Europe Countries");
         europeCountries.setSelectItems(new SelectItem[]{
-                new SelectItem("Germany", "Germany"),
-                new SelectItem("Turkey", "Turkey"),
-                new SelectItem("Spain", "Spain")
+            new SelectItem("Germany", "Germany"),
+            new SelectItem("Greece", "Greece"),
+            new SelectItem("Turkey", "Turkey"),
+            new SelectItem("Slovakia", "Slovakia"),
+            new SelectItem("Slovenia", "Slovenia"),
+            new SelectItem("Spain", "Spain")
         });
 
         SelectItemGroup americaCountries = new SelectItemGroup("America Countries");
         americaCountries.setSelectItems(new SelectItem[]{
-                new SelectItem("United States", "United States"),
-                new SelectItem("Brazil", "Brazil"),
-                new SelectItem("Mexico", "Mexico")
+            new SelectItem("United States", "United States"),
+            new SelectItem("Brazil", "Brazil"),
+            new SelectItem("Mexico", "Mexico")
         });
 
         countriesGroup.add(europeCountries);
@@ -115,7 +121,7 @@ public class SelectOneMenuView {
     public String getRtl() {
         return rtl;
     }
-    
+
     public String getHideNoSelectOption() {
         return hideNoSelectOption;
     }
@@ -202,6 +208,14 @@ public class SelectOneMenuView {
 
     public void setLabeled(String labeled) {
         this.labeled = labeled;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public void setService(CountryService service) {

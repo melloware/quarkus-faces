@@ -14,13 +14,13 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/datatable"/>
-    <ui:param name="widgetLink" value="datatable-1"/>
+    <ui:param name="widgetLink" value="DataTable-1"/>
 
     <ui:define name="implementation">
         <div class="card">
             <h:form>
                 <p:dataTable var="customer" value="#{dtPaginatorView.customers}" rows="10"
-                             paginator="true"
+                             paginator="true" paginatorPosition="both"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                              rowsPerPageTemplate="5,10,{ShowAll|'All'}">

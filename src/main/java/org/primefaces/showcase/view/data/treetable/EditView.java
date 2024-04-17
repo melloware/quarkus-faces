@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,7 @@ package org.primefaces.showcase.view.data.treetable;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.TreeNode;
+import org.primefaces.showcase.domain.Document;
 import org.primefaces.showcase.service.DocumentService;
 
 import jakarta.annotation.PostConstruct;
@@ -38,17 +39,17 @@ import java.io.Serializable;
 
 @Named("ttEditView")
 @ViewScoped
-public class EditView implements Serializable{
-    
-    private TreeNode root;
-    
-    private TreeNode root2;
-    
-    private TreeNode root3;
-    
+public class EditView implements Serializable {
+
+    private TreeNode<Document> root;
+
+    private TreeNode<Document> root2;
+
+    private TreeNode<Document> root3;
+
     @Inject
     DocumentService service;
-    
+
     @PostConstruct
     public void init() {
         root = service.createDocuments();
@@ -56,39 +57,39 @@ public class EditView implements Serializable{
         root3 = service.createDocuments();
     }
 
-    public TreeNode getRoot() {
+    public TreeNode<Document> getRoot() {
         return root;
     }
 
-    public TreeNode getRoot2() {
+    public TreeNode<Document> getRoot2() {
         return root2;
     }
-    
-    public TreeNode getRoot3() {
+
+    public TreeNode<Document> getRoot3() {
         return root3;
     }
-    
+
     public void setService(DocumentService service) {
         this.service = service;
     }
-    
+
     public void onRowEdit(RowEditEvent<TreeNode> event) {
         FacesMessage msg = new FacesMessage("Document Edited", event.getObject().toString());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-    
+
     public void onRowCancel(RowEditEvent<TreeNode> event) {
         FacesMessage msg = new FacesMessage("Edit Cancelled", event.getObject().toString());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-    
+
     public void onCellEdit(CellEditEvent event) {
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
-        
-        if(newValue != null && !newValue.equals(oldValue)) {
+
+        if (newValue != null && !newValue.equals(oldValue)) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
-    } 
+    }
 }

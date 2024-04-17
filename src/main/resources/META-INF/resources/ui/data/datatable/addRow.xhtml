@@ -14,20 +14,12 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/datatable"/>
-    <ui:param name="widgetLink" value="datatable-1"/>
+    <ui:param name="widgetLink" value="DataTable-1"/>
 
     <ui:define name="implementation">
         <div class="card">
             <h:form id="form">
                 <p:growl id="msgs" showDetail="true"/>
-
-                <div class="ui-g">
-                    <div class="ui-g-12">
-                        <p:commandButton value="Add new row" styleClass="mt-3" process="@this"
-                                         update=":form:msgs"
-                                         action="#{dtAddRowView.onAddNew()}" oncomplete="PF('products1').addRow();"/>
-                    </div>
-                </div>
 
                 <p:dataTable id="products1" widgetVar="products1" var="product" value="#{dtAddRowView.products1}"
                              editable="true">
@@ -80,7 +72,12 @@
                     </p:column>
                 </p:dataTable>
 
-
+                <div class="grid mt-3">
+                    <div class="col-12">
+                        <p:commandButton value="Add new row" process="@this" update=":form:msgs"
+                                         action="#{dtAddRowView.onAddNew()}" oncomplete="PF('products1').addRow();"/>
+                    </div>
+                </div>
 
             </h:form>
         </div>

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,13 +37,13 @@ import java.util.List;
 @Named
 @RequestScoped
 public class BlockUIView {
-    
-    private String firstname;
-    private String lastname;
-    private List<Customer> customers;
 
     @Inject
     CustomerService service;
+
+    private String firstname;
+    private String lastname;
+    private List<Customer> customers;
 
     @PostConstruct
     public void init() {
@@ -65,10 +65,10 @@ public class BlockUIView {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-    
+
     public void save() {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("You've registered"));
-	}
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("You've registered"));
+    }
 
     public void setService(CustomerService service) {
         this.service = service;

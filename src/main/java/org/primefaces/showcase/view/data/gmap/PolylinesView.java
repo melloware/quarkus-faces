@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2009-2021 PrimeTek
+ * Copyright (c) 2009-2024 PrimeTek Informatics
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,47 +30,51 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Polyline;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import java.io.Serializable;
+import jakarta.faces.view.ViewScoped;
+import org.primefaces.model.map.Overlay;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class PolylinesView implements Serializable {
- 
-    private MapModel polylineModel;
- 
+
+    private MapModel<Long> polylineModel;
+
     @PostConstruct
     public void init() {
-        polylineModel = new DefaultMapModel();
-         
+        polylineModel = new DefaultMapModel<>();
+
         //Shared coordinates
         LatLng coord1 = new LatLng(36.879466, 30.667648);
         LatLng coord2 = new LatLng(36.883707, 30.689216);
         LatLng coord3 = new LatLng(36.879703, 30.706707);
         LatLng coord4 = new LatLng(36.885233, 30.702323);
-     
+
         //Polyline
-        Polyline polyline = new Polyline();
+        Polyline<Long> polyline = new Polyline<>();
+        polyline.setData(1L);
         polyline.getPaths().add(coord1);
         polyline.getPaths().add(coord2);
         polyline.getPaths().add(coord3);
         polyline.getPaths().add(coord4);
-         
+
         polyline.setStrokeWeight(10);
         polyline.setStrokeColor("#FF9900");
         polyline.setStrokeOpacity(0.7);
-         
+
         polylineModel.addOverlay(polyline);
     }
- 
-    public MapModel getPolylineModel() {
+
+    public MapModel<Long> getPolylineModel() {
         return polylineModel;
     }
- 
-    public void onPolylineSelect(OverlaySelectEvent event) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Polyline Selected", null));
+
+    public void onPolylineSelect(OverlaySelectEvent<Long> event) {
+        Overlay<Long> overlay = event.getOverlay();
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Polyline " + overlay.getData() + " Selected", null));
     }
 }

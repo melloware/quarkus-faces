@@ -4,10 +4,10 @@
                 xmlns:f="jakarta.faces.core"
                 xmlns:p="http://primefaces.org/ui"
                 template="/template/template.xhtml"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+                xmlns:c="jakarta.tags.core">
 
     <ui:define name="head">
-        <style type="text/css">
+        <style>
             .ui-diagram-element {
                 border: 0.1em dotted #E5E4E2;
                 background-color: #EFEEEC;
@@ -35,7 +35,7 @@
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/diagram"/>
-    <ui:param name="widgetLink" value="diagram-1"/>
+    <ui:param name="widgetLink" value="Diagram-1"/>
 
     <ui:define name="implementation">
         <div class="card">
