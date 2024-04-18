@@ -1,7 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
-                xmlns:h="jakarta.faces.html"
-                xmlns:f="jakarta.faces.core"
                 xmlns:p="http://primefaces.org/ui"
                 template="/template/template.xhtml">
 
@@ -20,26 +18,6 @@
         <div class="card">
             <h5>Static Image</h5>
             <p:graphicImage name="images/nature/nature4.jpg" library="demo"/>
-        </div>
-
-        <div class="card">
-            <h5>JFreeChart</h5>
-            <p:graphicImage value="#{graphicImageView.chart}"/>
-            <p:graphicImage value="#{graphicImageView.chartAsByteArray}"/>
-            <p:graphicImage value="#{graphicImageView.chartAsStream}"/>
-        </div>
-
-        <div class="card">
-            <h5>JFreeChart rendered as DataURI / ViewScoped support</h5>
-            <p:graphicImage value="#{graphicImageView.chart}" stream="false"/>
-            <p:graphicImage value="#{graphicImageView.chartAsByteArray}" stream="false"/>
-            <p:graphicImage value="#{graphicImageView.chartAsStream}" stream="false"/>
-        </div>
-
-        <div class="card">
-            <h5>JFreeChart optimized without buffering</h5>
-            <p:graphicImage value="#{graphicImageView.chartWithoutBuffering}"/>
-            <p:graphicImage value="#{graphicImageView.chartWithoutBuffering}" stream="false"/>
         </div>
 
         <div class="card">

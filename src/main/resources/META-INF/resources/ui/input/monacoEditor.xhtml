@@ -31,19 +31,21 @@
                 <p:selectOneButton id="type" value="#{monacoEditorView.type}">
                     <f:selectItem itemLabel="Inline" itemValue="inline"/>
                     <f:selectItem itemLabel="Iframe" itemValue="framed"/>
-                    <p:ajax process="monacoEditorWrapper,basicOptionsWrapper" update="monacoEditorWrapper,basicOptionsWrapper"/>
+                    <p:ajax process="monacoEditorWrapper,basicOptionsWrapper"
+                            update="monacoEditorWrapper,basicOptionsWrapper"/>
                 </p:selectOneButton>
 
                 <h:panelGroup id="basicOptionsWrapper" layout="block">
 
                     <h:panelGrid id="basicOptions" rendered="#{monacoEditorView.type eq 'inline'}"
-                                 columns="14" style="margin-bottom:10px" cellpadding="5"
+                                 columns="12" style="margin-bottom:10px" cellpadding="5"
                     >
                         <p:outputLabel for="language" value="Code language: "/>
                         <p:selectOneMenu id="language" value="#{monacoEditorView.language}" filter="true">
                             <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"/>
                             <f:selectItems value="#{monacoEditorView.languages}"/>
-                            <p:ajax listener="#{monacoEditorView.onLanguageChange}" process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                            <p:ajax listener="#{monacoEditorView.onLanguageChange}" process="monacoEditorWrapper"
+                                    update="monacoEditorWrapper"/>
                         </p:selectOneMenu>
 
                         <p:outputLabel for="theme" value="Theme: "/>
@@ -54,7 +56,8 @@
                         </p:selectOneMenu>
 
                         <p:outputLabel for="locale" value="Locale: "/>
-                        <p:selectOneMenu id="locale" value="#{monacoEditorView.locale}" converter="omnifaces.SelectItemsConverter">
+                        <p:selectOneMenu id="locale" value="#{monacoEditorView.locale}"
+                                         converter="omnifaces.SelectItemsConverter">
                             <f:selectItem itemLabel="(Default)" itemValue="#{null}" noSelectionOption="true"/>
                             <f:selectItems value="#{monacoEditorView.locales}" var="locale"
                                            itemLabel="#{locale.displayName}" itemValue="#{locale}"/>
@@ -84,7 +87,8 @@
                         <p:selectOneMenu id="languageFramed" value="#{monacoEditorView.languageFramed}" filter="true">
                             <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"/>
                             <f:selectItems value="#{monacoEditorView.languages}"/>
-                            <p:ajax listener="#{monacoEditorView.onLanguageChange}" process="monacoEditorWrapper" update="monacoEditorWrapper"/>
+                            <p:ajax listener="#{monacoEditorView.onLanguageChange}" process="monacoEditorWrapper"
+                                    update="monacoEditorWrapper"/>
                         </p:selectOneMenu>
 
                         <p:outputLabel for="themeFramed" value="Theme: "/>
@@ -95,7 +99,8 @@
                         </p:selectOneMenu>
 
                         <p:outputLabel for="localeFramed" value="Locale: "/>
-                        <p:selectOneMenu id="localeFramed" value="#{monacoEditorView.localeFramed}" converter="omnifaces.SelectItemsConverter">
+                        <p:selectOneMenu id="localeFramed" value="#{monacoEditorView.localeFramed}"
+                                         converter="omnifaces.SelectItemsConverter">
                             <f:selectItem itemLabel="(Default)" itemValue="#{null}" noSelectionOption="true"/>
                             <f:selectItems value="#{monacoEditorView.locales}" var="locale"
                                            itemLabel="#{locale.displayName}" itemValue="#{locale}"/>
@@ -157,4 +162,3 @@
     </ui:define>
 
 </ui:composition>
-

@@ -32,7 +32,7 @@
                                     <i class="pi pi-tag product-category-icon"/>
                                     <span class="product-category">#{product.category}</span>
                                 </div>
-                                <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                                <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
                             </div>
                             <div class="product-grid-item-content">
                                 <p:graphicImage name="images/product/#{product.image}" library="demo"/>
@@ -72,7 +72,7 @@
                                                  icon="pi pi-shopping-cart"
                                                  disabled="#{product.inventoryStatus == 'OUTOFSTOCK'}">
                                 </p:commandButton>
-                                <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                                <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
                             </div>
                         </div>
                     </p:dataViewListItem>

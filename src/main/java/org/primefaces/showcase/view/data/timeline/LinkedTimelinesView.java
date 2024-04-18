@@ -23,18 +23,17 @@
  */
 package org.primefaces.showcase.view.data.timeline;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.component.timeline.TimelineUpdater;
 import org.primefaces.event.timeline.TimelineSelectEvent;
 import org.primefaces.model.timeline.TimelineEvent;
@@ -119,8 +118,7 @@ public class LinkedTimelinesView implements Serializable {
         if (aSelected) {
             // select project B visually (index in the event's list is 1)
             timelineUpdater.select("projectB");
-        }
-        else {
+        } else {
             // select project A visually (index in the event's list is 0)
             timelineUpdater.select("projectA");
         }
@@ -156,6 +154,7 @@ public class LinkedTimelinesView implements Serializable {
         this.end = end;
     }
 
+    @RegisterForReflection
     public class Task implements Serializable {
 
         private final String title;

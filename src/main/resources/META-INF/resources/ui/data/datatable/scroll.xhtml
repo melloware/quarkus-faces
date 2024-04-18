@@ -43,7 +43,7 @@
                         <h:outputText value="#{customer.representative.name}"/>
                     </p:column>
                     <p:column headerText="Status" footerText="Status">
-                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
                     </p:column>
                 </p:dataTable>
             </div>
@@ -61,7 +61,7 @@
                         <h:outputText value="#{customer.representative.name}"/>
                     </p:column>
                     <p:column headerText="Status" footerText="Status">
-                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
                     </p:column>
                 </p:dataTable>
             </div>
@@ -85,7 +85,7 @@
                         <h:outputText value="#{customer.company}"/>
                     </p:column>
                     <p:column headerText="Status" footerText="Status">
-                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
                     </p:column>
                     <p:column headerText="Activity" footerText="Activity">
                         <h:outputText value="#{customer.activity}"/>
@@ -110,7 +110,7 @@
                         <h:outputText value="#{customer.representative.name}"/>
                     </p:column>
                     <p:column headerText="Status" footerText="Status">
-                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
                     </p:column>
                 </p:dataTable>
             </div>
@@ -166,7 +166,7 @@
                         <h:outputText value="#{customer.representative.name}"/>
                     </p:column>
                     <p:column headerText="Status" footerText="Status">
-                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
                     </p:column>
                 </p:dataTable>
             </div>

@@ -23,11 +23,13 @@
  */
 package org.primefaces.showcase.view.csv;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.validate.bean.AbstractClientValidationConstraint;
 
 /**
  * ClientValidationConstraint for @Email annotation
  */
+@RegisterForReflection
 public class EmailClientValidationConstraint extends AbstractClientValidationConstraint {
 
     public static final String MESSAGE_METADATA = "data-p-email-msg";

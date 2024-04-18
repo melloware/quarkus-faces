@@ -70,7 +70,7 @@
                         <f:facet name="header">
                             <h:outputText value="Status"/>
                         </f:facet>
-                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
                     </p:column>
                 </p:dataTable>
 

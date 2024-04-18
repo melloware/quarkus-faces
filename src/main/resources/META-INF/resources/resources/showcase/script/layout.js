@@ -1,5 +1,5 @@
 App = {
-    init: function() {
+    init: function () {
         this.wrapper = $(document.body).children('.layout-wrapper');
         this.topbar = this.wrapper.children('.layout-topbar');
         this.topbarMenu = this.topbar.find('> form > .topbar-menu');
@@ -14,18 +14,18 @@ App = {
         this.filterPanel = $('.layout-sidebar-filter-panel');
         this.news = this.wrapper.children('.layout-news');
         this.activeSubmenus = [];
-        
+
         this._bindEvents();
         this._bindNews();
-        
+
         this.restoreMenu();
         Storage.restoreSettings();
     },
 
-    _bindEvents: function() {
+    _bindEvents: function () {
         var $this = this;
 
-        this.topbarMenu.find('> .topbar-submenu > a').off('click').on('click', function() {
+        this.topbarMenu.find('> .topbar-submenu > a').off('click').on('click', function () {
             var item = $(this).parent();
 
             item.siblings('.topbar-submenu-active').removeClass('topbar-submenu-active');
@@ -36,37 +36,35 @@ App = {
                 $this.showTopbarSubmenu(item);
         });
 
-        this.topbarMenu.find('.connected-overlay-in a').off('click').on('click', function() {
+        this.topbarMenu.find('.connected-overlay-in a').off('click').on('click', function () {
             $this.hideTopbarSubmenu($this.topbarMenu.children('.topbar-submenu-active'));
         });
 
-        this.menuLinks.off('click').on('click', function() {
+        this.menuLinks.off('click').on('click', function () {
             var link = $(this);
-            
+
             if (link.hasClass('submenu-link')) {
                 if (link.hasClass('submenu-link-active')) {
                     $this.activeSubmenus = $.grep($this.activeSubmenus, function (val) {
                         return val !== link.attr('id');
                     });
                     link.removeClass('submenu-link-active').next('.submenu').slideUp('fast');
-                }
-                else {
+                } else {
                     $this.activeSubmenus.push(link.attr('id'));
                     link.addClass('submenu-link-active').next('.submenu').slideDown('fast');
                 }
 
                 sessionStorage.setItem('active_submenus', $this.activeSubmenus.join(','));
-            }
-            else {
+            } else {
                 link.addClass('router-link-active');
-            }   
+            }
         });
 
-        this.menu.off('scroll').on('scroll', function() {
+        this.menu.off('scroll').on('scroll', function () {
             sessionStorage.setItem('scroll_position', $this.menu.scrollTop());
         });
 
-        $(document).off('click.showcase').on('click.showcase', function(event) {
+        $(document).off('click.showcase').on('click.showcase', function (event) {
             if (!$.contains($this.topbarMenu.get(0), event.target)) {
                 $this.hideTopbarSubmenu($this.topbarMenu.children('.topbar-submenu-active'));
             }
@@ -81,21 +79,21 @@ App = {
             }
         });
 
-        this.menuButton.off('click').on('click', function() {
+        this.menuButton.off('click').on('click', function () {
             $this.sidebar.addClass('active');
             $this.mask.addClass('layout-mask-active');
         });
 
-        this.configuratorButton.off('click').on('click', function() {
+        this.configuratorButton.off('click').on('click', function () {
             $this.configurator.toggleClass('layout-config-active');
         });
 
-        this.configuratorCloseButton.off('click').on('click', function() {
+        this.configuratorCloseButton.off('click').on('click', function () {
             $this.configurator.removeClass('layout-config-active');
         });
 
         this.filterPanel.off('click.showcase', '.ui-autocomplete-item')
-            .on('click.showcase', '.ui-autocomplete-item', function(e) {
+            .on('click.showcase', '.ui-autocomplete-item', function (e) {
                 if (!$this.isLinkClicked) {
                     $this.isLinkClicked = true;
 
@@ -103,9 +101,10 @@ App = {
                     if (link) {
                         var url = new URL(link[0].href);
                         var menuItem = $this.menu.find('a[href*="' + url.pathname + '"]');
-                        if(menuItem.length) {
-                           var scroll_position = menuItem[0].offsetTop - $this.menu[0].offsetTop;;
-                           sessionStorage.setItem('scroll_position', scroll_position); 
+                        if (menuItem.length) {
+                            var scroll_position = menuItem[0].offsetTop - $this.menu[0].offsetTop;
+
+                            sessionStorage.setItem('scroll_position', scroll_position);
                         }
 
                         link.trigger('click');
@@ -117,25 +116,25 @@ App = {
                     }
                 }
                 $this.isLinkClicked = false;
-                e.preventDefault(); 
+                e.preventDefault();
             });
     },
 
-    hideTopbarSubmenu: function(item) {
+    hideTopbarSubmenu: function (item) {
         var submenu = item.children('ul');
         submenu.addClass('connected-overlay-out');
 
         setTimeout(function () {
             item.removeClass('topbar-submenu-active'),
-            submenu.removeClass('connected-overlay-out');
+                submenu.removeClass('connected-overlay-out');
         }, 100);
     },
 
-    showTopbarSubmenu: function(item) {
+    showTopbarSubmenu: function (item) {
         item.addClass('topbar-submenu-active');
     },
 
-    changeTheme: function(theme, dark) {
+    changeTheme: function (theme, dark) {
         PrimeFaces.changeTheme(theme);
 
         if (dark)
@@ -144,18 +143,18 @@ App = {
             $('#homepage-intro').removeClass('introduction-dark');
     },
 
-    updateInputStyle: function(value) {
+    updateInputStyle: function (value) {
         if (value === 'filled')
             this.wrapper.addClass('ui-input-filled');
         else
             this.wrapper.removeClass('ui-input-filled');
     },
 
-    isMenuButton: function(element) {
+    isMenuButton: function (element) {
         return $.contains(this.menuButton.get(0), element) || this.menuButton.is(element);
     },
 
-    restoreMenu: function() {
+    restoreMenu: function () {
         var activeRouteLink = this.menuLinks.filter('[href^="' + window.location.pathname + '"]');
         if (activeRouteLink.length) {
             activeRouteLink.addClass('router-link-active');
@@ -164,7 +163,7 @@ App = {
         var activeSubmenus = sessionStorage.getItem('active_submenus');
         if (activeSubmenus) {
             this.activeSubmenus = activeSubmenus.split(',');
-            this.activeSubmenus.forEach(function(id) {
+            this.activeSubmenus.forEach(function (id) {
                 $('#' + id).addClass('submenu-link-active').next().show();
             });
         }
@@ -175,32 +174,32 @@ App = {
         }
     },
 
-    onSearchClick: function(event, id) {
+    onSearchClick: function (event, id) {
         if (id && this.activeSubmenus.indexOf(id) === -1) {
             this.activeSubmenus.push(id);
             $('#' + id).next().show();
             sessionStorage.setItem('active_submenus', this.activeSubmenus.join(','));
         }
     },
-    
-    _bindNews: function() {
+
+    _bindNews: function () {
         if (this.news && this.news.length > 0) {
             var $this = this;
             var closeButton = this.news.find('.layout-news-close');
-            closeButton.off('click.news').on('click.news', function() {
+            closeButton.off('click.news').on('click.news', function () {
                 $this.wrapper.removeClass('layout-news-active');
                 $this.news.hide();
-                
+
                 Storage.saveSettings(false);
             });
         }
     },
-    
-    changeNews: function(active) {
+
+    changeNews: function (active) {
         if (this.news && this.news.length > 0) {
             if (active)
                 this.wrapper.addClass('layout-news-active');
-            else 
+            else
                 this.wrapper.removeClass('layout-news-active');
         }
     }
@@ -208,7 +207,7 @@ App = {
 
 var Storage = {
     storageKey: 'primefaces',
-    saveSettings: function(newsActive) {
+    saveSettings: function (newsActive) {
         var now = new Date();
         var item = {
             settings: {
@@ -218,7 +217,7 @@ var Storage = {
         }
         localStorage.setItem(this.storageKey, JSON.stringify(item));
     },
-    restoreSettings: function() {
+    restoreSettings: function () {
         var itemString = localStorage.getItem(this.storageKey);
         if (itemString) {
             var item = JSON.parse(itemString);
@@ -228,7 +227,7 @@ var Storage = {
             }
         }
     },
-    isStorageExpired: function() {
+    isStorageExpired: function () {
         var itemString = localStorage.getItem(this.storageKey);
         if (!itemString) {
             return true;
@@ -246,3 +245,46 @@ var Storage = {
 }
 
 App.init();
+
+/**
+ * Finds the current locale with the i18n keys and the associated translations. Uses the current language key
+ * as specified by `PrimeFaces.settings.locale`. When no locale was found for the given locale, falls back to
+ * the default English locale.
+ * @param {string} [cfgLocale] optional configuration locale from the widget
+ * @return {PrimeFaces.Locale} The current locale with the key-value pairs.
+ */
+PrimeFaces.getLocaleSettings = function (cfgLocale) {
+    var locale;
+
+    if (cfgLocale) {
+        // widget locale must not be cached since it can change per widget
+        locale = PrimeFaces.locales[cfgLocale];
+    } else {
+        // global settings so return cached value if already loaded
+        if (this.localeSettings) {
+            return this.localeSettings;
+        }
+        locale = PrimeFaces.locales[PrimeFaces.settings.locale];
+    }
+
+    // try and strip specific language from nl_BE to just nl
+    if (!locale) {
+        var localeKey = cfgLocale ? cfgLocale : PrimeFaces.settings.locale;
+        var strippedLocaleKey = localeKey ? localeKey.split('_')[0] : null;
+        if (strippedLocaleKey) {
+            locale = PrimeFaces.locales[strippedLocaleKey];
+        }
+    }
+
+    // if all else fails default to US English
+    if (!locale) {
+        locale = PrimeFaces.locales['en_US'];
+    }
+
+    // cache default global settings
+    if (!cfgLocale) {
+        this.localeSettings = locale;
+    }
+
+    return locale;
+}

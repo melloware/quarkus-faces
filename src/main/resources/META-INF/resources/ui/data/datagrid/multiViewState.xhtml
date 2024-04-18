@@ -41,7 +41,7 @@
                                 <i class="pi pi-tag product-category-icon"/>
                                 <span class="product-category">#{product.category}</span>
                             </div>
-                            <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                            <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
                         </div>
                         <div class="product-grid-item-content">
                             <p:graphicImage name="demo/images/product/#{product.image}"/>
@@ -76,7 +76,7 @@
                                             <i class="pi pi-tag product-category-icon"/>
                                             <span class="product-category">#{dataGridView.selectedProduct.category}</span>
                                         </div>
-                                        <span class="product-badge status-#{dataGridView.selectedProduct.inventoryStatus.name().toLowerCase()}">#{dataGridView.selectedProduct.inventoryStatus.text}</span>
+                                        <span class="product-badge status-#{dataGridView.selectedProduct.inventoryStatus.statusName}">#{dataGridView.selectedProduct.inventoryStatus.text}</span>
                                     </div>
                                     <div class="product-grid-item-content">
                                         <p:graphicImage

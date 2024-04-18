@@ -23,16 +23,15 @@
  */
 package org.primefaces.showcase.view.data.dataexporter;
 
+import jakarta.faces.FacesException;
+import jakarta.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Collections;
 
-
-import jakarta.faces.FacesException;
-import jakarta.faces.context.FacesContext;
-
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.component.api.UIColumn;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.component.datatable.export.DataTableExporter;
@@ -40,6 +39,7 @@ import org.primefaces.component.export.ColumnValue;
 import org.primefaces.component.export.ExporterOptions;
 import org.primefaces.util.EscapeUtils;
 
+@RegisterForReflection
 public class TextExporter extends DataTableExporter<PrintWriter, ExporterOptions> {
 
     public TextExporter() {
@@ -51,8 +51,7 @@ public class TextExporter extends DataTableExporter<PrintWriter, ExporterOptions
         try {
             OutputStreamWriter osw = new OutputStreamWriter(os(), exportConfiguration.getEncodingType());
             return new PrintWriter(osw);
-        }
-        catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
             throw new FacesException(e);
         }
     }

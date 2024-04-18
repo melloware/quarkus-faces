@@ -23,14 +23,13 @@
  */
 package org.primefaces.showcase.view.multimedia;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
-
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import javax.imageio.ImageIO;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -51,15 +50,13 @@ public class GraphicImageView {
                             ByteArrayOutputStream os = new ByteArrayOutputStream();
                             ImageIO.write(bufferedImg, "png", os);
                             return new ByteArrayInputStream(os.toByteArray());
-                        }
-                        catch (Exception e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                             return null;
                         }
                     })
                     .build();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }

@@ -84,7 +84,7 @@
                                 <f:selectItems value="#{dtMultiViewStateView.customerStatus}"/>
                             </p:selectOneMenu>
                         </f:facet>
-                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
                     </p:column>
 
                     <f:facet name="paginatorTopLeft">
@@ -118,7 +118,7 @@
                     </p:column>
 
                     <p:column headerText="Status" sortBy="#{customer.status}" filterBy="#{customer.status}">
-                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
+                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status}</span>
                     </p:column>
 
                     <f:facet name="paginatorTopLeft">
@@ -155,7 +155,7 @@
                         </p:column>
 
                         <h:outputText value="Status:"/>
-                        <span class="customer-badge status-#{dtMultiViewStateView.selectedCustomer.status.name().toLowerCase()}">#{dtMultiViewStateView.selectedCustomer.status}</span>
+                        <span class="customer-badge status-#{dtMultiViewStateView.selectedCustomer.status.statusName}">#{dtMultiViewStateView.selectedCustomer.status}</span>
                     </p:panelGrid>
                 </p:outputPanel>
             </p:dialog>

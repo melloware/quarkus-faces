@@ -198,7 +198,7 @@
                                 <h:outputText value="#{product.price}" styleClass="product-price">
                                     <f:convertNumber currencySymbol="$" type="currency"/>
                                 </h:outputText>
-                                <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                                <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
                             </div>
                         </div>
                     </p:tab>

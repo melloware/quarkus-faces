@@ -25,7 +25,6 @@ package org.primefaces.showcase.domain;
 
 import java.util.Random;
 
-
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection
@@ -40,5 +39,9 @@ public enum CustomerStatus {
     public static CustomerStatus random() {
         Random random = new Random();
         return values()[random.nextInt(values().length)];
+    }
+
+    public String getStatusName() {
+        return name();
     }
 }

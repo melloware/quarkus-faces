@@ -55,7 +55,7 @@
                                         <f:convertNumber type="currency" pattern="¤#0" currencySymbol="$" />
                                     </h:outputText>
                                 </h6>
-                                <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                                <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
                                 <div class="mt-5">
                                     <p:commandButton type="button" icon="pi pi-search" styleClass="rounded-button mr-2" />
                                     <p:commandButton type="button" icon="pi pi-star" styleClass="ui-button-success rounded-button mr-2" />
@@ -86,7 +86,7 @@
                                         <f:convertNumber type="currency" pattern="¤#0" currencySymbol="$" />
                                     </h:outputText>
                                 </h6>
-                                <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                                <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
                                 <div class="mt-5">
                                     <p:commandButton type="button" icon="pi pi-search" styleClass="rounded-button mr-2" />
                                     <p:commandButton type="button" icon="pi pi-star" styleClass="ui-button-success rounded-button mr-2" />
@@ -116,7 +116,7 @@
                                         <f:convertNumber type="currency" pattern="¤#0" currencySymbol="$" />
                                     </h:outputText>
                                 </h6>
-                                <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                                <span class="product-badge status-#{product.inventoryStatus.statusName}">#{product.inventoryStatus.text}</span>
                                 <div class="mt-5">
                                     <p:commandButton type="button" icon="pi pi-search" styleClass="rounded-button mr-2" />
                                     <p:commandButton type="button" icon="pi pi-star" styleClass="ui-button-success rounded-button mr-2" />

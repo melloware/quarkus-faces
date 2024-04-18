@@ -83,7 +83,7 @@
                     </p:column>
                     <p:column headerText="Status" sortBy="#{product.inventoryStatus}"
                         filterBy="#{product.inventoryStatus}">
-                        <h:outputText styleClass="product-badge status-#{product.inventoryStatus.name().toLowerCase()}"
+                        <h:outputText styleClass="product-badge status-#{product.inventoryStatus.statusName}"
                             value="#{product.inventoryStatus.text}" />
                     </p:column>
                     <p:column exportable="false" ariaHeaderText="Actions">

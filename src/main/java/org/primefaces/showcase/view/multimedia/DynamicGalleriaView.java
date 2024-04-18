@@ -23,15 +23,13 @@
  */
 package org.primefaces.showcase.view.multimedia;
 
-import java.io.Serializable;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.List;
 
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -42,10 +40,9 @@ import org.primefaces.showcase.service.PhotoService;
 @RequestScoped
 public class DynamicGalleriaView implements Serializable {
 
-    private List<Photo> photos;
-
     @Inject
-    private PhotoService service;
+    PhotoService service;
+    private List<Photo> photos;
 
     @PostConstruct
     public void init() {
