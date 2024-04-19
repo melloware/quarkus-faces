@@ -23,7 +23,6 @@
  */
 package org.primefaces.showcase.view.multimedia;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
@@ -44,16 +43,15 @@ public class DynamicGalleriaView implements Serializable {
     PhotoService service;
     private List<Photo> photos;
 
-    @PostConstruct
-    public void init() {
-        photos = service.getPhotos();
-    }
-
     public StreamedContent getPhotoAsStreamedContent() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         String photoId = facesContext.getExternalContext().getRequestParameterMap().get("photoId");
-        Photo photo = photos.stream()
-                .filter(p -> p.getId().equals(photoId))
+        if (photoId == null) {
+            photoId = getPhotos().stream().findFirst().get().getId();
+        }
+        String finalPhotoId = photoId;
+        Photo photo = getPhotos().stream()
+                .filter(p -> p.getId().equals(finalPhotoId))
                 .findFirst().get();
 
         return DefaultStreamedContent.builder()
@@ -64,6 +62,9 @@ public class DynamicGalleriaView implements Serializable {
     }
 
     public List<Photo> getPhotos() {
+        if (photos == null) {
+            photos = service.getPhotos();
+        }
         return photos;
     }
 

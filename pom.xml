@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.melloware</groupId>
     <artifactId>quarkus-faces</artifactId>
@@ -44,6 +45,10 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-health</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-awt</artifactId>
         </dependency>
         <!-- Logging -->
         <dependency>
@@ -206,8 +211,12 @@
                             <goal>compile-sass</goal>
                         </goals>
                         <configuration>
-                            <inputFolder>${project.basedir}/src/main/resources/META-INF/resources/resources/showcase/css</inputFolder>
-                            <outputFolder>${project.basedir}/src/main/resources/META-INF/resources/resources/showcase/css</outputFolder>
+                            <inputFolder>
+                                ${project.basedir}/src/main/resources/META-INF/resources/resources/showcase/css
+                            </inputFolder>
+                            <outputFolder>
+                                ${project.basedir}/src/main/resources/META-INF/resources/resources/showcase/css
+                            </outputFolder>
                             <update>true</update>
                             <noSourceMap>true</noSourceMap>
                             <style>COMPRESSED</style>
@@ -229,7 +238,8 @@
                         </goals>
                         <configuration>
                             <propertiesEncoding>UTF-8</propertiesEncoding>
-                            <outputDirectory>${project.build.directory}/classes/META-INF/resources/java</outputDirectory>
+                            <outputDirectory>${project.build.directory}/classes/META-INF/resources/java
+                            </outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>src/main/java</directory>
