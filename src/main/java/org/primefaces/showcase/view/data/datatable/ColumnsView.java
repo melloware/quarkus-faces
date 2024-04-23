@@ -23,6 +23,11 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.time.temporal.Temporal;
@@ -32,13 +37,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.showcase.domain.Customer;
 import org.primefaces.showcase.service.CustomerService;
@@ -47,14 +46,13 @@ import org.primefaces.showcase.service.CustomerService;
 @ViewScoped
 public class ColumnsView implements Serializable {
 
+    @Inject
+    CustomerService service;
     private String columnTemplate = "name country date status activity";
     private List<ColumnModel> columns;
     private List<Customer> customers;
     private List<Customer> filteredCustomers;
     private Map<String, Class> validColumns;
-
-    @Inject
-    CustomerService service;
 
     @PostConstruct
     public void init() {
@@ -62,10 +60,6 @@ public class ColumnsView implements Serializable {
 
         validColumns = Stream.of(Customer.class.getDeclaredFields()).collect(Collectors.toMap(Field::getName, Field::getType));
         createDynamicColumns();
-    }
-
-    public void setColumns(List<ColumnModel> columns) {
-        this.columns = columns;
     }
 
     public List<Customer> getCustomers() {
@@ -104,6 +98,10 @@ public class ColumnsView implements Serializable {
         return columns;
     }
 
+    public void setColumns(List<ColumnModel> columns) {
+        this.columns = columns;
+    }
+
     private void createDynamicColumns() {
         String[] columnKeys = columnTemplate.split(" ");
         columns = new ArrayList<>();
@@ -126,12 +124,13 @@ public class ColumnsView implements Serializable {
         createDynamicColumns();
     }
 
+    @RegisterForReflection
     public static class ColumnModel implements Serializable {
 
-        private String header;
-        private String property;
+        private final String header;
+        private final String property;
         private String type;
-        private Class<?> klazz;
+        private final Class<?> klazz;
 
         public ColumnModel(String header, String property, Class klazz) {
             this.header = header;
@@ -159,8 +158,7 @@ public class ColumnsView implements Serializable {
         private void initType() {
             if (Temporal.class.isAssignableFrom(klazz)) {
                 type = "date";
-            }
-            else if (klazz.isEnum()) {
+            } else if (klazz.isEnum()) {
                 type = "enum";
             }
         }

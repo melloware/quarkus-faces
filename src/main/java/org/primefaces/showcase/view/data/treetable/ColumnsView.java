@@ -23,17 +23,16 @@
  */
 package org.primefaces.showcase.view.data.treetable;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.TreeNode;
 import org.primefaces.showcase.domain.Document;
 import org.primefaces.showcase.service.DocumentService;
@@ -91,10 +90,11 @@ public class ColumnsView implements Serializable {
         return columns;
     }
 
+    @RegisterForReflection
     public static class ColumnModel implements Serializable {
 
-        private String header;
-        private String property;
+        private final String header;
+        private final String property;
 
         public ColumnModel(String header, String property) {
             this.header = header;

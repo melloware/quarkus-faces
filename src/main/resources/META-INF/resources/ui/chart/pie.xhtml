@@ -1,49 +1,53 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 template="/template/template.xhtml">
 
     <ui:define name="head">
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+        <!-- Must load plugin JS (here using OmniFaces CDN handler) -->
+        <h:outputScript library="cdn" name="chartjs-plugin-datalabels.js" target="body"/>
         <script>
             function chartExtender() {
                 var options = {
-                        plugins: [ChartDataLabels],
-                        options: {
-                           plugins: {
-                              // Change options for ALL labels of THIS CHART
-                              datalabels: {
-                                 color: 'HotPink'
-                              }
-                           }
-                        },
-                        data: {
-                           datasets: [{
-                              // Change options only for labels of THIS DATASET
-                              datalabels: {
-                                 color: 'Indigo'
-                              }
-                           }]
+                    plugins: [ChartDataLabels],
+                    options: {
+                        plugins: {
+                            // Change options for ALL labels of THIS CHART
+                            datalabels: {
+                                color: 'HotPink'
+                            }
                         }
-                     };
+                    },
+                    data: {
+                        datasets: [{
+                            // Change options only for labels of THIS DATASET
+                            datalabels: {
+                                color: 'Indigo'
+                            }
+                        }]
+                    }
+                };
 
-                     //merge all options into the main chart options
-                     $.extend(true, this.cfg.config, options);
+                //merge all options into the main chart options
+                $.extend(true, this.cfg.config, options);
             }
         </script>
     </ui:define>
-    
+
     <ui:define name="title">
         Charts <span class="subitem">Pie</span>
     </ui:define>
 
     <ui:define name="description">
-        PieChart is created with raw JSON or using an <a href="https://github.com/xdev-software/chartjs-java-model" target="_blank" rel="noopener noreferrer">XDEV</a> model.
-        Using the <strong>extender</strong> functionality to add Data Labels to the pie chart with the Data Labels plugin.
+        PieChart is created with raw JSON or using an <a href="https://github.com/xdev-software/chartjs-java-model"
+                                                         target="_blank" rel="noopener noreferrer">XDEV</a> model.
+        Using the
+        <strong>extender</strong> functionality to add Data Labels to the pie chart with the Data Labels plugin.
     </ui:define>
 
-    <ui:param name="documentationLink" value="/components/chart" />
-    <ui:param name="widgetLink" value="Chart" />
+    <ui:param name="documentationLink" value="/components/chart"/>
+    <ui:param name="widgetLink" value="Chart"/>
 
     <ui:define name="implementation">
         <div class="grid">

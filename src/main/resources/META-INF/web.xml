@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app
-    xmlns="https://jakarta.ee/xml/ns/jakartaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
-    version="6.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://jakarta.ee/xml/ns/jakartaee"
+        xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+        version="6.0"
 >
 
     <session-config>
@@ -86,12 +86,6 @@
         <param-name>primefaces.js.COMBINED_RESOURCE_HANDLER_DISABLED</param-name>
         <param-value>true</param-value>
     </context-param>
-    <!--
-    <context-param>
-        <param-name>primefaces.FLEX</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    -->
 
     <!-- Context parameters - MyFaces -->
     <context-param>
@@ -139,8 +133,7 @@
     <context-param>
         <param-name>org.omnifaces.CDN_RESOURCE_HANDLER_URLS</param-name>
         <param-value>
-            cdn:hammer.js=https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js,
-            cdn:chartjs-plugin-zoom.js=https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.min.js
+            cdn:chartjs-plugin-datalabels.js=https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0
         </param-value>
     </context-param>
 
@@ -156,6 +149,16 @@
     <filter-mapping>
         <filter-name>CharacterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- Apply GZIP compression on responses whenever applicable -->
+    <filter>
+        <filter-name>GzipResponseFilter</filter-name>
+        <filter-class>org.omnifaces.filter.GzipResponseFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>GzipResponseFilter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
     </filter-mapping>
 
     <!-- No Cache Filter -->
