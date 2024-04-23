@@ -23,14 +23,12 @@
  */
 package org.primefaces.showcase.menu;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 @Named
 @ApplicationScoped
@@ -96,6 +94,7 @@ public class AppMenu {
         formMenuItems.add(new MenuItem("InputGroup", "/ui/input/inputGroup"));
         formMenuItems.add(new MenuItem("InputMask", "/ui/input/inputMask"));
         formMenuItems.add(new MenuItem("InputNumber", "/ui/input/inputNumber"));
+        formMenuItems.add(new MenuItem("InputOtp", "/ui/input/inputOtp"));
         formMenuItems.add(new MenuItem("InputPhone", "/ui/input/inputPhone"));
         formMenuItems.add(new MenuItem("InputText", "/ui/input/inputText"));
         formMenuItems.add(new MenuItem("InputTextArea", "/ui/input/inputTextarea"));
