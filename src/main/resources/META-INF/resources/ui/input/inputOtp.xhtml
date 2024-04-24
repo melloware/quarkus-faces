@@ -22,9 +22,10 @@
                 <p:messages id="msgs">
                     <p:autoUpdate/>
                 </p:messages>
-                <div class="card">
+                <div>
                     <h5>Required</h5>
-                    <pe:inputOtp id="txtRequired" length="4" value="#{inputOtpView.normal}" required="true"/>
+                    <pe:inputOtp id="txtRequired" length="4" value="#{inputOtpView.normal}" required="true"
+                                 requiredMessage="OTP is required!"/>
 
                     <h5>Password</h5>
                     <pe:inputOtp id="txtPassword" length="5" mask="true" value="#{inputOtpView.password}"/>
@@ -36,7 +37,8 @@
                     <pe:inputOtp disabled="true"/>
                 </div>
 
-                <p:commandButton value="Submit" actionListener="#{inputOtpView.submit}" update="@form"/>
+                <p:commandButton styleClass="mt-3" value="Submit" actionListener="#{inputOtpView.submit}"
+                                 update="@form"/>
             </h:form>
         </div>
     </ui:define>
