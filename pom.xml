@@ -12,7 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
-        <omnifaces-quarkus.version>4.4.0</omnifaces-quarkus.version>
+        <omnifaces-quarkus.version>4.4.1</omnifaces-quarkus.version>
         <primefaces-quarkus.version>3.14.0</primefaces-quarkus.version>
         <myfaces.version>4.0.2</myfaces.version>
         <quarkus.version>3.10.0</quarkus.version>
