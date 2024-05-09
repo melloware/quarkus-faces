@@ -23,28 +23,28 @@
  */
 package org.primefaces.showcase.view.ajax;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.primefaces.PrimeFaces;
 
 @Named
 @ViewScoped
 public class BasicView implements Serializable {
 
+    private final Map<String, Map<String, String>> data = new HashMap<>();
     private String text1;
     private String text2;
     private String text3;
     private String text4;
     private String text5;
     private int number;
-    private Map<String, Map<String, String>> data = new HashMap<>();
     private String country;
     private String city;
     private Map<String, String> countries;
@@ -78,6 +78,7 @@ public class BasicView implements Serializable {
 
     public void increment() {
         number++;
+        PrimeFaces.current().executeScript("console.log('count" + number + "')");
     }
 
     public void handleKeyEvent() {
@@ -161,8 +162,7 @@ public class BasicView implements Serializable {
     public void onCountryChange() {
         if (country != null && !"".equals(country)) {
             cities = data.get(country);
-        }
-        else {
+        } else {
             cities = new HashMap<>();
         }
     }
@@ -171,8 +171,7 @@ public class BasicView implements Serializable {
         FacesMessage msg;
         if (city != null && country != null) {
             msg = new FacesMessage("Selected", city + " of " + country);
-        }
-        else {
+        } else {
             msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid", "City is not selected.");
         }
 
