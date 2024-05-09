@@ -22,10 +22,6 @@
         <param-value>server</param-value>
     </context-param>
     <context-param>
-        <param-name>jakarta.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value>
-    </context-param>
-    <context-param>
         <param-name>jakarta.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
         <param-value>true</param-value>
     </context-param>
@@ -149,16 +145,6 @@
     <filter-mapping>
         <filter-name>CharacterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <!-- Apply GZIP compression on responses whenever applicable -->
-    <filter>
-        <filter-name>GzipResponseFilter</filter-name>
-        <filter-class>org.omnifaces.filter.GzipResponseFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>GzipResponseFilter</filter-name>
-        <servlet-name>Faces Servlet</servlet-name>
     </filter-mapping>
 
     <!-- No Cache Filter -->
