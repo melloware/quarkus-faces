@@ -23,7 +23,7 @@ COPY --from=build --chown=185 /app/target/quarkus-app/app/ /deployments/app/
 COPY --from=build --chown=185 /app/target/quarkus-app/quarkus/ /deployments/quarkus/
 
 # Expose port
-EXPOSE 8081
+EXPOSE 8000
 
 # Set user
 USER 185
