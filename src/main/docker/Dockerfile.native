@@ -11,7 +11,7 @@
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8081:8081  melloware/quarkus-faces
+# docker run -i --rm -p 8000:8000  melloware/quarkus-faces
 #
 ###
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.9
@@ -29,7 +29,7 @@ COPY --chown=1001:root target/*.properties target/*.so /work/
 COPY --chown=1001:root target/*-runner /work/application
 # Permissions fix for Windows
 RUN chmod "ugo+x" /work/application
-EXPOSE 8081
+EXPOSE 8000
 USER 1001
 
 CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
