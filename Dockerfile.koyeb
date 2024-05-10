@@ -17,10 +17,10 @@ ENV LANGUAGE='en_US:en'
 
 
 # We make four distinct layers so if there are application changes the library layers can be re-used
-COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
-COPY --chown=185 target/quarkus-app/*.jar /deployments/
-COPY --chown=185 target/quarkus-app/app/ /deployments/app/
-COPY --chown=185 target/quarkus-app/quarkus/ /deployments/quarkus/
+COPY --from=build --chown=185 /app/target/quarkus-app/lib/ /deployments/lib/
+COPY --from=build --chown=185 /app/target/quarkus-app/*.jar /deployments/
+COPY --from=build --chown=185 /app/target/quarkus-app/app/ /deployments/app/
+COPY --from=build --chown=185 /app/target/quarkus-app/quarkus/ /deployments/quarkus/
 
 # Expose port
 EXPOSE 8000
