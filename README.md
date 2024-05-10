@@ -22,6 +22,10 @@ Some addition goals:
 - See how much we can improve performance by incorporating various optimization tricks for JSF applications
 - See if Quarkus is a viable option for Faces and migrating to Docker containers
 
+### Application
+
+See [QuarkusFaces Showcase](https://quarkus-faces-melloware-8a6a34c1.koyeb.app/) running live on a free cloud hosting using 0.1 VCPU and 512MB RAM. Its an underpowered machine but it gets the point across.
+
 ### Environment
 ***
 - OpenJDK 17.0.5
