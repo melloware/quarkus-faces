@@ -10,17 +10,17 @@ COPY . .
 # Build the project
 RUN mvn clean package
 
-# Use Red Hat's OpenJDK 17 as base image
-FROM registry.access.redhat.com/ubi8/openjdk-17:1.14
+# Use Red Hat's OpenJDK 21 as base image
+FROM registry.access.redhat.com/ubi8/openjdk-21:1.18
 
-# Set environment variables
-ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
+ENV LANGUAGE='en_US:en'
+
 
 # We make four distinct layers so if there are application changes the library layers can be re-used
-COPY --from=build --chown=185 /app/target/quarkus-app/lib/ /deployments/lib/
-COPY --from=build --chown=185 /app/target/quarkus-app/*.jar /deployments/
-COPY --from=build --chown=185 /app/target/quarkus-app/app/ /deployments/app/
-COPY --from=build --chown=185 /app/target/quarkus-app/quarkus/ /deployments/quarkus/
+COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
+COPY --chown=185 target/quarkus-app/*.jar /deployments/
+COPY --chown=185 target/quarkus-app/app/ /deployments/app/
+COPY --chown=185 target/quarkus-app/quarkus/ /deployments/quarkus/
 
 # Expose port
 EXPOSE 8000
@@ -29,6 +29,7 @@ EXPOSE 8000
 USER 185
 
 # Additional environment variables
-ENV AB_JOLOKIA_OFF=""
-ENV JAVA_OPTS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
+ENV JAVA_OPTS_APPEND="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
+
+ENTRYPOINT [ "/opt/jboss/container/java/run/run-java.sh" ]
