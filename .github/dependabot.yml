@@ -5,11 +5,6 @@ updates:
     target-branch: "main"
     schedule:
       interval: "daily"
-  - package-ecosystem: "maven"
-    directory: "/"
-    target-branch: "oidc-auth"
-    schedule:
-      interval: "monthly"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
