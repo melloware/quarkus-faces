@@ -77,6 +77,7 @@ public class AppMenu {
         formMenuItems.add(new MenuItem("Calendar", calendarMenuItems));
         formMenuItems.add(new MenuItem("CascadeSelect", "/ui/input/cascadeSelect"));
         formMenuItems.add(new MenuItem("Chips", "/ui/input/chips"));
+        formMenuItems.add(new MenuItem("ClockPicker", "/ui/input/clockPicker"));
 
         List<MenuItem> colorPickerMenuItems = new ArrayList<>();
         colorPickerMenuItems.add(new MenuItem("Popup", "/ui/input/colorPicker"));
@@ -89,7 +90,6 @@ public class AppMenu {
         datePickerMenuItems.add(new MenuItem("Java 8+ Date APIs", "/ui/input/datepicker/datePickerJava8"));
         datePickerMenuItems.add(new MenuItem("Metadata", "/ui/input/datepicker/metadata"));
         formMenuItems.add(new MenuItem("DatePicker", datePickerMenuItems));
-
         formMenuItems.add(new MenuItem("Inplace", "/ui/input/inplace"));
         formMenuItems.add(new MenuItem("InputGroup", "/ui/input/inputGroup"));
         formMenuItems.add(new MenuItem("InputMask", "/ui/input/inputMask"));
