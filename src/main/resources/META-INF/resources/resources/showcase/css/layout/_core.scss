@@ -2,6 +2,13 @@ $linkColor: #2196f3;
 $focusBorderColor:#BBDEFB;
 $actionColor: #FEAB4D;
 
+:root {
+    --saga0: #0B78D5; /* Main color */
+    --saga1: #0859A7; /* Hover color */
+    --saga2: #0859A7; /* Active color */
+    --saga3: #6CBCF9; /* Focus outline color */
+    --saga4: #495057; /* Text color */
+}
 
 html {
     font-size: 14px;
