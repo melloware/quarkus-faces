@@ -246,45 +246,44 @@ var Storage = {
 
 App.init();
 
-/**
- * Finds the current locale with the i18n keys and the associated translations. Uses the current language key
- * as specified by `PrimeFaces.settings.locale`. When no locale was found for the given locale, falls back to
- * the default English locale.
- * @param {string} [cfgLocale] optional configuration locale from the widget
- * @return {PrimeFaces.Locale} The current locale with the key-value pairs.
- */
-PrimeFaces.getLocaleSettings = function (cfgLocale) {
-    var locale;
+// monkypatch remove after deployment
+if (PrimeFaces.widget.TreeTable) {
+    PrimeFaces.widget.TreeTable.prototype.fireSelectNodeEvent = function(nodeKey) {
+        if (this.isCheckboxSelection()) {
+            var $this = this,
+                options = {
+                    source: this.id,
+                    process: this.id
+                };
 
-    if (cfgLocale) {
-        // widget locale must not be cached since it can change per widget
-        locale = PrimeFaces.locales[cfgLocale];
-    } else {
-        // global settings so return cached value if already loaded
-        if (this.localeSettings) {
-            return this.localeSettings;
+            options.params = [{
+                name: this.id + '_instantSelection',
+                value: nodeKey
+            }];
+
+            var checkboxSelector = this.cfg.nativeElements ? '> tr.ui-treetable-selectable-node > td:first-child :checkbox' :
+                '> tr.ui-treetable-selectable-node > td:first-child div.ui-chkbox-box';
+            var checkboxes = this.tbody.find(checkboxSelector).addClass('ui-state-disabled');
+
+            options.oncomplete = function(xhr, status, args, data) {
+                if (args.descendantRowKeys && args.descendantRowKeys !== '') {
+                    var rowKeys = args.descendantRowKeys.split(',');
+                    for (var i = 0; i < rowKeys.length; i++) {
+                        $this.addToSelection(rowKeys[i]);
+                    }
+                    $this.writeSelections();
+                }
+
+                checkboxes.removeClass('ui-state-disabled');
+            }
+
+            if (this.hasBehavior('select')) {
+                this.callBehavior('select', options);
+            } else {
+                PrimeFaces.ajax.Request.handle(options);
+            }
+        } else {
+            this.fireSelectEvent(nodeKey, 'select');
         }
-        locale = PrimeFaces.locales[PrimeFaces.settings.locale];
     }
-
-    // try and strip specific language from nl_BE to just nl
-    if (!locale) {
-        var localeKey = cfgLocale ? cfgLocale : PrimeFaces.settings.locale;
-        var strippedLocaleKey = localeKey ? localeKey.split('_')[0] : null;
-        if (strippedLocaleKey) {
-            locale = PrimeFaces.locales[strippedLocaleKey];
-        }
-    }
-
-    // if all else fails default to US English
-    if (!locale) {
-        locale = PrimeFaces.locales['en_US'];
-    }
-
-    // cache default global settings
-    if (!cfgLocale) {
-        this.localeSettings = locale;
-    }
-
-    return locale;
 }
