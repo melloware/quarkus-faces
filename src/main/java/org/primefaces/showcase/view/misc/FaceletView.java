@@ -55,6 +55,7 @@ public class FaceletView extends Facelet {
 
         var htmlTag = new UIOutput();
         htmlTag.setValue("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+        htmlTag.getAttributes().put("escape", false);
         rootChildren.add(htmlTag);
 
         HtmlBody body = components.create(HtmlBody.COMPONENT_TYPE);
@@ -79,6 +80,7 @@ public class FaceletView extends Facelet {
 
         htmlTag = new UIOutput();
         htmlTag.setValue("</html>");
+        htmlTag.getAttributes().put("escape", false);
         rootChildren.add(htmlTag);
     }
 
