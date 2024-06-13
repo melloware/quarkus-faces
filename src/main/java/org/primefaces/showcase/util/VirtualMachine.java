@@ -102,8 +102,6 @@ public final class VirtualMachine {
 
         String output = "Used: " +
                     byteCountToDisplaySize(usedMemory) +
-                    " Free: " +
-                    byteCountToDisplaySize(availableMemory) +
                     " Max: " +
                     byteCountToDisplaySize(maxMemory);
          log.info(output);
