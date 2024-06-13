@@ -27,6 +27,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.primefaces.event.ItemSelectEvent;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
@@ -43,11 +44,15 @@ import software.xdev.chartjs.model.enums.FontStyle;
 import software.xdev.chartjs.model.enums.ScalesPosition;
 import software.xdev.chartjs.model.options.*;
 import software.xdev.chartjs.model.options.elements.Fill;
-import software.xdev.chartjs.model.options.scales.*;
-import software.xdev.chartjs.model.options.ticks.CategoryTicks;
-import software.xdev.chartjs.model.options.ticks.RadialLinearTicks;
+import software.xdev.chartjs.model.options.scale.Scales;
+import software.xdev.chartjs.model.options.scale.cartesian.CartesianScaleOptions;
+import software.xdev.chartjs.model.options.scale.cartesian.CartesianTickOptions;
+import software.xdev.chartjs.model.options.scale.cartesian.linear.LinearScaleOptions;
+import software.xdev.chartjs.model.options.scale.radial.AngleLines;
+import software.xdev.chartjs.model.options.scale.radial.PointLabels;
+import software.xdev.chartjs.model.options.scale.radial.RadialLinearScaleOptions;
+import software.xdev.chartjs.model.options.scale.radial.RadialTickOptions;
 
-import org.primefaces.event.ItemSelectEvent;
 
 @Named
 @RequestScoped
@@ -156,7 +161,7 @@ public class ChartView implements Serializable {
                         .setResponsive(true)
                         .setShowLine(Boolean.FALSE)
                         .setScales(new Scales()
-                                .addScale(Scales.ScaleAxis.X, new LinearScale().setPosition(ScalesPosition.BOTTOM)))
+                                .addScale(Scales.ScaleAxis.X, new LinearScaleOptions().setPosition(ScalesPosition.BOTTOM)))
                         .setPlugins(new Plugins()
                                 .setTitle(new Title()
                                         .setDisplay(true)
@@ -184,8 +189,8 @@ public class ChartView implements Serializable {
                         .setResponsive(true)
                         .setMaintainAspectRatio(false)
                         .setScales(new Scales()
-                                .addScale("left-y-axis", new LinearScale().setPosition(ScalesPosition.LEFT))
-                                .addScale("right-y-axis", new LinearScale().setPosition(ScalesPosition.RIGHT)))
+                                .addScale("left-y-axis", new LinearScaleOptions().setPosition(ScalesPosition.LEFT))
+                                .addScale("right-y-axis", new LinearScaleOptions().setPosition(ScalesPosition.RIGHT)))
                         .setPlugins(new Plugins()
                                 .setTitle(new Title()
                                         .setDisplay(true)
@@ -216,10 +221,9 @@ public class ChartView implements Serializable {
                         .setResponsive(true)
                         .setMaintainAspectRatio(false)
                         .setIndexAxis(BarOptions.IndexAxis.X)
-                        .setScales(new Scales().addScale(Scales.ScaleAxis.Y, new BarScale<CategoryTicks>()
-                                .setBarPercentage(BigDecimal.valueOf(0.9))
+                        .setScales(new Scales().addScale(Scales.ScaleAxis.Y, new CartesianScaleOptions()
                                 .setStacked(false)
-                                .setTicks(new CategoryTicks()
+                                .setTicks(new CartesianTickOptions()
                                         .setAutoSkip(true)
                                         .setMirror(true)))
                         )
@@ -250,12 +254,12 @@ public class ChartView implements Serializable {
                         .setResponsive(true)
                         .setMaintainAspectRatio(false)
                         .setScales(new Scales()
-                                .addScale(Scales.ScaleAxis.X, new BarScale<CategoryTicks>()
+                                .addScale(Scales.ScaleAxis.X, new CartesianScaleOptions()
                                         .setStacked(true)
-                                        .setTicks(new CategoryTicks()))
-                                .addScale(Scales.ScaleAxis.Y, new BarScale<CategoryTicks>()
+                                        .setTicks(new CartesianTickOptions()))
+                                .addScale(Scales.ScaleAxis.Y, new CartesianScaleOptions()
                                         .setStacked(true)
-                                        .setTicks(new CategoryTicks()))
+                                        .setTicks(new CartesianTickOptions()))
                         )
                         .setPlugins(new Plugins()
                                 .setTooltip(new Tooltip().setMode("index"))
@@ -302,23 +306,20 @@ public class ChartView implements Serializable {
                 .setOptions(new RadarOptions()
                         .setResponsive(true)
                         .setMaintainAspectRatio(false)
-                        .setScales(new Scales().addScale(Scales.ScaleAxis.Y, new RadialLinearScale<RadialLinearTicks>()
+                        .setScales(new Scales().addScale(Scales.ScaleAxis.Y, new RadialLinearScaleOptions()
                                 .setAngleLines(new AngleLines()
                                         .setDisplay(Boolean.TRUE)
                                         .setLineWidth(BigDecimal.valueOf(0.5))
                                         .setColor(new Color(128, 128, 128, 0.2)))
-                                .setPointLabels(new PointLabels()
-                                        .setFontSize(BigDecimal.valueOf(14))
-                                        .setFontStyle(FontStyle.NORMAL)
-                                        .setFontFamily("Lato, sans-serif")
-                                        .setFontColor(new Color(204, 204, 204, 1)))
-                                .setTicks(new RadialLinearTicks()
-                                        .setBeginAtZero(Boolean.TRUE)
+                                .setPointLabels(new PointLabels().setFont(new Font()
+                                        .setSize(BigDecimal.valueOf(14))
+                                        .setStyle(FontStyle.NORMAL)
+                                        .setFamily("Lato, sans-serif"))
+                                        .setColor(new Color(204, 204, 204, 1)))
+                                .setTicks(new RadialTickOptions()
                                         .setDisplay(false)
-                                        .setMin(BigDecimal.ZERO)
-                                        .setAutoSkip(false)
                                         .setStepSize(BigDecimal.valueOf(0.2))
-                                        .setMax(BigDecimal.valueOf(3))))
+                                        .setMaxTickLimits(BigDecimal.valueOf(3))))
                         )
                         .setPlugins(new Plugins()
                                 .setTitle(new Title()
@@ -352,124 +353,122 @@ public class ChartView implements Serializable {
                                 new Color(54, 162, 235),
                                 new Color(255, 205, 86))
                 )
-                .setLabels("Red", "Yellow", "Blue"))
+                .setLabels("Red", "Blue", "Yellow"))
                 .setOptions(new DoughnutOptions().setMaintainAspectRatio(Boolean.FALSE))
                 .toJson();
     }
 
     public void createJsonModel() {
-        json = """
-                {
-                   "type":"line",
-                   "data":{
-                      "datasets":[
-                         {
-                            "backgroundColor":"rgba(40, 180, 99, 0.3)",
-                            "borderColor":"rgb(40, 180, 99)",
-                            "borderWidth":1,
-                            "data":[
-                               {
-                                  "x":1699457269877,
-                                  "y":20
-                               },
-                               {
-                                  "x":1700047109694,
-                                  "y":20
-                               }
-                            ],
-                            "hidden":false,
-                            "label":"Device Id: 524967 Register: A - total Wh ",
-                            "minBarLength":3
-                         },
-                         {
-                            "backgroundColor":"rgba(218, 117, 255, 0.3)",
-                            "borderColor":"rgb(218, 117, 255)",
-                            "borderWidth":1,
-                            "data":[
-                               {
-                                  "x":1699457267847,
-                                  "y":10
-                               },
-                               {
-                                  "x":1700047108397,
-                                  "y":234
-                               }
-                            ],
-                            "hidden":false,
-                            "label":"Device Id: 524967 Register: A+ total Wh ",
-                            "minBarLength":3
-                         }
-                      ]
-                   },
-                   "options":{
-                      "plugins":{
-                         "legend":{
-                            "display":true,
-                            "fullWidth":true,
-                            "position":"top",
-                            "reverse":false,
-                            "rtl":false
-                         },
-                         "title":{
-                            "display":true,
-                            "text":"Values from the meter"
-                         },
-                         "zoom":{
-                            "pan":{
-                               "enabled":true,
-                               "mode":"xy",
-                               "threshold":5
-                            },
-                            "zoom":{
-                               "wheel":{
-                                  "enabled":true
-                               },
-                               "pinch":{
-                                  "enabled":true
-                               },
-                               "mode":"xy"
-                            }
-                         }
-                      },
-                      "scales":{
-                         "x":{
-                            "beginAtZero":false,
-                            "offset":true,
-                            "reverse":false,
-                            "stacked":true,
-                            "ticks":{
-                               "autoSkip":true,
-                               "maxRotation":0,
-                               "minRotation":0,
-                               "mirror":false,
-                               "source":"data"
-                            },
-                            "time":{
-                               "displayFormats":{
-                                  "minute":"dd.LL T"
-                               },
-                               "round":"minute",
-                               "stepSize":"60",
-                               "unit":"minute"
-                            },
-                            "type":"time"
-                         },
-                         "y":{
-                            "beginAtZero":false,
-                            "offset":false,
-                            "reverse":false,
-                            "stacked":true,
-                            "ticks":{
-                               "autoSkip":true,
-                               "mirror":false
-                            }
-                         }
-                      },
-                      "showLine":true,
-                      "spanGaps":false
-                   }
-                }\
-                """;
+        json = "{\r\n"
+                + "   \"type\":\"line\",\r\n"
+                + "   \"data\":{\r\n"
+                + "      \"datasets\":[\r\n"
+                + "         {\r\n"
+                + "            \"backgroundColor\":\"rgba(40, 180, 99, 0.3)\",\r\n"
+                + "            \"borderColor\":\"rgb(40, 180, 99)\",\r\n"
+                + "            \"borderWidth\":1,\r\n"
+                + "            \"data\":[\r\n"
+                + "               {\r\n"
+                + "                  \"x\":1699457269877,\r\n"
+                + "                  \"y\":20\r\n"
+                + "               },\r\n"
+                + "               {\r\n"
+                + "                  \"x\":1700047109694,\r\n"
+                + "                  \"y\":20\r\n"
+                + "               }\r\n"
+                + "            ],\r\n"
+                + "            \"hidden\":false,\r\n"
+                + "            \"label\":\"Device Id: 524967 Register: A - total Wh \",\r\n"
+                + "            \"minBarLength\":3\r\n"
+                + "         },\r\n"
+                + "         {\r\n"
+                + "            \"backgroundColor\":\"rgba(218, 117, 255, 0.3)\",\r\n"
+                + "            \"borderColor\":\"rgb(218, 117, 255)\",\r\n"
+                + "            \"borderWidth\":1,\r\n"
+                + "            \"data\":[\r\n"
+                + "               {\r\n"
+                + "                  \"x\":1699457267847,\r\n"
+                + "                  \"y\":10\r\n"
+                + "               },\r\n"
+                + "               {\r\n"
+                + "                  \"x\":1700047108397,\r\n"
+                + "                  \"y\":234\r\n"
+                + "               }\r\n"
+                + "            ],\r\n"
+                + "            \"hidden\":false,\r\n"
+                + "            \"label\":\"Device Id: 524967 Register: A+ total Wh \",\r\n"
+                + "            \"minBarLength\":3\r\n"
+                + "         }\r\n"
+                + "      ]\r\n"
+                + "   },\r\n"
+                + "   \"options\":{\r\n"
+                + "      \"plugins\":{\r\n"
+                + "         \"legend\":{\r\n"
+                + "            \"display\":true,\r\n"
+                + "            \"fullWidth\":true,\r\n"
+                + "            \"position\":\"top\",\r\n"
+                + "            \"reverse\":false,\r\n"
+                + "            \"rtl\":false\r\n"
+                + "         },\r\n"
+                + "         \"title\":{\r\n"
+                + "            \"display\":true,\r\n"
+                + "            \"text\":\"Values from the meter\"\r\n"
+                + "         },\r\n"
+                + "         \"zoom\":{\r\n"
+                + "            \"pan\":{\r\n"
+                + "               \"enabled\":true,\r\n"
+                + "               \"mode\":\"xy\",\r\n"
+                + "               \"threshold\":5\r\n"
+                + "            },\r\n"
+                + "            \"zoom\":{\r\n"
+                + "               \"wheel\":{\r\n"
+                + "                  \"enabled\":true\r\n"
+                + "               },\r\n"
+                + "               \"pinch\":{\r\n"
+                + "                  \"enabled\":true\r\n"
+                + "               },\r\n"
+                + "               \"mode\":\"xy\"\r\n"
+                + "            }\r\n"
+                + "         }\r\n"
+                + "      },\r\n"
+                + "      \"scales\":{\r\n"
+                + "         \"x\":{\r\n"
+                + "            \"beginAtZero\":false,\r\n"
+                + "            \"offset\":true,\r\n"
+                + "            \"reverse\":false,\r\n"
+                + "            \"stacked\":true,\r\n"
+                + "            \"ticks\":{\r\n"
+                + "               \"autoSkip\":true,\r\n"
+                + "               \"maxRotation\":0,\r\n"
+                + "               \"minRotation\":0,\r\n"
+                + "               \"mirror\":false,\r\n"
+                + "               \"source\":\"data\"\r\n"
+                + "            },\r\n"
+                + "            \"time\":{\r\n"
+                + "               \"displayFormats\":{\r\n"
+                + "                  \"minute\":\"dd.LL T\"\r\n"
+                + "               },\r\n"
+                + "               \"round\":\"minute\",\r\n"
+                + "               \"stepSize\":\"60\",\r\n"
+                + "               \"unit\":\"minute\"\r\n"
+                + "            },\r\n"
+                + "            \"type\":\"time\"\r\n"
+                + "         },\r\n"
+                + "         \"y\":{\r\n"
+                + "            \"beginAtZero\":false,\r\n"
+                + "            \"offset\":false,\r\n"
+                + "            \"reverse\":false,\r\n"
+                + "            \"stacked\":true,\r\n"
+                + "            \"ticks\":{\r\n"
+                + "               \"autoSkip\":true,\r\n"
+                + "               \"mirror\":false\r\n"
+                + "            }\r\n"
+                + "         }\r\n"
+                + "      },\r\n"
+                + "      \"showLine\":true,\r\n"
+                + "      \"spanGaps\":false\r\n"
+                + "   }\r\n"
+                + "}";
     }
 
     public void itemSelect(ItemSelectEvent event) {
