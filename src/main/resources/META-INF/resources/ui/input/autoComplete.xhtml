@@ -33,13 +33,15 @@
                     <div class="field col-12 md:col-4">
                         <p:outputLabel value="Min Length (3)" for="@next"/>
                         <p:autoComplete id="acMinLength" minQueryLength="3" value="#{autoCompleteView.txt2}"
-                                        completeMethod="#{autoCompleteView.completeText}" effect="fade" scrollHeight="250"/>
+                                        completeMethod="#{autoCompleteView.completeText}" effect="fade"
+                                        scrollHeight="250"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel value="Delay(1000)" for="@next"/>
                         <p:autoComplete id="acDelay" queryDelay="1000" value="#{autoCompleteView.txt3}"
-                                        completeMethod="#{autoCompleteView.completeText}" effect="blind" scrollHeight="250"/>
+                                        completeMethod="#{autoCompleteView.completeText}" effect="blind"
+                                        scrollHeight="250"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
@@ -61,7 +63,7 @@
                     <div class="field col-12 md:col-4">
                         <p:outputLabel value="DropDown" for="@next"/>
                         <p:autoComplete id="dd" dropdown="true" value="#{autoCompleteView.txt6}"
-                                    completeMethod="#{autoCompleteView.completeText}" scrollHeight="250"/>
+                                        completeMethod="#{autoCompleteView.completeText}" scrollHeight="250"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
@@ -123,7 +125,8 @@
                                         converter="#{countryConverter}" forceSelection="true" scrollHeight="250">
                             <p:column>
                                 <span class="flag flag-#{country.code}" style="width: 30px; height: 20px"/>
-                                <h:outputText style="vertical-align: middle; margin-left: .5rem" value="#{country.name}"/>
+                                <h:outputText style="vertical-align: middle; margin-left: .5rem"
+                                              value="#{country.name}"/>
                             </p:column>
                         </p:autoComplete>
                     </div>
@@ -156,7 +159,8 @@
                                         completeMethod="#{autoCompleteView.completeCountry}"
                                         var="country" itemLabel="#{country.name}" itemValue="#{country}"
                                         converter="#{countryConverter}" forceSelection="true"
-                                        groupBy="#{autoCompleteView.getCountryGroup(country)}" escape="false" scrollHeight="250"/>
+                                        groupBy="#{autoCompleteView.getCountryGroup(country)}" escape="false"
+                                        scrollHeight="250"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
@@ -179,7 +183,7 @@
                                 var="country" itemLabel="#{country.name}" itemValue="#{country}"
                                 converter="#{countryConverter}" forceSelection="true" scrollHeight="250">
                     <p:column>
-                        <span class="flag flag-#{country.code}" style="width: 30px; height: 20px" />
+                        <span class="flag flag-#{country.code}" style="width: 30px; height: 20px"/>
                         <h:outputText style="vertical-align: middle; margin-left: .5rem" value="#{country.name}"/>
                     </p:column>
                 </p:autoComplete>
@@ -189,9 +193,6 @@
 
     <ui:define name="more-source-tabs">
         <p:tab title="/org/primefaces/showcase/view/data/datatable/LazyCustomerDataModel.java"/>
-        <p:tab title="/org/primefaces/showcase/domain/Customer.java"/>
-        <p:tab title="/org/primefaces/showcase/domain/CustomerStatus.java"/>
-        <p:tab title="/org/primefaces/showcase/domain/Representative.java"/>
         <p:tab title="/org/primefaces/showcase/convert/CountryConverter.java"/>
         <p:tab title="/org/primefaces/showcase/rest/CountryRestService.java"/>
     </ui:define>

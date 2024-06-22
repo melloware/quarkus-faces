@@ -23,21 +23,21 @@
  */
 package org.primefaces.showcase.util;
 
+import jakarta.faces.context.FacesContext;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import jakarta.faces.context.FacesContext;
-
 import org.primefaces.util.LangUtils;
 
 /**
@@ -51,28 +51,28 @@ import org.primefaces.util.LangUtils;
 public class FileContentMarkerUtil {
 
     private static final FileContentSettings javaFileSettings = new FileContentSettings()
-                .setType("java")
-                .setStartMarkers(
-                            Marker.of("@Named"),
-                            Marker.of("@RequestScoped"),
-                            Marker.of("@ViewScoped"),
-                            Marker.of("@SessionScoped"),
-                            Marker.of("@FacesConverter"),
-                            Marker.of("@Target"),
-                            Marker.of(" class "),
-                            Marker.of(" enum "),
-                            Marker.of("EXCLUDE-SOURCE-END").excluded())
-                .setEndMarkers(Marker.of("EXCLUDE-SOURCE-START").excluded());
+            .setType("java")
+            .setStartMarkers(
+                    Marker.of("@Named"),
+                    Marker.of("@RequestScoped"),
+                    Marker.of("@ViewScoped"),
+                    Marker.of("@SessionScoped"),
+                    Marker.of("@FacesConverter"),
+                    Marker.of("@Target"),
+                    Marker.of(" class "),
+                    Marker.of(" enum "),
+                    Marker.of("EXCLUDE-SOURCE-END").excluded())
+            .setEndMarkers(Marker.of("EXCLUDE-SOURCE-START").excluded());
 
     private static final FileContentSettings xhtmlFileSettings = new FileContentSettings()
-                .setType("xml")
-                .setStartMarkers(
-                            Marker.of("EXAMPLE-SOURCE-START").excluded(),
-                            Marker.of("<ui:define name=\"implementation\">").excluded(),
-                            Marker.of("<ui:define name=\"head\">").excluded())
-                .setEndMarkers(
-                            Marker.of("EXAMPLE-SOURCE-END").excluded(),
-                            Marker.of("</ui:define>").excluded());
+            .setType("xml")
+            .setStartMarkers(
+                    Marker.of("EXAMPLE-SOURCE-START").excluded(),
+                    Marker.of("<ui:define name=\"implementation\">").excluded(),
+                    Marker.of("<ui:define name=\"head\">").excluded())
+            .setEndMarkers(
+                    Marker.of("EXAMPLE-SOURCE-END").excluded(),
+                    Marker.of("</ui:define>").excluded());
 
     private static final Pattern SC_BEAN_PATTERN = Pattern.compile("#\\{\\w*?\\s?(\\w+)[.\\[].*}");
 
@@ -90,20 +90,19 @@ public class FileContentMarkerUtil {
             }
 
             throw new UnsupportedOperationException();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new IllegalStateException("Internal error: file " + fullPathToFile + " could not be read", e);
         }
     }
 
     private static FileContent readFileContent(String fileName, InputStream inputStream, FileContentSettings settings,
-                boolean readBeans) throws Exception {
+                                               boolean readBeans) throws Exception {
         StringBuilder content = new StringBuilder();
         Set<FileContent> javaFiles = new LinkedHashSet<>();
         FacesContext facesContext = FacesContext.getCurrentInstance();
 
         try (InputStreamReader ir = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-                    BufferedReader br = new BufferedReader(ir)) {
+             BufferedReader br = new BufferedReader(ir)) {
             String line;
             boolean started = false;
 
@@ -145,7 +144,7 @@ public class FileContentMarkerUtil {
 
     private static void addBean(FacesContext facesContext, Set<FileContent> javaFiles, String group) throws Exception {
         Object bean = facesContext.getApplication()
-                    .evaluateExpressionGet(facesContext, "#{" + group + "}", Object.class);
+                .evaluateExpressionGet(facesContext, "#{" + group + "}", Object.class);
         if (bean == null) {
             return;
         }
@@ -159,7 +158,7 @@ public class FileContentMarkerUtil {
             }
 
             String javaFileName = packageToPathAccess(className);
-            if (isFileContainedIn(javaFileName, javaFiles)) {
+            if (!isFileContainedIn(javaFileName, javaFiles)) {
                 FileContent content = createFileContent(className);
                 javaFiles.add(content);
             }
@@ -171,13 +170,39 @@ public class FileContentMarkerUtil {
     }
 
     private static void addDeclaredField(Set<FileContent> javaFiles, Field field) throws Exception {
-        String typeName = field.getType().getTypeName();
+        String typeName = getType(field);
         String javaFileName = packageToPathAccess(typeName);
-        if (isEligibleFile(typeName)
-                    && isFileContainedIn(javaFileName, javaFiles)) {
+        if (isEligibleFile(typeName) && !isFileContainedIn(javaFileName, javaFiles)) {
             FileContent content = createFileContent(typeName);
             javaFiles.add(content);
+
+            // add any other PF related POJO's recursively
+            if (isEligibleFile(typeName)) {
+                try {
+                    Class<?> subType = Class.forName(typeName);
+                    for (Field subField : subType.getDeclaredFields()) {
+                        addDeclaredField(javaFiles, subField);
+                    }
+                } catch (Exception e) {
+                    // class could not be instantiated so move on
+                }
+            }
         }
+    }
+
+    private static String getType(Field field) {
+        String typeName = field.getType().getTypeName();
+
+        // get Product from `List<Product>` because of type erasure
+        Type genericFieldType = field.getGenericType();
+        if (genericFieldType instanceof ParameterizedType parameterizedType) {
+            Type[] fieldArgTypes = parameterizedType.getActualTypeArguments();
+            for (Type fieldArgType : fieldArgTypes) {
+                Class<?> fieldArgClass = (Class<?>) fieldArgType;
+                typeName = fieldArgClass.getName();
+            }
+        }
+        return typeName;
     }
 
     private static FileContent createFileContent(String fileName) throws Exception {
@@ -212,7 +237,7 @@ public class FileContentMarkerUtil {
     }
 
     private static boolean isEligibleFile(String file) {
-        return file != null && file.startsWith(SC_PREFIX);
+        return file != null && file.startsWith(SC_PREFIX) && !file.endsWith("[]");
     }
 
     private static String packageToPathAccess(String pckage) {
@@ -220,7 +245,7 @@ public class FileContentMarkerUtil {
     }
 
     private static boolean isFileContainedIn(String filename, Set<FileContent> javaFiles) {
-        return !javaFiles.contains(new FileContent(filename, null, null, null));
+        return javaFiles.contains(new FileContent(filename, null, null, null));
     }
 
     private static String createFullPath(String filename) {

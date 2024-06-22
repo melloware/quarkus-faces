@@ -24,8 +24,8 @@
 package org.primefaces.showcase.util;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
-
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
@@ -73,31 +73,16 @@ public class FileContent implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((title == null) ? 0 : title.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FileContent that = (FileContent) o;
+        return Objects.equals(getTitle(), that.getTitle());
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        FileContent other = (FileContent) obj;
-        if (title == null) {
-            return other.title == null;
-        }
-        else {
-            return title.equals(other.title);
-        }
+    public int hashCode() {
+        return Objects.hashCode(getTitle());
     }
 
     @Override
