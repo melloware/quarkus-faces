@@ -74,7 +74,7 @@ public class FileContentMarkerUtil {
                     Marker.of("EXAMPLE-SOURCE-END").excluded(),
                     Marker.of("</ui:define>").excluded());
 
-    private static final Pattern SC_BEAN_PATTERN = Pattern.compile("#\\{\\w*?\\s?(\\w+)[.\\[].*}");
+    private static final Pattern SC_BEAN_PATTERN = Pattern.compile("#\\{([^.]*)\\.?.*?}", Pattern.MULTILINE);
 
     private static final String SC_PREFIX = "org.primefaces.showcase";
 
@@ -158,7 +158,7 @@ public class FileContentMarkerUtil {
             }
 
             String javaFileName = packageToPathAccess(className);
-            if (!isFileContainedIn(javaFileName, javaFiles)) {
+            if (isFileNotContainedIn(javaFileName, javaFiles)) {
                 FileContent content = createFileContent(className);
                 javaFiles.add(content);
             }
@@ -172,7 +172,7 @@ public class FileContentMarkerUtil {
     private static void addDeclaredField(Set<FileContent> javaFiles, Field field) throws Exception {
         String typeName = getType(field);
         String javaFileName = packageToPathAccess(typeName);
-        if (isEligibleFile(typeName) && !isFileContainedIn(javaFileName, javaFiles)) {
+        if (isEligibleFile(typeName) && isFileNotContainedIn(javaFileName, javaFiles)) {
             FileContent content = createFileContent(typeName);
             javaFiles.add(content);
 
@@ -240,12 +240,12 @@ public class FileContentMarkerUtil {
         return file != null && file.startsWith(SC_PREFIX) && !file.endsWith("[]");
     }
 
-    private static String packageToPathAccess(String pckage) {
-        return pckage.substring(pckage.lastIndexOf(".") + 1) + ".java";
+    private static String packageToPathAccess(String pkg) {
+        return pkg.substring(pkg.lastIndexOf(".") + 1) + ".java";
     }
 
-    private static boolean isFileContainedIn(String filename, Set<FileContent> javaFiles) {
-        return javaFiles.contains(new FileContent(filename, null, null, null));
+    private static boolean isFileNotContainedIn(String filename, Set<FileContent> javaFiles) {
+        return !javaFiles.contains(new FileContent(filename, null, null, null));
     }
 
     private static String createFullPath(String filename) {
