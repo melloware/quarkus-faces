@@ -193,14 +193,18 @@ public class FileContentMarkerUtil {
     private static String getType(Field field) {
         String typeName = field.getType().getTypeName();
 
-        // get Product from `List<Product>` because of type erasure
-        Type genericFieldType = field.getGenericType();
-        if (genericFieldType instanceof ParameterizedType parameterizedType) {
-            Type[] fieldArgTypes = parameterizedType.getActualTypeArguments();
-            for (Type fieldArgType : fieldArgTypes) {
-                Class<?> fieldArgClass = (Class<?>) fieldArgType;
-                typeName = fieldArgClass.getName();
+        try {
+            // get Product from `List<Product>` because of type erasure
+            Type genericFieldType = field.getGenericType();
+            if (genericFieldType instanceof ParameterizedType parameterizedType) {
+                Type[] fieldArgTypes = parameterizedType.getActualTypeArguments();
+                for (Type fieldArgType : fieldArgTypes) {
+                    Class<?> fieldArgClass = (Class<?>) fieldArgType;
+                    typeName = fieldArgClass.getName();
+                }
             }
+        } catch (Exception e) {
+            // just use the original type name if any error
         }
         return typeName;
     }
