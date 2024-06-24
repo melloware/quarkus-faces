@@ -258,6 +258,8 @@
                     <inputDir>${project.build.directory}/classes/META-INF/resources</inputDir>
                     <imagesDir>${project.build.directory}/classes/META-INF/resources</imagesDir>
                     <useDataUri>false</useDataUri>
+                    <languageIn>ECMASCRIPT_2020</languageIn>
+                    <languageOut>ECMASCRIPT_2020</languageOut>
                 </configuration>
                 <executions>
                     <execution>
