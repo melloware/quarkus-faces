@@ -245,3 +245,32 @@ var Storage = {
 }
 
 App.init();
+
+// #12172 monkeypatch for mobile
+PrimeFaces.utils.registerResizeHandler = function(widget, resizeNamespace, element, resizeCallback, params) {
+
+    const unbindResizeHandler = function() {
+        $(window).off(resizeNamespace);
+    };
+
+    if (PrimeFaces.env.isTouchable(widget.cfg)) {
+        return {
+            unbind: unbindResizeHandler
+        };
+    }
+
+    widget.addDestroyListener(unbindResizeHandler);
+    widget.addRefreshListener(unbindResizeHandler);
+
+    $(window).off(resizeNamespace).on(resizeNamespace, params || null, function(e) {
+        if (element && (element.is(":hidden") || element.css('visibility') === 'hidden')) {
+            return;
+        }
+
+        resizeCallback(e);
+    });
+
+    return {
+        unbind: unbindResizeHandler
+    };
+};
