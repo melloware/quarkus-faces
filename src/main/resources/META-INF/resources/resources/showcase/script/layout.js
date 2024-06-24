@@ -249,7 +249,7 @@ App.init();
 // #12172 monkeypatch for mobile
 PrimeFaces.utils.registerResizeHandler = function(widget, resizeNamespace, element, resizeCallback, params) {
 
-    const unbindResizeHandler = function() {
+    var unbindResizeHandler = function() {
         $(window).off(resizeNamespace);
     };
 
