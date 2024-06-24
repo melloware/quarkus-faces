@@ -274,3 +274,18 @@ PrimeFaces.utils.registerResizeHandler = function(widget, resizeNamespace, eleme
         unbind: unbindResizeHandler
     };
 };
+
+if (PrimeFaces.widget.DatePicker) {
+    $.prime.datePicker.prototype.bindWindowResizeListener = function() {
+        if (this.options.inline || this.options.touchUI || PrimeFaces.env.isTouchable()) {
+            return;
+        }
+
+        var $this = this;
+        $(window).on('resize.' + $this.options.id, function() {
+            if (!$this.options.lazyModel) {
+                $this.hideOverlay();
+            }
+        });
+    };
+};
