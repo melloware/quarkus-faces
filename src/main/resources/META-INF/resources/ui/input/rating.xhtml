@@ -1,7 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
-                xmlns:f="jakarta.faces.core"
                 xmlns:p="http://primefaces.org/ui"
                 template="/template/template.xhtml">
 
@@ -35,6 +34,14 @@
 
                 <h5>Disabled</h5>
                 <p:rating value="#{ratingView.rating3}" disabled="true"/>
+
+                <h5>Required</h5>
+                <div class="flex flex-col gap-2">
+                    <p:rating id="rating4" value="#{ratingView.rating4}" required="true"
+                              requiredMessage="Please rate us!"/>
+                    <p:commandButton value="Rate" action="#{ratingView.onSubmit}" update="@form"
+                                     process="@this rating4"/>
+                </div>
             </h:form>
         </div>
     </ui:define>
