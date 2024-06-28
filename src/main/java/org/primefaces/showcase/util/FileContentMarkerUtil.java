@@ -23,6 +23,7 @@
  */
 package org.primefaces.showcase.util;
 
+import jakarta.el.ELException;
 import jakarta.faces.context.FacesContext;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -143,8 +144,13 @@ public class FileContentMarkerUtil {
     }
 
     private static void addBean(FacesContext facesContext, Set<FileContent> javaFiles, String group) throws Exception {
-        Object bean = facesContext.getApplication()
-                .evaluateExpressionGet(facesContext, "#{" + group + "}", Object.class);
+        Object bean = null;
+        try {
+            bean = facesContext.getApplication()
+                    .evaluateExpressionGet(facesContext, "#{" + group + "}", Object.class);
+        } catch (ELException e) {
+            return;
+        }
         if (bean == null) {
             return;
         }
