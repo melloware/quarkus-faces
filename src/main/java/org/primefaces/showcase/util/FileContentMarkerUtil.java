@@ -144,7 +144,7 @@ public class FileContentMarkerUtil {
     }
 
     private static void addBean(FacesContext facesContext, Set<FileContent> javaFiles, String group) throws Exception {
-        Object bean = null;
+        Object bean;
         try {
             bean = facesContext.getApplication()
                     .evaluateExpressionGet(facesContext, "#{" + group + "}", Object.class);
