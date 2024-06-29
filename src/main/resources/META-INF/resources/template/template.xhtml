@@ -60,9 +60,9 @@
                                     <span>CLIENT API</span>
                                 </a>
                             </ui:fragment>
-                            <ui:fragment rendered="#{not empty documentationLink}">
+                            <ui:fragment rendered="#{tagLibrary.isTagVdlAvailable(documentationLink)}">
                                 <a class="documentation-link"
-                                   href="https://primefaces.github.io/primefaces/vdldoc/p/#{app.getTagVdlComponent(documentationLink)}.html"
+                                   href="https://primefaces.github.io/primefaces/vdldoc/p/#{tagLibrary.getTagVdlComponent(documentationLink)}.html"
                                    target="_blank">
                                     <i class="pi pi-external-link"></i>
                                     <span>TAG VDL</span>
@@ -110,7 +110,7 @@
         <h:outputScript name="jquery/jquery.js" library="primefaces" target="head"/>
         <h:outputScript name="jquery/jquery-plugins.js" library="primefaces" target="head"/>
         <h:outputScript name="locales/locale-#{app.locale.language}.js" library="primefaces" target="head"/>
-		<h:outputScript name="moment/moment.js" library="primefaces" target="head"/>
+        <h:outputScript name="moment/moment.js" library="primefaces" target="head"/>
         <h:outputScript name="validation/validation.js" library="primefaces" target="head"/>
         <h:outputScript name="validation/validation.bv.js" library="primefaces" target="head"/>
     </f:view>

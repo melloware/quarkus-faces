@@ -29,7 +29,6 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.Locale;
 
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.context.PrimeApplicationContext;
 import org.primefaces.showcase.domain.Country;
 
@@ -38,6 +37,7 @@ import org.primefaces.showcase.domain.Country;
 public class App implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     private String theme = "saga";
     private boolean darkMode = false;
     private String inputStyle = "outlined";
@@ -117,9 +117,5 @@ public class App implements Serializable {
 
     public String getPrimeFacesVersion() {
         return PrimeApplicationContext.getCurrentInstance(FacesContext.getCurrentInstance()).getEnvironment().getBuildVersion();
-    }
-
-    public String getTagVdlComponent(String documentationLink) {
-        return StringUtils.substringAfterLast(documentationLink, "/");
     }
 }
