@@ -41,27 +41,13 @@ import java.util.regex.Pattern;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.util.LangUtils;
 
-/**
- * FileContentMarkerUtil
- *
- * @author Sébastien Lepage / last modified by $Author$
- * @version $Revision$
- * @since 6.3
- */
 @RegisterForReflection
 public class FileContentMarkerUtil {
 
     private static final FileContentSettings javaFileSettings = new FileContentSettings()
             .setType("java")
             .setStartMarkers(
-                    Marker.of("@Named"),
-                    Marker.of("@RequestScoped"),
-                    Marker.of("@ViewScoped"),
-                    Marker.of("@SessionScoped"),
-                    Marker.of("@FacesConverter"),
-                    Marker.of("@Target"),
-                    Marker.of(" class "),
-                    Marker.of(" enum "),
+                    Marker.of("package "),
                     Marker.of("EXCLUDE-SOURCE-END").excluded())
             .setEndMarkers(Marker.of("EXCLUDE-SOURCE-START").excluded());
 

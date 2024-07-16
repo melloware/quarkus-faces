@@ -40,7 +40,7 @@
                                required="true"
                                requiredMessage="Basic is required!"
                                formatOnDisplay="true">
-                    <p:ajax event="countrySelect" listener="#{inputPhoneView.onCountrySelect}"/>
+                    <p:ajax event="countrySelect" listener="#{inputPhoneView.onCountrySelect}" process="@none"/>
                 </pe:inputPhone>
                 <p:commandButton value="Submit" update="@form" actionListener="#{inputPhoneView.submit}" styleClass="ml-3"/>
 
