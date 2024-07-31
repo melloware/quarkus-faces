@@ -48,12 +48,12 @@
 
                     </f:facet>
 
-                    <p:column headerText="Name" sortBy="#{customer.name}" filterBy="#{customer.name}"
+                    <p:column headerText="Name" filterBy="#{customer.name}" sortable="false"
                               filterMatchMode="contains" filterPlaceholder="Filter By Name">
                         <h:outputText value="#{customer.name}"/>
                     </p:column>
 
-                    <p:column headerText="Country" sortBy="#{customer.country.name}"
+                    <p:column headerText="Country" sortable="false"
                               filterBy="#{customer.country.name}">
                         <span class="flag flag-#{customer.country.code}" style="width: 30px; height: 20px"/>
                         <h:outputText style="vertical-align: middle; margin-left: .5rem"
@@ -61,7 +61,7 @@
                     </p:column>
 
                     <p:column field="representative" headerText="Representative" filterMatchMode="exact"
-                              sortBy="#{customer.representative.name}">
+                              sortable="false">
                         <f:facet name="filter">
                             <p:selectOneMenu onchange="PF('customersTable').filter()" styleClass="ui-custom-filter">
                                 <f:selectItem itemLabel="All" itemValue="#{null}" noSelectionOption="true"/>
@@ -75,14 +75,14 @@
                                       value="#{customer.representative.name}"/>
                     </p:column>
 
-                    <p:column field="date" headerText="Join Date" filterMatchMode="between">
+                    <p:column field="date" headerText="Join Date" filterMatchMode="between" sortable="false">
                         <f:facet name="filter">
-                            <p:datePicker selectionMode="range" onchange="PF('customersTable').filter()"
-                                          converter="jakarta.faces.DateTime"/>
+                            <p:datePicker selectionMode="range" onchange="PF('customersTable').filter()" styleClass="white-space-nowrap"
+                                          converter="jakarta.faces.DateTime" showOnFocus="false" showIcon="true"/>
                         </f:facet>
                     </p:column>
 
-                    <p:column field="status" headerText="Status" filterMatchMode="exact">
+                    <p:column field="status" headerText="Status" filterMatchMode="exact" sortable="false">
                         <f:facet name="filter">
                             <p:selectOneMenu onchange="PF('customersTable').filter()" styleClass="ui-custom-filter">
                                 <f:selectItem itemLabel="All" itemValue="#{null}" noSelectionOption="true"/>
@@ -93,7 +93,7 @@
                         <span class="customer-badge status-#{customer.status.statusName}">#{customer.status.statusName}</span>
                     </p:column>
 
-                    <p:column field="activity" headerText="Activity" sortBy="#{customer.activity}" filterMatchMode="gt"
+                    <p:column field="activity" headerText="Activity" filterMatchMode="gt" sortable="false"
                               converter="jakarta.faces.Integer">
                         <p:progressBar value="#{customer.activity}" displayOnly="true" style="height: .5rem"/>
                     </p:column>
