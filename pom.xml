@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.melloware</groupId>
     <artifactId>quarkus-faces</artifactId>
-    <version>14.0.3</version>
+    <version>14.0.4</version>
     <packaging>jar</packaging>
     <name>quarkus-faces</name>
     <description>Quarkus version of the PrimeFaces Showcase with many optimizations</description>
