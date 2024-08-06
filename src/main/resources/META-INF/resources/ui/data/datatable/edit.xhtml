@@ -24,7 +24,7 @@
             <div class="card">
                 <h5>Row Editing</h5>
                 <p:dataTable id="products1" var="product" value="#{dtEditView.products1}" editable="true"
-                             style="margin-bottom:20px">
+                             style="margin-bottom:20px" cellNavigation="true">
 
                     <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs"/>
                     <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:msgs"/>
@@ -55,10 +55,10 @@
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{product.inventoryStatus}"/></f:facet>
                             <f:facet name="input">
-                                <h:selectOneMenu value="#{product.inventoryStatus}" style="width:100%">
+                                <p:selectOneMenu value="#{product.inventoryStatus}" style="width:100%">
                                     <f:selectItems value="#{dtEditView.inventoryStatusList}" var="status"
                                                    itemLabel="#{status.text}" itemValue="#{status}"/>
-                                </h:selectOneMenu>
+                                </p:selectOneMenu>
                             </f:facet>
                         </p:cellEditor>
                     </p:column>
@@ -142,7 +142,8 @@
 
             <div class="card">
                 <h5>Cell Editing with Double Click Event (dblclick)</h5>
-                <p:dataTable id="products3" var="product" value="#{dtEditView.products3}" editable="true" editMode="cell"
+                <p:dataTable id="products3" var="product" value="#{dtEditView.products3}" editable="true"
+                             editMode="cell"
                              widgetVar="cellCars2" editInitEvent="dblclick" style="margin-bottom:20px">
 
                     <p:ajax event="cellEdit" listener="#{dtEditView.onCellEdit}" update=":form:msgs"/>
