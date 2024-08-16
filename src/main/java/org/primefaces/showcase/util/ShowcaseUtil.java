@@ -23,6 +23,11 @@
  */
 package org.primefaces.showcase.util;
 
+import jakarta.enterprise.inject.spi.CDI;
+import jakarta.faces.application.ProjectStage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIPanel;
+import jakarta.faces.context.FacesContext;
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.io.InputStream;
@@ -30,14 +35,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import jakarta.enterprise.inject.spi.CDI;
-import jakarta.faces.application.ProjectStage;
-import jakarta.faces.component.UIComponent;
-import jakarta.faces.component.UIPanel;
-import jakarta.faces.context.FacesContext;
-
 import org.primefaces.cache.CacheProvider;
 import org.primefaces.component.tabview.Tab;
 
@@ -67,7 +65,7 @@ public class ShowcaseUtil {
     }
 
     public static Object getPropertyValueViaReflection(Object o, String field)
-                throws ReflectiveOperationException, IllegalArgumentException, IntrospectionException {
+            throws ReflectiveOperationException, IllegalArgumentException, IntrospectionException {
         return new PropertyDescriptor(field, o.getClass()).getReadMethod().invoke(o);
     }
 
@@ -86,8 +84,7 @@ public class ShowcaseUtil {
             if (is != null) {
                 return FileContentMarkerUtil.readFileContent(fullPath, is, readBeans);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new IllegalStateException("Internal error: file " + fullPath + " could not be read", e);
         }
 
@@ -98,12 +95,15 @@ public class ShowcaseUtil {
         if (component.isRendered()) {
             if (component instanceof Tab) {
                 String flatten = (String) component.getAttributes().get("flatten");
+                String title = ((Tab) component).getTitle();
+                if (title != null && title.endsWith(".java")) {
+                    title = "/java" + title;
+                }
                 FileContent content = getFileContent(
-                            ((Tab) component).getTitle(),
-                            Boolean.parseBoolean(flatten));
+                        title,
+                        Boolean.parseBoolean(flatten));
                 file.getAttached().add(content);
-            }
-            else if (component instanceof UIPanel) {
+            } else if (component instanceof UIPanel) {
                 for (UIComponent child : component.getChildren()) {
                     attach(child, file);
                 }
@@ -116,7 +116,7 @@ public class ShowcaseUtil {
             return;
         }
         dest.add(new FileContent(source.getTitle(), source.getValue(), source.getType(),
-                    Collections.emptySet()));
+                Collections.emptySet()));
 
         for (FileContent file : source.getAttached()) {
             flatFileContent(file, dest);
