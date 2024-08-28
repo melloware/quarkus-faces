@@ -23,26 +23,54 @@
  */
 package org.primefaces.showcase.view.chartjs;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.primefaces.event.ItemSelectEvent;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
-import software.xdev.chartjs.model.charts.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.primefaces.event.ItemSelectEvent;
+import software.xdev.chartjs.model.charts.BarChart;
+import software.xdev.chartjs.model.charts.BubbleChart;
+import software.xdev.chartjs.model.charts.DoughnutChart;
+import software.xdev.chartjs.model.charts.LineChart;
+import software.xdev.chartjs.model.charts.PieChart;
+import software.xdev.chartjs.model.charts.PolarChart;
+import software.xdev.chartjs.model.charts.RadarChart;
+import software.xdev.chartjs.model.charts.ScatterChart;
 import software.xdev.chartjs.model.color.Color;
-import software.xdev.chartjs.model.data.*;
+import software.xdev.chartjs.model.data.BarData;
+import software.xdev.chartjs.model.data.BubbleData;
+import software.xdev.chartjs.model.data.DoughnutData;
+import software.xdev.chartjs.model.data.LineData;
+import software.xdev.chartjs.model.data.PieData;
+import software.xdev.chartjs.model.data.PolarData;
+import software.xdev.chartjs.model.data.RadarData;
+import software.xdev.chartjs.model.data.ScatterData;
 import software.xdev.chartjs.model.datapoint.BubbleDataPoint;
 import software.xdev.chartjs.model.datapoint.ScatterDataPoint;
-import software.xdev.chartjs.model.dataset.*;
+import software.xdev.chartjs.model.dataset.BarDataset;
+import software.xdev.chartjs.model.dataset.BubbleDataset;
+import software.xdev.chartjs.model.dataset.DoughnutDataset;
+import software.xdev.chartjs.model.dataset.LineDataset;
+import software.xdev.chartjs.model.dataset.PieDataset;
+import software.xdev.chartjs.model.dataset.PolarDataset;
+import software.xdev.chartjs.model.dataset.RadarDataset;
+import software.xdev.chartjs.model.dataset.ScatterDataset;
 import software.xdev.chartjs.model.enums.FontStyle;
 import software.xdev.chartjs.model.enums.ScalesPosition;
-import software.xdev.chartjs.model.options.*;
+import software.xdev.chartjs.model.options.BarOptions;
+import software.xdev.chartjs.model.options.DoughnutOptions;
+import software.xdev.chartjs.model.options.Font;
+import software.xdev.chartjs.model.options.IndexAxis;
+import software.xdev.chartjs.model.options.LineOptions;
+import software.xdev.chartjs.model.options.Plugins;
+import software.xdev.chartjs.model.options.RadarOptions;
+import software.xdev.chartjs.model.options.Title;
+import software.xdev.chartjs.model.options.Tooltip;
 import software.xdev.chartjs.model.options.elements.Fill;
 import software.xdev.chartjs.model.options.scale.Scales;
 import software.xdev.chartjs.model.options.scale.cartesian.CartesianScaleOptions;
@@ -52,7 +80,6 @@ import software.xdev.chartjs.model.options.scale.radial.AngleLines;
 import software.xdev.chartjs.model.options.scale.radial.PointLabels;
 import software.xdev.chartjs.model.options.scale.radial.RadialLinearScaleOptions;
 import software.xdev.chartjs.model.options.scale.radial.RadialTickOptions;
-
 
 @Named
 @RequestScoped
@@ -90,47 +117,47 @@ public class ChartView implements Serializable {
     private void createPieModel() {
         pieModel = new PieChart()
                 .setData(new PieData()
-                .addDataset(new PieDataset()
-                        .setData(BigDecimal.valueOf(300), BigDecimal.valueOf(50), BigDecimal.valueOf(100))
-                        .setLabel("My First Dataset")
-                        .addBackgroundColors(new Color(255, 99, 132), new Color(54, 162, 235), new Color(255, 205, 86))
-                )
-                .setLabels("Red", "Blue", "Yellow"))
+                        .addDataset(new PieDataset()
+                                .setData(BigDecimal.valueOf(300), BigDecimal.valueOf(50), BigDecimal.valueOf(100))
+                                .setLabel("My First Dataset")
+                                .addBackgroundColors(new Color(255, 99, 132), new Color(54, 162, 235), new Color(255, 205, 86))
+                        )
+                        .setLabels("Red", "Blue", "Yellow"))
                 .toJson();
     }
 
     private void createPolarAreaModel() {
         polarAreaModel = new PolarChart()
                 .setData(new PolarData()
-                .addDataset(new PolarDataset()
-                        .setData(BigDecimal.valueOf(11),
-                                BigDecimal.valueOf(16),
-                                BigDecimal.valueOf(7),
-                                BigDecimal.valueOf(3),
-                                BigDecimal.valueOf(14))
-                        .setLabel("My First Dataset")
-                        .addBackgroundColors(
-                                new Color(255, 99, 132),
-                                new Color(75, 192, 192),
-                                new Color(255, 205, 86),
-                                new Color(201, 203, 207),
-                                new Color(54, 162, 235)
+                        .addDataset(new PolarDataset()
+                                .setData(BigDecimal.valueOf(11),
+                                        BigDecimal.valueOf(16),
+                                        BigDecimal.valueOf(7),
+                                        BigDecimal.valueOf(3),
+                                        BigDecimal.valueOf(14))
+                                .setLabel("My First Dataset")
+                                .addBackgroundColors(
+                                        new Color(255, 99, 132),
+                                        new Color(75, 192, 192),
+                                        new Color(255, 205, 86),
+                                        new Color(201, 203, 207),
+                                        new Color(54, 162, 235)
+                                )
                         )
-                )
-                .setLabels("Red", "Green", "Yellow", "Grey", "Blue" ))
+                        .setLabels("Red", "Green", "Yellow", "Grey", "Blue"))
                 .toJson();
     }
 
     public void createLineModel() {
         lineModel = new LineChart()
                 .setData(new LineData()
-                .addDataset(new LineDataset()
-                        .setData(65, 59, 80, 81, 56, 55, 40)
-                        .setLabel("My First Dataset")
-                        .setBorderColor(new Color(75, 192, 192))
-                        .setLineTension(0.1f)
-                        .setFill(new Fill<Boolean>(false)))
-                .setLabels("January", "February", "March", "April", "May", "June", "July"))
+                        .addDataset(new LineDataset()
+                                .setData(65, 59, 80, 81, 56, 55, 40)
+                                .setLabel("My First Dataset")
+                                .setBorderColor(new Color(75, 192, 192))
+                                .setLineTension(0.1f)
+                                .setFill(new Fill<Boolean>(false)))
+                        .setLabels("January", "February", "March", "April", "May", "June", "July"))
                 .setOptions(new LineOptions()
                         .setResponsive(true)
                         .setMaintainAspectRatio(false)
@@ -144,18 +171,18 @@ public class ChartView implements Serializable {
     public void createScatterModel() {
         scatterModel = new ScatterChart()
                 .setData(new ScatterData()
-                .addDataset(new ScatterDataset()
-                        .addData(new ScatterDataPoint(-10, 0))
-                        .addData(new ScatterDataPoint(0, 10))
-                        .addData(new ScatterDataPoint(10, 5))
-                        .addData(new ScatterDataPoint(8, 14))
-                        .addData(new ScatterDataPoint(12, 2))
-                        .addData(new ScatterDataPoint(13, 7))
-                        .addData(new ScatterDataPoint(6, 9))
-                        .setLabel("Red Dataset")
-                        .setBorderColor(new Color(249, 24, 24))
-                        .setShowLine(Boolean.FALSE)
-                        .setFill(new Fill<Boolean>(true)))
+                        .addDataset(new ScatterDataset()
+                                .addData(new ScatterDataPoint(-10, 0))
+                                .addData(new ScatterDataPoint(0, 10))
+                                .addData(new ScatterDataPoint(10, 5))
+                                .addData(new ScatterDataPoint(8, 14))
+                                .addData(new ScatterDataPoint(12, 2))
+                                .addData(new ScatterDataPoint(13, 7))
+                                .addData(new ScatterDataPoint(6, 9))
+                                .setLabel("Red Dataset")
+                                .setBorderColor(new Color(249, 24, 24))
+                                .setShowLine(Boolean.FALSE)
+                                .setFill(new Fill<Boolean>(true)))
                 )
                 .setOptions(new LineOptions()
                         .setResponsive(true)
@@ -172,19 +199,19 @@ public class ChartView implements Serializable {
     public void createCartesianLinerModel() {
         cartesianLinerModel = new LineChart()
                 .setData(new LineData()
-                .addDataset(new LineDataset()
-                        .setData(20, 50, 100, 75, 25, 0)
-                        .setLabel("Left Dataset")
-                        .setLineTension(0.5f)
-                        .setYAxisID("left-y-axis")
-                        .setFill(new Fill<Boolean>(true)))
-                .addDataset(new LineDataset()
-                        .setData(0.1, 0.5, 1.0, 2.0, 1.5, 0)
-                        .setLabel("Right Dataset")
-                        .setLineTension(0.5f)
-                        .setYAxisID("right-y-axis")
-                        .setFill(new Fill<Boolean>(true)))
-                .setLabels("Jan", "Feb", "Mar", "Apr", "May", "Jun"))
+                        .addDataset(new LineDataset()
+                                .setData(20, 50, 100, 75, 25, 0)
+                                .setLabel("Left Dataset")
+                                .setLineTension(0.5f)
+                                .setYAxisID("left-y-axis")
+                                .setFill(new Fill<Boolean>(true)))
+                        .addDataset(new LineDataset()
+                                .setData(0.1, 0.5, 1.0, 2.0, 1.5, 0)
+                                .setLabel("Right Dataset")
+                                .setLineTension(0.5f)
+                                .setYAxisID("right-y-axis")
+                                .setFill(new Fill<Boolean>(true)))
+                        .setLabels("Jan", "Feb", "Mar", "Apr", "May", "Jun"))
                 .setOptions(new LineOptions()
                         .setResponsive(true)
                         .setMaintainAspectRatio(false)
@@ -199,28 +226,27 @@ public class ChartView implements Serializable {
     }
 
 
-
     public void createBarModel() {
         barModel = new BarChart()
                 .setData(new BarData()
-                .addDataset(new BarDataset()
-                        .setData(65, 59, 80, 81, 56, 55, 40)
-                        .setLabel("My First Dataset")
-                        .setBackgroundColor(new Color(255, 99, 132, 0.2))
-                        .setBorderColor(new Color(255, 99, 132))
-                        .setBorderWidth(1))
-                .addDataset(new BarDataset()
-                        .setData(85, 69, 20, 51, 76, 75, 10)
-                        .setLabel("My Second Dataset")
-                        .setBackgroundColor(new Color(255, 159, 64, 0.2))
-                        .setBorderColor(new Color(255, 159, 64))
-                        .setBorderWidth(1)
-                )
-                .setLabels("January", "February", "March", "April", "May", "June", "July"))
+                        .addDataset(new BarDataset()
+                                .setData(65, 59, 80, 81, 56, 55, 40)
+                                .setLabel("My First Dataset")
+                                .setBackgroundColor(new Color(255, 99, 132, 0.2))
+                                .setBorderColor(new Color(255, 99, 132))
+                                .setBorderWidth(1))
+                        .addDataset(new BarDataset()
+                                .setData(85, 69, 20, 51, 76, 75, 10)
+                                .setLabel("My Second Dataset")
+                                .setBackgroundColor(new Color(255, 159, 64, 0.2))
+                                .setBorderColor(new Color(255, 159, 64))
+                                .setBorderWidth(1)
+                        )
+                        .setLabels("January", "February", "March", "April", "May", "June", "July"))
                 .setOptions(new BarOptions()
                         .setResponsive(true)
                         .setMaintainAspectRatio(false)
-                        .setIndexAxis(BarOptions.IndexAxis.X)
+                        .setIndexAxis(IndexAxis.X)
                         .setScales(new Scales().addScale(Scales.ScaleAxis.Y, new CartesianScaleOptions()
                                 .setStacked(false)
                                 .setTicks(new CartesianTickOptions()
@@ -237,19 +263,19 @@ public class ChartView implements Serializable {
     public void createStackedBarModel() {
         stackedBarModel = new BarChart()
                 .setData(new BarData()
-                .addDataset(new BarDataset()
-                        .setData(62, -58, -49, 25, 4, 77, -41)
-                        .setLabel("Dataset 1")
-                        .setBackgroundColor(new Color(255, 99, 132)))
-                .addDataset(new BarDataset()
-                        .setData(-1, 32, -52, 11, 97, 76, -78)
-                        .setLabel("Dataset 2")
-                        .setBackgroundColor(new Color(54, 162, 235)))
-                .addDataset(new BarDataset()
-                        .setData(-44, 25, 15, 92, 80, -25, -11)
-                        .setLabel("Dataset 3")
-                        .setBackgroundColor(new Color(75, 192, 192)))
-                .setLabels("January", "February", "March", "April", "May", "June", "July"))
+                        .addDataset(new BarDataset()
+                                .setData(62, -58, -49, 25, 4, 77, -41)
+                                .setLabel("Dataset 1")
+                                .setBackgroundColor(new Color(255, 99, 132)))
+                        .addDataset(new BarDataset()
+                                .setData(-1, 32, -52, 11, 97, 76, -78)
+                                .setLabel("Dataset 2")
+                                .setBackgroundColor(new Color(54, 162, 235)))
+                        .addDataset(new BarDataset()
+                                .setData(-44, 25, 15, 92, 80, -25, -11)
+                                .setLabel("Dataset 3")
+                                .setBackgroundColor(new Color(75, 192, 192)))
+                        .setLabels("January", "February", "March", "April", "May", "June", "July"))
                 .setOptions(new BarOptions()
                         .setResponsive(true)
                         .setMaintainAspectRatio(false)
@@ -272,37 +298,37 @@ public class ChartView implements Serializable {
     public void createRadarModel() {
         radarModel = new RadarChart()
                 .setData(new RadarData()
-                .addDataset(new RadarDataset()
-                        .setData(BigDecimal.valueOf(2.2),
-                                BigDecimal.valueOf(3),
-                                BigDecimal.valueOf(2.4),
-                                BigDecimal.valueOf(1.1),
-                                BigDecimal.valueOf(3))
-                        .setLabel("P.Practitioner")
-                        .setLineTension(0.1f)
-                        .setBackgroundColor(new Color(102, 153, 204, 0.2))
-                        .setBorderColor(new Color(102, 153, 204, 1))
-                        .setPointBackgroundColor(List.of(new Color(102, 153, 204, 1)))
-                        .setPointBorderColor(List.of(Color.WHITE))
-                        .setPointHoverRadius(List.of(5))
-                        .setPointHoverBackgroundColor(List.of(Color.WHITE))
-                        .setPointHoverBorderColor(List.of(new Color(102, 153, 204, 1))))
-                .addDataset(new RadarDataset()
-                        .setData(BigDecimal.valueOf(2.1),
-                                BigDecimal.valueOf(3),
-                                BigDecimal.valueOf(3),
-                                BigDecimal.valueOf(2.7),
-                                BigDecimal.valueOf(3))
-                        .setLabel("P.Manager")
-                        .setLineTension(0.1f)
-                        .setBackgroundColor(new Color(255, 204, 102, 0.2))
-                        .setBorderColor(new Color(255, 204, 102, 1))
-                        .setPointBackgroundColor(List.of(new Color(255, 204, 102, 1)))
-                        .setPointBorderColor(List.of(Color.WHITE))
-                        .setPointHoverRadius(List.of(5))
-                        .setPointHoverBackgroundColor(List.of(Color.WHITE))
-                        .setPointHoverBorderColor(List.of(new Color(255, 204, 102, 1))))
-                .setLabels("Process Excellence", "Problem Solving", "Facilitation", "Project Mgmt", "Change Mgmt"))
+                        .addDataset(new RadarDataset()
+                                .setData(BigDecimal.valueOf(2.2),
+                                        BigDecimal.valueOf(3),
+                                        BigDecimal.valueOf(2.4),
+                                        BigDecimal.valueOf(1.1),
+                                        BigDecimal.valueOf(3))
+                                .setLabel("P.Practitioner")
+                                .setLineTension(0.1f)
+                                .setBackgroundColor(new Color(102, 153, 204, 0.2))
+                                .setBorderColor(new Color(102, 153, 204, 1))
+                                .setPointBackgroundColor(List.of(new Color(102, 153, 204, 1)))
+                                .setPointBorderColor(List.of(Color.WHITE))
+                                .setPointHoverRadius(List.of(5))
+                                .setPointHoverBackgroundColor(List.of(Color.WHITE))
+                                .setPointHoverBorderColor(List.of(new Color(102, 153, 204, 1))))
+                        .addDataset(new RadarDataset()
+                                .setData(BigDecimal.valueOf(2.1),
+                                        BigDecimal.valueOf(3),
+                                        BigDecimal.valueOf(3),
+                                        BigDecimal.valueOf(2.7),
+                                        BigDecimal.valueOf(3))
+                                .setLabel("P.Manager")
+                                .setLineTension(0.1f)
+                                .setBackgroundColor(new Color(255, 204, 102, 0.2))
+                                .setBorderColor(new Color(255, 204, 102, 1))
+                                .setPointBackgroundColor(List.of(new Color(255, 204, 102, 1)))
+                                .setPointBorderColor(List.of(Color.WHITE))
+                                .setPointHoverRadius(List.of(5))
+                                .setPointHoverBackgroundColor(List.of(Color.WHITE))
+                                .setPointHoverBorderColor(List.of(new Color(255, 204, 102, 1))))
+                        .setLabels("Process Excellence", "Problem Solving", "Facilitation", "Project Mgmt", "Change Mgmt"))
                 .setOptions(new RadarOptions()
                         .setResponsive(true)
                         .setMaintainAspectRatio(false)
@@ -312,9 +338,9 @@ public class ChartView implements Serializable {
                                         .setLineWidth(BigDecimal.valueOf(0.5))
                                         .setColor(new Color(128, 128, 128, 0.2)))
                                 .setPointLabels(new PointLabels().setFont(new Font()
-                                        .setSize(BigDecimal.valueOf(14))
-                                        .setStyle(FontStyle.NORMAL)
-                                        .setFamily("Lato, sans-serif"))
+                                                .setSize(BigDecimal.valueOf(14))
+                                                .setStyle(FontStyle.NORMAL)
+                                                .setFamily("Lato, sans-serif"))
                                         .setColor(new Color(204, 204, 204, 1)))
                                 .setTicks(new RadialTickOptions()
                                         .setDisplay(false)
@@ -332,150 +358,151 @@ public class ChartView implements Serializable {
     public void createBubbleModel() {
         bubbleModel = new BubbleChart()
                 .setData(new BubbleData()
-                .addDataset(new BubbleDataset()
-                        .addData(new BubbleDataPoint(BigDecimal.valueOf(20), BigDecimal.valueOf(30), BigDecimal.valueOf(15)))
-                        .addData(new BubbleDataPoint(BigDecimal.valueOf(40), BigDecimal.valueOf(10), BigDecimal.valueOf(10)))
-                        .setLabel("My First Dataset")
-                        .setBackgroundColor(new Color(255, 99, 132))
-                        .setBorderColor(new Color(255, 99, 132))
-                )).toJson();
+                        .addDataset(new BubbleDataset()
+                                .addData(new BubbleDataPoint(BigDecimal.valueOf(20), BigDecimal.valueOf(30), BigDecimal.valueOf(15)))
+                                .addData(new BubbleDataPoint(BigDecimal.valueOf(40), BigDecimal.valueOf(10), BigDecimal.valueOf(10)))
+                                .setLabel("My First Dataset")
+                                .setBackgroundColor(new Color(255, 99, 132))
+                                .setBorderColor(new Color(255, 99, 132))
+                        )).toJson();
     }
 
     public void createDonutModel() {
         donutModel = new DoughnutChart()
                 .setData(new DoughnutData()
-                .addDataset(new DoughnutDataset()
-                        .setData(BigDecimal.valueOf(300),
-                                BigDecimal.valueOf(50),
-                                BigDecimal.valueOf(100))
-                        .addBackgroundColors(
-                                new Color(255, 99, 132),
-                                new Color(54, 162, 235),
-                                new Color(255, 205, 86))
-                )
-                .setLabels("Red", "Blue", "Yellow"))
+                        .addDataset(new DoughnutDataset()
+                                .setData(BigDecimal.valueOf(300),
+                                        BigDecimal.valueOf(50),
+                                        BigDecimal.valueOf(100))
+                                .addBackgroundColors(
+                                        new Color(255, 99, 132),
+                                        new Color(54, 162, 235),
+                                        new Color(255, 205, 86))
+                        )
+                        .setLabels("Red", "Blue", "Yellow"))
                 .setOptions(new DoughnutOptions().setMaintainAspectRatio(Boolean.FALSE))
                 .toJson();
     }
 
     public void createJsonModel() {
-        json = "{\r\n"
-                + "   \"type\":\"line\",\r\n"
-                + "   \"data\":{\r\n"
-                + "      \"datasets\":[\r\n"
-                + "         {\r\n"
-                + "            \"backgroundColor\":\"rgba(40, 180, 99, 0.3)\",\r\n"
-                + "            \"borderColor\":\"rgb(40, 180, 99)\",\r\n"
-                + "            \"borderWidth\":1,\r\n"
-                + "            \"data\":[\r\n"
-                + "               {\r\n"
-                + "                  \"x\":1699457269877,\r\n"
-                + "                  \"y\":20\r\n"
-                + "               },\r\n"
-                + "               {\r\n"
-                + "                  \"x\":1700047109694,\r\n"
-                + "                  \"y\":20\r\n"
-                + "               }\r\n"
-                + "            ],\r\n"
-                + "            \"hidden\":false,\r\n"
-                + "            \"label\":\"Device Id: 524967 Register: A - total Wh \",\r\n"
-                + "            \"minBarLength\":3\r\n"
-                + "         },\r\n"
-                + "         {\r\n"
-                + "            \"backgroundColor\":\"rgba(218, 117, 255, 0.3)\",\r\n"
-                + "            \"borderColor\":\"rgb(218, 117, 255)\",\r\n"
-                + "            \"borderWidth\":1,\r\n"
-                + "            \"data\":[\r\n"
-                + "               {\r\n"
-                + "                  \"x\":1699457267847,\r\n"
-                + "                  \"y\":10\r\n"
-                + "               },\r\n"
-                + "               {\r\n"
-                + "                  \"x\":1700047108397,\r\n"
-                + "                  \"y\":234\r\n"
-                + "               }\r\n"
-                + "            ],\r\n"
-                + "            \"hidden\":false,\r\n"
-                + "            \"label\":\"Device Id: 524967 Register: A+ total Wh \",\r\n"
-                + "            \"minBarLength\":3\r\n"
-                + "         }\r\n"
-                + "      ]\r\n"
-                + "   },\r\n"
-                + "   \"options\":{\r\n"
-                + "      \"plugins\":{\r\n"
-                + "         \"legend\":{\r\n"
-                + "            \"display\":true,\r\n"
-                + "            \"fullWidth\":true,\r\n"
-                + "            \"position\":\"top\",\r\n"
-                + "            \"reverse\":false,\r\n"
-                + "            \"rtl\":false\r\n"
-                + "         },\r\n"
-                + "         \"title\":{\r\n"
-                + "            \"display\":true,\r\n"
-                + "            \"text\":\"Values from the meter\"\r\n"
-                + "         },\r\n"
-                + "         \"zoom\":{\r\n"
-                + "            \"pan\":{\r\n"
-                + "               \"enabled\":true,\r\n"
-                + "               \"mode\":\"xy\",\r\n"
-                + "               \"threshold\":5\r\n"
-                + "            },\r\n"
-                + "            \"zoom\":{\r\n"
-                + "               \"wheel\":{\r\n"
-                + "                  \"enabled\":true\r\n"
-                + "               },\r\n"
-                + "               \"pinch\":{\r\n"
-                + "                  \"enabled\":true\r\n"
-                + "               },\r\n"
-                + "               \"mode\":\"xy\"\r\n"
-                + "            }\r\n"
-                + "         }\r\n"
-                + "      },\r\n"
-                + "      \"scales\":{\r\n"
-                + "         \"x\":{\r\n"
-                + "            \"beginAtZero\":false,\r\n"
-                + "            \"offset\":true,\r\n"
-                + "            \"reverse\":false,\r\n"
-                + "            \"stacked\":true,\r\n"
-                + "            \"ticks\":{\r\n"
-                + "               \"autoSkip\":true,\r\n"
-                + "               \"maxRotation\":0,\r\n"
-                + "               \"minRotation\":0,\r\n"
-                + "               \"mirror\":false,\r\n"
-                + "               \"source\":\"data\"\r\n"
-                + "            },\r\n"
-                + "            \"time\":{\r\n"
-                + "               \"displayFormats\":{\r\n"
-                + "                  \"minute\":\"dd.LL T\"\r\n"
-                + "               },\r\n"
-                + "               \"round\":\"minute\",\r\n"
-                + "               \"stepSize\":\"60\",\r\n"
-                + "               \"unit\":\"minute\"\r\n"
-                + "            },\r\n"
-                + "            \"type\":\"time\"\r\n"
-                + "         },\r\n"
-                + "         \"y\":{\r\n"
-                + "            \"beginAtZero\":false,\r\n"
-                + "            \"offset\":false,\r\n"
-                + "            \"reverse\":false,\r\n"
-                + "            \"stacked\":true,\r\n"
-                + "            \"ticks\":{\r\n"
-                + "               \"autoSkip\":true,\r\n"
-                + "               \"mirror\":false\r\n"
-                + "            }\r\n"
-                + "         }\r\n"
-                + "      },\r\n"
-                + "      \"showLine\":true,\r\n"
-                + "      \"spanGaps\":false\r\n"
-                + "   }\r\n"
-                + "}";
+        json = """
+                {\r
+                   "type":"line",\r
+                   "data":{\r
+                      "datasets":[\r
+                         {\r
+                            "backgroundColor":"rgba(40, 180, 99, 0.3)",\r
+                            "borderColor":"rgb(40, 180, 99)",\r
+                            "borderWidth":1,\r
+                            "data":[\r
+                               {\r
+                                  "x":1699457269877,\r
+                                  "y":20\r
+                               },\r
+                               {\r
+                                  "x":1700047109694,\r
+                                  "y":20\r
+                               }\r
+                            ],\r
+                            "hidden":false,\r
+                            "label":"Device Id: 524967 Register: A - total Wh ",\r
+                            "minBarLength":3\r
+                         },\r
+                         {\r
+                            "backgroundColor":"rgba(218, 117, 255, 0.3)",\r
+                            "borderColor":"rgb(218, 117, 255)",\r
+                            "borderWidth":1,\r
+                            "data":[\r
+                               {\r
+                                  "x":1699457267847,\r
+                                  "y":10\r
+                               },\r
+                               {\r
+                                  "x":1700047108397,\r
+                                  "y":234\r
+                               }\r
+                            ],\r
+                            "hidden":false,\r
+                            "label":"Device Id: 524967 Register: A+ total Wh ",\r
+                            "minBarLength":3\r
+                         }\r
+                      ]\r
+                   },\r
+                   "options":{\r
+                      "plugins":{\r
+                         "legend":{\r
+                            "display":true,\r
+                            "fullWidth":true,\r
+                            "position":"top",\r
+                            "reverse":false,\r
+                            "rtl":false\r
+                         },\r
+                         "title":{\r
+                            "display":true,\r
+                            "text":"Values from the meter"\r
+                         },\r
+                         "zoom":{\r
+                            "pan":{\r
+                               "enabled":true,\r
+                               "mode":"xy",\r
+                               "threshold":5\r
+                            },\r
+                            "zoom":{\r
+                               "wheel":{\r
+                                  "enabled":true\r
+                               },\r
+                               "pinch":{\r
+                                  "enabled":true\r
+                               },\r
+                               "mode":"xy"\r
+                            }\r
+                         }\r
+                      },\r
+                      "scales":{\r
+                         "x":{\r
+                            "beginAtZero":false,\r
+                            "offset":true,\r
+                            "reverse":false,\r
+                            "stacked":true,\r
+                            "ticks":{\r
+                               "autoSkip":true,\r
+                               "maxRotation":0,\r
+                               "minRotation":0,\r
+                               "mirror":false,\r
+                               "source":"data"\r
+                            },\r
+                            "time":{\r
+                               "displayFormats":{\r
+                                  "minute":"dd.LL T"\r
+                               },\r
+                               "round":"minute",\r
+                               "stepSize":"60",\r
+                               "unit":"minute"\r
+                            },\r
+                            "type":"time"\r
+                         },\r
+                         "y":{\r
+                            "beginAtZero":false,\r
+                            "offset":false,\r
+                            "reverse":false,\r
+                            "stacked":true,\r
+                            "ticks":{\r
+                               "autoSkip":true,\r
+                               "mirror":false\r
+                            }\r
+                         }\r
+                      },\r
+                      "showLine":true,\r
+                      "spanGaps":false\r
+                   }\r
+                }""";
     }
 
     public void itemSelect(ItemSelectEvent event) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",
                 "Value: " + event.getData()
-                + ", Item Index: " + event.getItemIndex()
-                + ", DataSet Index:" + event.getDataSetIndex());
+                        + ", Item Index: " + event.getItemIndex()
+                        + ", DataSet Index:" + event.getDataSetIndex());
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
