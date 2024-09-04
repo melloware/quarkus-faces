@@ -353,8 +353,8 @@
                 <quarkus.native.builder-image>mandrel</quarkus.native.builder-image>
                 <quarkus.native.additional-build-args>
                     --enable-url-protocols=jar\,https,\
-                    --initialize-at-run-time=org.apache.commons.lang3.RandomUtils\
-                    --initialize-at-run-time=software.xdev.chartjs.model.color.HSLAColor
+                    --initialize-at-run-time=org.apache.commons.lang3.RandomUtils
+                    --trace-object-instantiation=java.security.SecureRandom
                 </quarkus.native.additional-build-args>
             </properties>
             <build>
