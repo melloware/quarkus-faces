@@ -343,5 +343,89 @@ if (PrimeFaces.widget.SelectOneMenu) {
 
     return content;
   };
+  
+   /**
+     * Highlights the next option after the currently highlighted option in the overlay panel.
+     * @private
+     * @param {JQuery.TriggeredEvent} event The event of the keypress.
+     */
+    PrimeFaces.widget.SelectOneMenu.prototype.highlightNext = function(event) {
+        // Get the currently active item
+        var activeItem = this.getActiveItem();
+        
+        // Check if the panel is hidden
+        var isHidden = this.panel.is(':hidden');
+        
+        // Create a selector for the next valid option
+        // If panel is hidden, select the first option, otherwise select the first visible option
+        var selector = '[role="option"]:not(.ui-state-disabled)' + (isHidden ? ':first' : ':visible:first');
+        
+        // Try to find the next valid option after the active item
+        var next = activeItem.nextAll(selector);
+
+        if (next.length === 0) {
+            var index = this.items.index(activeItem) + 1;
+            if (index >= 0) {
+                next = this.items.eq(index);
+            }
+        }
+    
+        if(event.altKey) {
+            this.show();
+        }
+        else if(next.length === 1) {
+            if(this.panel.is(':hidden')) {
+                this.selectItem(next);
+            }
+            else {
+                this.highlightItem(next);
+                PrimeFaces.scrollInView(this.itemsWrapper, next);
+            }
+            this.changeAriaValue(next);
+        }
+
+        event.preventDefault();
+    };
+
+    /**
+     * Highlights the previous option before the currently highlighted option in the overlay panel.
+     * @private
+     * @param {JQuery.TriggeredEvent} event The event of the keypress.
+     */
+    PrimeFaces.widget.SelectOneMenu.prototype.highlightPrev = function(event) {
+        // Get the currently active item
+        var activeItem = this.getActiveItem();
+        
+        // Check if the panel is hidden
+        var isHidden = this.panel.is(':hidden');
+        
+        // Create a selector for the next valid option
+        // If panel is hidden, select the first option, otherwise select the first visible option
+        var selector = '[role="option"]:not(.ui-state-disabled)' + (isHidden ? ':first' : ':visible:first');
+        
+        // Try to find the previous valid option after the active item
+        var prev = activeItem.prevAll(selector);
+        
+        // If no next option found, look for the first option in the next group (ul)
+        if (prev.length === 0) {
+            var index = this.items.index(activeItem) - 1;
+            if (index >= 0) {
+                prev = this.items.eq(index);
+            }
+        }
+
+        if(prev.length === 1) {
+            if(this.panel.is(':hidden')) {
+                this.selectItem(prev);
+            }
+            else {
+                this.highlightItem(prev);
+                PrimeFaces.scrollInView(this.itemsWrapper, prev);
+            }
+            this.changeAriaValue(prev);
+        }
+
+        event.preventDefault();
+    };
 
 };
