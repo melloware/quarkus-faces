@@ -246,186 +246,28 @@ var Storage = {
 
 App.init();
 
-if (PrimeFaces.widget.SelectOneMenu) {
-  /**
-   * Renders panel content based on hidden select.
-   * @private
-   * @param {boolean} initContentsAndBindItemEvents `true` to call {@link initContents} and {@link bindItemEvents}
-   * after rendering, `false` otherwise.
-   */
-  PrimeFaces.widget.SelectOneMenu.prototype.renderPanelContentFromHiddenSelect = function(initContentsAndBindItemEvents) {
-    if (this.cfg.renderPanelContentOnClient && this.itemsWrapper.children().length === 0) {
-      var panelContent = '<div id="' + this.id + '_items" class="ui-selectonemenu-items ui-widget-content ui-widget ui-corner-all ui-helper-reset" role="listbox">';
-      panelContent += this.renderSelectItems(this.input);
-      panelContent += '</div>';
+if (PrimeFaces.widget.DataTable) {
 
-      this.itemsWrapper.append(panelContent);
-
-      if (initContentsAndBindItemEvents) {
-        this.initContents();
-        this.bindItemEvents();
-      }
-    }
-  };
-
-  /**
-   * Renders panel HTML-code for all select items.
-   * @private
-   * @param {JQuery} parentItem A parent item (select, optgroup) for which to render HTML code.
-   * @param {boolean} [isGrouped] Indicated whether the elements of the parent item should be marked as grouped.
-   * @return {string} The rendered HTML string.
-   */
-  PrimeFaces.widget.SelectOneMenu.prototype.renderSelectItems = function(parentItem, isGrouped) {
-    var $this = this;
-    var content = "";
-    isGrouped = isGrouped || false;
-
-    var opts = parentItem.children("option, optgroup");
-    var hasOptgroup = opts.filter("optgroup").length > 0;
-
-    if (!hasOptgroup && !isGrouped) {
-      content += '<ul role="group" class="ui-selectonemenu-list ui-widget-content ui-widget ui-corner-all ui-helper-reset">';
-    }
-
-    content += opts.map(function(index, element) {
-      return $this.renderSelectItem(element, isGrouped);
-    }).get().join('');
-
-    if (!hasOptgroup && !isGrouped) {
-      content += '</ul>';
-    }
-
-    return content;
-  };
-
-  /**
-   * Renders panel HTML code for one select item (group).
-   * @private
-   * @param {JQuery} item An option (group) for which to render HTML code.
-   * @param {boolean} [isGrouped] Indicates whether the item is part of a group.
-   * @return {string} The rendered HTML string.
-   */
-  PrimeFaces.widget.SelectOneMenu.prototype.renderSelectItem = function(item, isGrouped) {
-    var $item = $(item);
-    var isOptgroup = item.tagName === "OPTGROUP";
-    var id = PrimeFaces.uuid();
-    var escape = $item.data("escape");
-    var label = isOptgroup ? $item.attr("label") : $item.text();
-
-    if (escape) {
-      label = isOptgroup ? $("<div>").text(label).html() : $item.html();
-      label = label === "&nbsp;" ? " " : label;
-    }
-
-    var cssClass = isOptgroup ? "ui-selectonemenu-item-group ui-corner-all" :
-      "ui-selectonemenu-item ui-selectonemenu-list-item ui-corner-all" +
-      (isGrouped ? " ui-selectonemenu-item-group-children" : "") +
-      ($item.data("noselection-option") ? " ui-noselection-option" : "");
-
-    var content = isOptgroup ? '<ul role="group" class="ui-selectonemenu-list ui-widget-content ui-widget ui-corner-all ui-helper-reset" aria-labelledby="' + id + '">' : '';
-
-    content += '<li id="' + id + '" class="' + cssClass + '" tabindex="-1" role="' + (isOptgroup ? "presentation" : "option") + '"';
-
-    var title = $item.data("title");
-    if (title) {
-      content += ' title="' + PrimeFaces.escapeHTML(title) + '"';
-    }
-    if ($item.is(':disabled')) {
-      content += ' disabled';
-    }
-
-    var dataLabel = escape ? label.replaceAll('"', '&quot;') : PrimeFaces.escapeHTML(label, true);
-    content += ' data-label="' + dataLabel + '">' + label + '</li>';
-
-    if (isOptgroup) {
-      content += this.renderSelectItems($item, true) + '</ul>';
-    }
-
-    return content;
-  };
-  
-   /**
-     * Highlights the next option after the currently highlighted option in the overlay panel.
-     * @private
-     * @param {JQuery.TriggeredEvent} event The event of the keypress.
-     */
-    PrimeFaces.widget.SelectOneMenu.prototype.highlightNext = function(event) {
-        // Get the currently active item
-        var activeItem = this.getActiveItem();
-        
-        // Check if the panel is hidden
-        var isHidden = this.panel.is(':hidden');
-        
-        // Create a selector for the next valid option
-        // If panel is hidden, select the first option, otherwise select the first visible option
-        var selector = '[role="option"]:not(.ui-state-disabled)' + (isHidden ? ':first' : ':visible:first');
-        
-        // Try to find the next valid option after the active item
-        var next = activeItem.nextAll(selector);
-
-        if (next.length === 0) {
-            var index = this.items.index(activeItem) + 1;
-            if (index >= 0) {
-                next = this.items.eq(index);
-            }
-        }
-    
-        if(event.altKey) {
-            this.show();
-        }
-        else if(next.length === 1) {
-            if(this.panel.is(':hidden')) {
-                this.selectItem(next);
-            }
-            else {
-                this.highlightItem(next);
-                PrimeFaces.scrollInView(this.itemsWrapper, next);
-            }
-            this.changeAriaValue(next);
+  PrimeFaces.widget.DataTable.prototype.tabCell = function(cell, forward) {
+        var targetCell = forward ? cell.nextAll('td.ui-editable-column:first') : cell.prevAll('td.ui-editable-column:first');
+        if(targetCell.length == 0) {
+            var tabRow = forward ? cell.parent().next() : cell.parent().prev();
+            targetCell = forward ? tabRow.children('td.ui-editable-column:first') : tabRow.children('td.ui-editable-column:last');
         }
 
-        event.preventDefault();
+        var cellEditor = targetCell.children('div.ui-cell-editor'),
+        inputContainer = cellEditor.children('div.ui-cell-editor-input');
+
+        if(inputContainer.length) {
+            var inputs = inputContainer.find(':input[type!=hidden]'),
+            disabledInputs = inputs.filter(':disabled:not([data-disabled-by-editor="true"])');
+
+            if(inputs.length === disabledInputs.length) {
+                this.tabCell(targetCell, forward);
+                return;
+            }
+        }
+
+        this.showCellEditor(targetCell);
     };
-
-    /**
-     * Highlights the previous option before the currently highlighted option in the overlay panel.
-     * @private
-     * @param {JQuery.TriggeredEvent} event The event of the keypress.
-     */
-    PrimeFaces.widget.SelectOneMenu.prototype.highlightPrev = function(event) {
-        // Get the currently active item
-        var activeItem = this.getActiveItem();
-        
-        // Check if the panel is hidden
-        var isHidden = this.panel.is(':hidden');
-        
-        // Create a selector for the next valid option
-        // If panel is hidden, select the first option, otherwise select the first visible option
-        var selector = '[role="option"]:not(.ui-state-disabled)' + (isHidden ? ':first' : ':visible:first');
-        
-        // Try to find the previous valid option after the active item
-        var prev = activeItem.prevAll(selector);
-        
-        // If no next option found, look for the first option in the next group (ul)
-        if (prev.length === 0) {
-            var index = this.items.index(activeItem) - 1;
-            if (index >= 0) {
-                prev = this.items.eq(index);
-            }
-        }
-
-        if(prev.length === 1) {
-            if(this.panel.is(':hidden')) {
-                this.selectItem(prev);
-            }
-            else {
-                this.highlightItem(prev);
-                PrimeFaces.scrollInView(this.itemsWrapper, prev);
-            }
-            this.changeAriaValue(prev);
-        }
-
-        event.preventDefault();
-    };
-
 };
