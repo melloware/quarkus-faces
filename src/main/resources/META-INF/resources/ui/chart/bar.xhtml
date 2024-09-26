@@ -9,11 +9,13 @@
     </ui:define>
 
     <ui:define name="description">
-        BarChart is created with raw JSON or using an <a href="https://github.com/xdev-software/chartjs-java-model" target="_blank" rel="noopener noreferrer">XDEV</a> model. When a dataset data is clicked, information can be passed to a backing bean using itemSelect ajax behavior. 
+        BarChart is created with raw JSON or using an <a href="https://github.com/xdev-software/chartjs-java-model"
+                                                         target="_blank"
+                                                         rel="noopener noreferrer">XDEV</a> model. When a dataset data is clicked, information can be passed to a backing bean using itemSelect ajax behavior.
     </ui:define>
 
     <ui:param name="documentationLink" value="/components/chart"/>
-    <ui:param name="widgetLink" value="Chart"/>
+    <ui:param name="widgetLink" value="Chart-1"/>
 
     <ui:define name="implementation">
         <h:form>
@@ -25,7 +27,7 @@
                     <p:ajax event="itemSelect" listener="#{chartView.itemSelect}" update="growl"/>
                 </p:chart>
             </div>
-            
+
             <div class="card">
                 <h5>Stacked</h5>
                 <p:chart value="#{chartView.stackedBarModel}" style="width: 100%; height: 500px;">
