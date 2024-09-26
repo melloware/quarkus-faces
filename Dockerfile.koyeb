@@ -1,5 +1,5 @@
 # Start with a base image containing Maven
-FROM maven:3.8.3-openjdk-17-slim AS build
+FROM maven:3.9.9-eclipse-temurin-17-alpine AS build
 
 # Set the working directory in the container
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY . .
 RUN mvn clean package
 
 # Use Red Hat's OpenJDK 21 as base image
-FROM registry.access.redhat.com/ubi8/openjdk-21:1.18
+FROM registry.access.redhat.com/ubi8/openjdk-21:1.20
 
 ENV LANGUAGE='en_US:en'
 
