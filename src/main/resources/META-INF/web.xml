@@ -105,10 +105,6 @@
         <param-value>3</param-value>
     </context-param>
     <context-param>
-        <param-name>org.apache.myfaces.SUPPORT_JSP_AND_FACES_EL</param-name>
-        <param-value>false</param-value>
-    </context-param>
-    <context-param>
         <param-name>org.apache.myfaces.VIEW_UNIQUE_IDS_CACHE_ENABLED</param-name>
         <param-value>true</param-value>
     </context-param>
