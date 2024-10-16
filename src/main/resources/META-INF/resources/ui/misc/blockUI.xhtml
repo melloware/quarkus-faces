@@ -33,24 +33,20 @@
                         <p:message for="lastname"/>
                     </h:panelGrid>
 
-                    <p:commandButton id="saveBtn" value="Save" icon="pi pi-check" action="#{blockUIView.save}" update="growl" styleClass="mt-3" />
+                    <p:commandButton id="saveBtn" value="Save" icon="pi pi-check" action="#{blockUIView.save}"
+                                     update="growl" styleClass="mt-3"/>
                 </p:panel>
 
                 <p:blockUI block="pnl" trigger="saveBtn" widgetVar="buiBasic"/>
 
                 <h5>Custom Content</h5>
                 <p:dataTable id="dataTable" var="customer" value="#{blockUIView.customers}"
-                             paginator="true" rows="5" paginatorPosition="bottom">
+                             paginator="true" rows="5" paginatorPosition="bottom" filterEvent="enter">
                     <f:facet name="header">
                         Customers
                     </f:facet>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Name"/>
-                        </f:facet>
-                        <h:outputText value="#{customer.name}"/>
-                    </p:column>
+                    <p:column field="name" filterMatchMode="contains"/>
 
                     <p:column>
                         <f:facet name="header">
@@ -59,12 +55,7 @@
                         <h:outputText value="#{customer.country.name}"/>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Company"/>
-                        </f:facet>
-                        <h:outputText value="#{customer.company}"/>
-                    </p:column>
+                    <p:column field="company"/>
 
                     <p:column>
                         <f:facet name="header">
@@ -100,8 +91,10 @@
                     </p:tab>
                 </p:accordionPanel>
 
-                <p:commandButton id="pnlBtn" value="Block Panel" type="button" onclick="PF('bui').show()" styleClass="mt-5 mr-2" />
-                <p:commandButton id="pnlBtn2" value="Unblock Panel" type="button" onclick="PF('bui').hide()" styleClass="mt-5 ui-button-outlined" />
+                <p:commandButton id="pnlBtn" value="Block Panel" type="button" onclick="PF('bui').show()"
+                                 styleClass="mt-5 mr-2"/>
+                <p:commandButton id="pnlBtn2" value="Unblock Panel" type="button" onclick="PF('bui').hide()"
+                                 styleClass="mt-5 ui-button-outlined"/>
 
                 <p:blockUI block="accordion" widgetVar="bui"/>
 

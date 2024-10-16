@@ -246,28 +246,103 @@ var Storage = {
 
 App.init();
 
-if (PrimeFaces.widget.DataTable) {
+if (PrimeFaces.widget.BlockUI) {
+  PrimeFaces.widget.BlockUI.prototype.show = function(duration) {
+    var $this = this;
+    if (this.isBlocking()) {
+      return;
+    }
 
-  PrimeFaces.widget.DataTable.prototype.tabCell = function(cell, forward) {
-        var targetCell = forward ? cell.nextAll('td.ui-editable-column:first') : cell.prevAll('td.ui-editable-column:first');
-        if(targetCell.length == 0) {
-            var tabRow = forward ? cell.parent().next() : cell.parent().prev();
-            targetCell = forward ? tabRow.children('td.ui-editable-column:first') : tabRow.children('td.ui-editable-column:last');
-        }
+    var delay = this.cfg.delay || 0;
+    this.timeout = PrimeFaces.queueTask(function() {
+      // #10484: if delayed and AJAX event already finished
+      if (($this.cfg.triggers || delay > 0) && PrimeFaces.ajax.Queue.isEmpty()) {
+        PrimeFaces.warn("BlockUI AJAX event completed before showing the block.");
+        return;
+      }
+      $this.alignOverlay();
 
-        var cellEditor = targetCell.children('div.ui-cell-editor'),
-        inputContainer = cellEditor.children('div.ui-cell-editor-input');
+      var animated = $this.cfg.animate;
+      if (animated)
+        $this.blocker.fadeIn(duration);
+      else
+        $this.blocker.show(duration);
 
-        if(inputContainer.length) {
-            var inputs = inputContainer.find(':input[type!=hidden]'),
-            disabledInputs = inputs.filter(':disabled:not([data-disabled-by-editor="true"])');
+      if ($this.hasContent()) {
+        if (animated)
+          $this.content.fadeIn(duration);
+        else
+          $this.content.show(duration);
+      }
 
-            if(inputs.length === disabledInputs.length) {
-                this.tabCell(targetCell, forward);
-                return;
-            }
-        }
+      // prevent mouse events
+      $this.target.attr('aria-busy', true).css({
+        'pointer-events': 'none',
+        'user-select': 'none'
+      });
+      // prevent keyboard focus from entering the blocked area
+      $this.target.find(':tabbable').each(function() {
+        var $element = $(this);
+        var currentTabIndex = $element.attr('tabindex');
+        $element.attr('data-bui-tabindex', currentTabIndex || 0)
+          .attr('tabindex', -1);
+      });
+    }, delay);
+  };
 
-        this.showCellEditor(targetCell);
+  /**
+   * Hide the component with optional duration animation.
+   *
+   * @param {number} [duration] Durations are given in milliseconds; higher values indicate slower animations, not
+   * faster ones. The strings `fast` and `slow` can be supplied to indicate durations of 200 and 600 milliseconds,
+   * respectively.
+   */
+  PrimeFaces.widget.BlockUI.prototype.hide = function(duration) {
+    if (!this.isBlocking()) {
+      return;
+    }
+    this.deleteTimeout();
+    var $this = this;
+    var animated = this.cfg.animate;
+    var hasContent = this.hasContent();
+    var callback = function() {
+      if (!hasContent) {
+        resetPositionCallback();
+      }
     };
+    var resetPositionCallback = function() {
+      for (let targetElement of $this.target) {
+        var currentTarget = $(targetElement);
+        var previousPosition = currentTarget.data('p-position');
+        if (previousPosition) {
+          currentTarget.css('position', previousPosition);
+        }
+      }
+    };
+
+    if (animated)
+      this.blocker.fadeOut(duration, callback);
+    else
+      this.blocker.hide(duration || 0, callback);
+
+    if (hasContent) {
+      if (animated)
+        this.content.fadeOut(duration, resetPositionCallback);
+      else
+        this.content.hide(duration || 0, resetPositionCallback);
+    }
+
+    // restore mouse events on the target
+    this.target.attr('aria-busy', false).css({
+      'pointer-events': 'auto',
+      'user-select': 'auto'
+    });
+    // restore keyboard focus on the blocked area
+    this.target.find('[data-bui-tabindex]').each(function() {
+      var $element = $(this);
+      var originalTabIndex = $element.attr('data-bui-tabindex');
+      $element.attr('tabindex', originalTabIndex);
+      $element.removeAttr('data-bui-tabindex');
+    });
+  };
 };
