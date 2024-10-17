@@ -23,10 +23,10 @@ App = {
     },
 
     _bindEvents: function () {
-        var $this = this;
+        let $this = this;
 
         this.topbarMenu.find('> .topbar-submenu > a').off('click').on('click', function () {
-            var item = $(this).parent();
+            let item = $(this).parent();
 
             item.siblings('.topbar-submenu-active').removeClass('topbar-submenu-active');
 
@@ -41,7 +41,7 @@ App = {
         });
 
         this.menuLinks.off('click').on('click', function () {
-            var link = $(this);
+            let link = $(this);
 
             if (link.hasClass('submenu-link')) {
                 if (link.hasClass('submenu-link-active')) {
@@ -97,19 +97,19 @@ App = {
                 if (!$this.isLinkClicked) {
                     $this.isLinkClicked = true;
 
-                    var link = $(this).find('a:first');
+                    let link = $(this).find('a:first');
                     if (link) {
-                        var url = new URL(link[0].href);
-                        var menuItem = $this.menu.find('a[href*="' + url.pathname + '"]');
+                        let url = new URL(link[0].href);
+                        let menuItem = $this.menu.find('a[href*="' + url.pathname + '"]');
                         if (menuItem.length) {
-                            var scroll_position = menuItem[0].offsetTop - $this.menu[0].offsetTop;
+                            let scroll_position = '' + (menuItem[0].offsetTop - $this.menu[0].offsetTop);
 
                             sessionStorage.setItem('scroll_position', scroll_position);
                         }
 
                         link.trigger('click');
 
-                        var href = link.attr('href');
+                        let href = link.attr('href');
                         if (href && href !== '#') {
                             window.location.href = href;
                         }
@@ -121,12 +121,12 @@ App = {
     },
 
     hideTopbarSubmenu: function (item) {
-        var submenu = item.children('ul');
+        let submenu = item.children('ul');
         submenu.addClass('connected-overlay-out');
 
         setTimeout(function () {
-            item.removeClass('topbar-submenu-active'),
-                submenu.removeClass('connected-overlay-out');
+            item.removeClass('topbar-submenu-active');
+            submenu.removeClass('connected-overlay-out');
         }, 100);
     },
 
@@ -155,12 +155,12 @@ App = {
     },
 
     restoreMenu: function () {
-        var activeRouteLink = this.menuLinks.filter('[href^="' + window.location.pathname + '"]');
+        let activeRouteLink = this.menuLinks.filter('[href^="' + window.location.pathname + '"]');
         if (activeRouteLink.length) {
             activeRouteLink.addClass('router-link-active');
         }
 
-        var activeSubmenus = sessionStorage.getItem('active_submenus');
+        let activeSubmenus = sessionStorage.getItem('active_submenus');
         if (activeSubmenus) {
             this.activeSubmenus = activeSubmenus.split(',');
             this.activeSubmenus.forEach(function (id) {
@@ -168,7 +168,7 @@ App = {
             });
         }
 
-        var scrollPosition = sessionStorage.getItem('scroll_position');
+        let scrollPosition = sessionStorage.getItem('scroll_position');
         if (scrollPosition) {
             this.menu.scrollTop(parseInt(scrollPosition));
         }
@@ -184,8 +184,8 @@ App = {
 
     _bindNews: function () {
         if (this.news && this.news.length > 0) {
-            var $this = this;
-            var closeButton = this.news.find('.layout-news-close');
+            let $this = this;
+            let closeButton = this.news.find('.layout-news-close');
             closeButton.off('click.news').on('click.news', function () {
                 $this.wrapper.removeClass('layout-news-active');
                 $this.news.hide();
@@ -205,11 +205,11 @@ App = {
     }
 }
 
-var Storage = {
+let Storage = {
     storageKey: 'primefaces',
     saveSettings: function (newsActive) {
-        var now = new Date();
-        var item = {
+        let now = new Date();
+        let item = {
             settings: {
                 newsActive: newsActive
             },
@@ -218,9 +218,9 @@ var Storage = {
         localStorage.setItem(this.storageKey, JSON.stringify(item));
     },
     restoreSettings: function () {
-        var itemString = localStorage.getItem(this.storageKey);
+        let itemString = localStorage.getItem(this.storageKey);
         if (itemString) {
-            var item = JSON.parse(itemString);
+            let item = JSON.parse(itemString);
             if (!this.isStorageExpired()) {
                 // News
                 App.changeNews(item.settings.newsActive);
@@ -228,12 +228,12 @@ var Storage = {
         }
     },
     isStorageExpired: function () {
-        var itemString = localStorage.getItem(this.storageKey);
+        let itemString = localStorage.getItem(this.storageKey);
         if (!itemString) {
             return true;
         }
-        var item = JSON.parse(itemString);
-        var now = new Date();
+        let item = JSON.parse(itemString);
+        let now = new Date();
 
         if (now.getTime() > item.expiry) {
             localStorage.removeItem(this.storageKey);
@@ -245,104 +245,3 @@ var Storage = {
 }
 
 App.init();
-
-if (PrimeFaces.widget.BlockUI) {
-  PrimeFaces.widget.BlockUI.prototype.show = function(duration) {
-    var $this = this;
-    if (this.isBlocking()) {
-      return;
-    }
-
-    var delay = this.cfg.delay || 0;
-    this.timeout = PrimeFaces.queueTask(function() {
-      // #10484: if delayed and AJAX event already finished
-      if (($this.cfg.triggers || delay > 0) && PrimeFaces.ajax.Queue.isEmpty()) {
-        PrimeFaces.warn("BlockUI AJAX event completed before showing the block.");
-        return;
-      }
-      $this.alignOverlay();
-
-      var animated = $this.cfg.animate;
-      if (animated)
-        $this.blocker.fadeIn(duration);
-      else
-        $this.blocker.show(duration);
-
-      if ($this.hasContent()) {
-        if (animated)
-          $this.content.fadeIn(duration);
-        else
-          $this.content.show(duration);
-      }
-
-      // prevent mouse events
-      $this.target.attr('aria-busy', true).css({
-        'pointer-events': 'none',
-        'user-select': 'none'
-      });
-      // prevent keyboard focus from entering the blocked area
-      $this.target.find(':tabbable').each(function() {
-        var $element = $(this);
-        var currentTabIndex = $element.attr('tabindex');
-        $element.attr('data-bui-tabindex', currentTabIndex || 0)
-          .attr('tabindex', -1);
-      });
-    }, delay);
-  };
-
-  /**
-   * Hide the component with optional duration animation.
-   *
-   * @param {number} [duration] Durations are given in milliseconds; higher values indicate slower animations, not
-   * faster ones. The strings `fast` and `slow` can be supplied to indicate durations of 200 and 600 milliseconds,
-   * respectively.
-   */
-  PrimeFaces.widget.BlockUI.prototype.hide = function(duration) {
-    if (!this.isBlocking()) {
-      return;
-    }
-    this.deleteTimeout();
-    var $this = this;
-    var animated = this.cfg.animate;
-    var hasContent = this.hasContent();
-    var callback = function() {
-      if (!hasContent) {
-        resetPositionCallback();
-      }
-    };
-    var resetPositionCallback = function() {
-      for (let targetElement of $this.target) {
-        var currentTarget = $(targetElement);
-        var previousPosition = currentTarget.data('p-position');
-        if (previousPosition) {
-          currentTarget.css('position', previousPosition);
-        }
-      }
-    };
-
-    if (animated)
-      this.blocker.fadeOut(duration, callback);
-    else
-      this.blocker.hide(duration || 0, callback);
-
-    if (hasContent) {
-      if (animated)
-        this.content.fadeOut(duration, resetPositionCallback);
-      else
-        this.content.hide(duration || 0, resetPositionCallback);
-    }
-
-    // restore mouse events on the target
-    this.target.attr('aria-busy', false).css({
-      'pointer-events': 'auto',
-      'user-select': 'auto'
-    });
-    // restore keyboard focus on the blocked area
-    this.target.find('[data-bui-tabindex]').each(function() {
-      var $element = $(this);
-      var originalTabIndex = $element.attr('data-bui-tabindex');
-      $element.attr('tabindex', originalTabIndex);
-      $element.removeAttr('data-bui-tabindex');
-    });
-  };
-};

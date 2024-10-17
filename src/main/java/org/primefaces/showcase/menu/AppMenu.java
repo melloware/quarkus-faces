@@ -63,6 +63,7 @@ public class AppMenu {
         ajaxFrameworkMenuItems.add(new MenuItem("Status", "/ui/ajax/status"));
         ajaxFrameworkMenuItems.add(new MenuItem("Lifecycle", "/ui/ajax/lifecycle"));
         ajaxFrameworkMenuItems.add(new MenuItem("Dropdown", "/ui/ajax/dropdown"));
+        ajaxFrameworkMenuItems.add(new MenuItem("WebSocket", "/ui/ajax/websocket"));
         menuCategories.add(new MenuCategory("Ajax Framework", ajaxFrameworkMenuItems));
         //AJAX FRAMEWORK CATEGORY END
 
@@ -399,7 +400,7 @@ public class AppMenu {
         List<MenuItem> multimediaMenuItems = new ArrayList<>();
         multimediaMenuItems.add(new MenuItem("Audio", "/ui/multimedia/audio"));
         multimediaMenuItems.add(new MenuItem("Barcode", "/ui/multimedia/barcode"));
-		multimediaMenuItems.add(new MenuItem("QRCode", "/ui/multimedia/qrcode"));
+        multimediaMenuItems.add(new MenuItem("QRCode", "/ui/multimedia/qrcode"));
         multimediaMenuItems.add(new MenuItem("Image Compare", "/ui/multimedia/compare"));
 
         //Cropper Nested MenuItem

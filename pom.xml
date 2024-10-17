@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
         <omnifaces-quarkus.version>4.5.1.1</omnifaces-quarkus.version>
-        <primefaces-quarkus.version>3.14.5</primefaces-quarkus.version>
+        <primefaces-quarkus.version>3.14.6.1</primefaces-quarkus.version>
         <myfaces.version>4.0.2</myfaces.version>
         <quarkus.version>3.15.1</quarkus.version>
     </properties>
@@ -45,10 +45,6 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-health</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-awt</artifactId>
         </dependency>
         <!-- Logging -->
         <dependency>
@@ -87,28 +83,11 @@
             <artifactId>mime-types</artifactId>
             <version>2.0.0</version>
         </dependency>
-        <!-- Barcode -->
-        <dependency>
-            <groupId>io.nayuki</groupId>
-            <artifactId>qrcodegen</artifactId>
-            <version>1.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>barcode4j-light</artifactId>
-            <version>2.3.0</version>
-        </dependency>
         <!-- ChartJS model -->
         <dependency>
             <groupId>software.xdev</groupId>
             <artifactId>chartjs-java-model</artifactId>
             <version>2.3.0</version>
-        </dependency>
-        <!-- HTML sanitizer for the textEditor -->
-        <dependency>
-            <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
-            <artifactId>owasp-java-html-sanitizer</artifactId>
-            <version>20240325.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -282,6 +261,7 @@
                             <goal>build</goal>
                             <goal>generate-code</goal>
                             <goal>generate-code-tests</goal>
+                            <goal>native-image-agent</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -340,17 +320,15 @@
             </build>
         </profile>
         <profile>
-            <id>native</id>
+            <id>native-docker</id>
             <activation>
                 <property>
-                    <name>native</name>
+                    <name>native-docker</name>
                 </property>
             </activation>
             <properties>
                 <skipITs>true</skipITs>
-                <quarkus.package.type>native</quarkus.package.type>
-                <quarkus.native.container-build>true</quarkus.native.container-build>
-                <quarkus.native.builder-image>mandrel</quarkus.native.builder-image>
+                <quarkus.native.enabled>true</quarkus.native.enabled>
                 <quarkus.native.additional-build-args>
                     --enable-url-protocols=jar\,https,\
                     --initialize-at-run-time=org.apache.commons.lang3.RandomUtils
