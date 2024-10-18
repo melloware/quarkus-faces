@@ -105,7 +105,7 @@ docker run -i --rm -p 8000:8000 melloware/quarkus-faces:latest
 ***
 Builds a native Docker image running as a GraalVM (Mandrel) application. 
 ```
-mvn -Pnative
+mvn -Pnative-docker
 docker run -i --rm -p 8000:8000 melloware/quarkus-faces:${version}
 ```
 
