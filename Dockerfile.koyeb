@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy the project source
 COPY . .
 
+# Ensure that the mvnw script has executable permissions
+RUN chmod +x ./mvnw
+
 # Build the project as a native image
 RUN ./mvnw clean package -Pnative -Dquarkus.native.container-build=true
 
