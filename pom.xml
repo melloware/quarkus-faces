@@ -283,6 +283,18 @@
             </build>
         </profile>
         <profile>
+            <id>native</id>
+            <activation>
+                <property>
+                    <name>native</name>
+                </property>
+            </activation>
+            <properties>
+                <skipITs>false</skipITs>
+                <quarkus.native.enabled>true</quarkus.native.enabled>
+            </properties>
+        </profile>
+        <profile>
             <!-- Optionally activate this profile to compile the demo into JVM docker image! -->
             <id>docker</id>
             <activation>
