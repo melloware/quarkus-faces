@@ -1,5 +1,5 @@
 # Start with a base image containing Mandrel for native image building
-FROM maven:3.9.9-eclipse-temurin-17-alpine AS build
+FROM maven:3.9.9-eclipse-temurin-21-alpine AS build
 
 # Set the working directory in the container
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY . .
 RUN mvn -B install -Dnative -Dquarkus.native.container-build -Dnative.surefire.skip
 
 # Use a minimal base image for the native executable
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10 AS runner
 
 # Set work directory and copy the native executable
 WORKDIR /work/
