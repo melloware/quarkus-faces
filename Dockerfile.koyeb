@@ -1,6 +1,11 @@
 # Start with a base image containing Maven
 FROM maven:3.9.9-eclipse-temurin-21-alpine AS build
 
+# Install Docker
+RUN apk add --no-cache docker openrc && \
+    rc-update add docker boot && \
+    service docker start
+
 # Set the working directory in the container
 WORKDIR /app
 
