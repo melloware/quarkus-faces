@@ -1,44 +1,35 @@
 # Start with a base image containing Maven
 FROM maven:3.9.9-eclipse-temurin-21-alpine AS build
 
-# Install Docker
-RUN apk add --no-cache docker openrc && \
-    rc-update add docker boot && \
-    service docker start
-
 # Set the working directory in the container
 WORKDIR /app
 
 # Copy the project source
 COPY . .
 
-# Build the project as a native image
-RUN mvn -B install -Dnative -Dquarkus.native.container-build -Dnative.surefire.skip
+# Build the project
+RUN mvn clean package
 
-# Use a minimal base image for the native executable
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10 AS runner
+# Use Red Hat's OpenJDK 21 as base image
+FROM registry.access.redhat.com/ubi8/openjdk-21:1.20
 
-# Set work directory and copy the native executable
-WORKDIR /work/
-COPY --from=build /app/target/*-runner /work/application
+ENV LANGUAGE='en_US:en'
 
-# Set user
-USER 1001
 
-# Additional setup for Apache POI or any other libraries
-RUN microdnf update && microdnf install freetype fontconfig && microdnf clean all
-
-# Shared objects to be dynamically loaded at runtime as needed,
-COPY --from=build /app/target/*.properties /app/target/*.so /work/
-RUN chown 1001 /work \
-    && chmod "g+rwX" /work \
-    && chown 1001:root /work
-
-# Permissions fix for Windows, if necessary
-RUN chmod "ugo+x" /work/application
+# We make four distinct layers so if there are application changes the library layers can be re-used
+COPY --from=build --chown=185 /app/target/quarkus-app/lib/ /deployments/lib/
+COPY --from=build --chown=185 /app/target/quarkus-app/*.jar /deployments/
+COPY --from=build --chown=185 /app/target/quarkus-app/app/ /deployments/app/
+COPY --from=build --chown=185 /app/target/quarkus-app/quarkus/ /deployments/quarkus/
 
 # Expose port
 EXPOSE 8000
 
-# Set the entrypoint to the native executable
-CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
+# Set user
+USER 185
+
+# Additional environment variables
+ENV JAVA_OPTS_APPEND="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
+ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
+
+ENTRYPOINT [ "/opt/jboss/container/java/run/run-java.sh" ]
