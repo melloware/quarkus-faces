@@ -25,4 +25,4 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml -Ddocker
     - name: Build with Maven (Native)
-      run: mvn -B -native-docker
+      run: mvn -B -Pnative-docker
