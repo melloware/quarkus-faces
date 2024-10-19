@@ -28,7 +28,7 @@ import jakarta.inject.Named;
 import lombok.Data;
 import lombok.extern.jbosslog.JBossLog;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.SystemUtils;
+import org.apache.commons.lang3.SystemProperties;
 import org.omnifaces.util.Faces;
 import org.primefaces.showcase.util.VirtualMachine;
 
@@ -50,10 +50,10 @@ public class TechnicalInfo {
     private String primeFacesExt;
     private String facesImpl;
     private String server;
-    private String jvmRuntime = SystemUtils.JAVA_RUNTIME_NAME;
-    private String jvmVersion = SystemUtils.JAVA_RUNTIME_VERSION;
-    private String jvmVendor = SystemUtils.JAVA_VENDOR;
-    private String os = SystemUtils.OS_NAME + "-" + SystemUtils.OS_VERSION + "-" + SystemUtils.OS_ARCH;
+    private String jvmRuntime;
+    private String jvmVersion;
+    private String jvmVendor;
+    private String os;
 
     @PostConstruct
     protected void initialize() {
@@ -69,6 +69,10 @@ public class TechnicalInfo {
                         .getImplementationVersion(), "???");
         facesImpl = StringUtils.removeIgnoreCase(StringUtils.removeIgnoreCase(Faces.getImplInfo(), "Core"), "Impl");
         server = Faces.getServerInfo();
+        jvmRuntime = SystemProperties.getJavaRuntimeName();
+        jvmVersion = SystemProperties.getJavaRuntimeVersion();
+        jvmVendor = SystemProperties.getJavaVendor();
+        os = SystemProperties.getOsName() + "-" + SystemProperties.getOsVersion() + "-" + SystemProperties.getOsArch();
     }
 
     public String getMemory() {
