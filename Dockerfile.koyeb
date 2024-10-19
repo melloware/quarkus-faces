@@ -1,35 +1,50 @@
-# Start with a base image containing Maven
-FROM maven:3.9.9-eclipse-temurin-21-alpine AS build
+## Stage 1: Build with Maven builder image with native capabilities
+# Use the Quarkus Mandrel builder image based on JDK 21, which includes native build tools.
+FROM quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-21 AS build
 
-# Set the working directory in the container
-WORKDIR /app
+# Copy the Maven wrapper script and directory into the container, setting correct ownership to the 'quarkus' user.
+COPY --chown=quarkus:quarkus mvnw /code/mvnw
+COPY --chown=quarkus:quarkus .mvn /code/.mvn
 
-# Copy the project source
-COPY . .
+# Copy the pom.xml file, which is required for downloading dependencies.
+COPY --chown=quarkus:quarkus pom.xml /code/
 
-# Build the project
-RUN mvn clean package
+# Switch to the 'quarkus' user for security purposes.
+USER quarkus
 
-# Use Red Hat's OpenJDK 21 as base image
-FROM registry.access.redhat.com/ubi8/openjdk-21:1.20
+# Set the working directory to /code.
+WORKDIR /code
 
-ENV LANGUAGE='en_US:en'
+# Use the Maven Dependency Plugin to download all dependencies offline (for caching purposes).
+RUN ./mvnw -B org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline
 
+# Copy the source code (src directory) to the container.
+COPY src /code/src
 
-# We make four distinct layers so if there are application changes the library layers can be re-used
-COPY --from=build --chown=185 /app/target/quarkus-app/lib/ /deployments/lib/
-COPY --from=build --chown=185 /app/target/quarkus-app/*.jar /deployments/
-COPY --from=build --chown=185 /app/target/quarkus-app/app/ /deployments/app/
-COPY --from=build --chown=185 /app/target/quarkus-app/quarkus/ /deployments/quarkus/
+# Build the application with the native profile to create a native executable.
+RUN ./mvnw package -Dnative
 
-# Expose port
+## Stage 2: Create the final Docker image
+# Use a lightweight Quarkus micro image for running the application.
+FROM quay.io/quarkus/quarkus-micro-image:2.0
+
+# Set the working directory to /work.
+WORKDIR /work/
+
+# Copy the native executable from the build stage into the /work directory.
+COPY --from=build /code/target/*-runner /work/application
+
+# Set up correct permissions for the user '1001' to ensure security and proper access control.
+RUN chmod 775 /work /work/application \
+  && chown -R 1001 /work \
+  && chmod -R "g+rwX" /work \
+  && chown -R 1001:root /work
+
+# Expose port 8000 for the application to listen on.
 EXPOSE 8000
 
-# Set user
-USER 185
+# Switch to user '1001' to avoid running the application as root.
+USER 1001
 
-# Additional environment variables
-ENV JAVA_OPTS_APPEND="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
-ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
-
-ENTRYPOINT [ "/opt/jboss/container/java/run/run-java.sh" ]
+# Start the application and bind it to all network interfaces (0.0.0.0).
+CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
