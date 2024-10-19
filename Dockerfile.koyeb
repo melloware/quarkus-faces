@@ -38,7 +38,7 @@ WORKDIR /work/
 
 # Copy the native executable from the build stage into the /work directory.
 # Shared objects to be dynamically loaded at runtime as needed,
-COPY --from=build /code/target/*.properties /codetarget/*.so /work/
+COPY --from=build /code/target/*.properties /code/target/*.so /work/
 COPY --from=build /code/target/*-runner /work/application
 
 # Set up correct permissions for the user '1001' to ensure security and proper access control.
