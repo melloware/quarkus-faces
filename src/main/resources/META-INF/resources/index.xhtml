@@ -61,6 +61,27 @@
                               style="font-family: monospace">#{of:formatDate(startup.zonedDateTime, 'yyyy-MM-dd HH:mm:ss')}</span>
                     </p:card>
                 </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="Java Runtime">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.jvmRuntime}</span>
+                    </p:card>
+                </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="Java Vendor">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.jvmVendor}</span>
+                    </p:card>
+                </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="Java Version">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.jvmVersion}</span>
+                    </p:card>
+                </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="Operating System">
+                        <span class="font-medium"
+                              style="font-family: monospace">#{technicalInfo.os}</span>
+                    </p:card>
+                </div>
             </div>
         </div>
     </ui:define>

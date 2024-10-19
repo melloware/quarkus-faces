@@ -24,11 +24,12 @@ package org.primefaces.showcase.view.app;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
+
 import lombok.Data;
 import lombok.extern.jbosslog.JBossLog;
-import org.omnifaces.util.Faces;
-
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.SystemUtils;
+import org.omnifaces.util.Faces;
 import org.primefaces.showcase.util.VirtualMachine;
 
 /**
@@ -49,19 +50,23 @@ public class TechnicalInfo {
     private String primeFacesExt;
     private String facesImpl;
     private String server;
+    private String jvmRuntime = SystemUtils.JAVA_RUNTIME_NAME;
+    private String jvmVersion = SystemUtils.JAVA_RUNTIME_VERSION;
+    private String jvmVendor = SystemUtils.JAVA_VENDOR;
+    private String os = SystemUtils.OS_NAME + "-" + SystemUtils.OS_VERSION + "-" + SystemUtils.OS_ARCH;
 
     @PostConstruct
     protected void initialize() {
         quarkus = "Quarkus: " + StringUtils.defaultIfEmpty(
-                    io.quarkus.bootstrap.runner.QuarkusEntryPoint.class.getPackage().getImplementationVersion(), "???");
+                io.quarkus.bootstrap.runner.QuarkusEntryPoint.class.getPackage().getImplementationVersion(), "???");
         omniFaces = "OmniFaces: " + StringUtils.defaultIfEmpty(
-                    org.omnifaces.util.Faces.class.getPackage().getImplementationVersion(), "???");
+                org.omnifaces.util.Faces.class.getPackage().getImplementationVersion(), "???");
         // PF version
         primeFaces = "PrimeFaces: " + StringUtils.defaultIfEmpty(
-                    org.primefaces.util.Constants.class.getPackage().getImplementationVersion(), "???");
+                org.primefaces.util.Constants.class.getPackage().getImplementationVersion(), "???");
         primeFacesExt = "PrimeFaces Extensions: " + StringUtils
-                    .defaultIfEmpty(org.primefaces.extensions.util.Constants.class.getPackage()
-                                .getImplementationVersion(), "???");
+                .defaultIfEmpty(org.primefaces.extensions.util.Constants.class.getPackage()
+                        .getImplementationVersion(), "???");
         facesImpl = StringUtils.removeIgnoreCase(StringUtils.removeIgnoreCase(Faces.getImplInfo(), "Core"), "Impl");
         server = Faces.getServerInfo();
     }
