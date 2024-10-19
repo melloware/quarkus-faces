@@ -23,20 +23,21 @@
  */
 package org.primefaces.showcase.view.data.dataexporter;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.List;
-
-
-import com.lowagie.text.*;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.faces.context.ExternalContext;
-import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.IOException;
+import java.io.Serial;
+import java.io.Serializable;
+import java.net.URL;
+import java.util.List;
+import java.util.Objects;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Image;
+import com.lowagie.text.PageSize;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
@@ -54,18 +55,14 @@ import org.primefaces.showcase.service.ProductService;
 @RequestScoped
 public class CustomizedDocumentsView implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
-
-    private List<Product> products;
-
-    private List<Product> products2;
-
-    private ExcelOptions excelOpt;
-
-    private PDFOptions pdfOpt;
-
     @Inject
     ProductService service;
+    private List<Product> products;
+    private List<Product> products2;
+    private ExcelOptions excelOpt;
+    private PDFOptions pdfOpt;
 
     @PostConstruct
     public void init() {
@@ -141,17 +138,11 @@ public class CustomizedDocumentsView implements Serializable {
         }
     }
 
-    public void preProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
+    public void preProcessPDF(Object document) throws IOException, DocumentException {
         Document pdf = (Document) document;
         pdf.open();
         pdf.setPageSize(PageSize.A4);
-
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-
-        String separator = File.separator;
-        String logo = externalContext.getRealPath("") + separator
-                + "resources" + separator + "showcase" + separator + "images" + separator + "primefaces-logo.png";
-
-        pdf.add(Image.getInstance(logo));
+        URL url = Thread.currentThread().getContextClassLoader().getResource("/primefaces-logo.png");
+        pdf.add(Image.getInstance(Objects.requireNonNull(url)));
     }
 }
