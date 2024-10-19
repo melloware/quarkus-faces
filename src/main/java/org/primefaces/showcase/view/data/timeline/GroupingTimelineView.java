@@ -173,8 +173,18 @@ public class GroupingTimelineView implements Serializable {
     }
 
     @RegisterForReflection
-    public record Truck(String code) implements Serializable {
+    public static class Truck implements java.io.Serializable {
         @Serial
         private static final long serialVersionUID = 1L;
+
+        private final String code;
+
+        public Truck(String code) {
+            this.code = code;
+        }
+
+        public String getCode() {
+            return code;
+        }
     }
 }
