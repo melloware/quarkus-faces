@@ -142,7 +142,7 @@ public class CustomizedDocumentsView implements Serializable {
         Document pdf = (Document) document;
         pdf.open();
         pdf.setPageSize(PageSize.A4);
-        URL url = Thread.currentThread().getContextClassLoader().getResource("/primefaces-logo.png");
+        URL url = new URL("https://www.primefaces.org/wp-content/uploads/2016/10/prime_logo_new.png");
         pdf.add(Image.getInstance(Objects.requireNonNull(url)));
     }
 }
