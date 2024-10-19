@@ -28,6 +28,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -37,6 +38,7 @@ import software.xdev.chartjs.model.charts.BarChart;
 import software.xdev.chartjs.model.charts.BubbleChart;
 import software.xdev.chartjs.model.charts.DoughnutChart;
 import software.xdev.chartjs.model.charts.LineChart;
+import software.xdev.chartjs.model.charts.MixedChart;
 import software.xdev.chartjs.model.charts.PieChart;
 import software.xdev.chartjs.model.charts.PolarChart;
 import software.xdev.chartjs.model.charts.RadarChart;
@@ -46,6 +48,7 @@ import software.xdev.chartjs.model.data.BarData;
 import software.xdev.chartjs.model.data.BubbleData;
 import software.xdev.chartjs.model.data.DoughnutData;
 import software.xdev.chartjs.model.data.LineData;
+import software.xdev.chartjs.model.data.MixedData;
 import software.xdev.chartjs.model.data.PieData;
 import software.xdev.chartjs.model.data.PolarData;
 import software.xdev.chartjs.model.data.RadarData;
@@ -67,6 +70,7 @@ import software.xdev.chartjs.model.options.BarOptions;
 import software.xdev.chartjs.model.options.DoughnutOptions;
 import software.xdev.chartjs.model.options.Font;
 import software.xdev.chartjs.model.options.LineOptions;
+import software.xdev.chartjs.model.options.Options;
 import software.xdev.chartjs.model.options.Plugins;
 import software.xdev.chartjs.model.options.RadarOptions;
 import software.xdev.chartjs.model.options.Title;
@@ -85,6 +89,7 @@ import software.xdev.chartjs.model.options.scale.radial.RadialTickOptions;
 @RequestScoped
 public class ChartView implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private String json;
@@ -98,6 +103,7 @@ public class ChartView implements Serializable {
     private String radarModel;
     private String scatterModel;
     private String stackedBarModel;
+    private String mixedModel;
 
     @PostConstruct
     public void init() {
@@ -107,6 +113,7 @@ public class ChartView implements Serializable {
         createDonutModel();
         createJsonModel();
         createLineModel();
+        createMixedModel();
         createPieModel();
         createPolarAreaModel();
         createRadarModel();
@@ -384,6 +391,47 @@ public class ChartView implements Serializable {
                 .toJson();
     }
 
+    public void createMixedModel() {
+        MixedData mixedData = new MixedData();
+
+        BarDataset barDataset = new BarDataset()
+                .setType("bar")
+                .setData(120, 113, 175, 143, 118, 159, 110)
+                .setLabel("Bar data")
+                .setBorderColor(new RGBAColor(255, 99, 132, 1.0))
+                .setBackgroundColor(new RGBAColor(255, 99, 132, 0.5))
+                .setBorderWidth(1);
+
+        LineDataset lineDataset = new LineDataset()
+                .setType("line")
+                .setData(119, 144, 179, 165, 195, 170, 135)
+                .setLabel("Line data")
+                .setStepped(true)
+                .setBorderColor(new RGBAColor(75, 192, 192, 1.0))
+                .setBackgroundColor(new RGBAColor(75, 192, 192, 0.5))
+                .setLineTension(0.1f)
+                .setFill(new Fill<Boolean>(false));
+
+        mixedData.addDataset(barDataset);
+        mixedData.addDataset(lineDataset);
+
+        mixedData.setLabels("January", "February", "March", "April", "May", "June", "July");
+
+        mixedModel = new MixedChart()
+                .setData(mixedData)
+                .setOptions(new Options<>()
+                        .setResponsive(true)
+                        .setMaintainAspectRatio(false)
+                        .setPlugins(new Plugins()
+                                .setTooltip(new Tooltip().setMode("index"))
+                                .setTitle(new Title()
+                                        .setDisplay(true)
+                                        .setText("Mixed Chart")
+                                )
+                        )
+                ).toJson();
+    }
+
     public void createJsonModel() {
         json = """
                 {\r
@@ -585,6 +633,14 @@ public class ChartView implements Serializable {
 
     public void setScatterModel(String scatterModel) {
         this.scatterModel = scatterModel;
+    }
+
+    public String getMixedModel() {
+        return mixedModel;
+    }
+
+    public void setMixedModel(String mixedModel) {
+        this.mixedModel = mixedModel;
     }
 
     public String getJson() {

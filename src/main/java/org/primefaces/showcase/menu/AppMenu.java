@@ -378,6 +378,7 @@ public class AppMenu {
         chartMenuItems.add(new MenuItem("Bubble", "/ui/chart/bubble", "New"));
         chartMenuItems.add(new MenuItem("Doughnut", "/ui/chart/doughnut", "New"));
         chartMenuItems.add(new MenuItem("Line", "/ui/chart/line", "New"));
+        chartMenuItems.add(new MenuItem("Mixed", "/ui/chart/mixed", "New"));
         chartMenuItems.add(new MenuItem("Pie", "/ui/chart/pie", "New"));
         chartMenuItems.add(new MenuItem("Scatter", "/ui/chart/scatter", "New"));
         chartMenuItems.add(new MenuItem("PolarArea", "/ui/chart/polararea", "New"));
