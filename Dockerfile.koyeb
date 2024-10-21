@@ -3,7 +3,7 @@
 FROM quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-21 AS build
 
 # Copy the Maven wrapper script and directory into the container, setting correct ownership to the 'quarkus' user.
-COPY --chown=quarkus:quarkus mvnw /code/mvnw
+COPY --chown=quarkus:quarkus --chmod=0755 mvnw /code/mvnw
 COPY --chown=quarkus:quarkus .mvn /code/.mvn
 
 # Copy the pom.xml file, which is required for downloading dependencies.
@@ -16,7 +16,6 @@ USER quarkus
 WORKDIR /code
 
 # Use the Maven Dependency Plugin to download all dependencies offline (for caching purposes).
-RUN chmod +x ./mvnw
 RUN ./mvnw -B org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline
 
 # Copy the source code (src directory) to the container.
