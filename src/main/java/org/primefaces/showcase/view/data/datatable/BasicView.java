@@ -23,17 +23,16 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
-import java.io.Serializable;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.component.api.UIColumn;
 import org.primefaces.event.ColumnToggleEvent;
 import org.primefaces.model.Visibility;
@@ -42,12 +41,12 @@ import org.primefaces.showcase.service.ProductService;
 
 @Named("dtBasicView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class BasicView implements Serializable {
-
-    private List<Product> products;
 
     @Inject
     ProductService service;
+    private List<Product> products;
 
     @PostConstruct
     public void init() {

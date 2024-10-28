@@ -29,10 +29,12 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.ValueChangeEvent;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.SlideEndEvent;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class SliderView {
 
     private int number1 = 50;

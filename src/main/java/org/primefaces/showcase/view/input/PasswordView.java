@@ -23,14 +23,15 @@
  */
 package org.primefaces.showcase.view.input;
 
-import java.io.Serializable;
-
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class PasswordView implements Serializable {
 
     private String password1;

@@ -23,17 +23,16 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
-import java.io.Serializable;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.showcase.domain.InventoryStatus;
@@ -42,14 +41,14 @@ import org.primefaces.showcase.service.ProductService;
 
 @Named("dtEditView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class EditView implements Serializable {
-
-    private List<Product> products1;
-    private List<Product> products2;
-    private List<Product> products3;
 
     @Inject
     ProductService service;
+    private List<Product> products1;
+    private List<Product> products2;
+    private List<Product> products3;
 
     @PostConstruct
     public void init() {

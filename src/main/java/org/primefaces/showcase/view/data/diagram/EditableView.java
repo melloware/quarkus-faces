@@ -23,16 +23,14 @@
  */
 package org.primefaces.showcase.view.data.diagram;
 
-import java.io.Serializable;
-
-
-import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.diagram.ConnectEvent;
 import org.primefaces.event.diagram.ConnectionChangeEvent;
@@ -49,6 +47,7 @@ import org.primefaces.model.diagram.overlay.ArrowOverlay;
 
 @Named("diagramEditableView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class EditableView implements Serializable {
 
     private DefaultDiagramModel model;
@@ -113,8 +112,7 @@ public class EditableView implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, msg);
 
             PrimeFaces.current().ajax().update("form:msgs");
-        }
-        else {
+        } else {
             suspendEvent = false;
         }
     }
@@ -131,9 +129,9 @@ public class EditableView implements Serializable {
     public void onConnectionChange(ConnectionChangeEvent event) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Connection Changed",
                 "Original Source:" + event.getOriginalSourceElement().getData()
-                + ", New Source: " + event.getNewSourceElement().getData()
-                + ", Original Target: " + event.getOriginalTargetElement().getData()
-                + ", New Target: " + event.getNewTargetElement().getData());
+                        + ", New Source: " + event.getNewSourceElement().getData()
+                        + ", Original Target: " + event.getOriginalTargetElement().getData()
+                        + ", New Target: " + event.getNewTargetElement().getData());
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
 

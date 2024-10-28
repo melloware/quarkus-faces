@@ -23,20 +23,18 @@
  */
 package org.primefaces.showcase.view.dnd;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.primefaces.showcase.domain.Product;
@@ -44,19 +42,16 @@ import org.primefaces.showcase.service.ProductService;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class ColumnManagerView implements Serializable {
 
     private static final List<String> VALID_COLUMN_KEYS = Arrays.asList("id", "code", "name", "description",
             "price", "category", "quantity");
-
-    private List<ColumnModel> columns = new ArrayList<>();
-
-    private List<Product> products;
-
-    private TreeNode<Product> availableColumns;
-
+    private final List<ColumnModel> columns = new ArrayList<>();
     @Inject
     ProductService service;
+    private List<Product> products;
+    private TreeNode<Product> availableColumns;
 
     @PostConstruct
     public void init() {
@@ -145,8 +140,8 @@ public class ColumnManagerView implements Serializable {
     @RegisterForReflection
     public static class ColumnModel implements Serializable {
 
-        private String header;
-        private String property;
+        private final String header;
+        private final String property;
 
         public ColumnModel(String header, String property) {
             this.header = header;

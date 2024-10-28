@@ -27,12 +27,14 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Data;
 
 
 @Named
 @ViewScoped
 @Data
+@RegisterForReflection(serialization = true)
 public class InputOtpView implements Serializable {
 
     private static final long serialVersionUID = 1L;

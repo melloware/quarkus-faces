@@ -23,10 +23,6 @@
  */
 package org.primefaces.showcase.view.input;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
@@ -35,7 +31,10 @@ import jakarta.faces.model.SelectItem;
 import jakarta.faces.model.SelectItemGroup;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.showcase.domain.Country;
@@ -43,8 +42,11 @@ import org.primefaces.showcase.service.CountryService;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class CheckboxView {
 
+    @Inject
+    CountryService service;
     private String[] selectedOptions;
     private String[] selectedOptions2;
     private String[] selectedCities;
@@ -56,9 +58,6 @@ public class CheckboxView {
     private List<Country> selectedCountries2;
     private List<SelectItem> countries3;
     private List<Country> selectedCountries3;
-
-    @Inject
-    CountryService service;
 
     @PostConstruct
     public void init() {
@@ -75,18 +74,14 @@ public class CheckboxView {
 
         countries = new ArrayList<>();
         SelectItemGroup europeCountries = new SelectItemGroup("European Countries");
-        europeCountries.setSelectItems(new SelectItem[]{
-            new SelectItem("Germany", "Germany"),
-            new SelectItem("Turkey", "Turkey"),
-            new SelectItem("Spain", "Spain")
-        });
+        europeCountries.setSelectItems(new SelectItem("Germany", "Germany"),
+                new SelectItem("Turkey", "Turkey"),
+                new SelectItem("Spain", "Spain"));
 
         SelectItemGroup americaCountries = new SelectItemGroup("American Countries");
-        americaCountries.setSelectItems(new SelectItem[]{
-            new SelectItem("United States", "United States"),
-            new SelectItem("Brazil", "Brazil"),
-            new SelectItem("Mexico", "Mexico")
-        });
+        americaCountries.setSelectItems(new SelectItem("United States", "United States"),
+                new SelectItem("Brazil", "Brazil"),
+                new SelectItem("Mexico", "Mexico"));
 
         countries.add(europeCountries);
         countries.add(americaCountries);

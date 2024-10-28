@@ -32,10 +32,12 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class BasicView implements Serializable {
 
     private final Map<String, Map<String, String>> data = new HashMap<>();

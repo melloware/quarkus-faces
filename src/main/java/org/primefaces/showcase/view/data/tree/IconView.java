@@ -28,17 +28,18 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.TreeNode;
 import org.primefaces.showcase.service.DocumentService;
 
 @Named("treeIconView")
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class IconView {
-
-    private TreeNode root;
 
     @Inject
     DocumentService service;
+    private TreeNode root;
 
     @PostConstruct
     public void init() {

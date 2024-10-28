@@ -23,26 +23,25 @@
  */
 package org.primefaces.showcase.view.misc;
 
-import java.io.Serializable;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.showcase.domain.Product;
 import org.primefaces.showcase.service.ProductService;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class SkeletonView implements Serializable {
-
-    private List<Product> products;
 
     @Inject
     ProductService productService;
+    private List<Product> products;
 
     @PostConstruct
     public void init() {

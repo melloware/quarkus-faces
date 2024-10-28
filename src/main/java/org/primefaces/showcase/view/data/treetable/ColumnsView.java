@@ -39,6 +39,7 @@ import org.primefaces.showcase.service.DocumentService;
 
 @Named("ttColumnsView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class ColumnsView implements Serializable {
 
     private static final List<String> VALID_COLUMN_KEYS = Arrays.asList("name", "size", "type");

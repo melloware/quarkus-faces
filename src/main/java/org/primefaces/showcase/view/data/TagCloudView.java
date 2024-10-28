@@ -29,6 +29,7 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.tagcloud.DefaultTagCloudItem;
 import org.primefaces.model.tagcloud.DefaultTagCloudModel;
@@ -37,6 +38,7 @@ import org.primefaces.model.tagcloud.TagCloudModel;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class TagCloudView {
 
     private TagCloudModel model;

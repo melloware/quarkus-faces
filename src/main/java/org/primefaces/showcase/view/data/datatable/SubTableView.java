@@ -23,18 +23,19 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.primefaces.showcase.domain.Stats;
-import org.primefaces.showcase.domain.Team;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
+import org.primefaces.showcase.domain.Stats;
+import org.primefaces.showcase.domain.Team;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class SubTableView {
 
     private List<Team> teams;

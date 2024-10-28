@@ -23,16 +23,15 @@
  */
 package org.primefaces.showcase.view.panel;
 
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.event.TabCloseEvent;
@@ -41,6 +40,7 @@ import org.primefaces.showcase.service.ProductService;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class TabbedView {
 
     @Inject

@@ -23,20 +23,20 @@
  */
 package org.primefaces.showcase.view.misc.terminal;
 
-import java.io.Serializable;
-
-
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.terminal.TerminalAutoCompleteModel;
 import org.primefaces.model.terminal.TerminalCommand;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class TerminalAutoCompleteView implements Serializable {
 
-    private TerminalAutoCompleteModel autoCompleteModel;
+    private final TerminalAutoCompleteModel autoCompleteModel;
 
     public TerminalAutoCompleteView() {
         this.autoCompleteModel = buildAutoCompleteModel();

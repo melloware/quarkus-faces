@@ -23,17 +23,16 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
-import java.io.Serializable;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.showcase.domain.Product;
@@ -41,8 +40,11 @@ import org.primefaces.showcase.service.ProductService;
 
 @Named("dtSelectionView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class SelectionView implements Serializable {
 
+    @Inject
+    ProductService service;
     private List<Product> products1;
     private List<Product> products2;
     private List<Product> products3;
@@ -51,9 +53,6 @@ public class SelectionView implements Serializable {
     private List<Product> products6;
     private Product selectedProduct;
     private List<Product> selectedProducts;
-
-    @Inject
-    ProductService service;
 
     @PostConstruct
     public void init() {

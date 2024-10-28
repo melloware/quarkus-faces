@@ -23,18 +23,18 @@
  */
 package org.primefaces.showcase.view.df;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 import java.util.HashMap;
 import java.util.Map;
 
-
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Named;
-
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 
 @Named("dfLevel2View")
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class DFLevel2View {
 
     public void openLevel3() {

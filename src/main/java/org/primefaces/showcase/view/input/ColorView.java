@@ -29,10 +29,12 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.AjaxBehaviorEvent;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.component.colorpicker.ColorPicker;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class ColorView {
 
     private String colorInline;

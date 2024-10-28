@@ -28,10 +28,13 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class UserView {
-    
+
     private String firstname;
     private String middlename;
     private String lastname;

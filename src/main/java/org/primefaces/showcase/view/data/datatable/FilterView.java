@@ -34,6 +34,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.MatchMode;
 import org.primefaces.showcase.domain.Customer;
@@ -44,6 +45,7 @@ import org.primefaces.util.LangUtils;
 
 @Named("dtFilterView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class FilterView implements Serializable {
 
     @Inject

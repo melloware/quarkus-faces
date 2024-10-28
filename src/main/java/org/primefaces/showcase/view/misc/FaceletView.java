@@ -36,8 +36,11 @@ import jakarta.faces.component.html.HtmlOutputText;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.facelets.Facelet;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @View("/facelet.xhtml")
 @ApplicationScoped
+@RegisterForReflection(serialization = true)
 public class FaceletView extends Facelet {
 
     @Override

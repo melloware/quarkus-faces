@@ -23,16 +23,15 @@
  */
 package org.primefaces.showcase.view.data.treetable;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 import org.primefaces.model.TreeNode;
@@ -41,16 +40,14 @@ import org.primefaces.showcase.service.DocumentService;
 
 @Named("ttBasicView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class BasicView implements Serializable {
-
-    private TreeNode<Document> root;
-    private List<SortMeta> sortBy;
-
-    private Document selectedDocument;
 
     @Inject
     DocumentService service;
-
+    private TreeNode<Document> root;
+    private List<SortMeta> sortBy;
+    private Document selectedDocument;
     private List<Document> multipleSelectedDocuments;
 
     @PostConstruct

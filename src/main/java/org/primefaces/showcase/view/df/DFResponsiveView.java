@@ -23,18 +23,18 @@
  */
 package org.primefaces.showcase.view.df;
 
-import java.io.Serializable;
-
-
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 
 @Named("dfResponsiveView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class DFResponsiveView implements Serializable {
 
     private String firstname;

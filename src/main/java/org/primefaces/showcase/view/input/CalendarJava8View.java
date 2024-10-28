@@ -39,11 +39,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class CalendarJava8View implements Serializable {
 
     private LocalDate date;

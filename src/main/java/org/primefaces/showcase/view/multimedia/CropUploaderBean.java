@@ -23,15 +23,14 @@
  */
 package org.primefaces.showcase.view.multimedia;
 
-import java.io.ByteArrayInputStream;
-import java.io.Serializable;
-
-
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import java.io.ByteArrayInputStream;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.CroppedImage;
 import org.primefaces.model.DefaultStreamedContent;
@@ -40,6 +39,7 @@ import org.primefaces.model.file.UploadedFile;
 
 @Named
 @SessionScoped
+@RegisterForReflection(serialization = true)
 public class CropUploaderBean implements Serializable {
 
     private CroppedImage croppedImage;
@@ -73,8 +73,7 @@ public class CropUploaderBean implements Serializable {
         if (this.croppedImage == null || this.croppedImage.getBytes() == null || this.croppedImage.getBytes().length == 0) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
                     "Cropping failed."));
-        }
-        else {
+        } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
                     "Cropped successfully."));
         }
@@ -92,8 +91,7 @@ public class CropUploaderBean implements Serializable {
 
                     try {
                         return new ByteArrayInputStream(originalImageFile.getContent());
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                         return null;
                     }
@@ -113,8 +111,7 @@ public class CropUploaderBean implements Serializable {
 
                     try {
                         return new ByteArrayInputStream(this.croppedImage.getBytes());
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                         return null;
                     }

@@ -23,20 +23,35 @@
  */
 package org.primefaces.showcase.view.misc;
 
-import java.io.Serializable;
-
-
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class ProgressBarView implements Serializable {
 
     private Integer progress1;
     private Integer progress2;
+
+    private static Integer updateProgress(Integer progress) {
+        if (progress == null) {
+            progress = 0;
+        } else {
+            progress = progress + (int) (Math.random() * 35);
+
+            if (progress > 100) {
+                progress = 100;
+            }
+        }
+
+        return progress;
+    }
 
     public void longRunning() throws InterruptedException {
         setProgress2(0);
@@ -46,21 +61,6 @@ public class ProgressBarView implements Serializable {
             setProgress2(k);
             Thread.sleep(500);
         }
-    }
-
-    private static Integer updateProgress(Integer progress) {
-        if (progress == null) {
-            progress = 0;
-        }
-        else {
-            progress = progress + (int) (Math.random() * 35);
-
-            if (progress > 100) {
-                progress = 100;
-            }
-        }
-
-        return progress;
     }
 
     public void onComplete() {
@@ -77,12 +77,12 @@ public class ProgressBarView implements Serializable {
         return progress1;
     }
 
-    public Integer getProgress2() {
-        return progress2;
-    }
-
     public void setProgress1(Integer progress1) {
         this.progress1 = progress1;
+    }
+
+    public Integer getProgress2() {
+        return progress2;
     }
 
     public void setProgress2(Integer progress2) {

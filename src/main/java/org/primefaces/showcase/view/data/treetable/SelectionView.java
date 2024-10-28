@@ -23,33 +23,32 @@
  */
 package org.primefaces.showcase.view.data.treetable;
 
-import java.io.Serializable;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.TreeNode;
 import org.primefaces.showcase.domain.Document;
 import org.primefaces.showcase.service.DocumentService;
 
 @Named("ttSelectionView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class SelectionView implements Serializable {
 
+    @Inject
+    DocumentService service;
     private TreeNode<Document> root1;
     private TreeNode<Document> root2;
     private TreeNode<Document> root3;
     private TreeNode<Document> selectedNode;
     private TreeNode<Document>[] selectedNodes1;
     private TreeNode<Document>[] selectedNodes2;
-
-    @Inject
-    DocumentService service;
 
     @PostConstruct
     public void init() {

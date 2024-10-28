@@ -23,21 +23,21 @@
  */
 package org.primefaces.showcase.view.df;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
-
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 
 @Named("dfRootView")
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class DFRootView {
 
     public void openLevel1() {

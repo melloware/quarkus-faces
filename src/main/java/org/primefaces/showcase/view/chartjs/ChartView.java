@@ -33,6 +33,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.ItemSelectEvent;
 import software.xdev.chartjs.model.charts.BarChart;
 import software.xdev.chartjs.model.charts.BubbleChart;
@@ -87,6 +88,7 @@ import software.xdev.chartjs.model.options.scale.radial.RadialTickOptions;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class ChartView implements Serializable {
 
     @Serial

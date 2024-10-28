@@ -23,20 +23,20 @@
  */
 package org.primefaces.showcase.view.data.tree;
 
-import java.io.Serializable;
-import java.util.Locale;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.Locale;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.primefaces.util.LangUtils;
 
 @Named("treeBasicView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class BasicView implements Serializable {
 
     private TreeNode root;

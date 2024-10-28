@@ -41,6 +41,7 @@ import org.primefaces.model.timeline.TimelineModel;
 
 @Named("linkedTimelinesView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class LinkedTimelinesView implements Serializable {
 
     private TimelineModel<Task, ?> modelFirst;  // model of the first timeline

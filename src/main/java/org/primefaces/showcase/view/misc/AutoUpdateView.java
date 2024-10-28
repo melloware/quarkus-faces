@@ -23,16 +23,17 @@
  */
 package org.primefaces.showcase.view.misc;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class AutoUpdateView {
 
     private String time;

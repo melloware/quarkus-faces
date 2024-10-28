@@ -23,16 +23,15 @@
  */
 package org.primefaces.showcase.view.data.treetable;
 
-import java.io.Serializable;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.TreeNode;
@@ -41,16 +40,14 @@ import org.primefaces.showcase.service.DocumentService;
 
 @Named("ttEditView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class EditView implements Serializable {
-
-    private TreeNode<Document> root;
-
-    private TreeNode<Document> root2;
-
-    private TreeNode<Document> root3;
 
     @Inject
     DocumentService service;
+    private TreeNode<Document> root;
+    private TreeNode<Document> root2;
+    private TreeNode<Document> root3;
 
     @PostConstruct
     public void init() {

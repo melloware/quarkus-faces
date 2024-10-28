@@ -26,10 +26,6 @@ import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.abbreviate;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
-import java.io.Serializable;
-import java.util.*;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -37,10 +33,22 @@ import jakarta.faces.model.SelectItem;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import jakarta.servlet.http.HttpServletRequest;
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.extensions.model.monaco.MonacoDiffEditorModel;
-import org.primefaces.extensions.model.monacoeditor.*;
+import org.primefaces.extensions.model.monacoeditor.DiffEditorOptions;
+import org.primefaces.extensions.model.monacoeditor.ELanguage;
+import org.primefaces.extensions.model.monacoeditor.ETheme;
+import org.primefaces.extensions.model.monacoeditor.EditorOptions;
+import org.primefaces.extensions.model.monacoeditor.EditorStandaloneTheme;
 import org.primefaces.showcase.util.MonacoEditorSettings;
 
 /**
@@ -50,6 +58,7 @@ import org.primefaces.showcase.util.MonacoEditorSettings;
  */
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class MonacoEditorView implements Serializable {
     private static final long serialVersionUID = 20210216L;
 
@@ -272,8 +281,7 @@ public class MonacoEditorView implements Serializable {
     public String getLanguage() {
         if (CODE.equals(mode)) {
             return editorOptions.getLanguage();
-        }
-        else {
+        } else {
             return editorLangDiff.toString();
         }
     }
@@ -285,16 +293,13 @@ public class MonacoEditorView implements Serializable {
         if (CODE.equals(mode)) {
             if (isEmpty(language)) {
                 editorOptions.setLanguage(ELanguage.JAVASCRIPT);
-            }
-            else {
+            } else {
                 editorOptions.setLanguage(language);
             }
-        }
-        else {
+        } else {
             if (isEmpty(language)) {
                 editorLangDiff = ELanguage.JAVASCRIPT;
-            }
-            else {
+            } else {
                 editorLangDiff = ELanguage.parseString(language);
             }
         }
@@ -306,8 +311,7 @@ public class MonacoEditorView implements Serializable {
     public String getLanguageExtender() {
         if (CODE.equals(mode)) {
             return editorOptionsExtender.getLanguage();
-        }
-        else {
+        } else {
             return editorLangExtenderDiff.toString();
         }
     }
@@ -318,8 +322,7 @@ public class MonacoEditorView implements Serializable {
     public String getLanguageFramed() {
         if (CODE.equals(mode)) {
             return editorOptionsFramed.getLanguage();
-        }
-        else {
+        } else {
             return editorLangFramedDiff.toString();
         }
     }
@@ -331,16 +334,13 @@ public class MonacoEditorView implements Serializable {
         if (CODE.equals(mode)) {
             if (isEmpty(language)) {
                 editorOptionsFramed.setLanguage(ELanguage.JAVASCRIPT);
-            }
-            else {
+            } else {
                 editorOptionsFramed.setLanguage(language);
             }
-        }
-        else {
+        } else {
             if (isEmpty(language)) {
                 editorLangFramedDiff = ELanguage.JAVASCRIPT;
-            }
-            else {
+            } else {
                 editorLangFramedDiff = ELanguage.parseString(language);
             }
         }
@@ -359,8 +359,7 @@ public class MonacoEditorView implements Serializable {
     public String getTheme() {
         if (CODE.equals(mode)) {
             return editorOptions.getTheme();
-        }
-        else {
+        } else {
             return editorOptionsDiff.getTheme();
         }
     }
@@ -372,16 +371,13 @@ public class MonacoEditorView implements Serializable {
         if (CODE.equals(mode)) {
             if (isEmpty(theme)) {
                 editorOptions.setTheme(ETheme.VS);
-            }
-            else {
+            } else {
                 editorOptions.setTheme(theme);
             }
-        }
-        else {
+        } else {
             if (isEmpty(theme)) {
                 editorOptionsDiff.setTheme(ETheme.VS);
-            }
-            else {
+            } else {
                 editorOptionsDiff.setTheme(theme);
             }
         }
@@ -393,8 +389,7 @@ public class MonacoEditorView implements Serializable {
     public String getThemeFramed() {
         if (CODE.equals(mode)) {
             return editorOptionsFramed.getTheme();
-        }
-        else {
+        } else {
             return editorOptionsFramedDiff.getTheme();
         }
     }
@@ -406,16 +401,13 @@ public class MonacoEditorView implements Serializable {
         if (CODE.equals(mode)) {
             if (isEmpty(theme)) {
                 editorOptionsFramed.setTheme(ETheme.VS);
-            }
-            else {
+            } else {
                 editorOptionsFramed.setTheme(theme);
             }
-        }
-        else {
+        } else {
             if (isEmpty(theme)) {
                 editorOptionsFramedDiff.setTheme(ETheme.VS);
-            }
-            else {
+            } else {
                 editorOptionsFramedDiff.setTheme(theme);
             }
         }
@@ -735,8 +727,7 @@ public class MonacoEditorView implements Serializable {
     public boolean isRenderSideBySide() {
         if (INLINE.equals(type)) {
             return editorOptionsDiff.isRenderSideBySide();
-        }
-        else {
+        } else {
             return editorOptionsFramedDiff.isRenderSideBySide();
         }
     }
@@ -747,8 +738,7 @@ public class MonacoEditorView implements Serializable {
     public void setRenderSideBySide(final boolean renderSideBySide) {
         if (INLINE.equals(type)) {
             editorOptionsDiff.setRenderSideBySide(renderSideBySide);
-        }
-        else {
+        } else {
             editorOptionsFramedDiff.setRenderSideBySide(renderSideBySide);
         }
     }
@@ -766,8 +756,7 @@ public class MonacoEditorView implements Serializable {
     public void onLanguageChange() {
         if (INLINE.equals(type)) {
             loadDefaultCode();
-        }
-        else {
+        } else {
             loadDefaultCodeFramed();
         }
     }
@@ -791,7 +780,7 @@ public class MonacoEditorView implements Serializable {
      */
     public void onMonacoExtenderError() {
         final HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
-                    .getRequest();
+                .getRequest();
         this.extenderError = req.getParameter("monacoExtenderError");
     }
 
@@ -822,18 +811,15 @@ public class MonacoEditorView implements Serializable {
         if (CODE.equals(mode)) {
             try {
                 value = propertyKey != null ? examples.getString(propertyKey) : "";
-            }
-            catch (final MissingResourceException e) {
+            } catch (final MissingResourceException e) {
                 value = "";
             }
-        }
-        else {
+        } else {
             try {
                 final String original = propertyKey != null ? examples.getString(propertyKey) : "";
                 final String modified = MonacoEditorSettings.deriveModifiedContent(original);
                 valueDiff = new MonacoDiffEditorModel(original, modified);
-            }
-            catch (final MissingResourceException e) {
+            } catch (final MissingResourceException e) {
                 valueDiff = MonacoDiffEditorModel.empty();
             }
         }
@@ -847,8 +833,7 @@ public class MonacoEditorView implements Serializable {
     private void loadCodeExtender(final String propertyKey) {
         try {
             valueExtender = propertyKey != null ? examples.getString(propertyKey) : "";
-        }
-        catch (final MissingResourceException e) {
+        } catch (final MissingResourceException e) {
             valueExtender = "";
         }
     }
@@ -862,18 +847,15 @@ public class MonacoEditorView implements Serializable {
         if (CODE.equals(mode)) {
             try {
                 valueFramed = propertyKey != null ? examples.getString(propertyKey) : "";
-            }
-            catch (final MissingResourceException e) {
+            } catch (final MissingResourceException e) {
                 valueFramed = "";
             }
-        }
-        else {
+        } else {
             try {
                 final String original = propertyKey != null ? examples.getString(propertyKey) : "";
                 final String modified = MonacoEditorSettings.deriveModifiedContent(original);
                 valueFramedDiff = new MonacoDiffEditorModel(original, modified);
-            }
-            catch (final MissingResourceException e) {
+            } catch (final MissingResourceException e) {
                 valueFramedDiff = MonacoDiffEditorModel.empty();
             }
         }
@@ -887,8 +869,7 @@ public class MonacoEditorView implements Serializable {
     private void loadExtenderInfo(final String propertyKey) {
         try {
             extenderInfo = propertyKey != null ? examples.getString(propertyKey) : "";
-        }
-        catch (final MissingResourceException e) {
+        } catch (final MissingResourceException e) {
             extenderInfo = "No info available for this extender. Check the ?example=... URL parameter.";
         }
     }
@@ -901,8 +882,7 @@ public class MonacoEditorView implements Serializable {
     private void loadExtenderCss(final String propertyKey) {
         try {
             valueCss = propertyKey != null ? examples.getString(propertyKey) : "";
-        }
-        catch (final MissingResourceException e) {
+        } catch (final MissingResourceException e) {
             valueCss = "";
         }
     }
@@ -919,25 +899,20 @@ public class MonacoEditorView implements Serializable {
             if (CODE.equals(mode)) {
                 try {
                     editorOptions.setLanguage(language);
-                }
-                catch (final MissingResourceException e) {
+                } catch (final MissingResourceException e) {
                     editorOptions.setLanguage(ELanguage.TYPESCRIPT);
                 }
-            }
-            else {
+            } else {
                 try {
                     editorLangDiff = ELanguage.parseString(language);
-                }
-                catch (final MissingResourceException e) {
+                } catch (final MissingResourceException e) {
                     editorLangDiff = ELanguage.TYPESCRIPT;
                 }
             }
-        }
-        catch (final MissingResourceException e) {
+        } catch (final MissingResourceException e) {
             if (CODE.equals(mode)) {
                 editorOptions.setLanguage(ELanguage.PLAINTEXT);
-            }
-            else {
+            } else {
                 editorLangDiff = ELanguage.PLAINTEXT;
             }
         }
@@ -951,8 +926,7 @@ public class MonacoEditorView implements Serializable {
     private void loadExtenderName(final String propertyKey) {
         try {
             extenderName = propertyKey != null ? examples.getString(propertyKey) : "";
-        }
-        catch (final MissingResourceException e) {
+        } catch (final MissingResourceException e) {
             extenderName = "Unknown extender";
         }
     }
@@ -978,17 +952,16 @@ public class MonacoEditorView implements Serializable {
         if (CODE.equals(mode)) {
             final String content = INLINE.equals(type) ? value : valueFramed;
             final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
-                        "MonacoEditor content: " + abbreviate(content, "...", 300));
+                    "MonacoEditor content: " + abbreviate(content, "...", 300));
             FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
-        else {
+        } else {
             final MonacoDiffEditorModel value = INLINE.equals(type) ? valueDiff : valueFramedDiff;
             final String left = abbreviate(value.getOriginalValue(), "...", 150);
             final String right = abbreviate(value.getModifiedValue(), "...", 150);
             final FacesMessage msg1 = new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
-                        "MonacoEditor content original: " + left);
+                    "MonacoEditor content original: " + left);
             final FacesMessage msg2 = new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
-                        "MonacoEditor content modified: " + right);
+                    "MonacoEditor content modified: " + right);
             FacesContext.getCurrentInstance().addMessage(null, msg1);
             FacesContext.getCurrentInstance().addMessage(null, msg2);
         }
@@ -1004,8 +977,7 @@ public class MonacoEditorView implements Serializable {
         if (CODE.equals(mode)) {
             editorOptions.setLanguage(ELanguage.TYPESCRIPT);
             editorOptionsFramed.setLanguage(ELanguage.TYPESCRIPT);
-        }
-        else {
+        } else {
             editorLangDiff = ELanguage.TYPESCRIPT;
             editorLangFramedDiff = ELanguage.TYPESCRIPT;
         }
@@ -1026,8 +998,7 @@ public class MonacoEditorView implements Serializable {
             editorOptions.setTheme(MY_CUSTOM_THEME);
             editorOptionsFramed.setLanguage(ELanguage.HTML);
             editorOptionsFramed.setTheme(MY_CUSTOM_THEME);
-        }
-        else {
+        } else {
             editorLangDiff = ELanguage.HTML;
             editorOptionsDiff.setTheme(MY_CUSTOM_THEME);
             editorLangFramedDiff = ELanguage.HTML;
@@ -1047,8 +1018,7 @@ public class MonacoEditorView implements Serializable {
         if (CODE.equals(mode)) {
             editorOptions.setLanguage(ELanguage.TYPESCRIPT);
             editorOptionsFramed.setLanguage(ELanguage.TYPESCRIPT);
-        }
-        else {
+        } else {
             editorLangDiff = ELanguage.TYPESCRIPT;
             editorLangFramedDiff = ELanguage.TYPESCRIPT;
         }
@@ -1066,8 +1036,7 @@ public class MonacoEditorView implements Serializable {
         if (CODE.equals(mode)) {
             editorOptions.setLanguage(ELanguage.TYPESCRIPT);
             editorOptionsFramed.setLanguage(ELanguage.TYPESCRIPT);
-        }
-        else {
+        } else {
             editorLangDiff = ELanguage.TYPESCRIPT;
             editorLangFramedDiff = ELanguage.TYPESCRIPT;
         }
@@ -1084,16 +1053,14 @@ public class MonacoEditorView implements Serializable {
         this.mode = mode;
         if (CODE.equals(mode)) {
             editorOptions.setLanguage(ELanguage.JAVASCRIPT);
-        }
-        else {
+        } else {
             editorLangExtenderDiff = ELanguage.JAVASCRIPT;
         }
         final String requested = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
-                    .get("example");
+                .get("example");
         if (CODE.equals(mode)) {
             extenderExample = StringUtils.defaultIfBlank(requested, "jquery");
-        }
-        else {
+        } else {
             extenderExample = StringUtils.defaultIfBlank(requested, "diffnavi");
         }
         loadExtenderExample(extenderExample);
@@ -1107,8 +1074,7 @@ public class MonacoEditorView implements Serializable {
     private String getExtenderExampleKey(final String exampleName, final String subType) {
         if (CODE.equals(mode)) {
             return CUSTOM_CODE_EXTENDER_CODE + exampleName + "." + subType;
-        }
-        else {
+        } else {
             return CUSTOM_CODE_EXTENDER_DIFF + exampleName + "." + subType;
         }
     }

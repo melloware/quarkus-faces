@@ -23,28 +23,26 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
-import java.io.Serializable;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.showcase.domain.Product;
 import org.primefaces.showcase.service.ProductService;
 
 @Named("dtContextMenuView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class ContextMenuView implements Serializable {
-
-    private List<Product> products;
-
-    private Product selectedProduct;
 
     @Inject
     ProductService service;
+    private List<Product> products;
+    private Product selectedProduct;
 
     @PostConstruct
     public void init() {

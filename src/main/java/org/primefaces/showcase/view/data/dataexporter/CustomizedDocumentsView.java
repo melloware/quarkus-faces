@@ -38,6 +38,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
@@ -53,6 +54,7 @@ import org.primefaces.showcase.service.ProductService;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class CustomizedDocumentsView implements Serializable {
 
     @Serial

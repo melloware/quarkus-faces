@@ -23,15 +23,25 @@
  */
 package org.primefaces.showcase.view.csv;
 
-import java.util.Date;
-
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import java.util.Date;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class BeanValidationView {
 
     @Size(min = 2, max = 5)

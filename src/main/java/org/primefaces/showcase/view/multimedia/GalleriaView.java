@@ -23,38 +23,33 @@
  */
 package org.primefaces.showcase.view.multimedia;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.ResponsiveOption;
 import org.primefaces.showcase.domain.Photo;
 import org.primefaces.showcase.service.PhotoService;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class GalleriaView implements Serializable {
-
-    private List<Photo> photos;
-
-    private List<ResponsiveOption> responsiveOptions1;
-
-    private List<ResponsiveOption> responsiveOptions2;
-
-    private List<ResponsiveOption> responsiveOptions3;
-
-    private int activeIndex = 0;
 
     @Inject
     PhotoService service;
+    private List<Photo> photos;
+    private List<ResponsiveOption> responsiveOptions1;
+    private List<ResponsiveOption> responsiveOptions2;
+    private List<ResponsiveOption> responsiveOptions3;
+    private int activeIndex = 0;
 
     @PostConstruct
     public void init() {

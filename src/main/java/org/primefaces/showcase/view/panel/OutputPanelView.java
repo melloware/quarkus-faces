@@ -23,20 +23,21 @@
  */
 package org.primefaces.showcase.view.panel;
 
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class OutputPanelView implements Serializable {
 
-    private Map<String, String> data = new HashMap<>();
-    private Map<String, String> data2 = new HashMap<>();
+    private final Map<String, String> data = new HashMap<>();
+    private final Map<String, String> data2 = new HashMap<>();
 
     public void loadData() throws InterruptedException {
         Thread.sleep(1000); // Sleep a bit to show the skeletons

@@ -23,15 +23,16 @@
  */
 package org.primefaces.showcase.view.button;
 
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
-
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named("buttonBasicView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class BasicView implements Serializable {
 
     public void sleep() throws InterruptedException {

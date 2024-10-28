@@ -33,11 +33,13 @@ import java.io.Serial;
 import java.io.Serializable;
 
 import io.quarkus.logging.Log;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Getter;
 import lombok.Setter;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class WebSocketView implements Serializable {
 
     @Serial

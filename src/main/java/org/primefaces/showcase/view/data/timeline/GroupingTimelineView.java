@@ -47,6 +47,7 @@ import org.primefaces.showcase.domain.Order;
 
 @Named("groupingTimelineView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class GroupingTimelineView implements Serializable {
 
     @Serial

@@ -23,33 +23,25 @@
  */
 package org.primefaces.showcase.view.data.tree;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
-
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.LazyDefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
 @Named("treeLazyLoadingView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class LazyLoadingView implements Serializable {
 
     private TreeNode<FileInfo> root;
-
-    @PostConstruct
-    public void init() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        root = new LazyDefaultTreeNode<>(new FileInfo(context.getExternalContext().getRealPath("/"), true),
-                (fileInfo) -> listFiles(fileInfo),
-                (fileInfo) -> !fileInfo.isDirectory());
-    }
 
     public static List<FileInfo> listFiles(FileInfo parentFolder) {
         List<FileInfo> result = new ArrayList<>();
@@ -62,6 +54,14 @@ public class LazyLoadingView implements Serializable {
         }
 
         return result;
+    }
+
+    @PostConstruct
+    public void init() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        root = new LazyDefaultTreeNode<>(new FileInfo(context.getExternalContext().getRealPath("/"), true),
+                (fileInfo) -> listFiles(fileInfo),
+                (fileInfo) -> !fileInfo.isDirectory());
     }
 
     public TreeNode getRoot() {

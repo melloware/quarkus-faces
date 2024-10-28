@@ -23,15 +23,14 @@
  */
 package org.primefaces.showcase.view.button;
 
-import java.util.concurrent.TimeUnit;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import java.util.concurrent.TimeUnit;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
@@ -39,6 +38,7 @@ import org.primefaces.model.menu.MenuModel;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class ButtonView {
 
     private MenuModel model;

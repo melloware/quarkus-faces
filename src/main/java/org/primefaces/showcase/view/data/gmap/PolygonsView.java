@@ -23,20 +23,24 @@
  */
 package org.primefaces.showcase.view.data.gmap;
 
-import java.io.Serializable;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.map.OverlaySelectEvent;
-import org.primefaces.model.map.*;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Overlay;
+import org.primefaces.model.map.Polygon;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class PolygonsView implements Serializable {
 
     private MapModel<Long> polygonModel;

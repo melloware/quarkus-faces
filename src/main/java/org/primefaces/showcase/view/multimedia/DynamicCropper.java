@@ -23,6 +23,12 @@
  */
 package org.primefaces.showcase.view.multimedia;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Named;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageOutputStream;
 import java.awt.Color;
@@ -36,22 +42,14 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.UUID;
 
-
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.SessionScoped;
-import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.ExternalContext;
-import jakarta.faces.context.FacesContext;
-import jakarta.inject.Named;
-
 import org.primefaces.model.CroppedImage;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 @Named
 @SessionScoped
-@RegisterForReflection
+@RegisterForReflection(serialization = true)
 public class DynamicCropper implements Serializable {
 
     private final int width = 500;
@@ -75,8 +73,7 @@ public class DynamicCropper implements Serializable {
                         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                         ImageIO.write(image, "png", outputStream);
                         return new ByteArrayInputStream(outputStream.toByteArray());
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                         return null;
                     }
@@ -86,7 +83,7 @@ public class DynamicCropper implements Serializable {
 
     public void crop() {
         if (this.croppedImage != null) {
-            String imageName = UUID.randomUUID().toString() + ".png";
+            String imageName = UUID.randomUUID() + ".png";
             setNewImageName(imageName);
             ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 
@@ -98,8 +95,7 @@ public class DynamicCropper implements Serializable {
                 imageOutput.write(croppedImage.getBytes(), 0, croppedImage.getBytes().length);
                 imageOutput.close();
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Cropping finished."));
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Cropping failed."));
             }
         }
@@ -133,8 +129,7 @@ public class DynamicCropper implements Serializable {
                 }
                 if (iteration < maxIterations) {
                     result.setRGB(j, i, colorBuffer[iteration]);
-                }
-                else {
+                } else {
                     result.setRGB(j, i, 0);
                 }
             }

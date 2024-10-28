@@ -44,6 +44,7 @@ import org.primefaces.showcase.service.CustomerService;
 
 @Named("dtColumnsView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class ColumnsView implements Serializable {
 
     @Inject
@@ -129,8 +130,8 @@ public class ColumnsView implements Serializable {
 
         private final String header;
         private final String property;
-        private String type;
         private final Class<?> klazz;
+        private String type;
 
         public ColumnModel(String header, String property, Class klazz) {
             this.header = header;

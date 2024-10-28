@@ -23,31 +23,29 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
-import java.io.Serializable;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.ReorderEvent;
 import org.primefaces.showcase.domain.Product;
 import org.primefaces.showcase.service.ProductService;
 
 @Named("dtReorderView")
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class ReorderView implements Serializable {
-
-    private List<Product> products1;
-
-    private List<Product> products2;
 
     @Inject
     ProductService service;
+    private List<Product> products1;
+    private List<Product> products2;
 
     @PostConstruct
     public void init() {

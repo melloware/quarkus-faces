@@ -26,11 +26,14 @@ package org.primefaces.showcase.view.colors;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class ColorsView {
 
-    private Integer[] levels = new Integer[]{0, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900};
+    private final Integer[] levels = new Integer[]{0, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900};
 
     public Integer[] getLevels() {
         return levels;

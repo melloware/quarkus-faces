@@ -23,21 +23,21 @@
  */
 package org.primefaces.showcase.view.data.tree;
 
-import java.io.Serializable;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.TreeDragDropEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
 @Named("treeDNDView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class DragDropView implements Serializable {
 
     private TreeNode root1;

@@ -23,19 +23,19 @@
  */
 package org.primefaces.showcase.view.data.treetable;
 
-import java.io.Serializable;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.primefaces.showcase.domain.Document;
 
 @Named("ttPaginatorView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class PaginatorView implements Serializable {
 
     private TreeNode<Document> root;

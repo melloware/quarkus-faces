@@ -28,10 +28,12 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class ResetInputView {
 
     private String text1;

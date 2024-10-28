@@ -23,20 +23,19 @@
  */
 package org.primefaces.showcase.view.input;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.showcase.domain.Country;
@@ -47,8 +46,13 @@ import org.primefaces.showcase.view.data.datatable.LazyCustomerDataModel;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class AutoCompleteView implements Serializable {
 
+    @Inject
+    CountryService countryService;
+    @Inject
+    CustomerService service;
     private String txt1;
     private String txt2;
     private String txt3;
@@ -60,21 +64,13 @@ public class AutoCompleteView implements Serializable {
     private String txt9;
     private String txt10;
     private String txt11;
-
     private Country country1;
     private Country country2;
     private Country country3;
     private Country country4;
     private Country country5;
     private List<Country> selectedCountries;
-
     private LazyDataModel<Customer> lazyModel;
-
-    @Inject
-    CountryService countryService;
-
-    @Inject
-    CustomerService service;
 
     @PostConstruct
     public void init() {
