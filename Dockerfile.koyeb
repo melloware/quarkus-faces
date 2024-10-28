@@ -17,7 +17,7 @@ WORKDIR /code
 
 # Use the Maven Dependency Plugin to download all dependencies offline (for caching purposes).
 RUN ./mvnw dependency:resolve -U
-RUN ./mvnw -B org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline
+# RUN ./mvnw -B org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline
 
 # Copy the source code (src directory) to the container.
 COPY src /code/src
