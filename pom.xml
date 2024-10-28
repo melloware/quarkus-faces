@@ -30,6 +30,12 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>14.0.7-SNAPSHOT</version>
+            <classifier>jakarta</classifier>
+        </dependency>
         <!-- Quarkus -->
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -46,6 +52,10 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-health</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-info</artifactId>
         </dependency>
         <!-- Logging -->
         <dependency>
@@ -67,11 +77,23 @@
             <groupId>io.quarkiverse.primefaces</groupId>
             <artifactId>quarkus-primefaces</artifactId>
             <version>${primefaces-quarkus.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.primefaces</groupId>
+                    <artifactId>primefaces</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.primefaces</groupId>
             <artifactId>quarkus-primefaces-extensions</artifactId>
             <version>${primefaces-quarkus.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.primefaces</groupId>
+                    <artifactId>primefaces</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.omnifaces</groupId>
