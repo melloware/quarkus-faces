@@ -39,9 +39,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
+import lombok.experimental.UtilityClass;
+import lombok.extern.jbosslog.JBossLog;
 import org.primefaces.util.LangUtils;
 
 @RegisterForReflection
+@UtilityClass
+@JBossLog
 public class FileContentMarkerUtil {
 
     private static final FileContentSettings javaFileSettings = new FileContentSettings()
@@ -142,9 +146,11 @@ public class FileContentMarkerUtil {
         }
 
         Class<?> beanClass = LangUtils.getUnproxiedClass(bean.getClass());
+        log.debugf("BeanClass: %s", beanClass);
         if (isEligibleFile(beanClass.getName())) {
             // special handling for member classes (like ColumnsView and ColumnsView$ColumnModel)
             String className = beanClass.getName();
+            log.debugf("BeanClass Name: %s", className);
             if (beanClass.isMemberClass()) {
                 className = className.substring(0, className.indexOf("$"));
             }
@@ -163,6 +169,7 @@ public class FileContentMarkerUtil {
 
     private static void addDeclaredField(Set<FileContent> javaFiles, Field field) throws Exception {
         String typeName = getType(field);
+        log.debugf("DeclaredField: %s Type: %s", field, typeName);
         String javaFileName = packageToPathAccess(typeName);
         if (isEligibleFile(typeName) && isFileNotContainedIn(javaFileName, javaFiles)) {
             FileContent content = createFileContent(typeName);

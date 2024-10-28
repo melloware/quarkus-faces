@@ -23,18 +23,16 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-
-
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
 
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.MatchMode;
@@ -113,8 +111,7 @@ public class FilterView implements Serializable {
     private int getInteger(String string) {
         try {
             return Integer.parseInt(string);
-        }
-        catch (NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             return 0;
         }
     }

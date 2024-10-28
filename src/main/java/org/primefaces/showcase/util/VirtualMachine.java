@@ -2,7 +2,6 @@ package org.primefaces.showcase.util;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.extern.jbosslog.JBossLog;
-
 import org.apache.commons.lang3.SystemUtils;
 
 @RegisterForReflection
@@ -13,10 +12,10 @@ public final class VirtualMachine {
      * Returns a human-readable version of the file size, where the input
      * represents a specific number of bytes. Example: 7077888: 7.1 kB 6.8 MiB
      *
-     * @param bytes the number of bytes to turn human readable
+     * @param bytes the number of bytes to turn human-readable
      * @param si    whether to use International System of Units (SI) representation
      *              or 1024 byte representation
-     * @return a human readable string of byte size
+     * @return a human-readable string of byte size
      * @see <a href=
      * "http://stackoverflow.com/questions/3758606/how-to-convert-byte-size-into-human-readable-format-in-java">Stack
      * Overflow</a>
@@ -32,10 +31,10 @@ public final class VirtualMachine {
     }
 
     /**
-     * Overloaded method for human readable byte format.
+     * Overloaded method for human-readable byte format.
      *
-     * @param bytes the number of bytes to turn human readable
-     * @return a human readable string of byte size
+     * @param bytes the number of bytes to turn human-readable
+     * @return a human-readable string of byte size
      */
     public static String byteCountToDisplaySize(final long bytes) {
         return byteCountToDisplaySize(bytes, true);
@@ -101,10 +100,10 @@ public final class VirtualMachine {
         final long availableMemory = maxMemory - usedMemory;
 
         String output = "Used: " +
-                    byteCountToDisplaySize(usedMemory) +
-                    " Max: " +
-                    byteCountToDisplaySize(maxMemory);
-         log.info(output);
+                byteCountToDisplaySize(usedMemory) +
+                " Max: " +
+                byteCountToDisplaySize(maxMemory);
+        log.debug(output);
 
         return output;
     }
@@ -120,7 +119,7 @@ public final class VirtualMachine {
         // java.specification.name=Java Platform API Specification
         // java.specification.vendor=Oracle Corporation
         return SystemUtils.JAVA_RUNTIME_NAME + " " + SystemUtils.JAVA_RUNTIME_VERSION + " "
-                    + SystemUtils.JAVA_SPECIFICATION_VENDOR;
+                + SystemUtils.JAVA_SPECIFICATION_VENDOR;
     }
 
     /**
