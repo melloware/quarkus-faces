@@ -3,11 +3,23 @@ $focusBorderColor:#BBDEFB;
 $actionColor: #FEAB4D;
 
 :root {
+    --arya0: hsl(29, 44%, 53%);
+    --arya1: hsl(29, 44%, 57%);
+    --arya2: hsl(29, 44%, 61%);
+    --arya3: hsl(29, 44%, 33%);
+    --arya4: hsl(29, 44%, 92%);
+
     --saga0: #0B78D5; /* Main color */
     --saga1: #0859A7; /* Hover color */
     --saga2: #0859A7; /* Active color */
     --saga3: #6CBCF9; /* Focus outline color */
     --saga4: #495057; /* Text color */
+
+    --vela0: hsl(29, 44%, 53%);
+    --vela1: hsl(29, 44%, 57%);
+    --vela2: hsl(29, 44%, 61%);
+    --vela3: hsl(29, 44%, 33%);
+    --vela4: hsl(29, 44%, 92%);
 }
 
 html {
