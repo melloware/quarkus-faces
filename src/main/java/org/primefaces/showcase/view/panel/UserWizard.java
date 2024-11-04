@@ -23,19 +23,19 @@
  */
 package org.primefaces.showcase.view.panel;
 
-import java.io.Serializable;
-
-
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.showcase.domain.User;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class UserWizard implements Serializable {
 
     private User user = new User();
@@ -67,8 +67,7 @@ public class UserWizard implements Serializable {
         if (skip) {
             skip = false; //reset in case user goes back
             return "confirm";
-        }
-        else {
+        } else {
             return event.getNewStep();
         }
     }

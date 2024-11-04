@@ -23,13 +23,12 @@
  */
 package org.primefaces.showcase.view.data.diagram;
 
-import java.io.Serializable;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.diagram.Connection;
 import org.primefaces.model.diagram.DefaultDiagramModel;
 import org.primefaces.model.diagram.DiagramModel;
@@ -43,6 +42,7 @@ import org.primefaces.model.diagram.overlay.LabelOverlay;
 
 @Named("diagramFlowChartView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class FlowChartView implements Serializable {
 
     private DefaultDiagramModel model;

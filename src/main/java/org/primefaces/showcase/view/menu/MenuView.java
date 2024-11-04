@@ -23,18 +23,18 @@
  */
 package org.primefaces.showcase.view.menu;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.concurrent.TimeUnit;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.IOException;
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.concurrent.TimeUnit;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
@@ -42,8 +42,10 @@ import org.primefaces.model.menu.MenuModel;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class MenuView implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private MenuModel model;

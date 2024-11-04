@@ -27,12 +27,14 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.badge.BadgeModel;
 import org.primefaces.model.badge.DefaultBadgeModel;
 
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class MenuBadgeView {
 
     private BadgeModel badgeModel;

@@ -23,21 +23,23 @@
  */
 package org.primefaces.showcase.view.data.timeline;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.*;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 import org.primefaces.component.timeline.TimelineUpdater;
-import org.primefaces.event.timeline.*;
+import org.primefaces.event.timeline.TimelineModificationEvent;
 import org.primefaces.model.timeline.TimelineEvent;
 import org.primefaces.model.timeline.TimelineGroup;
 import org.primefaces.model.timeline.TimelineModel;
@@ -45,6 +47,7 @@ import org.primefaces.showcase.domain.Order;
 
 @Named("nestedGroupingTimelineView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class NestedGroupingTimelineView implements Serializable {
 
     private TimelineModel<Order, String> model;
@@ -157,8 +160,7 @@ public class NestedGroupingTimelineView implements Serializable {
         // merge orders and update UI if the user selected some orders to be merged
         if (ordersToMerge != null && !ordersToMerge.isEmpty()) {
             model.merge(event, ordersToMerge, TimelineUpdater.getCurrentInstance(":form:timeline"));
-        }
-        else {
+        } else {
             FacesMessage msg
                     = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nothing to merge, please choose orders to be merged", null);
             FacesContext.getCurrentInstance().addMessage(null, msg);

@@ -27,6 +27,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.diagram.Connection;
 import org.primefaces.model.diagram.DefaultDiagramModel;
 import org.primefaces.model.diagram.DiagramModel;
@@ -40,6 +41,7 @@ import org.primefaces.model.diagram.overlay.LabelOverlay;
 
 @Named("diagramStateMachineView")
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class StateMachineView {
 
     private DefaultDiagramModel model;

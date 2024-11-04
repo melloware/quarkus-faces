@@ -30,6 +30,7 @@ import jakarta.inject.Named;
 import java.io.Serial;
 import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.jbosslog.JBossLog;
@@ -39,6 +40,7 @@ import org.omnifaces.cdi.PushContext;
 @Named
 @ViewScoped
 @JBossLog
+@RegisterForReflection(serialization = true)
 public class WebSocketView implements Serializable {
 
     @Serial

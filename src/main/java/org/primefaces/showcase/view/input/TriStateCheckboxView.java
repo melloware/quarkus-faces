@@ -23,17 +23,18 @@
  */
 package org.primefaces.showcase.view.input;
 
-import java.io.Serializable;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named("triStateCheckboxView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class TriStateCheckboxView implements Serializable {
 
     private String value1;

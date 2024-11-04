@@ -23,22 +23,22 @@
  */
 package org.primefaces.showcase.view.misc;
 
-import java.io.Serializable;
-
-
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 import org.primefaces.context.PrimeApplicationContext;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class CspView implements Serializable {
 
-    private boolean cspEnabled;
+    private final boolean cspEnabled;
     private String userSuppliedInput;
 
     public CspView() {

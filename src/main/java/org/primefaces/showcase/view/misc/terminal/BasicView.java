@@ -23,27 +23,26 @@
  */
 package org.primefaces.showcase.view.misc.terminal;
 
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.Date;
 
-
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named("terminalBasicView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class BasicView implements Serializable {
 
     public String handleCommand(String command, String[] params) {
         if ("greet".equals(command)) {
             if (params.length > 0) {
                 return "Hello " + params[0];
-            }
-            else {
+            } else {
                 return "Hello Stranger";
             }
-        }
-        else if ("date".equals(command)) {
+        } else if ("date".equals(command)) {
             return new Date().toString();
         }
 

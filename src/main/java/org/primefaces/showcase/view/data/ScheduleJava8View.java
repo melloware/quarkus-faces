@@ -23,6 +23,14 @@
  */
 package org.primefaces.showcase.view.data;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AjaxBehaviorEvent;
+import jakarta.faces.model.SelectItem;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -32,26 +40,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.event.AjaxBehaviorEvent;
-import jakarta.faces.model.SelectItem;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.schedule.ScheduleEntryMoveEvent;
 import org.primefaces.event.schedule.ScheduleEntryResizeEvent;
 import org.primefaces.event.schedule.ScheduleRangeEvent;
-import org.primefaces.model.*;
+import org.primefaces.model.DefaultScheduleEvent;
+import org.primefaces.model.DefaultScheduleModel;
+import org.primefaces.model.LazyScheduleModel;
+import org.primefaces.model.ScheduleDisplayMode;
+import org.primefaces.model.ScheduleEvent;
+import org.primefaces.model.ScheduleModel;
 import org.primefaces.showcase.service.ExtenderService;
 import org.primefaces.showcase.service.ExtenderService.ExtenderExample;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class ScheduleJava8View implements Serializable {
 
     @Inject
@@ -275,8 +280,7 @@ public class ScheduleJava8View implements Serializable {
 
         if (event.getId() == null) {
             eventModel.addEvent(event);
-        }
-        else {
+        } else {
             eventModel.updateEvent(event);
         }
 

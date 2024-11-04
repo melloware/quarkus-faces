@@ -23,15 +23,16 @@
  */
 package org.primefaces.showcase.view.csv;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 import java.time.LocalDate;
 import java.util.Date;
 
-
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Named;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class ValidationView {
 
     private String text;

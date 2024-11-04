@@ -31,11 +31,13 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class GraphicImageView {
 
     public StreamedContent getGraphicText() {

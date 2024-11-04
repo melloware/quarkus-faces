@@ -23,26 +23,25 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
-import java.io.Serializable;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.showcase.domain.Customer;
 import org.primefaces.showcase.service.CustomerService;
 
 @Named("dtRowGroupView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class RowGroupView implements Serializable {
-
-    private List<Customer> customers;
 
     @Inject
     CustomerService service;
+    private List<Customer> customers;
 
     @PostConstruct
     public void init() {

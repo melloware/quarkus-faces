@@ -31,8 +31,11 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.time.LocalTime;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class ClockPickerView implements Serializable {
 
     private static final long serialVersionUID = 897540091000342926L;

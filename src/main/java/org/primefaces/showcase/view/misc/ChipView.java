@@ -29,10 +29,12 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.AjaxBehaviorEvent;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.component.chip.Chip;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class ChipView {
 
     public void onSelect(AjaxBehaviorEvent e) {

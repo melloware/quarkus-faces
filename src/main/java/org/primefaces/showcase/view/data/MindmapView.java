@@ -23,22 +23,22 @@
  */
 package org.primefaces.showcase.view.data;
 
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.UUID;
 
-
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
-
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.mindmap.DefaultMindmapNode;
 import org.primefaces.model.mindmap.MindmapNode;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class MindmapView implements Serializable {
 
-    private MindmapNode root;
+    private final MindmapNode root;
 
     private MindmapNode selectedNode;
 
@@ -77,13 +77,11 @@ public class MindmapView implements Serializable {
                 for (int i = 0; i < 25; i++) {
                     node.addNode(new DefaultMindmapNode("ns" + i + ".google.com", "Namespace " + i + " of Google", "82c542", false));
                 }
-            }
-            else if (label.equals("IPs")) {
+            } else if (label.equals("IPs")) {
                 for (int i = 0; i < 18; i++) {
                     node.addNode(new DefaultMindmapNode("1.1.1." + i, "IP Number: 1.1.1." + i, "fce24f", false));
                 }
-            }
-            else if (label.equals("Malware")) {
+            } else if (label.equals("Malware")) {
                 for (int i = 0; i < 18; i++) {
                     String random = UUID.randomUUID().toString();
                     node.addNode(new DefaultMindmapNode("Malware-" + random, "Malicious Software: " + random, "3399ff", false));

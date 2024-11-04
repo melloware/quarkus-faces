@@ -23,22 +23,22 @@
  */
 package org.primefaces.showcase.view.data.timeline;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.time.LocalDate;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.timeline.TimelineSelectEvent;
 import org.primefaces.model.timeline.TimelineEvent;
 import org.primefaces.model.timeline.TimelineModel;
 
 @Named("basicTimelineView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class BasicTimelineView implements Serializable {
 
     private TimelineModel<String, ?> model;

@@ -23,15 +23,14 @@
  */
 package org.primefaces.showcase.view.data.dataexporter;
 
-import java.io.Serializable;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.component.export.Exporter;
 import org.primefaces.showcase.domain.Product;
@@ -39,14 +38,13 @@ import org.primefaces.showcase.service.ProductService;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class DataExporterView implements Serializable {
-
-    private List<Product> products;
-
-    private Exporter<DataTable> textExporter;
 
     @Inject
     ProductService service;
+    private List<Product> products;
+    private Exporter<DataTable> textExporter;
 
     @PostConstruct
     public void init() {

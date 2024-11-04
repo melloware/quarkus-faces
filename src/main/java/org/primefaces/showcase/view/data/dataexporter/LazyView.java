@@ -23,15 +23,14 @@
  */
 package org.primefaces.showcase.view.data.dataexporter;
 
-import java.io.Serializable;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.showcase.domain.Customer;
 import org.primefaces.showcase.service.CustomerService;
@@ -39,14 +38,13 @@ import org.primefaces.showcase.view.data.datatable.LazyCustomerDataModel;
 
 @Named("deLazyView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class LazyView implements Serializable {
-
-    private LazyDataModel<Customer> lazyModel;
-
-    private List<Customer> filteredCustomers;
 
     @Inject
     CustomerService service;
+    private LazyDataModel<Customer> lazyModel;
+    private List<Customer> filteredCustomers;
 
     @PostConstruct
     public void init() {

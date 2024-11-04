@@ -23,24 +23,29 @@
  */
 package org.primefaces.showcase.view.data.timeline;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import org.primefaces.event.timeline.*;
+import io.quarkus.runtime.annotations.RegisterForReflection;
+import org.primefaces.event.timeline.TimelineAddEvent;
+import org.primefaces.event.timeline.TimelineDragDropEvent;
+import org.primefaces.event.timeline.TimelineLazyLoadEvent;
+import org.primefaces.event.timeline.TimelineModificationEvent;
+import org.primefaces.event.timeline.TimelineRangeEvent;
+import org.primefaces.event.timeline.TimelineSelectEvent;
 import org.primefaces.model.timeline.TimelineEvent;
 import org.primefaces.model.timeline.TimelineModel;
 import org.primefaces.showcase.domain.Event;
 
 @Named("allEventsTimelineView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class AllEventsTimelineView implements Serializable {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
@@ -88,7 +93,7 @@ public class AllEventsTimelineView implements Serializable {
 
     public void onAdd(TimelineAddEvent e) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        String dates =  e.getStartDate().format(FORMATTER);
+        String dates = e.getStartDate().format(FORMATTER);
         if (e.getEndDate() != null) {
             dates += " - " + e.getEndDate().format(FORMATTER);
         }
@@ -100,7 +105,7 @@ public class AllEventsTimelineView implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "change",
                 timelineEvent.getData() + ": " + timelineEvent.getStartDate().format(FORMATTER)
-                + " - " + timelineEvent.getEndDate().format(FORMATTER)));
+                        + " - " + timelineEvent.getEndDate().format(FORMATTER)));
     }
 
     public void onChanged(TimelineModificationEvent<String> e) {
@@ -108,7 +113,7 @@ public class AllEventsTimelineView implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "changed",
                 timelineEvent.getData() + ": " + timelineEvent.getStartDate().format(FORMATTER)
-                + " - " + timelineEvent.getEndDate().format(FORMATTER)));
+                        + " - " + timelineEvent.getEndDate().format(FORMATTER)));
     }
 
     public void onEdit(TimelineModificationEvent<String> e) {
@@ -116,7 +121,7 @@ public class AllEventsTimelineView implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "edit",
                 timelineEvent.getData() + ": " + timelineEvent.getStartDate().format(FORMATTER)
-                + " - " + timelineEvent.getEndDate().format(FORMATTER)));
+                        + " - " + timelineEvent.getEndDate().format(FORMATTER)));
     }
 
     public void onDelete(TimelineModificationEvent<String> e) {
@@ -124,7 +129,7 @@ public class AllEventsTimelineView implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "delete",
                 timelineEvent.getData() + ": " + timelineEvent.getStartDate().format(FORMATTER)
-                + " - " + timelineEvent.getEndDate().format(FORMATTER)));
+                        + " - " + timelineEvent.getEndDate().format(FORMATTER)));
     }
 
     public void onSelect(TimelineSelectEvent<String> e) {
@@ -132,7 +137,7 @@ public class AllEventsTimelineView implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "select",
                 timelineEvent.getData() + ": " + timelineEvent.getStartDate().format(FORMATTER)
-                + " - " + timelineEvent.getEndDate().format(FORMATTER)));
+                        + " - " + timelineEvent.getEndDate().format(FORMATTER)));
     }
 
     public void onRangeChange(TimelineRangeEvent e) {

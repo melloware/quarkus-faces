@@ -23,20 +23,20 @@
  */
 package org.primefaces.showcase.view.data.timeline;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
-
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.timeline.TimelineEvent;
 import org.primefaces.model.timeline.TimelineModel;
 
 @Named("limitTimelineRangeView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class LimitTimelineRangeView implements Serializable {
 
     private TimelineModel<String, ?> model;

@@ -29,6 +29,7 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.badge.BadgeModel;
 import org.primefaces.model.badge.DefaultBadgeModel;
 import org.primefaces.model.menu.DefaultMenuItem;
@@ -37,6 +38,7 @@ import org.primefaces.model.menu.MenuModel;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class SpeedDialView {
 
     private MenuModel model;

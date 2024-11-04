@@ -26,10 +26,12 @@ package org.primefaces.showcase.view.df;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 
 @Named("dfLevel3View")
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class DFLevel3View {
 
     private String val;

@@ -23,32 +23,26 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
-
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.showcase.domain.Player;
 import org.primefaces.showcase.domain.Sale;
 
 @Named("dtGroupView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class GroupView implements Serializable {
 
     private static final String[] MANUFACTORS;
     private static final String[] PLAYER_NAMES;
-
-    private List<Sale> sales;
-    private Integer lastYearTotal;
-    private Integer thisYearTotal;
-    private List<Integer> years;
-    private List<Player> players;
 
     static {
         MANUFACTORS = new String[10];
@@ -75,6 +69,12 @@ public class GroupView implements Serializable {
         PLAYER_NAMES[8] = "Neymar Jr";
         PLAYER_NAMES[9] = "Andres Iniesta";
     }
+
+    private List<Sale> sales;
+    private Integer lastYearTotal;
+    private Integer thisYearTotal;
+    private List<Integer> years;
+    private List<Player> players;
 
     @PostConstruct
     public void init() {

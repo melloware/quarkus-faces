@@ -23,17 +23,17 @@
  */
 package org.primefaces.showcase.view.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class ChronolineView {
 
     private List<Event> events;

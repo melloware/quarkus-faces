@@ -23,16 +23,15 @@
  */
 package org.primefaces.showcase.view.data.treetable;
 
-import java.io.Serializable;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.NodeCollapseEvent;
 import org.primefaces.event.NodeExpandEvent;
 import org.primefaces.event.NodeSelectEvent;
@@ -45,14 +44,13 @@ import org.primefaces.showcase.service.DocumentService;
 
 @Named("ttEventsView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class EventsView implements Serializable {
-
-    private TreeNode<Document> root;
-
-    private TreeNode<Document> selectedNode;
 
     @Inject
     DocumentService service;
+    private TreeNode<Document> root;
+    private TreeNode<Document> selectedNode;
 
     @PostConstruct
     public void init() {

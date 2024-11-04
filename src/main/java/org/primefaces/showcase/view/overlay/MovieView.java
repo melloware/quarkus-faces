@@ -23,21 +23,21 @@
  */
 package org.primefaces.showcase.view.overlay;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.showcase.domain.Movie;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class MovieView {
 
     private Movie movie;

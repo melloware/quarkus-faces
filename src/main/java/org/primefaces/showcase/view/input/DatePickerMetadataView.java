@@ -23,15 +23,14 @@
  */
 package org.primefaces.showcase.view.input;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-
-
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.time.LocalDate;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.DateViewChangeEvent;
 import org.primefaces.model.datepicker.DateMetadataModel;
 import org.primefaces.model.datepicker.DefaultDateMetadata;
@@ -40,17 +39,18 @@ import org.primefaces.model.datepicker.LazyDateMetadataModel;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class DatePickerMetadataView implements Serializable {
 
+    private final DateMetadataModel model;
+    private final DateMetadataModel modelLazy;
+    private final DateMetadataModel modelEnabledDaysLazy;
     private LocalDate date1;
     private LocalDate date2;
     private LocalDate date3;
     private LocalDate date4;
     private LocalDate date5;
     private LocalDate date6;
-    private final DateMetadataModel model;
-    private final DateMetadataModel modelLazy;
-    private final DateMetadataModel modelEnabledDaysLazy;
 
     public DatePickerMetadataView() {
         LocalDate start = LocalDate.now().withDayOfMonth(1);

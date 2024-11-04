@@ -23,20 +23,20 @@
  */
 package org.primefaces.showcase.view.multimedia;
 
-import javax.imageio.stream.FileImageOutputStream;
-import java.io.File;
-
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import javax.imageio.stream.FileImageOutputStream;
+import java.io.File;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.CroppedImage;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class CropperView {
 
     private CroppedImage croppedImage;
@@ -66,8 +66,7 @@ public class CropperView {
             imageOutput = new FileImageOutputStream(new File(newFileName));
             imageOutput.write(croppedImage.getBytes(), 0, croppedImage.getBytes().length);
             imageOutput.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Cropping failed."));
             return;
         }

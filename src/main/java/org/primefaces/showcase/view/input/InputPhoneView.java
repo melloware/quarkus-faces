@@ -21,18 +21,17 @@
  */
 package org.primefaces.showcase.view.input;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
-import lombok.Data;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+import lombok.Data;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.extensions.model.inputphone.Country;
 
@@ -42,6 +41,7 @@ import org.primefaces.extensions.model.inputphone.Country;
 @Named
 @ViewScoped
 @Data
+@RegisterForReflection(serialization = true)
 public class InputPhoneView implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -61,12 +61,12 @@ public class InputPhoneView implements Serializable {
     public void onCountrySelect(final SelectEvent<Country> event) {
         final Country country = event.getObject();
         FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Selected " + country.getName(), null));
+                new FacesMessage(FacesMessage.SEVERITY_WARN, "Selected " + country.getName(), null));
     }
 
     public void submit() {
         FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Phone Number  " + phoneNumber, null));
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Phone Number  " + phoneNumber, null));
     }
 
 }

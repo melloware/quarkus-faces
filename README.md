@@ -15,54 +15,33 @@
 [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.me/mellowareinc)
 
 ### Goals
+
 ***
-The main goal was to take an out of the box Faces (formerly JSF) application ([PrimeFaces Showcase](https://github.com/primefaces/primefaces/tree/master/primefaces-showcase)) 
-and run it in both a Java EE Server and in [Quarkus](https://quarkus.io/). 
-Some addition goals:
-- See how much we can improve performance by incorporating various optimization tricks for JSF applications
-- See if Quarkus is a viable option for Faces and migrating to Docker containers
+The main goal was to take an out-of-the-box Faces (formerly JSF)
+application ([PrimeFaces Showcase](https://github.com/primefaces/primefaces/tree/master/primefaces-showcase))
+and get it running in [Quarkus](https://quarkus.io/) and deployed as a GraalVM Native executable or an UberJar single
+executable JAR.
 
 ### Application
-***
-See [QuarkusFaces Showcase](https://quarkus-faces-melloware-8a6a34c1.koyeb.app/) running live on a free cloud hosting using 0.1 VCPU and 512MB RAM. Its an underpowered machine but it gets the point across.
 
-### Environment
 ***
-- OpenJDK 17.0.5
-- JBoss Wildfly 18.0.1
-- Quarkus 2.16.3.Final
-- JSF Production Mode
-- Intel(R) Core(TM) i7-8750H CPU @2.21 GHz 16GB RAM
+See [QuarkusFaces Showcase](https://quarkus-faces-melloware-8a6a34c1.koyeb.app/) running live in GraalVM on a free cloud
+hosting using 0.1 VCPU and 512MB RAM. It is an underpowered machine, but it gets the point across.
 
 ### Optimizations
+
 ***
+
 - Apache MyFaces (Quarkus) instead of Jakarta Mojarra (Wildfly)
 - PrimeFaces [MOVE_SCRIPTS_TO_BOTTOM](https://primefaces.github.io/primefaces/13_0_0/#/gettingstarted/configuration)
-- Quarkus Compression [ quarkus.http.enable-compression=true](https://quarkus.io/guides/http-reference#http-compression)
+- Quarkus Brotli
+  Compression [ quarkus.http.enable-compression=true](https://quarkus.io/guides/http-reference#http-compression)
 - OmniFaces [CombinedResourceHandler](https://showcase.omnifaces.org/resourcehandlers/CombinedResourceHandler)
-- PrimeFaces Extensions [CombinedResourceHandler Helper](https://github.com/primefaces-extensions/primefaces-extensions/issues/293) 
-- jQuery [Hide Page Until Complete](https://stackoverflow.com/questions/9550760/hide-page-until-everything-is-loaded-advanced/28129691#28129691)
+- PrimeFaces
+  Extensions [CombinedResourceHandler Helper](https://github.com/primefaces-extensions/primefaces-extensions/issues/293)
+-
 
-### Metrics
-***
-The following client and server metrics were captured while hitting the exact same page [/datatable/crud.xhtml](https://www.primefaces.org/showcase/ui/data/datatable/crud.xhtml)
-Using `Incognito Mode` and pressing CTRL+F5 so it forced the browser to load all resources from the server with nothing cached.
-
-Metric                |  WildFly EE | Quarkus (DEV)  | Quarkus (JVM)  | Quarkus (GraalVM) |
-----------------------| ----------  | ---------------| ---------------|-------------------|
-Package Size          | 48.5 MB WAR | N/A            | 91 MB          | 206 MB            |
-Cold Startup          | 10.3 s      | 8.092 s        | 3.847 s        | 0.035 s           |
-Memory Used           | 140 MB      | 113 MB         | 21 MB          | 13.6 MB           |
-HTTP Requests         | 80          | 80             | 61             | 61                |
-Resource Size         | 2.4 MB      | 2.4 MB         | 2.4 MB         | 2.4 MB            |
-Transferred Size      | 2.4 MB      | 2.4 KB         | 888 KB         | 888 KB            |
-DOM Loaded            | 1150 ms     | 1750 ms        | 918 ms         | 580 ms            |
-Lighthouse Score      | 59/100      | 72/100         | 97/100         | 98/100            |
-First Paint           | 2.4 s       | 2.3 s          | 0.8 s          | 0.8 s             |
-Speed Index           | 2.4 s       | 2.3 s          | 1.0 s          | 0.8 s             |
-Time To Interactive   | 3.9 s       | 2.3 s          | 0.9 s          | 0.8 s             |
-Largest Paint         | 2.7 s       | 2.6 s          | 1.1 s          | 1.0 s             |
-
+jQuery [Hide Page Until Complete](https://stackoverflow.com/questions/9550760/hide-page-until-everything-is-loaded-advanced/28129691#28129691)
 
 ### Development
 
@@ -77,16 +56,16 @@ mvn quarkus:dev
 
 Then open your web browser to http://localhost:8000/
 
-### Production
+### Production Uber-Jar
 
 ***
-To run the example in HotSpot Production mode:
+To run the example in HotSpot Production mode Uber-Jar:
 
 ```
 git clone https://github.com/melloware/quarkus-faces
 cd quarkus-faces
-mvn clean package
-java -jar target/quarkus-app/quarkus-run.jar
+mvn clean package -Dquarkus.package.jar.type=uber-jar
+java -jar target/quarkus-faces-runner.jar
 ```
 
 Then open your web browser to http://localhost:8000/
@@ -95,6 +74,7 @@ Then open your web browser to http://localhost:8000/
 
 ***
 Builds a Docker image running as a standard JVM application.
+
 ```
 mvn clean package -Ddocker
 docker run -i --rm -p 8000:8000 melloware/quarkus-faces:latest
@@ -103,7 +83,8 @@ docker run -i --rm -p 8000:8000 melloware/quarkus-faces:latest
 ### Docker Native
 
 ***
-Builds a native Docker image running as a GraalVM (Mandrel) application. 
+Builds a native Docker image running as a GraalVM (Mandrel) application.
+
 ```
 mvn -Pnative-docker
 docker run -i --rm -p 8000:8000 melloware/quarkus-faces:${version}
@@ -112,5 +93,12 @@ docker run -i --rm -p 8000:8000 melloware/quarkus-faces:${version}
 ### Known Issues
 
 ***
-We have a WIKI page where we are keeping track of [known issues](https://github.com/melloware/quarkus-faces/wiki/Quarkus-Faces-Known-Issues) while developing with Quarkus/MyFaces/PrimeFaces. Please feel free to contribute to that page if you find anything you think others should know!
+We have a WIKI page where we are keeping track
+of [known issues](https://github.com/melloware/quarkus-faces/wiki/Quarkus-Faces-Known-Issues) while developing with
+Quarkus/MyFaces/PrimeFaces. Please feel free to contribute to that page if you find anything you think others should
+know!
 
+## Quarkus Insights YouTube
+
+***
+[![Quarkus Faces YouTube](http://img.youtube.com/vi/DIN0I56-GR4/0.jpg)](http://www.youtube.com/watch?v=DIN0I56-GR4 "Quarkus Insights 165 What is new with Quarkus JSF")

@@ -23,19 +23,19 @@
  */
 package org.primefaces.showcase.view.input;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.SelectEvent;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class InputTextareaView {
 
     public List<String> completeArea(String query) {
@@ -47,8 +47,7 @@ public class InputTextareaView {
             results.add("PrimeFaces is lightweight.");
             results.add("PrimeFaces is easy to use.");
             results.add("PrimeFaces is developed with passion!");
-        }
-        else {
+        } else {
             for (int i = 0; i < 10; i++) {
                 results.add(query + i);
             }

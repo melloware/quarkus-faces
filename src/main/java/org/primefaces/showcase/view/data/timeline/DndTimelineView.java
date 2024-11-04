@@ -23,19 +23,18 @@
  */
 package org.primefaces.showcase.view.data.timeline;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.AjaxBehaviorEvent;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.component.timeline.TimelineUpdater;
 import org.primefaces.event.timeline.TimelineDragDropEvent;
 import org.primefaces.model.timeline.TimelineEvent;
@@ -44,14 +43,13 @@ import org.primefaces.showcase.domain.Event;
 
 @Named("dndTimelineView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class DndTimelineView implements Serializable {
 
+    private final List<Event> events = new ArrayList<>();
     private TimelineModel<Event, ?> model;
-
     private LocalDateTime start;
     private LocalDateTime end;
-
-    private final List<Event> events = new ArrayList<>();
 
     @PostConstruct
     public void init() {

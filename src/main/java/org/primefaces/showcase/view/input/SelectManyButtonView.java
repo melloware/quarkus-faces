@@ -23,14 +23,15 @@
  */
 package org.primefaces.showcase.view.input;
 
-import java.util.List;
-
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import java.util.List;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class SelectManyButtonView {
 
     private List<String> selectedOptions;

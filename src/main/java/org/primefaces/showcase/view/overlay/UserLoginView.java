@@ -28,10 +28,12 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class UserLoginView {
 
     private String username;
@@ -58,11 +60,10 @@ public class UserLoginView {
         FacesMessage message = null;
         boolean loggedIn = false;
 
-        if (username != null && "admin".equals(username) && password != null && "admin".equals(password)) {
+        if ("admin".equals(username) && "admin".equals(password)) {
             loggedIn = true;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
-        }
-        else {
+        } else {
             loggedIn = false;
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
         }

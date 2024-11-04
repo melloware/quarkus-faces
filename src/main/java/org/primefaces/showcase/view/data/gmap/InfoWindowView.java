@@ -23,13 +23,12 @@
  */
 package org.primefaces.showcase.view.data.gmap;
 
-import java.io.Serializable;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -38,6 +37,7 @@ import org.primefaces.model.map.Marker;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class InfoWindowView implements Serializable {
 
     private MapModel<String> advancedModel;

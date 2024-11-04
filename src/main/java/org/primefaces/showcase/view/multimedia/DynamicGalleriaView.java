@@ -30,6 +30,7 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.showcase.domain.Photo;
@@ -37,6 +38,7 @@ import org.primefaces.showcase.service.PhotoService;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class DynamicGalleriaView implements Serializable {
 
     @Inject

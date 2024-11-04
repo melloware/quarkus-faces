@@ -23,34 +23,33 @@
  */
 package org.primefaces.showcase.view.misc;
 
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.showcase.domain.Theme;
 import org.primefaces.showcase.service.ThemeService;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class ThemeSwitcherView {
 
-    private List<Theme> themes;
-    
     @Inject
     ThemeService service;
+    private List<Theme> themes;
 
     @PostConstruct
     public void init() {
         themes = service.getThemes();
     }
-    
+
     public List<Theme> getThemes() {
         return themes;
-    } 
+    }
 
     public void setService(ThemeService service) {
         this.service = service;

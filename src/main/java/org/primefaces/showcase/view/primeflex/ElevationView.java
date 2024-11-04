@@ -23,18 +23,19 @@
  */
 package org.primefaces.showcase.view.primeflex;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class ElevationView {
-    
+
     private List<Object> levels;
 
     @PostConstruct

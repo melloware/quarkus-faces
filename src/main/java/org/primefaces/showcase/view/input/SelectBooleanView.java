@@ -31,8 +31,11 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.AjaxBehaviorEvent;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class SelectBooleanView {
 
     private boolean value1;
@@ -65,8 +68,7 @@ public class SelectBooleanView {
 
     public void addMessage(AjaxBehaviorEvent event) {
         UIComponent component = event.getComponent();
-        if (component instanceof UIInput) {
-            UIInput inputComponent = (UIInput) component;
+        if (component instanceof UIInput inputComponent) {
             Boolean value = (Boolean) inputComponent.getValue();
             String summary = value ? "Checked" : "Unchecked";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));

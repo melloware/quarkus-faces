@@ -13,10 +13,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
         <lombok.version>1.18.34</lombok.version>
-        <myfaces.version>4.0.2</myfaces.version>
+        <myfaces.version>4.1.0-RC3</myfaces.version>
         <omnifaces-quarkus.version>4.5.1.1</omnifaces-quarkus.version>
-        <primefaces-quarkus.version>3.14.6.3</primefaces-quarkus.version>
-        <quarkus.version>3.15.1</quarkus.version>
+        <primefaces-quarkus.version>3.14.6.4</primefaces-quarkus.version>
+        <quarkus.version>3.16.1</quarkus.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -30,10 +30,16 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>14.0.7-SNAPSHOT</version>
+            <classifier>jakarta</classifier>
+        </dependency>
         <!-- Quarkus -->
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-resteasy-jackson</artifactId>
+            <artifactId>quarkus-rest-jackson</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -46,6 +52,10 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-health</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-info</artifactId>
         </dependency>
         <!-- Logging -->
         <dependency>
@@ -67,11 +77,23 @@
             <groupId>io.quarkiverse.primefaces</groupId>
             <artifactId>quarkus-primefaces</artifactId>
             <version>${primefaces-quarkus.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.primefaces</groupId>
+                    <artifactId>primefaces</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.primefaces</groupId>
             <artifactId>quarkus-primefaces-extensions</artifactId>
             <version>${primefaces-quarkus.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.primefaces</groupId>
+                    <artifactId>primefaces</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.omnifaces</groupId>
@@ -109,6 +131,17 @@
         </dependency>
     </dependencies>
     <repositories>
+        <repository>
+            <id>sonatype-snapshots</id>
+            <name>Sonatype Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
         <repository>
             <id>apache.snapshots</id>
             <name>Apache Development Snapshot Repository</name>

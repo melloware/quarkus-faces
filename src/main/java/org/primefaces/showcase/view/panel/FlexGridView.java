@@ -23,17 +23,18 @@
  */
 package org.primefaces.showcase.view.panel;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class FlexGridView implements Serializable {
 
     private List<Integer> columns;

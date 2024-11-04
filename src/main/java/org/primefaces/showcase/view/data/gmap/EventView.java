@@ -23,14 +23,13 @@
  */
 package org.primefaces.showcase.view.data.gmap;
 
-import java.io.Serializable;
-
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.map.PointSelectEvent;
 import org.primefaces.event.map.StateChangeEvent;
 import org.primefaces.model.map.LatLng;
@@ -38,6 +37,7 @@ import org.primefaces.model.map.LatLngBounds;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class EventView implements Serializable {
 
     public void onStateChange(StateChangeEvent event) {

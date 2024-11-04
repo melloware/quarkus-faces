@@ -23,22 +23,22 @@
  */
 package org.primefaces.showcase.view.dnd;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.DragDropEvent;
 import org.primefaces.showcase.domain.Product;
 import org.primefaces.showcase.service.ProductService;
 
 @Named("dndProductsView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class DNDProductsView implements Serializable {
 
     @Inject

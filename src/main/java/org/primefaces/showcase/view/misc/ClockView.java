@@ -23,16 +23,17 @@
  */
 package org.primefaces.showcase.view.misc;
 
-import java.io.Serializable;
-import java.time.*;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class ClockView implements Serializable {
 
     private LocalDateTime dateTime;

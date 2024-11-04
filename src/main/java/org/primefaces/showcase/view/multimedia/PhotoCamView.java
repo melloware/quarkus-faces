@@ -23,22 +23,22 @@
  */
 package org.primefaces.showcase.view.multimedia;
 
-import javax.imageio.stream.FileImageOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
-
-
 import jakarta.faces.FacesException;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import javax.imageio.stream.FileImageOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.CaptureEvent;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class PhotoCamView implements Serializable {
 
     private String filename;
@@ -66,8 +66,7 @@ public class PhotoCamView implements Serializable {
             imageOutput = new FileImageOutputStream(new File(newFileName));
             imageOutput.write(data, 0, data.length);
             imageOutput.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new FacesException("Error in writing captured image.", e);
         }
     }

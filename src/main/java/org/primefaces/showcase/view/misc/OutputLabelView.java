@@ -23,15 +23,16 @@
  */
 package org.primefaces.showcase.view.misc;
 
-import java.io.Serializable;
-
-
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import jakarta.validation.constraints.NotNull;
+import java.io.Serializable;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class OutputLabelView implements Serializable {
 
     @NotNull

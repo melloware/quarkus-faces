@@ -23,16 +23,15 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 import org.primefaces.showcase.domain.Product;
@@ -40,15 +39,15 @@ import org.primefaces.showcase.service.ProductService;
 
 @Named("dtSortView")
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class SortView implements Serializable {
 
+    @Inject
+    ProductService service;
     private List<Product> products1;
     private List<Product> products2;
     private List<Product> products3;
     private List<SortMeta> sortBy;
-
-    @Inject
-    ProductService service;
 
     @PostConstruct
     public void init() {

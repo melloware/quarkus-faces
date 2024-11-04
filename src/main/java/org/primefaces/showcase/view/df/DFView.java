@@ -28,6 +28,7 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DialogFrameworkOptions;
@@ -35,6 +36,7 @@ import org.primefaces.showcase.domain.Product;
 
 @Named("dfView")
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class DFView {
 
     public void viewProducts() {

@@ -28,11 +28,13 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.event.CloseEvent;
 import org.primefaces.event.ToggleEvent;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class PanelView {
 
     public void onClose(CloseEvent event) {

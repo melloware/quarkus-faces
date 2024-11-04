@@ -23,18 +23,19 @@
  */
 package org.primefaces.showcase.view.input;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.model.SelectItem;
 import jakarta.faces.model.SelectItemGroup;
 import jakarta.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class MultiSelectView {
 
     private List<SelectItem> categories;
@@ -62,20 +63,20 @@ public class MultiSelectView {
 
         SelectItem option111 = new SelectItem("Option 1.1.1");
         SelectItem option112 = new SelectItem("Option 1.1.2");
-        group11.setSelectItems(new SelectItem[]{option111, option112});
+        group11.setSelectItems(option111, option112);
 
         SelectItem option121 = new SelectItem("Option 1.2.1", "Option 1.2.1");
         SelectItem option122 = new SelectItem("Option 1.2.2", "Option 1.2.2");
         SelectItem option123 = new SelectItem("Option 1.2.3", "Option 1.2.3");
-        group12.setSelectItems(new SelectItem[]{option121, option122, option123});
+        group12.setSelectItems(option121, option122, option123);
 
         SelectItem option211 = new SelectItem("Option 2.1.1", "Option 2.1.1");
-        group21.setSelectItems(new SelectItem[]{option211});
+        group21.setSelectItems(option211);
 
-        group1.setSelectItems(new SelectItem[]{group11, group12});
-        group2.setSelectItems(new SelectItem[]{group21});
-        group3.setSelectItems(new SelectItem[]{option31, option32, option33, option34});
-        group4.setSelectItems(new SelectItem[]{option41});
+        group1.setSelectItems(group11, group12);
+        group2.setSelectItems(group21);
+        group3.setSelectItems(option31, option32, option33, option34);
+        group4.setSelectItems(option41);
 
         categories.add(group1);
         categories.add(group2);

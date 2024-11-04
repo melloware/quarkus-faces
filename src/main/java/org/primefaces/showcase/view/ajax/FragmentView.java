@@ -26,8 +26,11 @@ package org.primefaces.showcase.view.ajax;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class FragmentView {
 
     private String text;

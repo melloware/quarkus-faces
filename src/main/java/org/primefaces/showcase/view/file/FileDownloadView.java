@@ -27,14 +27,16 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 @Named
 @RequestScoped
+@RegisterForReflection(serialization = true)
 public class FileDownloadView {
 
-    private StreamedContent file;
+    private final StreamedContent file;
 
     public FileDownloadView() {
         file = DefaultStreamedContent.builder()

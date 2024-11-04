@@ -23,37 +23,33 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.PrimeFaces;
 import org.primefaces.showcase.domain.Product;
 import org.primefaces.showcase.service.ProductService;
 
 @Named
 @ViewScoped
+@RegisterForReflection(serialization = true)
 public class CrudView implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    private List<Product> products;
-
-    private Product selectedProduct;
-
-    private List<Product> selectedProducts;
-
     @Inject
     ProductService productService;
+    private List<Product> products;
+    private Product selectedProduct;
+    private List<Product> selectedProducts;
 
     @PostConstruct
     public void init() {
@@ -90,8 +86,7 @@ public class CrudView implements Serializable {
             this.selectedProduct.setCode(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 9));
             this.products.add(this.selectedProduct);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Product Added"));
-        }
-        else {
+        } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Product Updated"));
         }
 
