@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.melloware</groupId>
     <artifactId>quarkus-faces</artifactId>
@@ -12,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
         <lombok.version>1.18.34</lombok.version>
-        <myfaces.version>4.0.2</myfaces.version>
+        <myfaces.version>4.1.0-RC3</myfaces.version>
         <omnifaces-quarkus.version>4.5.1.1</omnifaces-quarkus.version>
         <primefaces-quarkus.version>3.14.6.4</primefaces-quarkus.version>
         <quarkus.version>3.16.1</quarkus.version>
@@ -134,6 +135,17 @@
             <id>sonatype-snapshots</id>
             <name>Sonatype Snapshot Repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>apache.snapshots</id>
+            <name>Apache Development Snapshot Repository</name>
+            <url>https://repository.apache.org/content/repositories/snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
