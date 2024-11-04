@@ -56,10 +56,10 @@ mvn quarkus:dev
 
 Then open your web browser to http://localhost:8000/
 
-### Production
+### Production Uber-Jar
 
 ***
-To run the example in HotSpot Production mode:
+To run the example in HotSpot Production mode Uber-Jar:
 
 ```
 git clone https://github.com/melloware/quarkus-faces
@@ -100,4 +100,5 @@ know!
 
 ## Quarkus Insights YouTube
 
+***
 [![Quarkus Faces YouTube](http://img.youtube.com/vi/DIN0I56-GR4/0.jpg)](http://www.youtube.com/watch?v=DIN0I56-GR4 "Quarkus Insights 165 What is new with Quarkus JSF")
