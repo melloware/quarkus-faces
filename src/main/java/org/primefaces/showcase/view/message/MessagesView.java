@@ -51,7 +51,7 @@ public class MessagesView implements Serializable {
     }
 
     public void fatal() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fatal", "Message Content."));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal", "Message Content."));
     }
 
     public void onClose() {
