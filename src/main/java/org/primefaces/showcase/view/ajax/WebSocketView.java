@@ -24,21 +24,22 @@
 package org.primefaces.showcase.view.ajax;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.faces.push.Push;
-import jakarta.faces.push.PushContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.Serial;
 import java.io.Serializable;
 
-import io.quarkus.logging.Log;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.jbosslog.JBossLog;
+import org.omnifaces.cdi.Push;
+import org.omnifaces.cdi.PushContext;
 
 @Named
 @ViewScoped
+@JBossLog
 @RegisterForReflection(serialization = true)
 public class WebSocketView implements Serializable {
 
@@ -73,7 +74,7 @@ public class WebSocketView implements Serializable {
     }
 
     public void sendMessage() {
-        Log.infof("Sending message: %d", count);
+        log.debugf("Sending message: %d", count);
         pushChannel.send("quarkusMessage");
     }
 
