@@ -1,7 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
-                xmlns:f="jakarta.faces.core"
                 xmlns:p="primefaces"
                 template="/template/template.xhtml">
 
@@ -26,10 +25,11 @@
                 </p:messages>
 
                 <h5 class="mt-0">Severities</h5>
-                <p:commandButton value="Info" action="#{messagesView.info}" styleClass="mr-2" />
-                <p:commandButton value="Warn" action="#{messagesView.warn}" styleClass="mr-2 ui-button-warning" />
-                <p:commandButton value="Error" action="#{messagesView.error}" styleClass="ui-button-danger" />
-            </h:form>            
+                <p:commandButton value="Info" action="#{messagesView.info}" styleClass="mr-2"/>
+                <p:commandButton value="Warn" action="#{messagesView.warn}" styleClass="mr-2 ui-button-warning"/>
+                <p:commandButton value="Error" action="#{messagesView.error}" styleClass="mr-2 ui-button-danger"/>
+                <p:commandButton value="Fatal" action="#{messagesView.fatal}" styleClass="mr-2 ui-button-help"/>
+            </h:form>
         </div>
 
         <div class="card">
@@ -53,7 +53,7 @@
                     <p:message for="tt" display="tooltip"/>
                 </h:panelGrid>
 
-                <p:commandButton id="submitButton" value="Submit" update="grid" styleClass="mt-3" />
+                <p:commandButton id="submitButton" value="Submit" update="grid" styleClass="mt-3"/>
             </h:form>
         </div>
     </ui:define>

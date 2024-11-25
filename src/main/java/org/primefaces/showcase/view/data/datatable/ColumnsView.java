@@ -125,7 +125,7 @@ public class ColumnsView implements Serializable {
         createDynamicColumns();
     }
 
-    @RegisterForReflection
+    @RegisterForReflection(serialization = true)
     public static class ColumnModel implements Serializable {
 
         private final String header;
