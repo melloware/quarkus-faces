@@ -2,8 +2,11 @@ package org.primefaces.showcase.util;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.*;
-
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -13,21 +16,33 @@ import jakarta.faces.event.PhaseListener;
 
 /**
  * Enables messages to be rendered on different pages from which they were set.
- * <p></p>
+ * <p>
  * After each phase where messages may be added, this moves the messages
  * from the page-scoped FacesContext to the session-scoped session map.
- * <p></p>
+ * </p>
+ * <p>
  * Before messages are rendered, this moves the messages from the
  * session-scoped session map back to the page-scoped FacesContext.
- * <p></p>
+ * </p>
+ * <p>
  * Only global messages, not associated with a particular component, are
  * moved. Component messages cannot be rendered on pages other than the one on
  * which they were added.
- * <p></p>
+ * </p>
+ * <p>
  * To enable multi-page messages support, add a <code>lifecycle</code> block to your
  * faces-config.xml file. That block should contain a single
  * <code>phase-listener</code> block containing the fully-qualified classname
  * of this file.
+ * </p>
+ * <p>
+ * Example configuration in faces-config.xml:
+ * <pre>
+ * &lt;lifecycle&gt;
+ *     &lt;phase-listener&gt;org.primefaces.showcase.util.MultiPageMessagesSupport&lt;/phase-listener&gt;
+ * &lt;/lifecycle&gt;
+ * </pre>
+ * </p>
  *
  * @author Jesse Wilson jesse[AT]odel.on.ca
  * @author Lincoln Baxter III lincoln[AT]ocpsoft.com
@@ -38,10 +53,20 @@ public class MultiPageMessagesSupport implements PhaseListener {
     private static final long serialVersionUID = 1250469273857785274L;
     private static final String TOKEN = "MULTI_PAGE_MESSAGES_SUPPORT";
 
+    /**
+     * Returns the phase id indicating this listener is interested in all phases.
+     * @return PhaseId.ANY_PHASE
+     */
     public PhaseId getPhaseId() {
         return PhaseId.ANY_PHASE;
     }
 
+    /**
+     * Before each phase, saves messages to the session. During RENDER_RESPONSE phase,
+     * restores messages if the response is not complete.
+     * 
+     * @param event The phase event
+     */
     public void beforePhase(final PhaseEvent event) {
         FacesContext facesContext = event.getFacesContext();
         this.saveMessages(facesContext, facesContext.getExternalContext().getSessionMap());
@@ -58,8 +83,10 @@ public class MultiPageMessagesSupport implements PhaseListener {
         }
     }
 
-    /*
-     * Save messages into the session after every phase.
+    /**
+     * After each phase except RENDER_RESPONSE, saves messages to the session.
+     * 
+     * @param event The phase event
      */
     public void afterPhase(final PhaseEvent event) {
         if (!PhaseId.RENDER_RESPONSE.equals(event.getPhaseId())) {
@@ -68,6 +95,13 @@ public class MultiPageMessagesSupport implements PhaseListener {
         }
     }
 
+    /**
+     * Saves FacesMessages from the FacesContext to the provided destination map.
+     * Messages are wrapped in FacesMessageWrapper objects and stored in a LinkedHashSet.
+     * 
+     * @param facesContext The FacesContext containing messages to save
+     * @param destination The map where messages will be stored
+     */
     @SuppressWarnings("unchecked")
     public void saveMessages(final FacesContext facesContext, final Map<String, Object> destination) {
         if (facesContext != null) {
@@ -87,6 +121,13 @@ public class MultiPageMessagesSupport implements PhaseListener {
         }
     }
 
+    /**
+     * Restores messages from the source map to the FacesContext.
+     * Only messages that don't already exist in the FacesContext are restored.
+     * 
+     * @param facesContext The FacesContext to restore messages to
+     * @param source The map containing saved messages
+     */
     @SuppressWarnings("unchecked")
     public void restoreMessages(final FacesContext facesContext, final Map<String, Object> source) {
         if (facesContext != null) {
@@ -114,6 +155,10 @@ public class MultiPageMessagesSupport implements PhaseListener {
         }
     }
 
+    /**
+     * A wrapper class for FacesMessage that implements equals/hashCode for proper Set behavior
+     * and implements Serializable for session storage.
+     */
     private record FacesMessageWrapper(FacesMessage wrapped) implements Serializable {
 
         @Serial
