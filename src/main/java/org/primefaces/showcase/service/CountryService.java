@@ -23,14 +23,16 @@
  */
 package org.primefaces.showcase.service;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.primefaces.showcase.domain.Country;
 
@@ -72,6 +74,7 @@ public class CountryService {
         locales.add(CountryService.toCountry(Locale.FRANCE));
         locales.add(CountryService.toCountry(Locale.GERMANY));
         locales.add(CountryService.toCountry(new Locale("de", "AT")));
+        locales.add(CountryService.toCountry(new Locale("de", "CH")));
         locales.add(CountryService.toCountry(Locale.ITALY));
         locales.add(CountryService.toCountry(Locale.KOREA));
         locales.add(CountryService.toCountry(new Locale("es", "ES")));
@@ -82,6 +85,8 @@ public class CountryService {
         locales.add(CountryService.toCountry(new Locale("ar", "SA"), true));
         locales.add(CountryService.toCountry(new Locale("ar", "TN"), true));
         locales.add(CountryService.toCountry(new Locale("bg", "BG")));
+        locales.add(CountryService.toCountry(new Locale("bn", "BD")));
+        locales.add(CountryService.toCountry(new Locale("bs", "BA")));
         locales.add(CountryService.toCountry(new Locale("cs", "CZ")));
         locales.add(CountryService.toCountry(new Locale("el", "GR")));
         locales.add(CountryService.toCountry(new Locale("fa", "IR"), true));
@@ -107,11 +112,13 @@ public class CountryService {
         locales.add(CountryService.toCountry(new Locale("ru", "RU")));
         locales.add(CountryService.toCountry(new Locale("sk", "SK")));
         locales.add(CountryService.toCountry(new Locale("sl", "SI")));
+        locales.add(CountryService.toCountry(new Locale("sr", "BA")));
         locales.add(CountryService.toCountry(new Locale("sr", "RS")));
         locales.add(CountryService.toCountry(new Locale("sv", "SE")));
         locales.add(CountryService.toCountry(new Locale("th", "TH")));
         locales.add(CountryService.toCountry(new Locale("tr", "TR")));
         locales.add(CountryService.toCountry(new Locale("uk", "UA")));
+        locales.add(CountryService.toCountry(new Locale("uz", "UZ")));
         locales.add(CountryService.toCountry(new Locale("vi", "VN")));
         locales.add(CountryService.toCountry(Locale.SIMPLIFIED_CHINESE));
         locales.add(CountryService.toCountry(Locale.TRADITIONAL_CHINESE));

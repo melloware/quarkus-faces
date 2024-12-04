@@ -1,14 +1,8 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="jakarta.faces.facelets"
-                xmlns:h="jakarta.faces.html"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
                 xmlns:f="jakarta.faces.core"
-                xmlns:p="primefaces"
-                template="/template/template.xhtml">
+                xmlns:p="primefaces" template="/template/template.xhtml">
 
     <ui:define name="head">
-        <h:outputScript name="locales/locale-de.js" library="primefaces"/>
-        <h:outputScript name="locales/locale-es.js" library="primefaces"/>
-
         <script>
             //<![CDATA[
             function dateTemplateFunc(date) {
@@ -31,6 +25,9 @@
     <ui:param name="widgetLink" value="DatePicker-1"/>
 
     <ui:define name="implementation">
+        <h:outputScript name="locales/locale-de.js" library="primefaces" target="head"/>
+        <h:outputScript name="locales/locale-es.js" library="primefaces" target="head"/>
+
         <h:form id="form">
             <div class="card">
 
@@ -55,8 +52,7 @@
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="multiselect" value="Multiple Selection"/>
-                        <p:datePicker id="multiselect" selectionMode="multiple"
-                                      value="#{calendarJava8View.multi}"
+                        <p:datePicker id="multiselect" selectionMode="multiple" value="#{calendarJava8View.multi}"
                                       readonlyInput="true"/>
                     </div>
 
@@ -68,10 +64,8 @@
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="navigator" value="Navigator"/>
-                        <p:datePicker id="navigator" value="#{calendarJava8View.date2}"
-                                      monthNavigator="true"
-                                      yearNavigator="true"
-                                      showWeek="true" showIcon="true" showOnFocus="false"/>
+                        <p:datePicker id="navigator" value="#{calendarJava8View.date2}" monthNavigator="true"
+                                      yearNavigator="true" showWeek="true" showLongMonthNames="true"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
@@ -80,16 +74,17 @@
                     </div>
 
                     <div class="field col-12 md:col-4">
-                        <p:outputLabel for="month" value="Month Picker"/>
-                        <p:datePicker id="month" view="month" value="#{calendarJava8View.date3}"
-                                      pattern="MM/yyyy"
-                                      yearNavigator="true" yearRange="2000:2030"/>
+                        <p:outputLabel for="month" value="Month Picker (Long Month Names)"/>
+                        <p:datePicker id="month" view="month" value="#{calendarJava8View.date3}" pattern="MM/yyyy"
+                                      yearNavigator="true" yearRange="2000:2030" showLongMonthNames="true"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
-                        <p:outputLabel for="yearMonth" value="Month Picker (java.time.YearMonth)"/>
+                        <p:outputLabel for="yearMonth"
+                                       value="Month Picker (java.time.YearMonth with Short Month Names)"/>
                         <p:datePicker id="yearMonth" view="month" value="#{calendarJava8View.yearMonth}"
-                                      pattern="MM/yyyy" yearNavigator="true" yearRange="2000:2030"/>
+                                      pattern="MM/yyyy" yearNavigator="true"
+                                      yearRange="2000:2030"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
@@ -126,21 +121,21 @@
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="event" value="Select Event"/>
                         <p:datePicker id="event" value="#{calendarJava8View.date8}">
-                            <p:ajax event="dateSelect" listener="#{calendarJava8View.onDateSelect}"
-                                    update="msgs"/>
+                            <p:ajax event="dateSelect" listener="#{calendarJava8View.onDateSelect}" update="msgs"/>
                         </p:datePicker>
                     </div>
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="spanish" value="Spanish"/>
-                        <p:datePicker id="spanish" value="#{calendarJava8View.date9}" locale="es"
-                                      monthNavigator="true" pattern="yyyy-MMM-dd"/>
+                        <p:datePicker id="spanish" value="#{calendarJava8View.date9}" locale="es" monthNavigator="true"
+                                      showLongMonthNames="true" pattern="yyyy-MMM-dd"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="german" value="German"/>
-                        <p:datePicker id="german" widgetVar="german" value="#{calendarJava8View.dateDe}"
-                                      locale="de" monthNavigator="true" pattern="dd.MM.yyyy"/>
+                        <p:datePicker id="german" widgetVar="german" value="#{calendarJava8View.dateDe}" locale="de"
+                                      monthNavigator="true" showLongMonthNames="true"
+                                      pattern="dd.MM.yyyy"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
@@ -152,8 +147,7 @@
                         <p:outputLabel for="minmax" value="Min-Max"/>
                         <p:datePicker id="minmax" value="#{calendarJava8View.date11}"
                                       mindate="#{calendarJava8View.minDate}"
-                                      maxdate="#{calendarJava8View.maxDate}"
-                                      readonlyInput="true"/>
+                                      maxdate="#{calendarJava8View.maxDate}" readonlyInput="true"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
@@ -180,8 +174,7 @@
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="time1" value="Time (with Select Event)"/>
                         <p:datePicker id="time1" value="#{calendarJava8View.dateTime1}" showButtonBar="true">
-                            <p:ajax event="dateSelect" listener="#{calendarJava8View.onDateTimeSelect}"
-                                    update="msgs"/>
+                            <p:ajax event="dateSelect" listener="#{calendarJava8View.onDateTimeSelect}" update="msgs"/>
                         </p:datePicker>
                     </div>
 
@@ -189,36 +182,38 @@
                         <p:outputLabel for="time3" value="Time (Min-Max)"/>
                         <p:datePicker id="time3" value="#{calendarJava8View.dateTime3}"
                                       mindate="#{calendarJava8View.minDateTime}"
-                                      maxdate="#{calendarJava8View.maxDateTime}"
-                                      showButtonBar="true"
-                        />
+                                      maxdate="#{calendarJava8View.maxDateTime}" showButtonBar="true"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="time4" value="Time (Min-Max; preset value)"/>
                         <p:datePicker id="time4" value="#{calendarJava8View.dateTime4}"
                                       mindate="#{calendarJava8View.minDateTime}"
-                                      maxdate="#{calendarJava8View.maxDateTime}"
-                        />
+                                      maxdate="#{calendarJava8View.maxDateTime}"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="time5" value="Time (with seconds)"/>
-                        <p:datePicker id="time5" value="#{calendarJava8View.dateTime5}"
-                                      showSeconds="true"/>
+                        <p:datePicker id="time5" value="#{calendarJava8View.dateTime5}" showSeconds="true"
+                                      showButtonBar="true" timeZone="UTC"/>
+                    </div>
+
+                    <div class="field col-12 md:col-4">
+                        <p:outputLabel for="timeDefaults" value="Time (with defaults)"/>
+                        <p:datePicker id="timeDefaults" value="#{calendarJava8View.dateTime5}" showSeconds="true"
+                                      showMilliseconds="true" defaultHour="12" defaultMinute="30" defaultSecond="5"
+                                      defaultMillisecond="25" timeZone="UTC"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="timeDe" value="Time (German)"/>
-                        <p:datePicker id="timeDe" value="#{calendarJava8View.dateTimeDe}"
-                                      locale="de" pattern="dd.MM.yyyy"
-                        />
+                        <p:datePicker id="timeDe" value="#{calendarJava8View.dateTimeDe}" locale="de"
+                                      pattern="dd.MM.yyyy"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="time2" value="Time (Timezone GMT+8)"/>
-                        <p:datePicker id="time2" value="#{calendarJava8View.dateTime2}"
-                                      timeZone="GMT+8"/>
+                        <p:datePicker id="time2" value="#{calendarJava8View.dateTime2}" timeZone="GMT+8"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
@@ -238,8 +233,8 @@
                 <div class="ui-fluid grid formgrid">
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="timeonly" value="Time Only (HH:mm)"/>
-                        <p:datePicker id="timeonly" value="#{calendarJava8View.time1}"
-                                      pattern="HH:mm" showButtonBar="true"/>
+                        <p:datePicker id="timeonly" value="#{calendarJava8View.time1}" pattern="HH:mm"
+                                      showButtonBar="true" timeZone="UTC"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
@@ -247,8 +242,7 @@
                         <p:outputPanel>
                             <p:datePicker id="timeonlyMinMax" value="#{calendarJava8View.time3}"
                                           mindate="#{calendarJava8View.minTime}"
-                                          maxdate="#{calendarJava8View.maxTime}"
-                            />
+                                          maxdate="#{calendarJava8View.maxTime}"/>
                             (between <h:outputText value="#{calendarJava8View.minTime}"></h:outputText> and
                             <h:outputText value="#{calendarJava8View.maxTime}"></h:outputText>)
                         </p:outputPanel>
@@ -259,8 +253,7 @@
                         <p:outputPanel>
                             <p:datePicker id="timeonlyMinMax2" value="#{calendarJava8View.time4}"
                                           mindate="#{calendarJava8View.minTime}"
-                                          maxdate="#{calendarJava8View.maxTime}"
-                            />
+                                          maxdate="#{calendarJava8View.maxTime}"/>
                             (between <h:outputText value="#{calendarJava8View.minTime}"></h:outputText> and
                             <h:outputText value="#{calendarJava8View.maxTime}"></h:outputText>)
                         </p:outputPanel>
@@ -268,16 +261,14 @@
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="timeonlySeconds" value="Time Only (HH:mm:ss)"/>
-                        <p:datePicker id="timeonlySeconds" value="#{calendarJava8View.time5}"
-                                      showSeconds="true" pattern="HH:mm:ss"
-                        />
+                        <p:datePicker id="timeonlySeconds" value="#{calendarJava8View.time5}" showSeconds="true"
+                                      pattern="HH:mm:ss"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="timeonly12" value="Time Only (AM/PM)"/>
-                        <p:datePicker id="timeonly12" value="#{calendarJava8View.time6}"
-                                      hourFormat="12" pattern="HH:mm"
-                        />
+                        <p:datePicker id="timeonly12" value="#{calendarJava8View.time6}" hourFormat="12"
+                                      pattern="HH:mm"/>
                     </div>
 
                     <div class="field col-12 md:col-4">
@@ -287,10 +278,9 @@
 
                     <div class="field col-12 md:col-4">
                         <p:outputLabel for="timeonlyMilliseconds" value="Time Only (HH:mm:ss.SSS a)"/>
-                        <p:datePicker id="timeonlyMilliseconds" value="#{calendarJava8View.time9}"
-                                      showSeconds="true" showMilliseconds="true" pattern="HH:mm:ss.SSS a"
-                                      hourFormat="12"
-                                      showButtonBar="true"/>
+                        <p:datePicker id="timeonlyMilliseconds" value="#{calendarJava8View.time9}" showSeconds="true"
+                                      showMilliseconds="true"
+                                      pattern="HH:mm:ss.SSS a" hourFormat="12" showButtonBar="true"/>
                     </div>
                 </div>
             </div>
