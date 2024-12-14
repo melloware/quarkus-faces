@@ -274,7 +274,7 @@
                             </p:selectOneMenu>
                         </f:facet>
 
-                        <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status.toString()}</span>
+                        <span class="customer-badge status-#{customer.status.statusName}">#{customer.status.statusName}</span>
                     </p:column>
 
                     <p:column field="activity" headerText="Activity" sortBy="#{customer.activity}" filterMatchMode="gt"
