@@ -74,6 +74,10 @@
         <param-name>primefaces.MULTI_VIEW_STATE_STORE</param-name>
         <param-value>client-window</param-value>
     </context-param>
+    <context-param>
+        <param-name>primefaces.EXCEPTION_TYPES_TO_IGNORE_IN_LOGGING</param-name>
+        <param-value>java.lang.IllegalArgumentException</param-value> <!-- Ignore ContentTypeList does not contain a supported content type: text/plain -->
+    </context-param>
 
     <!-- Context parameters - MyFaces -->
     <context-param>
