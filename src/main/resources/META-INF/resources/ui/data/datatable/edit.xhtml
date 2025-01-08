@@ -1,8 +1,8 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="jakarta.faces.facelets"
+<ui:composition xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
                 xmlns:f="jakarta.faces.core"
                 xmlns:p="primefaces"
+                xmlns="http://www.w3.org/1999/xhtml"
                 template="/template/template.xhtml">
 
     <ui:define name="title">
@@ -35,7 +35,8 @@
                                 <h:outputText value="#{product.code}"/>
                             </f:facet>
                             <f:facet name="input">
-                                <p:inputText id="modelInput" value="#{product.code}" style="width:100%"/>
+                                <p:inputText id="modelInput" value="#{product.code}" style="width:100%"
+                                             required="true"/>
                             </f:facet>
                         </p:cellEditor>
                     </p:column>
@@ -53,7 +54,9 @@
 
                     <p:column headerText="Status">
                         <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{product.inventoryStatus}"/></f:facet>
+                            <f:facet name="output">
+                                <h:outputText value="#{product.inventoryStatus}"/>
+                            </f:facet>
                             <f:facet name="input">
                                 <p:selectOneMenu value="#{product.inventoryStatus}" style="width:100%">
                                     <f:selectItems value="#{dtEditView.inventoryStatusList}" var="status"
