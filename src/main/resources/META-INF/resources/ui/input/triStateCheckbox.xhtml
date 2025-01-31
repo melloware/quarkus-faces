@@ -23,7 +23,7 @@
                 <h5 class="mt-0">Basic</h5>
                 <p:triStateCheckbox value="#{triStateCheckboxView.value1}"/>
 
-                <h5>Remote AJAX</h5>
+                <h5>Remote</h5>
                 <p:triStateCheckbox id="ajaxTriState" value="#{triStateCheckboxView.value2}">
                     <p:ajax event="change" update="growl" listener="#{triStateCheckboxView.addMessage}"/>
                 </p:triStateCheckbox>
