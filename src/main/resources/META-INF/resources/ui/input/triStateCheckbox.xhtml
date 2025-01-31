@@ -1,7 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
-                xmlns:f="jakarta.faces.core"
                 xmlns:p="primefaces"
                 template="/template/template.xhtml">
 
@@ -24,13 +23,14 @@
                 <h5 class="mt-0">Basic</h5>
                 <p:triStateCheckbox value="#{triStateCheckboxView.value1}"/>
 
-                <h5>Remote</h5>
+                <h5>Remote AJAX</h5>
                 <p:triStateCheckbox id="ajaxTriState" value="#{triStateCheckboxView.value2}">
                     <p:ajax event="change" update="growl" listener="#{triStateCheckboxView.addMessage}"/>
                 </p:triStateCheckbox>
 
                 <h5>Custom Icons and Label</h5>
-                <p:triStateCheckbox value="#{triStateCheckboxView.value3}" stateTwoIcon="pi pi-plus" stateThreeIcon="pi pi-minus" itemLabel="Custom Icons"/>
+                <p:triStateCheckbox value="#{triStateCheckboxView.value3}" stateTwoIcon="pi pi-plus"
+                                    stateThreeIcon="pi pi-minus" itemLabel="Custom Icons"/>
             </h:form>
         </div>
     </ui:define>
