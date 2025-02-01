@@ -1,6 +1,6 @@
 ## Stage 1: Build with Maven builder image with native capabilities
 # Use the Quarkus Mandrel builder image based on JDK 21, which includes native build tools.
-FROM quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-21.0.5 AS build
+FROM quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-21 AS build
 
 # Copy the Maven wrapper script and directory into the container, setting correct ownership to the 'quarkus' user.
 COPY --chown=quarkus:quarkus --chmod=0755 mvnw /code/mvnw
