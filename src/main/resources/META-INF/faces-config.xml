@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <faces-config
-    xmlns="https://jakarta.ee/xml/ns/jakartaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd"
-    version="4.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://jakarta.ee/xml/ns/jakartaee"
+        xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd"
+        version="4.0"
 >
 
     <name>showcase</name>
@@ -19,21 +19,23 @@
         <navigation-handler>org.primefaces.application.DialogNavigationHandler</navigation-handler>
         <view-handler>org.primefaces.application.DialogViewHandler</view-handler>
         <system-event-listener>
-            <system-event-listener-class>org.primefaces.extensions.application.PrimeFacesScriptProcessor</system-event-listener-class>
+            <system-event-listener-class>org.primefaces.extensions.application.PrimeFacesScriptProcessor
+            </system-event-listener-class>
             <system-event-class>jakarta.faces.event.PostAddToViewEvent</system-event-class>
             <source-class>jakarta.faces.component.UIViewRoot</source-class>
         </system-event-listener>
         <system-event-listener>
-            <system-event-listener-class>org.primefaces.showcase.util.ShowcaseSystemEventListener</system-event-listener-class>
+            <system-event-listener-class>org.primefaces.showcase.util.ShowcaseSystemEventListener
+            </system-event-listener-class>
             <system-event-class>jakarta.faces.event.PostConstructApplicationEvent</system-event-class>
             <source-class>jakarta.faces.application.Application</source-class>
         </system-event-listener>
         <locale-config>
             <default-locale>en</default-locale>
         </locale-config>
+        <resource-handler>org.primefaces.extensions.application.ThemeAccentColorResourceHandler</resource-handler>
         <resource-handler>org.omnifaces.resourcehandler.CombinedResourceHandler</resource-handler>
         <resource-handler>org.omnifaces.resourcehandler.CDNResourceHandler</resource-handler>
-        <resource-handler>org.primefaces.extensions.application.ThemeAccentColorResourceHandler</resource-handler>
         <el-resolver>org.primefaces.application.exceptionhandler.PrimeExceptionHandlerELResolver</el-resolver>
         <resource-bundle>
             <base-name>build</base-name>
@@ -48,7 +50,8 @@
     </lifecycle>
 
     <factory>
-        <exception-handler-factory>org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory</exception-handler-factory>
+        <exception-handler-factory>org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory
+        </exception-handler-factory>
         <lifecycle-factory>org.primefaces.clientwindow.PrimeClientWindowLifecycleFactory</lifecycle-factory>
     </factory>
 

@@ -26,19 +26,23 @@ package org.primefaces.showcase.view.app;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Locale;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.primefaces.context.PrimeApplicationContext;
 import org.primefaces.showcase.domain.Country;
 
 @Named
 @SessionScoped
+@RegisterForReflection
 public class App implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
-    private String theme = "saga";
+    private String theme = "saga-blue";
     private boolean darkMode = false;
     private String inputStyle = "outlined";
     private Country locale = new Country(0, Locale.US);
