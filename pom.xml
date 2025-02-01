@@ -69,11 +69,6 @@
             <classifier>jakarta</classifier>
         </dependency>
         <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces-themes</artifactId>
-            <version>15.0.0-RC2</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.myfaces.core.extensions.quarkus</groupId>
             <artifactId>myfaces-quarkus</artifactId>
             <version>${myfaces.version}</version>
@@ -92,6 +87,12 @@
             <groupId>io.quarkiverse.omnifaces</groupId>
             <artifactId>quarkus-omnifaces</artifactId>
             <version>${omnifaces-quarkus.version}</version>
+        </dependency>
+        <!-- Extra Themes -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces-themes</artifactId>
+            <version>15.0.0-RC2</version>
         </dependency>
         <!-- File Upload -->
         <dependency>
