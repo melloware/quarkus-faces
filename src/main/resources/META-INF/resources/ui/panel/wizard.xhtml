@@ -1,7 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
-                xmlns:f="jakarta.faces.core"
                 xmlns:p="primefaces"
                 template="/template/template.xhtml">
 
@@ -57,6 +56,7 @@
 
                 <p:wizard flowListener="#{userWizard.onFlowProcess}">
                     <p:tab id="personal" title="Personal">
+                        <p:focus context="@next"/>
                         <p:panel header="Personal Details">
                             <p:messages/>
                             <h:panelGrid columns="2" columnClasses="label, value">
@@ -76,6 +76,7 @@
                     </p:tab>
 
                     <p:tab id="address" title="Address">
+                        <p:focus context="@next"/>
                         <p:panel header="Address Details">
                             <p:messages/>
                             <h:panelGrid columns="2" columnClasses="label, value">
@@ -95,6 +96,7 @@
                     </p:tab>
 
                     <p:tab id="contact" title="Contact">
+                        <p:focus context="@next"/>
                         <p:panel header="Contact Information">
                             <p:messages/>
                             <h:panelGrid columns="2" columnClasses="label, value">
@@ -111,6 +113,7 @@
                     </p:tab>
 
                     <p:tab id="confirm" title="Confirmation">
+                        <p:focus context="@next"/>
                         <p:panel header="Confirmation">
                             <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
                                 <h:panelGrid columns="2" columnClasses="label, value">
