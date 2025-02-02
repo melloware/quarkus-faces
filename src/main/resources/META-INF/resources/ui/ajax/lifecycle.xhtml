@@ -18,19 +18,25 @@
     <ui:define name="implementation">
         <div class="card">
             <h:form>
-                <p:growl widgetVar="msgs" />
+                <p:growl widgetVar="msgs"/>
 
                 <h:panelGrid columns="2" cellpadding="7" styleClass="mb-3">
                     <h:outputLabel for="name" value="Name:" style="font-weight:bold"/>
                     <p:inputText id="name" value="#{lifecycleView.text}" widgetVar="wgtName">
-                        <f:attribute name="widgetPostConstruct" value="PF('msgs').renderMessage({severity: 'info', summary: 'Widget Created'})"/>
-                        <f:attribute name="widgetPostRefresh" value="PF('msgs').renderMessage({severity: 'info', summary: 'Widget Refreshed'})"/>
-                        <f:attribute name="widgetPreDestroy" value="PF('msgs').renderMessage({severity: 'info', summary: 'Widget Destroyed'})"/>
+                        <f:attribute name="widgetPreConstruct"
+                                     value="PF('msgs').renderMessage({severity: 'info', summary: cfg.id + ' Widget Initialized'})"/>
+                        <f:attribute name="widgetPostConstruct"
+                                     value="PF('msgs').renderMessage({severity: 'info', summary: widget.id + ' Widget Created'})"/>
+                        <f:attribute name="widgetPostRefresh"
+                                     value="PF('msgs').renderMessage({severity: 'info', summary: widget.id + ' Widget Refreshed'})"/>
+                        <f:attribute name="widgetPreDestroy"
+                                     value="PF('msgs').renderMessage({severity: 'info', summary: widget.id + ' Widget Destroyed'})"/>
                     </p:inputText>
                 </h:panelGrid>
 
-                <p:commandButton value="Submit" update="@form" icon="pi pi-check" styleClass="mr-2" />
-                <p:commandButton value="Destroy" icon="pi pi-times" onclick="PF('wgtName').destroy(); return false" styleClass="ui-button-danger" />
+                <p:commandButton value="Submit" update="@form" icon="pi pi-check" styleClass="mr-2"/>
+                <p:commandButton value="Destroy" icon="pi pi-times" onclick="PF('wgtName').destroy(); return false"
+                                 styleClass="ui-button-danger"/>
             </h:form>
         </div>
     </ui:define>

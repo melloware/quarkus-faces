@@ -10,10 +10,20 @@
     </ui:define>
 
     <ui:define name="description">
-        WebSocket allows server side push events using OmniFaces <code>o:socket</code>. Faces
+        WebSocket allows server side push events using <a
+            href="https://showcase.omnifaces.org/push/socket"
+            rel="noopener" target="_blank">OmniFaces o:socket</a>. Faces
         <code>f:websocket</code> is not currently working
         due to an open MyFaces defect: <a href="https://issues.apache.org/jira/projects/MYFACES/issues/MYFACES-4685"
                                           rel="noopener" target="_blank">MYFACES-4685</a>
+        <br/>You must enable the web socket endpoint by below boolean context parameter in <code>web.xml</code>:
+
+        <pre class="language-xml"><code>
+            &lt;context-param&gt;
+               &lt;param-name>org.omnifaces.SOCKET_ENDPOINT_ENABLED&lt;/param-name&gt;
+               &lt;param-value>true&lt;/param-value&gt;
+            &lt;/context-param&gt;
+            </code></pre>
     </ui:define>
 
     <ui:define name="implementation">
