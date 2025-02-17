@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.melloware</groupId>
     <artifactId>quarkus-faces</artifactId>
-    <version>15.0.0-RC1</version>
+    <version>15.0.0</version>
     <packaging>jar</packaging>
     <name>quarkus-faces</name>
     <description>Quarkus version of the PrimeFaces Showcase with many optimizations</description>
@@ -15,7 +15,7 @@
         <lombok.version>1.18.36</lombok.version>
         <myfaces.version>4.1.0</myfaces.version>
         <omnifaces-quarkus.version>4.6.2</omnifaces-quarkus.version>
-        <primefaces-quarkus.version>3.15.0.1-RC2</primefaces-quarkus.version>
+        <primefaces-quarkus.version>3.15.0</primefaces-quarkus.version>
         <quarkus.version>3.18.3</quarkus.version>
     </properties>
     <dependencyManagement>
@@ -63,12 +63,6 @@
         </dependency>
         <!-- Faces -->
         <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>15.0.0-SNAPSHOT</version>
-            <classifier>jakarta</classifier>
-        </dependency>
-        <dependency>
             <groupId>org.apache.myfaces.core.extensions.quarkus</groupId>
             <artifactId>myfaces-quarkus</artifactId>
             <version>${myfaces.version}</version>
@@ -92,7 +86,7 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces-themes</artifactId>
-            <version>15.0.0-RC2</version>
+            <version>15.0.0</version>
         </dependency>
         <!-- File Upload -->
         <dependency>
@@ -117,6 +111,7 @@
             <artifactId>json</artifactId>
             <version>20250107</version>
         </dependency>
+		<!-- Provided Utilities-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
