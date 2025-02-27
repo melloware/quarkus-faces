@@ -30,6 +30,7 @@ import jakarta.inject.Named;
 import java.io.IOException;
 import java.io.Serial;
 import java.io.Serializable;
+import java.net.URI;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
@@ -144,7 +145,7 @@ public class CustomizedDocumentsView implements Serializable {
         Document pdf = (Document) document;
         pdf.open();
         pdf.setPageSize(PageSize.A4);
-        URL url = new URL("https://www.primefaces.org/wp-content/uploads/2016/10/prime_logo_new.png");
+        URL url = URI.create("https://www.primefaces.org/wp-content/uploads/2016/10/prime_logo_new.png").toURL();
         pdf.add(Image.getInstance(Objects.requireNonNull(url)));
     }
 }

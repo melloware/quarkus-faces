@@ -21,6 +21,7 @@
  */
 package org.primefaces.showcase.util;
 
+import jakarta.faces.model.SelectItem;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -28,13 +29,18 @@ import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import jakarta.faces.model.SelectItem;
-
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.extensions.model.monacoeditor.*;
+import org.primefaces.extensions.model.monacoeditor.DiffEditorOptions;
+import org.primefaces.extensions.model.monacoeditor.ECursorStyle;
+import org.primefaces.extensions.model.monacoeditor.ELanguage;
+import org.primefaces.extensions.model.monacoeditor.ERenderWhitespace;
+import org.primefaces.extensions.model.monacoeditor.ETheme;
+import org.primefaces.extensions.model.monacoeditor.EditorOptions;
+import org.primefaces.extensions.model.monacoeditor.EditorRulerOption;
+import org.primefaces.extensions.model.monacoeditor.EditorStandaloneTheme;
+import org.primefaces.extensions.model.monacoeditor.EditorTokenThemeRule;
 
 @RegisterForReflection
 public class MonacoEditorSettings {
@@ -43,15 +49,15 @@ public class MonacoEditorSettings {
      */
     public static EditorStandaloneTheme createDemoCustomTheme() {
         return new EditorStandaloneTheme() //
-                    .setBase(ETheme.VS) //
-                    .setInherit(true) //
-                    .setRules(Arrays.asList( //
-                                new EditorTokenThemeRule().setToken("comment").setForeground("ffa500")
-                                            .setFontStyle("italic underline"), //
-                                new EditorTokenThemeRule().setToken("comment.js").setForeground("008800")
-                                            .setFontStyle("bold"), //
-                                new EditorTokenThemeRule().setToken("comment.css").setForeground("0000ff") //
-                    ));
+                .setBase(ETheme.VS) //
+                .setInherit(true) //
+                .setRules(Arrays.asList( //
+                        new EditorTokenThemeRule().setToken("comment").setForeground("ffa500")
+                                .setFontStyle("italic underline"), //
+                        new EditorTokenThemeRule().setToken("comment.js").setForeground("008800")
+                                .setFontStyle("bold"), //
+                        new EditorTokenThemeRule().setToken("comment.css").setForeground("0000ff") //
+                ));
     }
 
     /**
@@ -59,11 +65,11 @@ public class MonacoEditorSettings {
      */
     public static List<Locale> getBuiltInLocales() {
         return Arrays.asList( //
-                    new Locale("cs"), new Locale("de"), new Locale("en"), new Locale("es"), new Locale("fr"),
-                    new Locale("it"), new Locale("ja"),
-                    new Locale("ko"),
-                    new Locale("pl"), new Locale("pt", "BR"), new Locale("ru"), new Locale("tr"),
-                    new Locale("zh", "CN"), new Locale("zh", "TW"));
+                Locale.of("cs"), Locale.of("de"), Locale.of("en"), Locale.of("es"), Locale.of("fr"),
+                Locale.of("it"), Locale.of("ja"),
+                Locale.of("ko"),
+                Locale.of("pl"), Locale.of("pt", "BR"), Locale.of("ru"), Locale.of("tr"),
+                Locale.of("zh", "CN"), Locale.of("zh", "TW"));
     }
 
     public static EditorOptions createEditorOptionsExtender() {
@@ -75,8 +81,8 @@ public class MonacoEditorSettings {
         opts.setTabSize(2);
         opts.setUseTabStops(false);
         opts.setRulers(Arrays.asList( //
-                    new EditorRulerOption().setColumn(60).setColor("#ccc"), //
-                    new EditorRulerOption().setColumn(80).setColor("#c33") //
+                new EditorRulerOption().setColumn(60).setColor("#ccc"), //
+                new EditorRulerOption().setColumn(80).setColor("#c33") //
         ));
         opts.setRenderWhitespace(ERenderWhitespace.ALL);
         return opts;
@@ -91,8 +97,8 @@ public class MonacoEditorSettings {
         opts.setTabSize(2);
         opts.setUseTabStops(false);
         opts.setRulers(Arrays.asList( //
-                    new EditorRulerOption().setColumn(60).setColor("#ccc"), //
-                    new EditorRulerOption().setColumn(80).setColor("#c33") //
+                new EditorRulerOption().setColumn(60).setColor("#ccc"), //
+                new EditorRulerOption().setColumn(80).setColor("#c33") //
         ));
         opts.setRenderWhitespace(ERenderWhitespace.ALL);
         return opts;
@@ -104,8 +110,8 @@ public class MonacoEditorSettings {
         opts.setTheme(ETheme.VS);
         opts.setCursorStyle(ECursorStyle.BLOCK);
         opts.setRulers(Arrays.asList( //
-                    new EditorRulerOption().setColumn(60).setColor("#ccc"), //
-                    new EditorRulerOption().setColumn(80).setColor("#c33") //
+                new EditorRulerOption().setColumn(60).setColor("#ccc"), //
+                new EditorRulerOption().setColumn(80).setColor("#c33") //
         ));
         opts.setRenderWhitespace(ERenderWhitespace.ALL);
         return opts;
@@ -116,10 +122,10 @@ public class MonacoEditorSettings {
      */
     public static List<SelectItem> createEditorExamples() {
         return Arrays.asList( //
-                    new SelectItem("options", "Adjust editor options"), //
-                    new SelectItem("localstorage", "Editor overrides (Storage service)"), //
-                    new SelectItem("jsonschema", "JSON Schema"), //
-                    new SelectItem("jquery", "Type declarations (JQuery)") //
+                new SelectItem("options", "Adjust editor options"), //
+                new SelectItem("localstorage", "Editor overrides (Storage service)"), //
+                new SelectItem("jsonschema", "JSON Schema"), //
+                new SelectItem("jquery", "Type declarations (JQuery)") //
         );
     }
 
@@ -128,11 +134,11 @@ public class MonacoEditorSettings {
      */
     public static List<SelectItem> createEditorExamplesDiff() {
         return Arrays.asList( //
-                    new SelectItem("options", "Adjust editor options"), //
-                    new SelectItem("diffnavi", "Diff navigator"), //
-                    new SelectItem("localstorage", "Editor overrides (Storage service)"), //
-                    new SelectItem("jsonschema", "JSON Schema"), //
-                    new SelectItem("jquery", "Type declarations (JQuery)") //
+                new SelectItem("options", "Adjust editor options"), //
+                new SelectItem("diffnavi", "Diff navigator"), //
+                new SelectItem("localstorage", "Editor overrides (Storage service)"), //
+                new SelectItem("jsonschema", "JSON Schema"), //
+                new SelectItem("jquery", "Type declarations (JQuery)") //
         );
     }
 
@@ -148,18 +154,18 @@ public class MonacoEditorSettings {
             return original;
         }
         original = replaceRandomOccurence(original, 20, Pattern.compile("\\d"), //
-                    () -> String.valueOf((char) RandomUtils.nextInt(48, 58)) //
+                () -> String.valueOf((char) RandomUtils.nextInt(48, 58)) //
         );
 
         original = replaceRandomOccurence(original, 20, Pattern.compile(" "), //
-                    () -> StringUtils.repeat(" ", RandomUtils.nextInt(2, 5)) //
+                () -> StringUtils.repeat(" ", RandomUtils.nextInt(2, 5)) //
         );
         return original;
     }
 
     @SuppressWarnings("java:S2245")
     private static String replaceRandomOccurence(String value, int count, Pattern search,
-                final Supplier<String> replacement) {
+                                                 final Supplier<String> replacement) {
         for (int i = 1; i <= count; i += 1) {
             final int pos = (int) Math.floor(Math.random() * value.length());
             final Matcher matcher = search.matcher(value);
@@ -175,8 +181,8 @@ public class MonacoEditorSettings {
             final int end = matcher.end();
             final String repl = replacement.get();
             value = end >= value.length() //
-                        ? value.substring(0, start) + repl //
-                        : value.substring(0, start) + repl + value.substring(end);
+                    ? value.substring(0, start) + repl //
+                    : value.substring(0, start) + repl + value.substring(end);
         }
         return value;
     }
