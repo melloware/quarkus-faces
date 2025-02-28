@@ -14,10 +14,10 @@
 # docker run -i --rm -p 8000:8000  melloware/quarkus-faces
 #
 ###
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.5
 
 ######################### Set up environment for POI ##########################
-RUN microdnf update && microdnf install freetype fontconfig && microdnf clean all
+RUN microdnf update -y && microdnf install -y freetype fontconfig && microdnf clean all
 ######################### Set up environment for POI ##########################
 
 WORKDIR /work/
