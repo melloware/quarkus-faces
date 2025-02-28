@@ -27,7 +27,7 @@ RUN ./mvnw package -Dnative
 
 ## Stage 2: Create the final Docker image
 # Use a lightweight Quarkus micro image for running the application.
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.5
 
 ######################### Set up environment for POI #############################
 RUN microdnf update && microdnf install freetype fontconfig && microdnf clean all
