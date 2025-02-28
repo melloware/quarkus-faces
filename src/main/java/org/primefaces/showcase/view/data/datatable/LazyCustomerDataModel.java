@@ -23,15 +23,13 @@
  */
 package org.primefaces.showcase.view.data.datatable;
 
+import jakarta.faces.context.FacesContext;
 import java.beans.IntrospectionException;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-
-import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.collections4.ComparatorUtils;
 import org.primefaces.model.FilterMeta;
@@ -49,7 +47,7 @@ public class LazyCustomerDataModel extends LazyDataModel<Customer> {
 
     private static final long serialVersionUID = 1L;
 
-    private List<Customer> datasource;
+    private final List<Customer> datasource;
 
     public LazyCustomerDataModel(List<Customer> datasource) {
         this.datasource = datasource;
@@ -84,6 +82,7 @@ public class LazyCustomerDataModel extends LazyDataModel<Customer> {
         List<Customer> customers = datasource.stream()
                 .filter(o -> filter(FacesContext.getCurrentInstance(), filterBy.values(), o))
                 .collect(Collectors.toList());
+        setRowCount(customers.size());
 
         // sort
         if (!sortBy.isEmpty()) {
@@ -107,8 +106,7 @@ public class LazyCustomerDataModel extends LazyDataModel<Customer> {
             try {
                 Object columnValue = String.valueOf(ShowcaseUtil.getPropertyValueViaReflection(o, filter.getField()));
                 matching = constraint.isMatching(context, columnValue, filterValue, LocaleUtils.getCurrentLocale());
-            }
-            catch (ReflectiveOperationException | IntrospectionException e) {
+            } catch (ReflectiveOperationException | IntrospectionException e) {
                 matching = false;
             }
 
