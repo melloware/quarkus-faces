@@ -34,7 +34,7 @@
                     <f:selectItems value="#{checkboxView.cities}"/>
 
                     <f:facet name="footer">
-                        <p:divider styleClass="mt-0" />
+                        <p:divider styleClass="mt-0"/>
                         <h:outputText value="XX cities"
                                       styleClass="py-1 block font-bold"/>
                     </f:facet>
@@ -46,15 +46,15 @@
                                       multiple="true" emptyLabel="Please select..." updateLabel="true"
                                       style="min-width: 15rem" panelStyle="width: 30rem" scrollHeight="250"
                                       value="#{checkboxView.selectedCities2}">
-                        <p:ajax event="itemSelect" listener="#{checkboxView.onItemSelect}"/>
-                        <p:ajax event="itemUnselect" listener="#{checkboxView.onItemUnselect}"/>
-                        <f:selectItems value="#{checkboxView.cities}"/>
-                    </p:selectCheckboxMenu>
+                    <p:ajax event="itemSelect" listener="#{checkboxView.onItemSelect}"/>
+                    <p:ajax event="itemUnselect" listener="#{checkboxView.onItemUnselect}"/>
+                    <f:selectItems value="#{checkboxView.cities}"/>
+                </p:selectCheckboxMenu>
 
                 <h5>Grouped</h5>
                 <p:selectCheckboxMenu id="grouped"
                                       filter="true" filterMatchMode="startsWith"
-                                      multiple="true"
+                                      multiple="true" updateLabel="true"
                                       style="width: 15rem" panelStyle="width: 15rem" scrollHeight="250"
                                       value="#{checkboxView.selectedCountries}">
                     <f:selectItems value="#{checkboxView.countries}"/>
@@ -64,7 +64,7 @@
                 <p:selectCheckboxMenu id="advanced"
                                       converter="#{countryConverter}"
                                       filter="true" filterMatchMode="startsWith" filterNormalize="true"
-                                      multiple="true"
+                                      multiple="true" updateLabel="true"
                                       scrollHeight="250"
                                       value="#{checkboxView.selectedCountries2}"
                                       var="c"
