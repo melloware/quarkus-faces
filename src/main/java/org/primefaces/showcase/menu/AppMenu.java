@@ -166,7 +166,7 @@ public class AppMenu {
         dataTableMenuItems.add(new MenuItem("ContextMenu", "/ui/data/datatable/contextMenu"));
         dataTableMenuItems.add(new MenuItem("Crud", "/ui/data/datatable/crud"));
         dataTableMenuItems.add(new MenuItem("DisplayPriority", "/ui/data/datatable/displayPriority"));
-        // dataTableMenuItems.add(new MenuItem("Dynamic Columns", "/ui/data/datatable/columns"));
+        dataTableMenuItems.add(new MenuItem("Dynamic Columns", "/ui/data/datatable/columns"));
         dataTableMenuItems.add(new MenuItem("Edit", "/ui/data/datatable/edit"));
         dataTableMenuItems.add(new MenuItem("Facets", "/ui/data/datatable/facets"));
         dataTableMenuItems.add(new MenuItem("Field", "/ui/data/datatable/field"));

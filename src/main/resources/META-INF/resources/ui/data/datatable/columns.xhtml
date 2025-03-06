@@ -21,6 +21,33 @@
             Available columns are <b>name</b>, <b>country</b>, <b>date</b>, <b>status</b> and <b>activity</b>.
 
             <h:form id="form">
+                <div class="flex justify-content-between">
+                    <div>
+                        <p:commandButton value="XLS" styleClass="mr-2 mb-2">
+                            <p:dataExporter type="xls" target="tbl" fileName="products"/>
+                        </p:commandButton>
+
+                        <p:commandButton value="XLSX" styleClass="mr-2 mb-2">
+                            <p:dataExporter type="xlsxstream" target="customers" fileName="customers"/>
+                        </p:commandButton>
+
+                        <p:commandButton value="PDF" styleClass="mr-2 mb-2">
+                            <p:dataExporter type="pdf" target="customers" fileName="customers"/>
+                        </p:commandButton>
+
+                        <p:commandButton value="CSV" styleClass="mr-2 mb-2">
+                            <p:dataExporter type="csv" target="customers" fileName="customers"/>
+                        </p:commandButton>
+
+                        <p:commandButton value="XML" styleClass="mr-2 mb-2">
+                            <p:dataExporter type="xml" target="customers" fileName="customers"/>
+                        </p:commandButton>
+
+                        <p:commandButton value="TXT" styleClass="mr-2 mb-2">
+                            <p:dataExporter type="txt" target="customers" fileName="customers"/>
+                        </p:commandButton>
+                    </div>
+                </div>
                 <div class="mt-3 mb-5">
                     <p:inputText id="template" value="#{dtColumnsView.columnTemplate}" size="50" styleClass="mr-2"/>
                     <p:commandButton update="customers" action="#{dtColumnsView.updateColumns}" value="Update"
@@ -31,12 +58,15 @@
                 <p:dataTable id="customers" var="customer" value="#{dtColumnsView.customers}" widgetVar="customersTable"
                              filteredValue="#{dtColumnsView.filteredCustomers}">
 
-                    <p:columns value="#{dtColumnsView.columns}" var="column" headerText="#{column.header}" field="#{column.property}">
+                    <p:columns value="#{dtColumnsView.columns}" var="column" headerText="#{column.header}"
+                               field="#{column.property}">
                         <f:facet name="filter">
-                            <p:datePicker selectionMode="range" converter="jakarta.faces.DateTime" onchange="PF('customersTable').filter()" rendered="#{column.type eq 'date'}"/>
-                            <p:selectOneMenu onchange="PF('customersTable').filter()" rendered="#{column.type eq 'enum'}">
+                            <p:datePicker selectionMode="range" converter="jakarta.faces.DateTime"
+                                          onchange="PF('customersTable').filter()" rendered="#{column.type eq 'date'}"/>
+                            <p:selectOneMenu onchange="PF('customersTable').filter()"
+                                             rendered="#{column.type eq 'enum'}">
                                 <f:selectItem itemValue="#{null}" itemLabel=""/>
-                                <f:selectItems value="#{column.klazz.enumConstants}" />
+                                <f:selectItems value="#{column.klazz.enumConstants}"/>
                             </p:selectOneMenu>
                         </f:facet>
                     </p:columns>
