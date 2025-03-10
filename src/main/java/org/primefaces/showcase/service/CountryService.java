@@ -89,11 +89,13 @@ public class CountryService {
         locales.add(CountryService.toCountry(Locale.of("bs", "BA")));
         locales.add(CountryService.toCountry(Locale.of("cs", "CZ")));
         locales.add(CountryService.toCountry(Locale.of("el", "GR")));
+        locales.add(CountryService.toCountry(Locale.of("et", "EE")));
         locales.add(CountryService.toCountry(Locale.of("fa", "IR"), true));
         locales.add(CountryService.toCountry(Locale.of("fi", "FI")));
         locales.add(CountryService.toCountry(Locale.of("da", "DK")));
         locales.add(CountryService.toCountry(Locale.of("hi", "IN")));
         locales.add(CountryService.toCountry(Locale.of("in", "ID")));
+        locales.add(CountryService.toCountry(Locale.of("is", "IS")));
         locales.add(CountryService.toCountry(Locale.of("hr", "HR")));
         locales.add(CountryService.toCountry(Locale.of("ja", "JP")));
         locales.add(CountryService.toCountry(Locale.of("hu", "HU")));
