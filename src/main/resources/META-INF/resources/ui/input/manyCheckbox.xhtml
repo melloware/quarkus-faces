@@ -28,17 +28,17 @@
         <div class="card">
             <h:form>
                 <p:growl>
-                    <p:autoUpdate />
+                    <p:autoUpdate/>
                 </p:growl>
-                
-                <h5 style="margin-top:0px">Basic Layout</h5>
+
+                <h5 style="margin-top:0">Basic Layout</h5>
                 <p:selectManyCheckbox id="basicAjax" value="#{checkboxView.selectedOptions}" widgetVar="blub">
-                    <p:ajax listener="#{checkboxView.selectedOptionsChanged}" />
+                    <p:ajax listener="#{checkboxView.selectedOptionsChanged}"/>
                     <f:selectItem itemLabel="Option 1" itemValue="Option 1"/>
                     <f:selectItem itemLabel="Option 2" itemValue="Option 2"/>
                     <f:selectItem itemLabel="Option 3" itemValue="Option 3"/>
                 </p:selectManyCheckbox>
-                
+
                 <h5>Responsive</h5>
                 <p:selectManyCheckbox id="grid2" value="#{checkboxView.selectedCities2}" layout="responsive"
                                       columns="3">
@@ -49,7 +49,7 @@
                 <p:selectManyCheckbox id="lineDirection" value="#{checkboxView.selectedCities}" layout="lineDirection">
                     <f:selectItems value="#{checkboxView.cities}" var="city" itemLabel="#{city}" itemValue="#{city}"/>
                 </p:selectManyCheckbox>
-                
+
                 <h5>Page Direction</h5>
                 <p:selectManyCheckbox id="pageDirection" value="#{checkboxView.selectedCities}" layout="pageDirection">
                     <f:selectItems value="#{checkboxView.cities}" var="city" itemLabel="#{city}" itemValue="#{city}"/>
@@ -58,7 +58,7 @@
                 <h5>Custom Layout</h5>
                 <p:outputPanel id="customPanel">
                     <p:selectManyCheckbox id="custom" value="#{checkboxView.selectedOptions2}" layout="custom">
-                        <p:ajax listener="#{checkboxView.selectedOptions2Changed}" />
+                        <p:ajax listener="#{checkboxView.selectedOptions2Changed}"/>
                         <f:selectItem itemLabel="Option 1" itemValue="Option 1"/>
                         <f:selectItem itemLabel="Option 2" itemValue="Option 2"/>
                         <f:selectItem itemLabel="Option 3" itemValue="Option 3"/>
@@ -69,7 +69,7 @@
                             <p:outputLabel for="opt1" value="Option 1" styleClass="block mb-2"/>
                             <p:checkbox id="opt1" for="custom" itemIndex="0"/>
                         </div>
-                        
+
                         <div class="col">
                             <p:outputLabel for="opt2" value="Option 2" styleClass="block mb-2"/>
                             <p:checkbox id="opt2" for="custom" itemIndex="1"/>
@@ -83,8 +83,9 @@
                 </p:outputPanel>
 
                 <h5>Grouped</h5>
-                <p:selectManyCheckbox id="grid3" value="#{checkboxView.selectedCountries}" layout="pageDirection"
+                <p:selectManyCheckbox id="grid3" value="#{checkboxView.selectedCountries2}" layout="pageDirection"
                                       columns="1" styleClass="grid-checkbox">
+                    <p:ajax listener="#{checkboxView.countryOptionsChanged}"/>
                     <f:selectItems value="#{checkboxView.countries}" var="country" itemLabel="#{country}"
                                    itemValue="#{country}"/>
                 </p:selectManyCheckbox>

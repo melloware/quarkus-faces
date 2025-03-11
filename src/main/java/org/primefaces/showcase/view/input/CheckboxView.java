@@ -205,30 +205,38 @@ public class CheckboxView {
     }
 
     public void selectedOptionsChanged() {
-        String message = "selectedOptions changed to: ";
+        StringBuilder message = new StringBuilder("selectedOptions changed to: ");
         if (selectedOptions != null) {
             for (int i = 0; i < selectedOptions.length; i++) {
                 if (i > 0) {
-                    message += ", ";
+                    message.append(", ");
                 }
-                message += selectedOptions[i];
+                message.append(selectedOptions[i]);
             }
         }
 
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+                new FacesMessage(FacesMessage.SEVERITY_INFO, message.toString(), null));
     }
 
     public void selectedOptions2Changed() {
-        String message = "selectedOptions2 changed to: ";
+        StringBuilder message = new StringBuilder("selectedOptions2 changed to: ");
         if (selectedOptions2 != null) {
             for (int i = 0; i < selectedOptions2.length; i++) {
                 if (i > 0) {
-                    message += ", ";
+                    message.append(", ");
                 }
-                message += selectedOptions2[i];
+                message.append(selectedOptions2[i]);
             }
         }
+
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, message.toString(), null));
+    }
+
+    public void countryOptionsChanged() {
+        String message = "countryOptionsChanged changed to: ";
+        message += selectedCountries2;
 
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
