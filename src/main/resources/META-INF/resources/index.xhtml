@@ -2,6 +2,7 @@
                 xmlns:h="jakarta.faces.html"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:p="primefaces"
+				xmlns:o="omnifaces"
                 template="template/template.xhtml">
 
     <ui:define name="content">
@@ -57,7 +58,7 @@
                 <div class="col-12 md:col-6 lg:col-4 xl:col-3">
                     <p:card styleClass="w-24rem mb-2" title="Startup">
                         <span class="font-medium"
-                              style="font-family: monospace">#{of:formatDate(startup.zonedDateTime, 'yyyy-MM-dd HH:mm:ss')}</span>
+                              style="font-family: monospace">#{o:formatDate(startup.zonedDateTime, 'yyyy-MM-dd HH:mm:ss')}</span>
                     </p:card>
                 </div>
                 <div class="col-12 md:col-6 lg:col-4 xl:col-3">
