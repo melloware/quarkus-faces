@@ -374,6 +374,7 @@ public class AppMenu {
         List<MenuItem> chartMenuItems = new ArrayList<>();
 
         //Bar Nested MenuItem
+        chartMenuItems.add(new MenuItem("Apache eCharts", "/ui/chart/echarts", "New"));
         chartMenuItems.add(new MenuItem("Bar", "/ui/chart/bar", "New"));
         chartMenuItems.add(new MenuItem("Bubble", "/ui/chart/bubble", "New"));
         chartMenuItems.add(new MenuItem("Doughnut", "/ui/chart/doughnut", "New"));
