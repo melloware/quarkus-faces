@@ -15,7 +15,7 @@
         <lombok.version>1.18.38</lombok.version>
         <myfaces.version>4.1.1</myfaces.version>
         <omnifaces-quarkus.version>5.0-M3</omnifaces-quarkus.version>
-        <primefaces-quarkus.version>3.15.4</primefaces-quarkus.version>
+        <primefaces-quarkus.version>3.15.5</primefaces-quarkus.version>
         <quarkus.version>3.23.3</quarkus.version>
     </properties>
     <dependencyManagement>
