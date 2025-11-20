@@ -11,7 +11,7 @@
     <url>https://github.com/melloware/quarkus-faces</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.release>25</maven.compiler.release>
         <lombok.version>1.18.42</lombok.version>
         <myfaces.version>4.1.2</myfaces.version>
         <omnifaces-quarkus.version>5.0-M6</omnifaces-quarkus.version>
