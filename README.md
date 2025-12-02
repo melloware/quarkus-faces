@@ -44,7 +44,7 @@ hosting using 0.1 VCPU and 512MB RAM. It is an underpowered machine, but it gets
 - PrimeFaces
   Extensions [CombinedResourceHandler Helper](https://github.com/primefaces-extensions/primefaces-extensions/issues/293)
 - jQuery [Hide Page Until Complete](https://stackoverflow.com/questions/9550760/hide-page-until-everything-is-loaded-advanced/28129691#28129691)
-- Caffeine [High Performance Caching)](https://github.com/melloware/quarkus-faces/blob/main/src/main/java/org/primefaces/showcase/util/CaffeineCacheProvider.java)
+- Caffeine [High Performance Caching](https://github.com/melloware/quarkus-faces/blob/main/src/main/java/org/primefaces/showcase/util/CaffeineCacheProvider.java)
 
 ### Development
 
