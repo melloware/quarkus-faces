@@ -138,7 +138,7 @@ public class FileContentMarkerUtil {
         try {
             bean = facesContext.getApplication()
                     .evaluateExpressionGet(facesContext, "#{" + group + "}", Object.class);
-        } catch (ELException e) {
+        } catch (ELException | IllegalArgumentException e) {
             return;
         }
         if (bean == null) {
