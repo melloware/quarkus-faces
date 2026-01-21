@@ -16,7 +16,7 @@
         <myfaces.version>4.1.2</myfaces.version>
         <omnifaces-quarkus.version>5.0.1</omnifaces-quarkus.version>
         <primefaces-quarkus.version>4.15.12</primefaces-quarkus.version>
-        <quarkus.version>3.30.6</quarkus.version>
+        <quarkus.version>3.30.7</quarkus.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -308,6 +308,15 @@
             <id>qdev</id>
             <build>
                 <defaultGoal>compile quarkus:dev</defaultGoal>
+            </build>
+        </profile>
+        <profile>
+            <id>uber</id>
+            <properties>
+                <quarkus.package.jar.type>uber-jar</quarkus.package.jar.type>
+            </properties>
+            <build>
+                <defaultGoal>clean package</defaultGoal>
             </build>
         </profile>
         <profile>
