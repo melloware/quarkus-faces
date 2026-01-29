@@ -5,7 +5,7 @@
     <groupId>com.melloware</groupId>
     <artifactId>quarkus-faces</artifactId>
     <version>15.0.0</version>
-    <packaging>jar</packaging>
+    <packaging>quarkus</packaging>
     <name>quarkus-faces</name>
     <description>Quarkus version of the PrimeFaces Showcase with many optimizations</description>
     <url>https://github.com/melloware/quarkus-faces</url>
@@ -16,7 +16,7 @@
         <myfaces.version>4.1.2</myfaces.version>
         <omnifaces-quarkus.version>5.0.1</omnifaces-quarkus.version>
         <primefaces-quarkus.version>4.15.12</primefaces-quarkus.version>
-        <quarkus.version>3.30.8</quarkus.version>
+        <quarkus.version>3.31.1</quarkus.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -290,16 +290,6 @@
                 <artifactId>quarkus-maven-plugin</artifactId>
                 <version>${quarkus.version}</version>
                 <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>build</goal>
-                            <goal>generate-code</goal>
-                            <goal>generate-code-tests</goal>
-                            <goal>native-image-agent</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
