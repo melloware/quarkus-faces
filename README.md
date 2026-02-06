@@ -67,7 +67,7 @@ To run the example in HotSpot Production mode Uber-Jar:
 ```
 git clone https://github.com/melloware/quarkus-faces
 cd quarkus-faces
-mvn clean package -Dquarkus.package.jar.type=uber-jar
+mvn -Puber
 java -jar target/quarkus-faces-runner.jar
 ```
 
