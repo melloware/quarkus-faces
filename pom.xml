@@ -310,6 +310,17 @@
             </build>
         </profile>
         <profile>
+            <id>aot</id>
+            <properties>
+                <quarkus.package.jar.aot.enabled>true</quarkus.package.jar.aot.enabled>
+                <quarkus.package.jar.aot.type>aot</quarkus.package.jar.aot.type>
+				<quarkus.package.jar.aot.phase>build</quarkus.package.jar.aot.phase>
+            </properties>
+            <build>
+                <defaultGoal>clean verify</defaultGoal>
+            </build>
+        </profile>
+        <profile>
             <id>native</id>
             <activation>
                 <property>
