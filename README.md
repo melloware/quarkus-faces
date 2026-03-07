@@ -67,8 +67,22 @@ To run the example in HotSpot Production mode Uber-Jar:
 ```
 git clone https://github.com/melloware/quarkus-faces
 cd quarkus-faces
-mvn clean package -Dquarkus.package.jar.type=uber-jar
+mvn -Puber
 java -jar target/quarkus-faces-runner.jar
+```
+
+Then open your web browser to http://localhost:8000/
+
+### Production Ahead-of-Time (AOT) Caching
+
+***
+To run the example in JDK25 Ahead-of-Time (AOT) Caching mode:
+
+```
+git clone https://github.com/melloware/quarkus-faces
+cd quarkus-faces
+mvn -Paot
+java -XX:AOTCache=target/quarkus-app/app.aot -jar target/quarkus-app/quarkus-run.jar
 ```
 
 Then open your web browser to http://localhost:8000/

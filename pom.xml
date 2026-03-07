@@ -15,8 +15,8 @@
         <lombok.version>1.18.42</lombok.version>
         <myfaces.version>4.1.2</myfaces.version>
         <omnifaces-quarkus.version>5.0.1</omnifaces-quarkus.version>
-        <primefaces-quarkus.version>4.15.12</primefaces-quarkus.version>
-        <quarkus.version>3.31.1</quarkus.version>
+        <primefaces-quarkus.version>4.15.13</primefaces-quarkus.version>
+        <quarkus.version>3.32.2</quarkus.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -86,7 +86,7 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces-themes</artifactId>
-            <version>15.0.12</version>
+            <version>15.0.13</version>
         </dependency>
         <!-- JS and CSS -->
         <dependency>
@@ -196,7 +196,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.1</version>
+                <version>3.15.0</version>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <annotationProcessorPaths>
@@ -242,7 +242,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.4.0</version>
+                <version>3.5.0</version>
                 <executions>
                     <execution>
                         <id>copy-java-files</id>
@@ -307,6 +307,17 @@
             </properties>
             <build>
                 <defaultGoal>clean package</defaultGoal>
+            </build>
+        </profile>
+        <profile>
+            <id>aot</id>
+            <properties>
+                <quarkus.package.jar.aot.enabled>true</quarkus.package.jar.aot.enabled>
+                <quarkus.package.jar.aot.type>aot</quarkus.package.jar.aot.type>
+				<quarkus.package.jar.aot.phase>build</quarkus.package.jar.aot.phase>
+            </properties>
+            <build>
+                <defaultGoal>clean verify</defaultGoal>
             </build>
         </profile>
         <profile>
