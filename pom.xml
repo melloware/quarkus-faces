@@ -301,6 +301,15 @@
             </build>
         </profile>
         <profile>
+            <id>fast</id>
+            <properties>
+                <quarkus.package.jar.type>fast-jar</quarkus.package.jar.type>
+            </properties>
+            <build>
+                <defaultGoal>clean package</defaultGoal>
+            </build>
+        </profile>
+        <profile>
             <id>uber</id>
             <properties>
                 <quarkus.package.jar.type>uber-jar</quarkus.package.jar.type>

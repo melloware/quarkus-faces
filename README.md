@@ -51,7 +51,7 @@ hosting using 0.1 VCPU and 512MB RAM. It is an underpowered machine, but it gets
 ***
 To run the example in Dev mode:
 
-```
+```shell
 git clone https://github.com/melloware/quarkus-faces
 cd quarkus-faces
 mvn quarkus:dev
@@ -59,12 +59,30 @@ mvn quarkus:dev
 
 Then open your web browser to http://localhost:8000/
 
+### Production Fast-Jar
+
+***
+To run the example in HotSpot Production mode Fast-Jar:
+
+```shell
+git clone https://github.com/melloware/quarkus-faces
+cd quarkus-faces
+mvn -Pfast
+java -jar target/quarkus-app/quarkus-run.jar
+```
+
+Then open your web browser to http://localhost:8000/
+
+```shell
+quarkus-faces 15.0.0 on JVM (powered by Quarkus 3.32.2) started in 1.383s
+```
+
 ### Production Uber-Jar
 
 ***
 To run the example in HotSpot Production mode Uber-Jar:
 
-```
+```shell
 git clone https://github.com/melloware/quarkus-faces
 cd quarkus-faces
 mvn -Puber
@@ -73,12 +91,16 @@ java -jar target/quarkus-faces-runner.jar
 
 Then open your web browser to http://localhost:8000/
 
+```shell
+quarkus-faces 15.0.0 on JVM (powered by Quarkus 3.32.2) started in 1.381s
+```
+
 ### Production Ahead-of-Time (AOT) Caching
 
 ***
 To run the example in JDK25 Ahead-of-Time (AOT) Caching mode:
 
-```
+```shell
 git clone https://github.com/melloware/quarkus-faces
 cd quarkus-faces
 mvn -Paot
@@ -86,6 +108,10 @@ java -XX:AOTCache=target/quarkus-app/app.aot -jar target/quarkus-app/quarkus-run
 ```
 
 Then open your web browser to http://localhost:8000/
+
+```shell
+quarkus-faces 15.0.0 on JVM (powered by Quarkus 3.32.2) started in 0.622s
+```
 
 ### Docker JVM
 
