@@ -133,6 +133,10 @@ mvn -Pnative-docker
 docker run -i --rm -p 8000:8000 melloware/quarkus-faces:${version}
 ```
 
+```
+quarkus-faces 15.0.0 native (powered by Quarkus 3.32.2) started in 0.178s
+```
+
 ### Known Issues
 
 ***
