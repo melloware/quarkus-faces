@@ -12,7 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
-        <lombok.version>1.18.44</lombok.version>
+        <lombok.version>1.18.46</lombok.version>
         <myfaces.version>4.1.2</myfaces.version>
         <omnifaces-quarkus.version>5.2.3</omnifaces-quarkus.version>
         <primefaces-quarkus.version>4.15.14</primefaces-quarkus.version>
