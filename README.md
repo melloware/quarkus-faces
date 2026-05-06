@@ -59,6 +59,10 @@ mvn quarkus:dev
 
 Then open your web browser to http://localhost:8000/
 
+```shell
+quarkus-faces 15.0.0 on JVM (powered by Quarkus 3.35.2) started in 4.075s
+```
+
 ### Production Fast-Jar
 
 ***
