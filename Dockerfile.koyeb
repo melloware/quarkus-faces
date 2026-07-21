@@ -24,7 +24,7 @@ RUN ./mvnw dependency:resolve -U
 COPY src /code/src
 
 # Build the application with the native profile to create a native executable.
-RUN ./mvnw package -Dnative -Dquarkus.native.native-image-xmx=7g
+RUN ./mvnw package -Dnative -Dquarkus.native.native-image-xmx=8g
 
 ## Stage 2: Create the final Docker image
 # Use a lightweight Quarkus micro image for running the application.
