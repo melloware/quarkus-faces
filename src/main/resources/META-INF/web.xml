@@ -115,10 +115,6 @@
 
     <!-- Context parameters - OmniFaces -->
     <context-param>
-        <param-name>org.omnifaces.SOCKET_ENDPOINT_ENABLED</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
         <param-name>org.omnifaces.COMBINED_RESOURCE_HANDLER_DISABLED</param-name>
         <param-value>#{facesContext.application.projectStage eq 'Development'}</param-value>
     </context-param>
