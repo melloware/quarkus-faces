@@ -14,8 +14,8 @@
         <maven.compiler.release>21</maven.compiler.release>
         <lombok.version>1.18.48</lombok.version>
         <myfaces.version>4.1.4</myfaces.version>
-        <omnifaces-quarkus.version>5.5.1</omnifaces-quarkus.version>
-        <primefaces-quarkus.version>4.16.0-RC2</primefaces-quarkus.version>
+        <omnifaces-quarkus.version>5.5.2</omnifaces-quarkus.version>
+        <primefaces-quarkus.version>4.16.0</primefaces-quarkus.version>
         <quarkus.version>3.39.2</quarkus.version>
     </properties>
     <dependencyManagement>
