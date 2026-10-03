@@ -16,7 +16,7 @@
         <myfaces.version>4.1.4</myfaces.version>
         <omnifaces-quarkus.version>5.5.4</omnifaces-quarkus.version>
         <primefaces-quarkus.version>4.16.0</primefaces-quarkus.version>
-        <quarkus.version>3.39.5</quarkus.version>
+        <quarkus.version>3.40.1</quarkus.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -26,6 +26,12 @@
                 <version>${quarkus.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!-- chartjs-java-model uses Jackson 3 (tools.jackson) which requires jackson-annotations 2.22+ -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.22</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
