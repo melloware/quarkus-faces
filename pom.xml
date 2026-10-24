@@ -92,7 +92,7 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces-themes</artifactId>
-            <version>16.0.0</version>
+            <version>16.0.1</version>
         </dependency>
         <!-- JS and CSS -->
         <dependency>
