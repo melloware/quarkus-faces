@@ -19,7 +19,7 @@ App = {
         this._bindNews();
 
         this.restoreMenu();
-        Storage.restoreSettings();
+        AppStorage.restoreSettings();
     },
 
     _bindEvents: function () {
@@ -190,7 +190,7 @@ App = {
                 $this.wrapper.removeClass('layout-news-active');
                 $this.news.hide();
 
-                Storage.saveSettings(false);
+                AppStorage.saveSettings(false);
             });
         }
     },
@@ -205,7 +205,7 @@ App = {
     }
 }
 
-let Storage = {
+let AppStorage = {
     storageKey: 'primefaces',
     saveSettings: function (newsActive) {
         let now = new Date();
